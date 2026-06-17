@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spenden — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--gray-200); }
+.page-hero__label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; }
+.page-hero h1 { margin-bottom: 14px; max-width: 640px; }
+.page-hero p  { font-size: 1rem; max-width: 520px; line-height: 1.75; }
+
+/* ── DONATE BUTTONS ── */
+.donate-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+.btn-betterplace {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #00a068; color: #fff;
+  font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.04em; padding: 14px 28px; border-radius: var(--r);
+  border: none; cursor: pointer; transition: background 0.2s; text-decoration: none;
+}
+.btn-betterplace:hover { background: #008055; }
+.btn-paypal {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #003087; color: #fff;
+  font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.04em; padding: 14px 28px; border-radius: var(--r);
+  border: none; cursor: pointer; transition: background 0.2s; text-decoration: none;
+}
+.btn-paypal:hover { background: #001f5c; }
+.btn-paypal .pp { color: #009cde; }
+
+/* ── STATS (from index.html) ── */
+.stats { border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); background: var(--off-white); }
+.stats__row { display: grid; grid-template-columns: repeat(4,1fr); }
+.stat { padding: 36px 24px; border-right: 1px solid var(--gray-200); text-align: center; }
+.stat:last-child { border-right: none; }
+.stat[onclick]:hover { background: var(--gray-100); transition: background 0.2s; }
+.stat__n { font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.stat__l { font-size: 0.78rem; color: var(--gray-500); }
+
+/* ── MAIN GRID ── */
+.donate-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; padding: 72px 0; align-items: start; }
+
+/* ── LEFT: FORM ── */
+.block-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 32px; line-height: 1.15; }
+.f-group { margin-bottom: 20px; }
+.f-group label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
+.f-group input, .f-group select, .f-group textarea {
+  width: 100%; padding: 13px 16px; border: 1px solid var(--gray-200);
+  background: var(--off-white); border-radius: var(--r);
+  font-family: var(--font-ui); font-size: 0.9rem; color: var(--black);
+  outline: none; transition: border-color 0.2s, background 0.2s; appearance: none;
+}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--black); background: var(--white); }
+.f-group textarea { resize: vertical; min-height: 90px; }
+.f-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a877f'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+  background-color: var(--off-white); padding-right: 40px;
+}
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.f-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+.f-check input { width: 16px; height: 16px; accent-color: var(--black); flex-shrink: 0; margin-top: 2px; }
+.f-check label { font-size: 0.85rem; color: var(--gray-700); line-height: 1.5; }
+.lang-row { display: flex; gap: 6px; margin-bottom: 20px; }
+.lang-pill { padding: 6px 16px; border: 1px solid var(--gray-200); border-radius: 100px; font-size: 0.75rem; cursor: pointer; background: none; font-family: var(--font-ui); transition: 0.2s; color: var(--gray-500); }
+.lang-pill.on { background: var(--black); color: var(--white); border-color: var(--black); }
+.amount-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.amount-pill {
+  padding: 9px 20px; border: 1px solid var(--gray-200); border-radius: var(--r);
+  font-family: var(--font-display); font-size: 1rem; font-weight: 600;
+  background: none; color: var(--gray-700); cursor: pointer; transition: 0.18s;
+}
+.amount-pill:hover, .amount-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.submit-btn { width: 100%; padding: 16px; background: var(--black); color: var(--white); border: none; border-radius: var(--r); font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; }
+.submit-btn:hover { background: var(--gray-700); }
+
+/* ── RIGHT: REQUISITES ── */
+.info-section-title { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
+.bank-fields { margin-bottom: 24px; }
+.bank-field { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--gray-200); gap: 12px; }
+.bank-field:last-child { border-bottom: none; }
+.bank-field__key { font-size: 0.75rem; color: var(--gray-500); margin-bottom: 3px; }
+.bank-field__val { font-family: var(--font-display); font-size: 1rem; font-weight: 600; color: var(--black); word-break: break-all; }
+.copy-btn { background: none; border: 1px solid var(--gray-200); border-radius: var(--r); padding: 5px 12px; font-size: 0.7rem; font-family: var(--font-ui); color: var(--gray-500); cursor: pointer; transition: 0.18s; white-space: nowrap; flex-shrink: 0; }
+.copy-btn:hover { border-color: var(--black); color: var(--black); }
+.copy-btn.copied { border-color: #2a7a2a; color: #2a7a2a; }
+.info-card { padding: 20px; border: 1px solid var(--gray-200); border-radius: var(--r); margin-bottom: 12px; transition: border-color 0.2s; }
+.info-card:hover { border-color: var(--gray-300); }
+.info-card__head { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.info-card__head::before { content:''; width:10px; height:1px; background:var(--gray-300); display:block; }
+.info-card p { font-size: 0.875rem; line-height: 1.75; color: var(--gray-700); }
+.info-card a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+.tax-notice { background: var(--gray-100); border-radius: var(--r); padding: 20px 22px; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+.tax-notice__icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+.tax-notice__text { font-size: 0.8rem; line-height: 1.65; color: var(--gray-700); }
+.tax-notice__text strong { color: var(--black); }
+
+/* ── DONATION CHIPS (from index.html) ── */
+.donation-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+
+
+/* ── CONTACT STRIP ── */
+.contact-strip { background: var(--gray-100); border-top: 1px solid var(--gray-200); }
+.contact-strip__inner { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; padding: 44px 0; }
+.contact-strip p { font-size: 0.9375rem; margin-top: 6px; }
+.contact-strip__label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); }
+
+/* ── i18n ── */
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .donate-grid { grid-template-columns: 1fr; gap: 48px; padding: 48px 0; }
+  .stats__row { grid-template-columns: repeat(2,1fr); }
+  .stat:nth-child(2) { border-right: none; }
+  .stat:nth-child(3) { border-top: 1px solid var(--gray-200); }
+  .stat:nth-child(4) { border-top: 1px solid var(--gray-200); border-right: none; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-item { border-right: none !important; }
+  .faq-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--gray-200); }
+  .faq-item:last-child { border-bottom: none; }
+  .f-row { grid-template-columns: 1fr; }
+  .donate-buttons { flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .stats__row { grid-template-columns: repeat(2,1fr); }
+  .contact-strip__inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__wrap">
+    <div class="nav__logo">Mission Europa<br>Resource e. V.</div>
+    <div class="nav__menu" id="menu">
+      <a href="index.html" data-i18n="nav_about">Über uns</a>
+      <a href="index.html" data-i18n="nav_projects">Projekte</a>
+      <a href="index.html" data-i18n="nav_business">Für Unternehmen</a>
+      <a href="index.html" data-i18n="nav_reports">Berichte</a>
+      <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="de" class="on">DE</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="en">EN</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="ru">RU</span>
+      </div>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <p class="page-hero__label au" data-i18n="page_label">Unterstützen Sie unsere Arbeit</p>
+    <h1 class="au2" data-i18n="page_title">Jede Spende<br><em>bewegt Europa.</em></h1>
+    <p class="au3" data-i18n="hero_desc">Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.</p>
+    <div class="donate-buttons au4">
+      <a href="https://www.betterplace.org/de/organisations/YOUR_ORG_ID" target="_blank" rel="noopener" class="btn-betterplace">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-i18n="btn_betterplace">Jetzt spenden via Betterplace</span>
+      </a>
+      <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener" class="btn-paypal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 11c.5-3 3-4.5 6.5-4.5 3 0 4.5 1.5 4 4-.5 2.5-3 4-6 4H9.5L9 17H6l1-6z" fill="white" opacity="0.9"/><path d="M9.5 14.5c.5-3 3-4.5 6-4.5 2.5 0 4 1 3.5 3.5-.5 2-2.5 3.5-5.5 3.5H11l-.5 3H8l1.5-5.5z" fill="white" opacity="0.5"/></svg>
+        <span>Pay<span class="pp">Pal</span> <span data-i18n="btn_paypal">Giving Fund</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- STATS (from index.html) -->
+<div class="stats">
+  <div class="stats__row">
+    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
+      <div class="stat__n">5</div>
+      <div class="stat__l" data-i18n="stat2">aktive Projekte</div>
+    </div>
+    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
+      <div class="stat__n">250+</div>
+      <div class="stat__l" data-i18n="stat1">Veranstaltungen</div>
+    </div>
+    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
+      <div class="stat__n">DE</div>
+      <div class="stat__l" data-i18n="stat3">Bildungsprogramme</div>
+    </div>
+    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#proj-lit'">
+      <div class="stat__n">EU</div>
+      <div class="stat__l" data-i18n="stat4">In ganz Europa</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="wrap">
+  <div class="donate-grid">
+
+    <!-- LEFT: FORM -->
+    <div>
+      <div class="block-title" data-i18n="form_title">Spendenformular</div>
+
+      <form action="thank-you.html">
+        <div class="f-row">
+          <div class="f-group">
+            <label data-i18n="f_name">Name</label>
+            <input type="text" data-i18n-placeholder="f_name_ph">
+          </div>
+          <div class="f-group">
+            <label>Email</label>
+            <input type="email" placeholder="email@example.com">
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_phone">Telefon</label>
+          <input type="tel" placeholder="+49 000 000 0000">
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_amount">Spendenbetrag (€)</label>
+          <div class="amount-pills" id="amountPills">
+            <button type="button" class="amount-pill" data-val="20">20 €</button>
+            <button type="button" class="amount-pill active" data-val="50">50 €</button>
+            <button type="button" class="amount-pill" data-val="100">100 €</button>
+            <button type="button" class="amount-pill" data-val="250">250 €</button>
+            <button type="button" class="amount-pill" data-val="other" data-i18n="f_other">Andere</button>
+          </div>
+          <input type="number" id="amountInput" placeholder="100" min="1">
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_project">Projekt auswählen</label>
+          <select>
+            <option data-i18n="f_proj_all">Alle Projekte</option>
+            <option>Parasol</option>
+            <option>Awana</option>
+            <option>Revers</option>
+            <option>Alpha Course</option>
+            <option data-i18n="f_proj_lit">Literaturversand</option>
+          </select>
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_method">Zahlungsart</label>
+          <select>
+            <option data-i18n="f_bank">Banküberweisung</option>
+            <option>PayPal Giving Fund</option>
+            <option>Betterplace</option>
+            <option>Cash / Giro</option>
+          </select>
+        </div>
+
+        <div class="f-check">
+          <input type="checkbox" id="neu">
+          <label for="neu" data-i18n="f_new_order">Neue Spendenbeauftragung einrichten</label>
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_lang">Korrespondenzsprache</label>
+          <div class="lang-row">
+            <button type="button" class="lang-pill on">DE</button>
+            <button type="button" class="lang-pill">EN</button>
+            <button type="button" class="lang-pill">RU</button>
+            <button type="button" class="lang-pill">UK</button>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label data-i18n="f_msg">Nachricht</label>
+          <textarea data-i18n-placeholder="f_msg_ph"></textarea>
+        </div>
+
+        <div class="f-check">
+          <input type="checkbox" id="gdpr" required>
+          <label for="gdpr" data-i18n="f_gdpr">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="#" style="text-decoration:underline">Datenschutzerklärung</a> zu.</label>
+        </div>
+
+        <button type="submit" class="submit-btn" data-i18n="f_submit">Absenden →</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: REQUISITES -->
+    <div>
+      <div class="block-title" data-i18n="info_title">Bankdaten<br><em>&amp; Kontakt</em></div>
+
+      <p class="info-section-title" data-i18n="bank_title">Banküberweisung</p>
+      <div class="bank-fields">
+        <div class="bank-field">
+          <div>
+            <div class="bank-field__key" data-i18n="b_owner">Kontoinhaber</div>
+            <div class="bank-field__val">Mission Europa Resource e. V.</div>
+          </div>
+          <button class="copy-btn" data-copy="Mission Europa Resource e. V.">Kopieren</button>
+        </div>
+        <div class="bank-field">
+          <div>
+            <div class="bank-field__key">IBAN</div>
+            <div class="bank-field__val">DE00 1020 3040 5060 7080 XX</div>
+          </div>
+          <button class="copy-btn" data-copy="DE00102030405060708020">Kopieren</button>
+        </div>
+        <div class="bank-field">
+          <div>
+            <div class="bank-field__key">BIC / SWIFT</div>
+            <div class="bank-field__val">COBADEFFXXX</div>
+          </div>
+          <button class="copy-btn" data-copy="COBADEFFXXX">Kopieren</button>
+        </div>
+        <div class="bank-field">
+          <div>
+            <div class="bank-field__key" data-i18n="b_bank">Bank</div>
+            <div class="bank-field__val">Commerzbank AG</div>
+          </div>
+          <button class="copy-btn" data-copy="Commerzbank AG">Kopieren</button>
+        </div>
+        <div class="bank-field">
+          <div>
+            <div class="bank-field__key" data-i18n="b_ref">Verwendungszweck</div>
+            <div class="bank-field__val" data-i18n="b_ref_val">Spende + Ihr Name</div>
+          </div>
+          <button class="copy-btn" data-copy="Spende">Kopieren</button>
+        </div>
+      </div>
+
+      <!-- TAX NOTICE (text from index.html donation block) -->
+      <div class="tax-notice">
+        <div class="tax-notice__icon">📄</div>
+        <div class="tax-notice__text">
+          <strong data-i18n="don_title_short">Steuerlich absetzbar.</strong>
+          <span data-i18n="don_text"> Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Spendenbescheinigung verfügbar.</span>
+          <div class="donation-chips" style="margin-top:12px;">
+            <span class="chip">Zuwendungsbescheinigung</span>
+            <span class="chip" data-i18n="don_chip2">Steuerabzug</span>
+            <span class="chip">Spendenbescheinigung</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head">Betterplace</div>
+        <p><a href="https://www.betterplace.org/de/organisations/YOUR_ORG_ID" target="_blank" rel="noopener">betterplace.org → Mission Europa</a></p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head">PayPal Giving Fund</div>
+        <p><a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener">PayPal Giving Fund → Mission Europa</a></p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head" data-i18n="addr_title">Adresse der Organisation</div>
+        <p>Mission Europa Resource e. V.<br>Musterstraße 1, 10115 Berlin<br>Tel: +49 000 000-xxxx<br><a href="mailto:contact@mission-europa.de">contact@mission-europa.de</a></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="wrap">
+    <div class="contact-strip__inner">
+      <div>
+        <p class="contact-strip__label" data-i18n="strip_label">Fragen zur Spende?</p>
+        <p data-i18n="strip_text">Lorem ipsum: <a href="mailto:spenden@mission-europa.de" style="text-decoration:underline">spenden@mission-europa.de</a></p>
+      </div>
+      <a href="mailto:spenden@mission-europa.de" class="btn btn-ghost" data-i18n="strip_btn">Schreiben Sie uns →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__logo">Mission Europa Resource e. V.<br>
+        <span style="font-weight:400;color:rgba(255,255,255,0.35);">contact@mission-europa.de</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html" data-i18n="nav_about">Über uns</a>
+        <a href="index.html" data-i18n="nav_projects">Projekte</a>
+        <a href="index.html" data-i18n="nav_business">Für Unternehmen</a>
+        <a href="index.html" data-i18n="nav_reports">Berichte</a>
+        <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
+        <a href="#" data-i18n="nav_imprint">Impressum</a>
+        <a href="#" data-i18n="nav_privacy">Datenschutz</a>
+      </nav>
+    </div>
+    <div class="footer__copy">© 2025 Mission Europa Resource e. V. · Als gemeinnützig anerkannt</div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  de: {
+    nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
+    nav_reports:'Berichte', nav_contact:'Kontakt', nav_imprint:'Impressum', nav_privacy:'Datenschutz',
+    page_label:'Unterstützen Sie unsere Arbeit',
+    page_title:'Jede Spende<br><em>kann ein Leben verändern.</em>',
+    hero_desc:'Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.',
+    stat1:'Veranstaltungen', stat2:'aktive Projekte', stat3:'Bildungsprogramme', stat4:'In ganz Europa',
+    btn_betterplace:'Jetzt spenden via Betterplace', btn_paypal:'Giving Fund',
+    form_title:'Spendenformular',
+    f_name:'Name', f_name_ph:'Ihr Name', f_phone:'Telefon',
+    f_amount:'Spendenbetrag (€)', f_other:'Andere',
+    f_project:'Projekt auswählen', f_proj_all:'Alle Projekte', f_proj_lit:'Literaturversand',
+    f_method:'Zahlungsart', f_bank:'Banküberweisung',
+    f_new_order:'Neue Spendenbeauftragung einrichten',
+    f_lang:'Korrespondenzsprache',
+    f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
+    f_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="#" style="text-decoration:underline">Datenschutzerklärung</a> zu.',
+    f_submit:'Absenden →',
+    info_title:'Bankdaten<br><em>&amp; Kontakt</em>',
+    bank_title:'Banküberweisung',
+    b_owner:'Kontoinhaber', b_bank:'Bank', b_ref:'Verwendungszweck', b_ref_val:'Spende + Ihr Name',
+    don_title_short:'Steuerlich absetzbar.',
+    don_text:' Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Spendenbescheinigung verfügbar.',
+    don_chip2:'Steuerabzug',
+    addr_title:'Adresse der Organisation',
+    faq_title:'Häufige Fragen',
+    faq_1q:'Wofür wird meine Spende verwendet?',
+    faq_2q:'Wie erhalte ich eine Spendenquittung?',
+    faq_3q:'Kann ich für ein bestimmtes Projekt spenden?',
+    faq_4q:'Ist meine Spende steuerlich absetzbar?',
+    faq_5q:'Welche Zahlungswege gibt es?',
+    faq_6q:'Wie kann ich Mitglied werden?',
+    strip_label:'Fragen zur Spende?',
+    strip_text:'Lorem ipsum: <a href="mailto:spenden@mission-europa.de" style="text-decoration:underline">spenden@mission-europa.de</a>',
+    strip_btn:'Schreiben Sie uns →',
+  },
+  en: {
+    nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
+    nav_reports:'Reports', nav_contact:'Contact', nav_imprint:'Imprint', nav_privacy:'Privacy',
+    page_label:'Support our work',
+    page_title:'Every donation<br><em>can change a life.</em>',
+    hero_desc:'Education, integration and humanitarian aid for refugees and their children in Germany.',
+    stat1:'events', stat2:'active projects', stat3:'Educational programmes', stat4:'Across Europe',
+    btn_betterplace:'Donate via Betterplace', btn_paypal:'Giving Fund',
+    form_title:'Donation Form',
+    f_name:'Name', f_name_ph:'Your name', f_phone:'Phone',
+    f_amount:'Donation amount (€)', f_other:'Other',
+    f_project:'Choose project', f_proj_all:'All projects', f_proj_lit:'Literature Distribution',
+    f_method:'Payment method', f_bank:'Bank transfer',
+    f_new_order:'Set up a new standing donation order',
+    f_lang:'Correspondence language',
+    f_msg:'Message', f_msg_ph:'Your message...',
+    f_gdpr:'I agree to the processing of my data in accordance with the <a href="#" style="text-decoration:underline">Privacy Policy</a>.',
+    f_submit:'Send →',
+    info_title:'Bank details<br><em>&amp; Contact</em>',
+    bank_title:'Bank transfer',
+    b_owner:'Account holder', b_bank:'Bank', b_ref:'Reference', b_ref_val:'Donation + Your name',
+    don_title_short:'Tax-deductible.',
+    don_text:' We hold Gemeinnützigkeit status. Your donations may be tax-deductible. A Spendenbescheinigung is available for businesses.',
+    don_chip2:'Tax deduction',
+    addr_title:'Organisation address',
+    faq_title:'Frequently Asked Questions',
+    faq_1q:'How is my donation used?',
+    faq_2q:'How do I get a donation receipt?',
+    faq_3q:'Can I donate to a specific project?',
+    faq_4q:'Is my donation tax-deductible?',
+    faq_5q:'What payment methods are available?',
+    faq_6q:'How can I become a member?',
+    strip_label:'Questions about donating?',
+    strip_text:'Lorem ipsum: <a href="mailto:spenden@mission-europa.de" style="text-decoration:underline">spenden@mission-europa.de</a>',
+    strip_btn:'Write to us →',
+  },
+  ru: {
+    nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
+    nav_reports:'Отчётность', nav_contact:'Контакты', nav_imprint:'Импрессум', nav_privacy:'Конфиденциальность',
+    page_label:'Поддержите нашу работу',
+    page_title:'Каждое пожертвование<br><em>может изменить жизнь.</em>',
+    hero_desc:'Обучение, интеграция и гуманитарная помощь беженцам и их детям в Германии.',
+    stat1:'мероприятий', stat2:'активных проектов', stat3:'Социальные программы', stat4:'По всей Европе',
+    btn_betterplace:'Пожертвовать через Betterplace', btn_paypal:'Giving Fund',
+    form_title:'Форма пожертвования',
+    f_name:'Имя', f_name_ph:'Ваше имя', f_phone:'Телефон',
+    f_amount:'Сумма пожертвования (€)', f_other:'Другая',
+    f_project:'Выбор проекта', f_proj_all:'Все проекты', f_proj_lit:'Распространение литературы',
+    f_method:'Способ оплаты', f_bank:'Банковский перевод',
+    f_new_order:'Оформить новое регулярное пожертвование',
+    f_lang:'Язык переписки',
+    f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
+    f_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a>.',
+    f_submit:'Отправить →',
+    info_title:'Реквизиты<br><em>и контакты</em>',
+    bank_title:'Банковский перевод',
+    b_owner:'Получатель', b_bank:'Банк', b_ref:'Назначение платежа', b_ref_val:'Пожертвование + Ваше имя',
+    don_title_short:'Налоговый вычет.',
+    don_text:' Мы имеем статус Gemeinnützigkeit. Ваши пожертвования учитываются в налоговой декларации. Для бизнеса доступен Spendenbescheinigung.',
+    don_chip2:'Налоговый вычет',
+    addr_title:'Адрес организации',
+    faq_title:'Частые вопросы',
+    faq_1q:'На что идёт моё пожертвование?',
+    faq_2q:'Как получить квитанцию о пожертвовании?',
+    faq_3q:'Можно ли пожертвовать на конкретный проект?',
+    faq_4q:'Вычитается ли пожертвование из налогов?',
+    faq_5q:'Какие способы оплаты доступны?',
+    faq_6q:'Как стать членом организации?',
+    strip_label:'Вопросы о пожертвовании?',
+    strip_text:'Lorem ipsum: <a href="mailto:spenden@mission-europa.de" style="text-decoration:underline">spenden@mission-europa.de</a>',
+    strip_btn:'Написать нам →',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'de';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b =>
+    b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+  currentLang = lang;
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+document.querySelectorAll('.lang-pill').forEach(p =>
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.lang-pill').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+  }));
+document.getElementById('amountPills').addEventListener('click', e => {
+  const btn = e.target.closest('.amount-pill');
+  if (!btn) return;
+  document.querySelectorAll('.amount-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const input = document.getElementById('amountInput');
+  if (btn.dataset.val === 'other') { input.value = ''; input.focus(); }
+  else { input.value = btn.dataset.val; }
+});
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText(btn.dataset.copy).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  });
+});
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+
+applyLang(currentLang);
+</script>
+</body>
+</html>

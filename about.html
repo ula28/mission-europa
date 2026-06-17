@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="about.pageTitle">О нас — Mission Europa Resource e.V.</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Page-specific styles for about.html ── */
+
+    /* Hero */
+    .about-hero {
+      padding: 120px var(--side) 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-hero__label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .about-hero__label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .about-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+    .about-hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .about-hero__text {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 480px;
+    }
+    .about-hero__visual {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .about-hero__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .about-hero__badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-family: var(--font-ui);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .about-hero__badge::before {
+      content: '✓';
+      width: 20px;
+      height: 20px;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* Values */
+    .values-section {
+      padding: 80px var(--side);
+      background: var(--gray-50, #f9f9f7);
+    }
+    .values-section__inner {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .section-label {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .values-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--black);
+    }
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .value-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 28px;
+      border: 1px solid var(--gray-100, #ebebeb);
+    }
+    .value-card__icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+    }
+    .value-card h3 {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .value-card p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* History timeline */
+    .history-section {
+      padding: 80px var(--side);
+    }
+    .history-section__top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 56px;
+      align-items: end;
+    }
+    .history-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--black);
+    }
+    .history-section__lead {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray-600);
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 48px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--gray-100, #ebebeb);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 32px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--gray-100, #ebebeb);
+      position: relative;
+    }
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+    .timeline-item__year {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .timeline-item__dot {
+      position: absolute;
+      left: 42px;
+      top: 38px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .timeline-item h3 {
+      font-family: var(--font-ui);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .timeline-item p {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--gray-600);
+      margin: 0;
+    }
+
+    /* ── Team Showcase Slider ── */
+    .team-section {
+      padding: 80px var(--side);
+      background: var(--black);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .team-section__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 24px;
+    }
+    .team-section .section-label {
+      color: var(--accent);
+    }
+    .team-section .section-label::before {
+      background: var(--accent);
+    }
+    .team-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0;
+    }
+    .team-section__sub {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      color: rgba(255,255,255,.45);
+      max-width: 300px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    /* Main showcase layout */
+    .team-showcase {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: start;
+    }
+
+    /* Big active card */
+    .team-active {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 3/2;
+      background: #1a1a1a;
+    }
+    .team-active__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      transition: opacity .4s ease;
+    }
+    .team-active__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+    }
+    .team-active__info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 40px;
+    }
+    .team-active__role {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .team-active__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .team-active__bio {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,.75);
+      max-width: 520px;
+    }
+
+    /* Thumbnails column */
+    .team-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .team-thumb {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: background .2s, border-color .2s;
+      background: rgba(255,255,255,.04);
+    }
+    .team-thumb:hover {
+      background: rgba(255,255,255,.08);
+    }
+    .team-thumb.active {
+      background: rgba(232,103,42,.12);
+      border-color: rgba(232,103,42,.4);
+    }
+    .team-thumb__img {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border: 2px solid transparent;
+      transition: border-color .2s;
+    }
+    .team-thumb.active .team-thumb__img {
+      border-color: var(--accent);
+    }
+    .team-thumb__name {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,.9);
+      margin-bottom: 2px;
+    }
+    .team-thumb__role {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      color: rgba(255,255,255,.4);
+      letter-spacing: .04em;
+    }
+    .team-thumb__arrow {
+      margin-left: auto;
+      font-size: 16px;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity .2s;
+      flex-shrink: 0;
+    }
+    .team-thumb.active .team-thumb__arrow {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .team-showcase {
+        grid-template-columns: 1fr;
+      }
+      .team-active {
+        aspect-ratio: 4/3;
+      }
+      .team-thumbs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .team-thumb {
+        flex: 1 1 calc(50% - 5px);
+        min-width: 0;
+      }
+      .team-thumb__bio { display: none; }
+      .team-section__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .team-section__sub { text-align: left; max-width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .team-thumb { flex: 1 1 100%; }
+      .team-active { aspect-ratio: 1/1; }
+      .team-active__info { padding: 20px; }
+    }
+
+    /* Transparency / Reports */
+    .reports-section {
+      padding: 80px var(--side);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .reports-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .reports-section__lead {
+      font-family: var(--font-ui);
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin-bottom: 32px;
+    }
+    .report-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .report-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border: 1px solid var(--gray-100, #ebebeb);
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      text-decoration: none;
+      color: var(--black);
+      transition: border-color .2s, background .2s;
+    }
+    .report-item:hover {
+      border-color: var(--accent);
+      background: #fdf5f1;
+    }
+    .report-item__name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .report-item__meta {
+      font-size: 12px;
+      color: var(--gray-600);
+    }
+    .report-item__icon {
+      font-size: 16px;
+      color: var(--accent);
+    }
+
+    /* Partners */
+    .partners-section {
+      padding: 60px var(--side);
+      background: var(--gray-50, #f9f9f7);
+      text-align: center;
+    }
+    .partners-section h3 {
+      font-family: var(--font-ui);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gray-400, #aaa);
+      margin-bottom: 32px;
+    }
+    .partners-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .partner-logo {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-400, #aaa);
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .partner-logo:hover {
+      color: var(--black);
+    }
+
+    /* CTA dark */
+    .about-cta {
+      background: var(--black);
+      padding: 80px var(--side);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    .about-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .about-cta h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .about-cta__btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-hero,
+      .values-section__inner,
+      .history-section__top,
+      .reports-section,
+      .about-cta {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 560px) {
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ NAV ══════════════════ -->
+  <nav class="nav">
+    <a class="nav__logo" href="index.html">
+      <!-- SVG logo — вставь свой, либо используй текст -->
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="18" cy="18" r="18" fill="#E8672A"/>
+        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="700" fill="white">MER</text>
+      </svg>
+      <span class="nav__logo-text">MER e.V.</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="about.html" class="nav__link nav__link--active" data-i18n="nav.about">О нас</a></li>
+      <li><a href="index.html#projects" class="nav__link" data-i18n="nav.projects">Проекты</a></li>
+      <li><a href="contact.html" class="nav__link" data-i18n="nav.contact">Контакты</a></li>
+    </ul>
+    <div class="nav__lang">
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+      <span>|</span>
+      <button class="lang-btn" onclick="setLang('uk')">UA</button>
+      <span>|</span>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+      <span>|</span>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="donate.html" class="btn btn-accent" data-i18n="nav.donate">Поддержать проект</a>
+  </nav>
+
+  <!-- ══════════════════ HERO ══════════════════ -->
+  <section class="about-hero">
+    <div class="about-hero__left">
+      <div class="about-hero__label" data-i18n="about.heroLabel">О нас</div>
+      <h1 data-i18n-html="about.heroTitle">Мы здесь, <em>потому что</em> сами через это прошли</h1>
+      <p class="about-hero__text" data-i18n="about.heroText">
+        Mission Europa Resource — это команда людей, которые знают, каково начинать жизнь заново в чужой стране. Мы строим то пространство, которого нам самим не хватало.
+      </p>
+    </div>
+    <div class="about-hero__visual">
+      <!-- Замени src на реальное фото команды -->
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#f0ede8,#d9d2c8);display:flex;align-items:center;justify-content:center;font-size:4rem;">📸</div>
+      <div class="about-hero__badge" data-i18n="about.heroBadge">Gemeinnützig e.V. · Gummersbach</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ VALUES ══════════════════ -->
+  <section class="values-section">
+    <div class="values-section__inner">
+      <div>
+        <div class="section-label" data-i18n="about.valuesLabel">Наши ценности</div>
+        <h2 data-i18n="about.valuesTitle">На чём мы стоим</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-card__icon">🏠</div>
+          <h3 data-i18n="about.v1Title">Принадлежность</h3>
+          <p data-i18n="about.v1Text">Каждый человек заслуживает чувствовать себя дома — даже в новой стране.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">🤝</div>
+          <h3 data-i18n="about.v2Title">Взаимопомощь</h3>
+          <p data-i18n="about.v2Text">Мы помогаем друг другу. Те, кто уже освоился, поддерживают тех, кто только приехал.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">👁</div>
+          <h3 data-i18n="about.v3Title">Прозрачность</h3>
+          <p data-i18n="about.v3Text">Мы открыто отчитываемся перед донорами и сообществом о том, как используем средства.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-card__icon">🌱</div>
+          <h3 data-i18n="about.v4Title">Рост</h3>
+          <p data-i18n="about.v4Text">Мы не просто помогаем выживать — мы создаём условия для развития и самостоятельности.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ HISTORY ══════════════════ -->
+  <section class="history-section">
+    <div class="history-section__top">
+      <div>
+        <div class="section-label" data-i18n="about.historyLabel">История</div>
+        <h2 data-i18n="about.historyTitle">Как мы появились</h2>
+      </div>
+      <p class="history-section__lead" data-i18n="about.historyLead">
+        Организация родилась из личного опыта. Люди, сами прошедшие путь адаптации, объединились, чтобы помочь другим пройти его легче.
+      </p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-item__year">2022</div>
+        <div class="timeline-item__dot"></div>
+        <div>
+          <h3 data-i18n="about.t2022Title">Начало</h3>
+          <p data-i18n="about.t2022Text">После февраля 2022 года группа волонтёров начала организовывать встречи для украиноязычных семей в Гуммерсбахе. Первые мероприятия — в частных домах и местных кафе.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-item__year">2023</div>
+        <div class="timeline-item__dot"></div>
+        <div>
+          <h3 data-i18n="about.t2023Title">Регистрация e.V.</h3>
+          <p data-i18n="about.t2023Text">Mission Europa Resource зарегистрирован как некоммерческий Verein. Получен статус gemeinnützig. Запущены первые официальные проекты: Parasolka и Awana.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-item__year">2024</div>
+        <div class="timeline-item__dot"></div>
+        <div>
+          <h3 data-i18n="about.t2024Title">Расширение</h3>
+          <p data-i18n="about.t2024Text">Запущены проекты Revers, Альфа-Курс и распространение литературы. Более 250 мероприятий, свыше 3 000 участников.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-item__year">2025</div>
+        <div class="timeline-item__dot"></div>
+        <div>
+          <h3 data-i18n="about.t2025Title">Сегодня</h3>
+          <p data-i18n="about.t2025Text">5 активных проектов, постоянная команда и сеть волонтёров. Продолжаем расти вместе с сообществом.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ TEAM ══════════════════ -->
+  <section class="team-section" id="team">
+    <div class="team-section__header">
+      <div>
+        <div class="section-label" data-i18n="about.teamLabel">Команда</div>
+        <h2 data-i18n="about.teamTitle">Люди за проектом</h2>
+      </div>
+      <p class="team-section__sub" data-i18n="about.teamSub">Волонтёры, организаторы и специалисты — каждый со своей историей.</p>
+    </div>
+
+    <div class="team-showcase">
+      <!-- Big active photo -->
+      <div class="team-active" id="teamActive">
+        <img class="team-active__img" id="teamActiveImg" src="image/team/alina.webp" alt="" />
+        <div class="team-active__overlay"></div>
+        <div class="team-active__info">
+          <div class="team-active__role" id="teamActiveRole">Руководитель</div>
+          <div class="team-active__name" id="teamActiveName">Алина</div>
+          <p class="team-active__bio" id="teamActiveBio">Основала организацию в 2022 году. Координирует работу всех проектов и партнёрства.</p>
+        </div>
+      </div>
+
+      <!-- Thumbnails -->
+      <div class="team-thumbs" id="teamThumbs">
+
+        <div class="team-thumb active" data-index="0">
+          <img class="team-thumb__img" src="image/team/alina.webp" alt="Алина" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m1Name">Алина</div>
+            <div class="team-thumb__role" data-i18n="about.m1Role">Руководитель</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+        <div class="team-thumb" data-index="1">
+          <img class="team-thumb__img" src="image/team/and.webp" alt="Андрей" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m2Name">Андрей</div>
+            <div class="team-thumb__role" data-i18n="about.m2Role">Координатор</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+        <div class="team-thumb" data-index="2">
+          <img class="team-thumb__img" src="image/team/egor.webp" alt="Егор" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m3Name">Егор</div>
+            <div class="team-thumb__role" data-i18n="about.m3Role">Проект Revers</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+        <div class="team-thumb" data-index="3">
+          <img class="team-thumb__img" src="image/team/illya.webp" alt="Илья" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m4Name">Илья</div>
+            <div class="team-thumb__role" data-i18n="about.m4Role">Альфа-Курс</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+        <div class="team-thumb" data-index="4">
+          <img class="team-thumb__img" src="image/team/margo.webp" alt="Марго" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m5Name">Марго</div>
+            <div class="team-thumb__role" data-i18n="about.m5Role">Проект Parasolka</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+        <div class="team-thumb" data-index="5">
+          <img class="team-thumb__img" src="image/team/oleg.webp" alt="Олег" />
+          <div>
+            <div class="team-thumb__name" data-i18n="about.m6Name">Олег</div>
+            <div class="team-thumb__role" data-i18n="about.m6Role">Проект Awana</div>
+          </div>
+          <span class="team-thumb__arrow">→</span>
+        </div>
+
+      </div><!-- /team-thumbs -->
+    </div><!-- /team-showcase -->
+  </section>
+
+  <!-- ══════════════════ REPORTS / TRANSPARENCY ══════════════════ -->
+  <section class="reports-section">
+    <div>
+      <div class="section-label" data-i18n="about.reportsLabel">Прозрачность</div>
+      <h2 data-i18n="about.reportsTitle">Открытая отчётность</h2>
+      <p class="reports-section__lead" data-i18n="about.reportsLead">
+        Мы — зарегистрированный gemeinnütziger Verein с официальным статусом. Всю финансовую и деятельностную отчётность публикуем открыто.
+      </p>
+      <a href="donate.html" class="btn btn-outline" data-i18n="about.reportsDonateCta">Поддержать нас</a>
+    </div>
+    <div>
+      <div class="report-list">
+        <a href="#" class="report-item">
+          <span>
+            <div class="report-item__name" data-i18n="about.r2024">Годовой отчёт 2024</div>
+            <div class="report-item__meta">PDF · 1.2 MB</div>
+          </span>
+          <span class="report-item__icon">↓</span>
+        </a>
+        <a href="#" class="report-item">
+          <span>
+            <div class="report-item__name" data-i18n="about.r2023">Годовой отчёт 2023</div>
+            <div class="report-item__meta">PDF · 0.8 MB</div>
+          </span>
+          <span class="report-item__icon">↓</span>
+        </a>
+        <a href="#" class="report-item">
+          <span>
+            <div class="report-item__name" data-i18n="about.rGemeinnuetzt">Bescheinigung Gemeinnützigkeit</div>
+            <div class="report-item__meta">PDF</div>
+          </span>
+          <span class="report-item__icon">↓</span>
+        </a>
+        <a href="#" class="report-item">
+          <span>
+            <div class="report-item__name" data-i18n="about.rSatzung">Satzung e.V.</div>
+            <div class="report-item__meta">PDF</div>
+          </span>
+          <span class="report-item__icon">↓</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════ PARTNERS ══════════════════ -->
+  <section class="partners-section">
+    <h3 data-i18n="about.partnersLabel">Партнёры и поддержка</h3>
+    <div class="partners-logos">
+      <span class="partner-logo">Stadt Gummersbach</span>
+      <span class="partner-logo">Betterplace</span>
+      <span class="partner-logo">PayPal Giving Fund</span>
+      <span class="partner-logo">AWO</span>
+      <span class="partner-logo">Diakonie</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════ CTA ══════════════════ -->
+  <section class="about-cta">
+    <div>
+      <h2 data-i18n-html="about.ctaTitle">Хотите стать <em>частью</em> нашей команды?</h2>
+    </div>
+    <div class="about-cta__btns">
+      <a href="contact.html" class="btn btn-dark" data-i18n="about.ctaContact">Написать нам</a>
+      <a href="donate.html" class="btn btn-outline-light" data-i18n="about.ctaDonate">Поддержать</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer class="footer">
+    <div class="footer__brand">
+      <div class="footer__logo">Mission Europa<br>Resource e.V.</div>
+      <p class="footer__addr">Gummersbach, Germany<br>mission@mer.de</p>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title" data-i18n="footer.about">О нас</div>
+      <a href="about.html" data-i18n="footer.team">Команда</a>
+      <a href="about.html#history" data-i18n="footer.history">История</a>
+      <a href="about.html#reports" data-i18n="footer.reports">Отчётность</a>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title" data-i18n="footer.projects">Проекты</div>
+      <a href="project-parasolka.html">Parasolka</a>
+      <a href="project-avana.html">Awana</a>
+      <a href="project-revers.html">Revers</a>
+      <a href="project-alpha.html" data-i18n="footer.alpha">Альфа-Курс</a>
+    </div>
+    <div class="footer__col">
+      <div class="footer__col-title" data-i18n="footer.participate">Участие</div>
+      <a href="donate.html" data-i18n="footer.donate">Пожертвовать</a>
+      <a href="contact.html" data-i18n="footer.volunteer">Волонтёрство</a>
+      <a href="contact.html" data-i18n="footer.forBiz">Для бизнеса</a>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.copy">© 2025 Mission Europa Resource e.V. · gemeinnütziger Verein</span>
+    </div>
+  </footer>
+
+  <!-- ══════════════════ i18n ══════════════════ -->
+  <script>
+    const i18n = {
+      ru: {
+        "about.pageTitle": "О нас — Mission Europa Resource e.V.",
+        "about.heroLabel": "О нас",
+        "about.heroTitle": "Мы здесь, <em>потому что</em> сами через это прошли",
+        "about.heroText": "Mission Europa Resource — это команда людей, которые знают, каково начинать жизнь заново в чужой стране. Мы строим то пространство, которого нам самим не хватало.",
+        "about.heroBadge": "Gemeinnützig e.V. · Gummersbach",
+        "about.valuesLabel": "Наши ценности",
+        "about.valuesTitle": "На чём мы стоим",
+        "about.v1Title": "Принадлежность",
+        "about.v1Text": "Каждый человек заслуживает чувствовать себя дома — даже в новой стране.",
+        "about.v2Title": "Взаимопомощь",
+        "about.v2Text": "Мы помогаем друг другу. Те, кто уже освоился, поддерживают тех, кто только приехал.",
+        "about.v3Title": "Прозрачность",
+        "about.v3Text": "Мы открыто отчитываемся перед донорами и сообществом о том, как используем средства.",
+        "about.v4Title": "Рост",
+        "about.v4Text": "Мы не просто помогаем выживать — мы создаём условия для развития и самостоятельности.",
+        "about.historyLabel": "История",
+        "about.historyTitle": "Как мы появились",
+        "about.historyLead": "Организация родилась из личного опыта. Люди, сами прошедшие путь адаптации, объединились, чтобы помочь другим пройти его легче.",
+        "about.t2022Title": "Начало",
+        "about.t2022Text": "После февраля 2022 года группа волонтёров начала организовывать встречи для украиноязычных семей в Гуммерсбахе. Первые мероприятия — в частных домах и местных кафе.",
+        "about.t2023Title": "Регистрация e.V.",
+        "about.t2023Text": "Mission Europa Resource зарегистрирован как некоммерческий Verein. Получен статус gemeinnützig. Запущены первые официальные проекты: Parasolka и Awana.",
+        "about.t2024Title": "Расширение",
+        "about.t2024Text": "Запущены проекты Revers, Альфа-Курс и распространение литературы. Более 250 мероприятий, свыше 3 000 участников.",
+        "about.t2025Title": "Сегодня",
+        "about.t2025Text": "5 активных проектов, постоянная команда и сеть волонтёров. Продолжаем расти вместе с сообществом.",
+        "about.teamLabel": "Команда",
+        "about.teamTitle": "Люди за проектом",
+        "about.teamSub": "Каждый из нас — часть той же истории. Волонтёры, организаторы, специалисты.",
+        "about.m1Name": "Алина", "about.m1Role": "Руководитель", "about.m1Bio": "Основала организацию в 2022 году. Координирует работу всех проектов и партнёрства.",
+        "about.m2Name": "Андрей", "about.m2Role": "Координатор", "about.m2Bio": "Отвечает за организацию мероприятий и работу с волонтёрами.",
+        "about.m3Name": "Егор", "about.m3Role": "Проект Revers", "about.m3Bio": "Работает с подростками — ведёт дискуссии, мероприятия и группы поддержки.",
+        "about.m4Name": "Илья", "about.m4Role": "Альфа-Курс", "about.m4Bio": "Организует занятия Альфа-Курса и программы духовной поддержки.",
+        "about.m5Name": "Марго", "about.m5Role": "Проект Parasolka", "about.m5Bio": "Ведёт детские группы и мастер-классы в рамках проекта Parasolka.",
+        "about.m6Name": "Олег", "about.m6Role": "Проект Awana", "about.m6Bio": "Организует программы для детей 7–12 лет, работает с семьями.",
+        "about.reportsLabel": "Прозрачность",
+        "about.reportsTitle": "Открытая отчётность",
+        "about.reportsLead": "Мы — зарегистрированный gemeinnütziger Verein с официальным статусом. Всю финансовую и деятельностную отчётность публикуем открыто.",
+        "about.reportsDonateCta": "Поддержать нас",
+        "about.r2024": "Годовой отчёт 2024",
+        "about.r2023": "Годовой отчёт 2023",
+        "about.rGemeinnuetzt": "Bescheinigung Gemeinnützigkeit",
+        "about.rSatzung": "Satzung e.V.",
+        "about.partnersLabel": "Партнёры и поддержка",
+        "about.ctaTitle": "Хотите стать <em>частью</em> нашей команды?",
+        "about.ctaContact": "Написать нам",
+        "about.ctaDonate": "Поддержать",
+        "nav.about": "О нас", "nav.projects": "Проекты", "nav.contact": "Контакты", "nav.donate": "Поддержать проект",
+        "footer.about": "О нас", "footer.team": "Команда", "footer.history": "История", "footer.reports": "Отчётность",
+        "footer.projects": "Проекты", "footer.alpha": "Альфа-Курс",
+        "footer.participate": "Участие", "footer.donate": "Пожертвовать", "footer.volunteer": "Волонтёрство", "footer.forBiz": "Для бизнеса",
+        "footer.copy": "© 2025 Mission Europa Resource e.V. · gemeinnütziger Verein"
+      },
+      de: {
+        "about.pageTitle": "Über uns — Mission Europa Resource e.V.",
+        "about.heroLabel": "Über uns",
+        "about.heroTitle": "Wir sind hier, <em>weil</em> wir selbst diesen Weg gegangen sind",
+        "about.heroText": "Mission Europa Resource ist ein Team von Menschen, die wissen, wie es ist, in einem fremden Land neu anzufangen. Wir schaffen den Raum, den wir selbst gebraucht hätten.",
+        "about.heroBadge": "Gemeinnützig e.V. · Gummersbach",
+        "about.valuesLabel": "Unsere Werte",
+        "about.valuesTitle": "Wofür wir stehen",
+        "about.v1Title": "Zugehörigkeit",
+        "about.v1Text": "Jeder Mensch verdient es, sich wie zuhause zu fühlen — auch in einem neuen Land.",
+        "about.v2Title": "Gegenseitige Hilfe",
+        "about.v2Text": "Wir helfen einander. Wer sich eingelebt hat, unterstützt die, die gerade erst ankommen.",
+        "about.v3Title": "Transparenz",
+        "about.v3Text": "Wir berichten offen gegenüber Spendern und der Gemeinschaft, wie wir die Mittel einsetzen.",
+        "about.v4Title": "Wachstum",
+        "about.v4Text": "Wir helfen nicht nur zu überleben — wir schaffen Bedingungen für Entwicklung und Selbständigkeit.",
+        "about.historyLabel": "Geschichte",
+        "about.historyTitle": "Wie wir entstanden sind",
+        "about.historyLead": "Die Organisation entstand aus persönlicher Erfahrung. Menschen, die selbst den Weg der Integration gegangen sind, schlossen sich zusammen.",
+        "about.t2022Title": "Anfang",
+        "about.t2022Text": "Nach Februar 2022 begann eine Gruppe Freiwilliger, Treffen für ukrainischsprachige Familien in Gummersbach zu organisieren.",
+        "about.t2023Title": "Vereinsgründung",
+        "about.t2023Text": "Mission Europa Resource wurde als gemeinnütziger Verein eingetragen. Erste Projekte: Parasolka und Awana.",
+        "about.t2024Title": "Wachstum",
+        "about.t2024Text": "Start von Revers, Alpha-Kurs und Literaturverteilung. Über 250 Veranstaltungen, über 3.000 Teilnehmer.",
+        "about.t2025Title": "Heute",
+        "about.t2025Text": "5 aktive Projekte, festes Team und Netzwerk von Freiwilligen.",
+        "about.teamLabel": "Team",
+        "about.teamTitle": "Die Menschen hinter dem Projekt",
+        "about.teamSub": "Jeder von uns ist Teil derselben Geschichte — Freiwillige, Organisatoren, Fachleute.",
+        "about.m1Name": "Alina", "about.m1Role": "Vorsitzende", "about.m1Bio": "Gründete die Organisation 2022. Koordiniert alle Projekte und Partnerschaften.",
+        "about.m2Name": "Andrey", "about.m2Role": "Projektkoordinator", "about.m2Bio": "Verantwortlich für Veranstaltungsorganisation und Freiwilligenarbeit.",
+        "about.m3Name": "Egor", "about.m3Role": "Projekt Revers", "about.m3Bio": "Arbeitet mit Jugendlichen — leitet Diskussionen, Veranstaltungen und Unterstützungsgruppen.",
+        "about.m4Name": "Illya", "about.m4Role": "Alpha-Kurs", "about.m4Bio": "Organisiert Alpha-Kurs-Sitzungen und spirituelle Unterstützungsprogramme.",
+        "about.m5Name": "Margo", "about.m5Role": "Projekt Parasolka", "about.m5Bio": "Leitet Kindergruppen und Workshops im Rahmen von Parasolka.",
+        "about.m6Name": "Oleg", "about.m6Role": "Projekt Awana", "about.m6Bio": "Organisiert Programme für Kinder von 7–12 Jahren.",
+        "about.reportsLabel": "Transparenz",
+        "about.reportsTitle": "Offene Berichterstattung",
+        "about.reportsLead": "Wir sind ein eingetragener gemeinnütziger Verein. Alle Finanz- und Tätigkeitsberichte veröffentlichen wir offen.",
+        "about.reportsDonateCta": "Uns unterstützen",
+        "about.r2024": "Jahresbericht 2024",
+        "about.r2023": "Jahresbericht 2023",
+        "about.rGemeinnuetzt": "Bescheinigung Gemeinnützigkeit",
+        "about.rSatzung": "Satzung e.V.",
+        "about.partnersLabel": "Partner und Unterstützer",
+        "about.ctaTitle": "Möchten Sie <em>Teil</em> unseres Teams werden?",
+        "about.ctaContact": "Schreib uns",
+        "about.ctaDonate": "Unterstützen",
+        "nav.about": "Über uns", "nav.projects": "Projekte", "nav.contact": "Kontakt", "nav.donate": "Projekt unterstützen",
+        "footer.about": "Über uns", "footer.team": "Team", "footer.history": "Geschichte", "footer.reports": "Berichte",
+        "footer.projects": "Projekte", "footer.alpha": "Alpha-Kurs",
+        "footer.participate": "Mitmachen", "footer.donate": "Spenden", "footer.volunteer": "Ehrenamt", "footer.forBiz": "Für Unternehmen",
+        "footer.copy": "© 2025 Mission Europa Resource e.V. · gemeinnütziger Verein"
+      },
+      en: {
+        "about.pageTitle": "About Us — Mission Europa Resource e.V.",
+        "about.heroLabel": "About us",
+        "about.heroTitle": "We're here <em>because</em> we've been through it ourselves",
+        "about.heroText": "Mission Europa Resource is a team of people who know what it means to start life over in a foreign country. We're building the space we wished had existed for us.",
+        "about.heroBadge": "Registered nonprofit e.V. · Gummersbach",
+        "about.valuesLabel": "Our values",
+        "about.valuesTitle": "What we stand for",
+        "about.v1Title": "Belonging",
+        "about.v1Text": "Every person deserves to feel at home — even in a new country.",
+        "about.v2Title": "Mutual support",
+        "about.v2Text": "We help each other. Those who've settled in support those who just arrived.",
+        "about.v3Title": "Transparency",
+        "about.v3Text": "We report openly to donors and the community about how we use funds.",
+        "about.v4Title": "Growth",
+        "about.v4Text": "We don't just help people survive — we create conditions for development and independence.",
+        "about.historyLabel": "History",
+        "about.historyTitle": "How we came to be",
+        "about.historyLead": "The organization grew from personal experience. People who had gone through integration themselves came together to make the path easier for others.",
+        "about.t2022Title": "The beginning",
+        "about.t2022Text": "After February 2022, a group of volunteers began organizing gatherings for Ukrainian-speaking families in Gummersbach.",
+        "about.t2023Title": "Official registration",
+        "about.t2023Text": "Mission Europa Resource registered as a nonprofit Verein. First official projects: Parasolka and Awana.",
+        "about.t2024Title": "Growth",
+        "about.t2024Text": "Revers, Alpha Course, and Literature Distribution launched. 250+ events, 3,000+ participants.",
+        "about.t2025Title": "Today",
+        "about.t2025Text": "5 active projects, a core team, and a volunteer network. We continue to grow with our community.",
+        "about.teamLabel": "Team",
+        "about.teamTitle": "The people behind the project",
+        "about.teamSub": "Each of us is part of the same story — volunteers, organizers, specialists.",
+        "about.m1Name": "Alina", "about.m1Role": "Director", "about.m1Bio": "Founded the organization in 2022. Coordinates all projects and partnerships.",
+        "about.m2Name": "Andrey", "about.m2Role": "Project Coordinator", "about.m2Bio": "Responsible for event organization and volunteer management.",
+        "about.m3Name": "Egor", "about.m3Role": "Project Revers", "about.m3Bio": "Works with teenagers — leads discussions, events, and support groups.",
+        "about.m4Name": "Illya", "about.m4Role": "Alpha Course", "about.m4Bio": "Organizes Alpha Course sessions and spiritual support programs.",
+        "about.m5Name": "Margo", "about.m5Role": "Project Parasolka", "about.m5Bio": "Leads children's groups and workshops within the Parasolka project.",
+        "about.m6Name": "Oleg", "about.m6Role": "Project Awana", "about.m6Bio": "Organizes programs for children aged 7–12, works with families.",
+        "about.reportsLabel": "Transparency",
+        "about.reportsTitle": "Open reporting",
+        "about.reportsLead": "We are a registered nonprofit with official gemeinnützig status. All financial and activity reports are published openly.",
+        "about.reportsDonateCta": "Support us",
+        "about.r2024": "Annual Report 2024",
+        "about.r2023": "Annual Report 2023",
+        "about.rGemeinnuetzt": "Gemeinnützigkeit Certificate",
+        "about.rSatzung": "Articles of Association",
+        "about.partnersLabel": "Partners & supporters",
+        "about.ctaTitle": "Want to become <em>part</em> of our team?",
+        "about.ctaContact": "Contact us",
+        "about.ctaDonate": "Donate",
+        "nav.about": "About", "nav.projects": "Projects", "nav.contact": "Contact", "nav.donate": "Support the project",
+        "footer.about": "About", "footer.team": "Team", "footer.history": "History", "footer.reports": "Reports",
+        "footer.projects": "Projects", "footer.alpha": "Alpha Course",
+        "footer.participate": "Get involved", "footer.donate": "Donate", "footer.volunteer": "Volunteer", "footer.forBiz": "For business",
+        "footer.copy": "© 2025 Mission Europa Resource e.V. · registered nonprofit"
+      }
+      ,
+      uk: {
+        "about.pageTitle": "Про нас — Mission Europa Resource e.V.",
+        "about.heroLabel": "Про нас",
+        "about.heroTitle": "Ми тут, <em>бо</em> самі через це пройшли",
+        "about.heroText": "Mission Europa Resource — це команда людей, які знають, яке воно — починати життя заново в чужій країні. Ми будуємо простір, якого самі колись потребували.",
+        "about.heroBadge": "Gemeinnützig e.V. · Gummersbach",
+        "about.valuesLabel": "Наші цінності",
+        "about.valuesTitle": "На чому ми стоїмо",
+        "about.v1Title": "Належність",
+        "about.v1Text": "Кожна людина заслуговує почуватися вдома — навіть у новій країні.",
+        "about.v2Title": "Взаємодопомога",
+        "about.v2Text": "Ми допомагаємо одне одному. Ті, хто вже освоївся, підтримують тих, хто тільки приїхав.",
+        "about.v3Title": "Прозорість",
+        "about.v3Text": "Ми відкрито звітуємо перед донорами та спільнотою про те, як використовуємо кошти.",
+        "about.v4Title": "Зростання",
+        "about.v4Text": "Ми не просто допомагаємо вижити — ми створюємо умови для розвитку та самостійності.",
+        "about.historyLabel": "Історія",
+        "about.historyTitle": "Як ми з'явились",
+        "about.historyLead": "Організація народилася з особистого досвіду. Люди, які самі пройшли шлях адаптації, об'єдналися, щоб допомогти іншим пройти його легше.",
+        "about.t2022Title": "Початок",
+        "about.t2022Text": "Після лютого 2022 року група волонтерів почала організовувати зустрічі для україномовних сімей у Гуммерсбасі. Перші заходи — у приватних будинках і місцевих кафе.",
+        "about.t2023Title": "Реєстрація e.V.",
+        "about.t2023Text": "Mission Europa Resource зареєстровано як некомерційний Verein. Отримано статус gemeinnützig. Запущено перші офіційні проекти: Parasolka та Awana.",
+        "about.t2024Title": "Розширення",
+        "about.t2024Text": "Запущено проекти Revers, Альфа-Курс та розповсюдження літератури. Понад 250 заходів, понад 3 000 учасників.",
+        "about.t2025Title": "Сьогодні",
+        "about.t2025Text": "5 активних проектів, постійна команда і мережа волонтерів. Продовжуємо зростати разом зі спільнотою.",
+        "about.teamLabel": "Команда",
+        "about.teamTitle": "Люди за проектом",
+        "about.teamSub": "Волонтери, організатори та фахівці — кожен зі своєю історією.",
+        "about.m1Name": "Аліна", "about.m1Role": "Керівник", "about.m1Bio": "Заснувала організацію у 2022 році. Координує роботу всіх проектів і партнерств.",
+        "about.m2Name": "Андрій", "about.m2Role": "Координатор", "about.m2Bio": "Відповідає за організацію заходів і роботу з волонтерами.",
+        "about.m3Name": "Єгор", "about.m3Role": "Проект Revers", "about.m3Bio": "Працює з підлітками — веде дискусії, заходи та групи підтримки.",
+        "about.m4Name": "Ілля", "about.m4Role": "Альфа-Курс", "about.m4Bio": "Організовує заняття Альфа-Курсу та програми духовної підтримки.",
+        "about.m5Name": "Марго", "about.m5Role": "Проект Parasolka", "about.m5Bio": "Веде дитячі групи та майстер-класи в рамках проекту Parasolka.",
+        "about.m6Name": "Олег", "about.m6Role": "Проект Awana", "about.m6Bio": "Організовує програми для дітей 7–12 років, працює з сім'ями.",
+        "about.reportsLabel": "Прозорість",
+        "about.reportsTitle": "Відкрита звітність",
+        "about.reportsLead": "Ми — зареєстрований gemeinnütziger Verein з офіційним статусом. Усю фінансову та діяльнісну звітність публікуємо відкрито.",
+        "about.reportsDonateCta": "Підтримати нас",
+        "about.r2024": "Річний звіт 2024",
+        "about.r2023": "Річний звіт 2023",
+        "about.rGemeinnuetzt": "Bescheinigung Gemeinnützigkeit",
+        "about.rSatzung": "Satzung e.V.",
+        "about.partnersLabel": "Партнери та підтримка",
+        "about.ctaTitle": "Хочете стати <em>частиною</em> нашої команди?",
+        "about.ctaContact": "Написати нам",
+        "about.ctaDonate": "Підтримати",
+        "nav.about": "Про нас", "nav.projects": "Проекти", "nav.contact": "Контакти", "nav.donate": "Підтримати проект",
+        "footer.about": "Про нас", "footer.team": "Команда", "footer.history": "Історія", "footer.reports": "Звітність",
+        "footer.projects": "Проекти", "footer.alpha": "Альфа-Курс",
+        "footer.participate": "Участь", "footer.donate": "Пожертвувати", "footer.volunteer": "Волонтерство", "footer.forBiz": "Для бізнесу",
+        "footer.copy": "© 2025 Mission Europa Resource e.V. · gemeinnütziger Verein"
+      }
+    };
+
+    function setLang(lang) {
+      localStorage.setItem('lang', lang);
+      applyLang(lang);
+    }
+
+    function applyLang(lang) {
+      const dict = i18n[lang] || i18n['ru'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('lang-btn--active', btn.textContent === lang.toUpperCase());
+      });
+      // Refresh active team member in current language
+      if (document.getElementById('teamActiveName')) {
+        activateMember(currentTeamIndex);
+      }
+    }
+
+    // ── Team Slider ──
+    const teamMembers = [
+      { img: 'image/team/alina.webp', nameKey: 'about.m1Name', roleKey: 'about.m1Role', bioKey: 'about.m1Bio' },
+      { img: 'image/team/and.webp',   nameKey: 'about.m2Name', roleKey: 'about.m2Role', bioKey: 'about.m2Bio' },
+      { img: 'image/team/egor.webp',  nameKey: 'about.m3Name', roleKey: 'about.m3Role', bioKey: 'about.m3Bio' },
+      { img: 'image/team/illya.webp', nameKey: 'about.m4Name', roleKey: 'about.m4Role', bioKey: 'about.m4Bio' },
+      { img: 'image/team/margo.webp', nameKey: 'about.m5Name', roleKey: 'about.m5Role', bioKey: 'about.m5Bio' },
+      { img: 'image/team/oleg.webp',  nameKey: 'about.m6Name', roleKey: 'about.m6Role', bioKey: 'about.m6Bio' },
+    ];
+
+    let currentTeamIndex = 0;
+
+    function activateMember(index) {
+      const lang = localStorage.getItem('lang') || 'ru';
+      const dict = i18n[lang] || i18n['ru'];
+      const m = teamMembers[index];
+
+      const imgEl   = document.getElementById('teamActiveImg');
+      const nameEl  = document.getElementById('teamActiveName');
+      const roleEl  = document.getElementById('teamActiveRole');
+      const bioEl   = document.getElementById('teamActiveBio');
+
+      // Fade out
+      imgEl.style.opacity = '0';
+      setTimeout(() => {
+        imgEl.src = m.img;
+        imgEl.style.opacity = '1';
+      }, 200);
+
+      nameEl.textContent = dict[m.nameKey] || m.nameKey;
+      roleEl.textContent = dict[m.roleKey] || m.roleKey;
+      bioEl.textContent  = dict[m.bioKey]  || m.bioKey;
+
+      // Update thumb active state
+      document.querySelectorAll('.team-thumb').forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+      });
+
+      currentTeamIndex = index;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('lang') || 'ru';
+      applyLang(lang);
+
+      // Attach thumb click handlers
+      document.querySelectorAll('.team-thumb').forEach((el, i) => {
+        el.addEventListener('click', () => activateMember(i));
+      });
+
+      // Init active img transition style
+      const imgEl = document.getElementById('teamActiveImg');
+      if (imgEl) imgEl.style.transition = 'opacity .3s ease';
+    });
+  </script>
+</body>
+</html>

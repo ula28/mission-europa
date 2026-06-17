@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Контакты — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--gray-200); }
+.page-hero__label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; }
+.page-hero h1 { margin-bottom: 14px; max-width: 640px; }
+.page-hero p  { font-size: 1rem; max-width: 520px; line-height: 1.75; }
+
+/* ── CONTACT GRID ── */
+.contact-grid {
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: 80px; padding: 72px 0; align-items: start;
+}
+
+/* ── FORM ── */
+.block-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 32px; line-height: 1.15; }
+.f-group { margin-bottom: 20px; }
+.f-group label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
+.f-group input, .f-group select, .f-group textarea {
+  width: 100%; padding: 13px 16px; border: 1px solid var(--gray-200);
+  background: var(--off-white); border-radius: var(--r);
+  font-family: var(--font-ui); font-size: 0.9rem; color: var(--black);
+  outline: none; transition: border-color 0.2s, background 0.2s; appearance: none;
+}
+.f-group input:focus, .f-group select:focus, .f-group textarea:focus { border-color: var(--black); background: var(--white); }
+.f-group textarea { resize: vertical; min-height: 120px; }
+.f-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238a877f'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+  background-color: var(--off-white); padding-right: 40px;
+}
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.lang-row { display: flex; gap: 6px; margin-bottom: 20px; }
+.lang-pill { padding: 6px 16px; border: 1px solid var(--gray-200); border-radius: 100px; font-size: 0.75rem; cursor: pointer; background: none; font-family: var(--font-ui); transition: 0.2s; color: var(--gray-500); }
+.lang-pill.on { background: var(--black); color: var(--white); border-color: var(--black); }
+.f-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
+.f-check input { width: 16px; height: 16px; accent-color: var(--black); flex-shrink: 0; margin-top: 2px; }
+.f-check label { font-size: 0.85rem; color: var(--gray-700); line-height: 1.5; }
+.submit-btn { width: 100%; padding: 16px; background: var(--black); color: var(--white); border: none; border-radius: var(--r); font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; }
+.submit-btn:hover { background: var(--gray-700); }
+
+/* ── RIGHT: INFO ── */
+.info-section-title { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
+.info-card { padding: 20px; border: 1px solid var(--gray-200); border-radius: var(--r); margin-bottom: 12px; transition: border-color 0.2s; }
+.info-card:hover { border-color: var(--gray-300); }
+.info-card__head { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.info-card__head::before { content:''; width:10px; height:1px; background:var(--gray-300); display:block; }
+.info-card p { font-size: 0.875rem; line-height: 1.8; color: var(--gray-700); }
+.info-card a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── DONATE CALLOUT ── */
+.donate-callout {
+  margin-top: 32px;
+  padding: 24px 22px;
+  background: var(--black); color: var(--white);
+  border-radius: var(--r);
+}
+.donate-callout__label { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 10px; }
+.donate-callout p { font-size: 0.875rem; line-height: 1.65; color: rgba(255,255,255,0.7); margin-bottom: 18px; }
+.donate-callout .btn {
+  background: var(--white); color: var(--black);
+  font-size: 0.8125rem;
+}
+.donate-callout .btn:hover { background: var(--gray-100); }
+
+/* ── i18n ── */
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; padding: 48px 0; }
+  .f-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__wrap">
+    <div class="nav__logo">Mission Europa<br>Resource e. V.</div>
+    <div class="nav__menu" id="menu">
+      <a href="index.html" data-i18n="nav_about">О нас</a>
+      <a href="index.html" data-i18n="nav_projects">Проекты</a>
+      <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
+      <a href="index.html" data-i18n="nav_reports">Отчётность</a>
+      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="ru" class="on">RU</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="de">DE</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="en">EN</span>
+      </div>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__label au" data-i18n="page_label">Связаться с нами</div>
+    <h1 class="au2" data-i18n="page_title">Напишите нам —<br><em>мы ответим.</em></h1>
+    <p class="au3" data-i18n="page_sub">Вопросы о проектах, партнёрстве или членстве в организации — заполните форму, и мы свяжемся с вами в течение 48 часов.</p>
+  </div>
+</div>
+
+<!-- MAIN GRID -->
+<div class="wrap">
+  <div class="contact-grid">
+
+    <!-- LEFT: CONTACT FORM -->
+    <div>
+      <div class="block-title" data-i18n="form_title">Форма<br><em>обратной связи</em></div>
+      <form action="thank-you.html">
+        <div class="f-row">
+          <div class="f-group">
+            <label data-i18n="f_name">Имя</label>
+            <input type="text" data-i18n-placeholder="f_name_ph">
+          </div>
+          <div class="f-group">
+            <label data-i18n="f_phone">Телефон</label>
+            <input type="tel" placeholder="+49 000 000 0000">
+          </div>
+        </div>
+        <div class="f-group">
+          <label>Email</label>
+          <input type="email" placeholder="email@example.com">
+        </div>
+        <div class="f-group">
+          <label data-i18n="f_topic">Тема</label>
+          <select>
+            <option data-i18n="f_topic_general">Общий вопрос</option>
+            <option data-i18n="f_topic_projects">Вопрос о проектах</option>
+            <option data-i18n="f_topic_partner">Партнёрство / Бизнес</option>
+            <option data-i18n="f_topic_member">Членство в организации</option>
+            <option data-i18n="f_topic_media">СМИ / Пресса</option>
+            <option data-i18n="f_topic_other">Другое</option>
+          </select>
+        </div>
+        <div class="f-group">
+          <label data-i18n="f_lang">Язык переписки</label>
+          <div class="lang-row">
+            <button type="button" class="lang-pill on">RU</button>
+            <button type="button" class="lang-pill">UK</button>
+            <button type="button" class="lang-pill">DE</button>
+            <button type="button" class="lang-pill">EN</button>
+          </div>
+        </div>
+        <div class="f-group">
+          <label data-i18n="f_msg">Сообщение</label>
+          <textarea data-i18n-placeholder="f_msg_ph"></textarea>
+        </div>
+        <div class="f-check">
+          <input type="checkbox" id="gdpr" required>
+          <label for="gdpr" data-i18n="f_gdpr">Я согласен(а) на обработку моих данных в соответствии с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a>.</label>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="f_submit">Отправить →</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: CONTACTS ONLY -->
+    <div>
+      <div class="info-section-title" data-i18n="info_label">Контактная информация</div>
+
+      <div class="info-card">
+        <div class="info-card__head" data-i18n="addr_title">Адрес организации</div>
+        <p>
+          Mission Europa Resource e. V.<br>
+          Musterstraße 1, 10115 Berlin<br>
+          Deutschland
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head" data-i18n="card_phone">Телефон</div>
+        <p><a href="tel:+490000000000">+49 000 000-xxxx</a></p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head" data-i18n="card_email">Email</div>
+        <p><a href="mailto:contact@mission-europa.de">contact@mission-europa.de</a></p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-card__head" data-i18n="card_hours">Часы работы</div>
+        <p data-i18n="hours_text">Пн–Пт: 10:00 – 18:00<br>Сб–Вс: по договорённости</p>
+      </div>
+
+      <!-- DONATE CALLOUT — ведёт на donate.html, не дублирует реквизиты -->
+      <div class="donate-callout">
+        <div class="donate-callout__label" data-i18n="callout_label">Хотите поддержать нас?</div>
+        <p data-i18n="callout_text">Реквизиты для перевода, PayPal, Wise и форма пожертвования — на отдельной странице.</p>
+        <a href="donate.html" class="btn btn-arrow" data-i18n="callout_btn">Перейти к пожертвованию</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__logo">Mission Europa Resource e. V.<br>
+        <span style="font-weight:400;color:rgba(255,255,255,0.35);">contact@mission-europa.de</span>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html" data-i18n="nav_about">О нас</a>
+        <a href="index.html" data-i18n="nav_projects">Проекты</a>
+        <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
+        <a href="index.html" data-i18n="nav_reports">Отчётность</a>
+        <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+      </nav>
+    </div>
+    <div class="footer__copy">© 2024 Mission Europa Resource e. V.</div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  ru: {
+    nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
+    nav_reports:'Отчётность', nav_contact:'Контакты',
+    page_label:'Связаться с нами',
+    page_title:'Напишите нам —<br><em>мы ответим.</em>',
+    page_sub:'Вопросы о проектах, партнёрстве или членстве в организации — заполните форму, и мы свяжемся с вами в течение 48 часов.',
+    form_title:'Форма<br><em>обратной связи</em>',
+    f_name:'Имя', f_name_ph:'Ваше имя',
+    f_phone:'Телефон',
+    f_topic:'Тема', f_topic_general:'Общий вопрос', f_topic_projects:'Вопрос о проектах',
+    f_topic_partner:'Партнёрство / Бизнес', f_topic_member:'Членство в организации',
+    f_topic_media:'СМИ / Пресса', f_topic_other:'Другое',
+    f_lang:'Язык переписки',
+    f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
+    f_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="#" style="text-decoration:underline">политикой конфиденциальности</a>.',
+    f_submit:'Отправить →',
+    info_label:'Контактная информация',
+    addr_title:'Адрес организации',
+    card_phone:'Телефон',
+    card_email:'Email',
+    card_hours:'Часы работы',
+    hours_text:'Пн–Пт: 10:00 – 18:00<br>Сб–Вс: по договорённости',
+    callout_label:'Хотите поддержать нас?',
+    callout_text:'Реквизиты для перевода, PayPal, Wise и форма пожертвования — на отдельной странице.',
+    callout_btn:'Перейти к пожертвованию',
+  },
+  de: {
+    nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
+    nav_reports:'Berichte', nav_contact:'Kontakt',
+    page_label:'Schreiben Sie uns',
+    page_title:'Nehmen Sie Kontakt<br><em>mit uns auf.</em>',
+    page_sub:'Fragen zu Projekten, Kooperationen oder Mitgliedschaft — füllen Sie das Formular aus, wir melden uns innerhalb von 48 Stunden.',
+    form_title:'Kontakt-<br><em>formular</em>',
+    f_name:'Name', f_name_ph:'Ihr Name',
+    f_phone:'Telefon',
+    f_topic:'Betreff', f_topic_general:'Allgemeine Anfrage', f_topic_projects:'Frage zu Projekten',
+    f_topic_partner:'Kooperation / Geschäft', f_topic_member:'Mitgliedschaft',
+    f_topic_media:'Presse / Medien', f_topic_other:'Sonstiges',
+    f_lang:'Korrespondenzsprache',
+    f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
+    f_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="#" style="text-decoration:underline">Datenschutzerklärung</a> zu.',
+    f_submit:'Absenden →',
+    info_label:'Kontaktdaten',
+    addr_title:'Adresse der Organisation',
+    card_phone:'Telefon',
+    card_email:'E-Mail',
+    card_hours:'Öffnungszeiten',
+    hours_text:'Mo–Fr: 10:00 – 18:00 Uhr<br>Sa–So: nach Vereinbarung',
+    callout_label:'Möchten Sie spenden?',
+    callout_text:'Bankverbindung, PayPal, Wise und das Spendenformular finden Sie auf der Spendenseite.',
+    callout_btn:'Zur Spendenseite',
+  },
+  en: {
+    nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
+    nav_reports:'Reports', nav_contact:'Contact',
+    page_label:'Get in touch',
+    page_title:'Write to us —<br><em>we\'ll get back to you.</em>',
+    page_sub:'Questions about projects, partnerships or membership — fill in the form and we\'ll reply within 48 hours.',
+    form_title:'Contact<br><em>Form</em>',
+    f_name:'Name', f_name_ph:'Your name',
+    f_phone:'Phone',
+    f_topic:'Subject', f_topic_general:'General enquiry', f_topic_projects:'Question about projects',
+    f_topic_partner:'Partnership / Business', f_topic_member:'Membership',
+    f_topic_media:'Press / Media', f_topic_other:'Other',
+    f_lang:'Correspondence language',
+    f_msg:'Message', f_msg_ph:'Your message...',
+    f_gdpr:'I agree to the processing of my data in accordance with the <a href="#" style="text-decoration:underline">Privacy Policy</a>.',
+    f_submit:'Send →',
+    info_label:'Contact information',
+    addr_title:'Organisation address',
+    card_phone:'Phone',
+    card_email:'Email',
+    card_hours:'Office hours',
+    hours_text:'Mon–Fri: 10:00 – 18:00<br>Sat–Sun: by appointment',
+    callout_label:'Want to support us?',
+    callout_text:'Bank details, PayPal, Wise and the donation form are on a separate page.',
+    callout_btn:'Go to donations',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'ru';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b =>
+    b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+  currentLang = lang;
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+document.querySelectorAll('.lang-pill').forEach(p =>
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.lang-pill').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+  }));
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+
+applyLang(currentLang);
+</script>
+</body>
+</html>

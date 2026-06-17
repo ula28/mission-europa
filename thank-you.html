@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Спасибо! — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.ty-page { min-height: calc(100vh - var(--nav-h) - 100px); display: flex; align-items: center; justify-content: center; padding: 64px 24px; }
+.ty-card { max-width: 500px; width: 100%; text-align: center; }
+.ty-check { width: 72px; height: 72px; border-radius: 50%; background: #e8f5e9; margin: 0 auto 32px; display: flex; align-items: center; justify-content: center; font-size: 2rem; animation: pop 0.55s cubic-bezier(0.34,1.56,0.64,1) both; }
+@keyframes pop { from { opacity:0; transform:scale(0.4); } to { opacity:1; transform:scale(1); } }
+.ty-card h1 { font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 36px; }
+.ty-card h1 em { color: #4caf50; }
+.ty-steps { background: var(--off-white); border-radius: var(--r); padding: 28px 32px; text-align: left; margin-bottom: 36px; }
+.ty-steps__label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 16px; }
+.ty-steps ol { padding-left: 18px; display: flex; flex-direction: column; gap: 10px; }
+.ty-steps li { font-size: 0.875rem; color: var(--gray-700); }
+.ty-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.footer-mini { background: var(--black); color: rgba(255,255,255,0.3); font-size: 0.72rem; text-align: center; padding: 20px; }
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__wrap">
+    <div class="nav__logo">Mission Europa<br>Resource e. V.</div>
+    <div class="nav__right">
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="ru" class="on">RU</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="de">DE</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="en">EN</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="ty-page">
+  <div class="ty-card au">
+    <div class="ty-check">✓</div>
+    <h1 data-i18n="title">Спасибо за<br><em>поддержку!</em></h1>
+    <div class="ty-steps">
+      <div class="ty-steps__label" data-i18n="steps_label">Что будет дальше</div>
+      <ol>
+        <li data-i18n="step1">Мы свяжемся с вами в течение 48 часов</li>
+        <li data-i18n="step2">Вы получите подтверждение пожертвования</li>
+        <li data-i18n="step3">При необходимости — Spendenbescheinigung будет отправлена по почте</li>
+      </ol>
+    </div>
+    <div class="ty-btns">
+      <a href="index.html" class="btn btn-dark" data-i18n="btn_home">← Вернуться на главную</a>
+      <a href="index.html" class="btn btn-ghost" data-i18n="btn_projects">Посмотреть проекты</a>
+    </div>
+  </div>
+</div>
+
+<div class="footer-mini">
+  <strong style="color:rgba(255,255,255,0.6);">Mission Europa Resource e. V.</strong> · © 2024
+</div>
+
+<script>
+const i18n = {
+  ru: {
+    title:'Спасибо за<br><em>поддержку!</em>',
+    steps_label:'Что будет дальше',
+    step1:'Мы свяжемся с вами в течение 48 часов',
+    step2:'Вы получите подтверждение пожертвования',
+    step3:'При необходимости — Spendenbescheinigung будет отправлена по почте',
+    btn_home:'← Вернуться на главную',
+    btn_projects:'Посмотреть проекты',
+  },
+  de: {
+    title:'Vielen Dank für<br><em>Ihre Unterstützung!</em>',
+    steps_label:'Was als Nächstes passiert',
+    step1:'Wir melden uns innerhalb von 48 Stunden',
+    step2:'Sie erhalten eine Bestätigung Ihrer Spende',
+    step3:'Bei Bedarf wird die Spendenbescheinigung per Post zugesandt',
+    btn_home:'← Zur Startseite',
+    btn_projects:'Projekte ansehen',
+  },
+  en: {
+    title:'Thank you for<br><em>your support!</em>',
+    steps_label:'What happens next',
+    step1:'We will contact you within 48 hours',
+    step2:'You will receive a donation confirmation',
+    step3:'If needed, a Spendenbescheinigung will be sent by post',
+    btn_home:'← Back to home',
+    btn_projects:'View projects',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'ru';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+
+applyLang(currentLang);
+</script>
+</body>
+</html>

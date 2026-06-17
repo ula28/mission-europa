@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__wrap">
+    <div class="nav__logo">
+      <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </div>
+    <div class="nav__menu" id="menu">
+      <a href="#about" data-i18n="nav_about">О нас</a>
+      <a href="#projects" data-i18n="nav_projects">Проекты</a>
+      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="ru" class="on">RU</span>
+        <span style="color:var(--gray-300)">·</span>
+        <span data-lang="de">DE</span>
+        <span style="color:var(--gray-300)">·</span>
+        <span data-lang="en">EN</span>
+        <span style="color:var(--gray-300)">·</span>
+        <span data-lang="uk">UK</span>
+      </div>
+      <a href="contact.html" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать проект</a>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero__wrap">
+  <div class="hero__left">
+    <div class="hero__tag au" data-i18n="hero_tag">Благотворительная некоммерческая организация · Гуммерсбах</div>
+    <h1 class="hero__title au2">Mission <em>Europa</em><br>Resource e. V.</h1>
+    <div class="hero__badge au3" data-i18n="hero_badge">Помогаем найти «дорогу домой»</div>
+    <p class="hero__desc au3" data-i18n="hero_desc">Социальные и интеграционные программы, направленные на поддержку беженцев, эмигрантов и их детей в Германии.</p>
+    <div class="hero__btns au4">
+      <a href="contact.html" class="btn btn-dark btn-arrow" data-i18n="hero_btn1">Поддержать проект</a>
+      <a href="#projects" class="btn btn-ghost" data-i18n="hero_btn2">О проектах</a>
+    </div>
+  </div>
+  <div class="hero__right">
+    <div class="hero__slide hero__slide-1">
+      <img src="image/DSC_0188.webp" alt="Фото 1">
+    </div>
+    <div class="hero__slide hero__slide-2">
+      <img src="image/DSC_0192.webp" alt="Фото 2">
+    </div>
+    <button class="hero__video-btn" id="videoBtn">
+      <span class="hero__play-icon">▶</span>
+      <span class="hero__video-label" data-i18n="hero_stories">Наши истории</span>
+    </button>
+  </div>
+  </div><!-- /hero__wrap -->
+</section>
+
+<!-- Photo Slideshow Modal -->
+<div class="slideshow-modal" id="slideshowModal">
+  <div class="slideshow-modal__overlay" id="modalOverlay"></div>
+  <div class="slideshow-modal__content">
+    <button class="slideshow-modal__close" id="closeModal">&times;</button>
+    <div class="slideshow-modal__slider swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="image/DSC_0188.webp" alt="Фото 1">
+        </div>
+        <div class="swiper-slide">
+          <img src="image/DSC_0192.webp" alt="Фото 2">
+        </div>
+        <div class="swiper-slide">
+          <img src="image/DSC_0199.webp" alt="Фото 3">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+</div>
+<div class="photostrip">
+  <div class="photostrip__cell photostrip__cell--label">
+    <span data-i18n="strip_label1">Сообщество</span>
+    <span data-i18n="strip_label2">Найти своих</span>
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0359.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0317.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0379.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0396.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0192.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell">
+    <img src="image/DSC_0251.webp" alt="" loading="lazy">
+  </div>
+  <div class="photostrip__cell photostrip__cell--label">
+    <span data-i18n="strip_label3">Дом</span>
+    <span data-i18n="strip_label4">Тёплая атмосфера</span>
+  </div>
+</div>
+
+<!-- СТАТЫ -->
+<div class="stats">
+  <div class="stats__row">
+    <div class="stat">
+      <div class="stat__n">4</div>
+      <div class="stat__l" data-i18n="stat0">года активной помощи</div>
+    </div>
+    <div class="stat">
+      <div class="stat__n">5</div>
+      <div class="stat__l" data-i18n="stat2">разнообразных проектов</div>
+    </div>
+    <div class="stat" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+      <div class="stat__n">250<span class="accent">+</span></div>
+      <div class="stat__l" data-i18n="stat1">мероприятий</div>
+    </div>
+    <div class="stat" onclick="document.getElementById('proj-lit').scrollIntoView({behavior:'smooth'})">
+      <div class="stat__n">3 000<span class="accent">+</span></div>
+      <div class="stat__l" data-i18n="stat4">участников</div>
+    </div>
+  </div>
+</div>
+
+<!-- О НАС -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about__eyebrow" data-i18n="about_eyebrow">О нас</div>
+    <h2 data-i18n="about_title">Кто мы и зачем существуем</h2>
+    <div class="about__badge" data-i18n="about_badge">Gemeinnützige Organisation (официальный статус)</div>
+    <p data-i18n="about_text1">Мы — Mission Europa Resource, зарегистрированная некоммерческая организация (e.V.) в Гуммерсбахе. Помогаем украиноязычным семьям найти своё место и почувствовать себя дома в новой стране. Создаём пространство, где можно сориентироваться, найти своих и ощутить принадлежность.</p>
+    <p data-i18n="about_text2">С 2022 года проводим встречи, мероприятия и программы поддержки для украинских беженцев и иммигрантов — взрослых и детей. За это время наши мероприятия посетили по меньшей мере от 3 до 6 тысяч участников.</p>
+    <a href="about.html" class="btn btn-dark btn-sm" style="margin-top:24px;" data-i18n="about_btn">Подробнее о команде</a>
+  </div>
+</section>
+
+<!-- ПУТЬ ЧЕЛОВЕКА -->
+<section class="journey">
+  <div class="wrap">
+    <div class="journey__top">
+      <div class="journey__left">
+        <div class="journey__eyebrow" data-i18n="journey_eyebrow">Как мы помогаем</div>
+        <h2 class="journey__title" data-i18n="journey_title">Путь человека</h2>
+        <p class="journey__sub" data-i18n="journey_sub">Мы помогаем пройти путь от растерянности к ощущению дома — как маяк ведёт корабль к берегу.</p>
+      </div>
+      <!-- Маяк — логотип проекта -->
+      <img src="mer-mark 1.svg" class="journey__lighthouse" alt="">
+    </div>
+    <div class="journey__steps">
+      <!-- Волнистая пунктирная линия -->
+      <svg class="journey__wave-line" viewBox="0 0 1000 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10 Q50 2 100 10 Q150 18 200 10 Q250 2 300 10 Q350 18 400 10 Q450 2 500 10 Q550 18 600 10 Q650 2 700 10 Q750 18 800 10 Q850 2 900 10 Q950 18 1000 10" 
+          stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"
+          stroke-dasharray="6 8" stroke-linecap="round"/>
+      </svg>
+      <div class="journey__step">
+        <span class="journey__step-num">01</span>
+        <div class="journey__step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </div>
+        <div class="journey__step-name" data-i18n="step1_name">Приехал</div>
+        <div class="journey__step-sub" data-i18n="step1_sub">Один. Всё чужое.</div>
+      </div>
+      <div class="journey__step">
+        <span class="journey__step-num">02</span>
+        <div class="journey__step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <div class="journey__step-name" data-i18n="step2_name">Ищет своих</div>
+        <div class="journey__step-sub" data-i18n="step2_sub">Первые знакомства.</div>
+      </div>
+      <div class="journey__step">
+        <span class="journey__step-num">03</span>
+        <div class="journey__step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="journey__step-name" data-i18n="step3_name">Осваивается</div>
+        <div class="journey__step-sub" data-i18n="step3_sub">Язык и быт.</div>
+      </div>
+      <div class="journey__step">
+        <span class="journey__step-num">04</span>
+        <div class="journey__step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="journey__step-name" data-i18n="step4_name">Находит своих</div>
+        <div class="journey__step-sub" data-i18n="step4_sub">Тепло и принадлежность.</div>
+      </div>
+      <div class="journey__step journey__step--active">
+        <span class="journey__step-num">05</span>
+        <div class="journey__step-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="journey__step-name" data-i18n="step5_name">Помогает другим</div>
+        <div class="journey__step-sub" data-i18n="step5_sub">Ощущение дома.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРОЕКТЫ -->
+<section class="projects-section" id="projects">
+  <div class="wrap">
+    <div class="proj__eyebrow" data-i18n="projects_eyebrow">Наши проекты</div>
+    <h2 class="proj__headline" data-i18n="projects_title">Каждый проект — опора на своём этапе пути</h2>
+  </div>
+  <div class="proj__layout">
+    <a class="pcard pcard--parasol" href="project-parasol.html" style="min-height:520px;">
+      <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+      <div class="pcard__body">
+        <div class="pcard__name">Parasolka</div>
+        <div class="pcard__desc" data-i18n="parasol_desc">Программы для детей от 3 лет, мастер-классы и сопровождение. Первый шаг к новым знакомствам и интеграции в немецкой среде.</div>
+        <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+      </div>
+    </a>
+    <div class="proj__right-grid">
+      <a class="pcard pcard--avana" href="project-avana.html">
+        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__body">
+          <div class="pcard__name">Awana</div>
+          <div class="pcard__desc" data-i18n="awana_desc">Активная среда для детей от 7 до 12 лет</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--revers" href="project-revers.html">
+        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__body">
+          <div class="pcard__name">Revers</div>
+          <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--alpha" href="project-alpha.html">
+        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__body">
+          <div class="pcard__name">Альфа-Курс</div>
+          <div class="pcard__desc" data-i18n="alpha_desc">Бесплатный курс</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a id="proj-lit" class="pcard pcard--lit" href="project-literature.html">
+        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__body">
+          <div class="pcard__name" data-i18n="proj_lit">Рассылка литературы</div>
+          <div class="pcard__desc" data-i18n="lit_desc">Книги и материалы</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ИСТОРИЯ -->
+<section class="story">
+  <div class="story__photo"></div>
+  <div class="story__content">
+    <div class="story__eyebrow" data-i18n="story_eyebrow">Истории</div>
+    <div class="story__quote-mark">"</div>
+    <p class="story__quote" data-i18n="story_quote">Я приехала, не зная никого. Здесь меня <em>«отпустило»</em> — и впервые за долгое время я почувствовала себя как дома.</p>
+    <div class="story__author">
+      <strong data-i18n="story_author">Оксана, участница проекта Parasolka</strong>
+      <span data-i18n="story_city">Гуммерсбах, 2024</span>
+    </div>
+  </div>
+</section>
+
+<!-- ПОЖЕРТВОВАНИЯ -->
+<section class="donation-dark" id="donate">
+  <div class="wrap">
+    <div class="donation-dark__grid">
+      <div>
+        <div class="donation-dark__eyebrow" data-i18n="don_eyebrow">Пожертвования</div>
+        <h2 class="donation-dark__title" data-i18n="don_title">Ваша поддержка <em>меняет</em> жизни в Европе</h2>
+        <div class="donation-dark__badge" data-i18n="don_badge">Официально зарегистрированный Verein</div>
+        <p class="donation-dark__sub" data-i18n="don_sub">Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми. Spendenbescheinigung по запросу.</p>
+        <div class="donation-dark__btns">
+          <a href="contact.html" class="btn btn-white btn-arrow" data-i18n="don_btn1">Поддержать проект</a>
+          <a href="contact.html" class="btn-outline-white" data-i18n="don_btn2">Связаться с нами</a>
+        </div>
+      </div>
+      <div class="pay-methods">
+        <div class="pay-method">
+          <div>
+            <div class="pay-method__name" data-i18n="pay1_name">Банковский перевод</div>
+            <div class="pay-method__detail">IBAN DE · BIC · · ·</div>
+          </div>
+          <span class="pay-method__arrow">›</span>
+        </div>
+        <div class="pay-method">
+          <div>
+            <div class="pay-method__name">PayPal</div>
+            <div class="pay-method__detail" data-i18n="pay2_detail">Быстрый перевод</div>
+          </div>
+          <span class="pay-method__arrow">›</span>
+        </div>
+        <div class="pay-method">
+          <div>
+            <div class="pay-method__name">Wise</div>
+            <div class="pay-method__detail">mission-europa.de</div>
+          </div>
+          <span class="pay-method__arrow">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer class="footer-new" id="business">
+  <div class="wrap">
+    <div class="footer-new__grid">
+      <div>
+        <div class="footer-new__logo">Mission Europa<br>Resource e. V.</div>
+        <div class="footer-new__addr">Гуммерсбах, Германия<br>mission@me-eev.de</div>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_about_title">О нас</div>
+        <a href="#about" data-i18n="footer_team">Команда</a>
+        <a href="#about" data-i18n="footer_about">История</a>
+        <a href="#" data-i18n="footer_reports">Отчётность</a>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_projects_title">Проекты</div>
+        <a href="project-parasol.html">Parasolka</a>
+        <a href="project-avana.html">Awana</a>
+        <a href="project-revers.html">Revers</a>
+        <a href="project-alpha.html" data-i18n="footer_alpha">Альфа-Курс</a>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_participate_title">Участие</div>
+        <a href="contact.html" data-i18n="footer_donate">Пожертвовать</a>
+        <a href="contact.html" data-i18n="footer_volunteer">Волонтёрство</a>
+        <a href="contact.html" data-i18n="footer_business">Для бизнеса</a>
+      </div>
+    </div>
+    <div class="footer-new__copy">© 2025 Mission Europa Resource e. V. · gemeinnützig</div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  ru: {
+    nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
+    nav_reports:'Отчётность', nav_contact:'Контакты', nav_support:'Поддержать проект',
+    hero_tag:'Благотворительная некоммерческая организация · Гуммерсбах',
+    hero_badge:'Помогаем найти «дорогу домой»',
+    hero_desc:'Социальные и интеграционные программы, направленные на поддержку беженцев, эмигрантов и их детей в Германии.',
+    hero_btn1:'Поддержать проект', hero_btn2:'О проектах',
+    strip_label1:'Сказистство', strip_label2:'Найти своих',
+    strip_label3:'Для', strip_label4:'Твоих иммигрантов',
+    stat0:'года активной помощи', stat2:'разнообразных проектов',
+    stat1:'мероприятий', stat4:'участников',
+    about_eyebrow:'О нас',
+    about_title:'Кто мы и зачем существуем',
+    about_badge:'Gemeinnützige Organisation (официальный статус)',
+    about_text1:'Мы — Mission Europa Resource, зарегистрированная некоммерческая организация (e.V.) в Гуммерсбахе. Помогаем украиноязычным семьям найти своё место и почувствовать себя дома в новой стране. Создаём пространство, где можно сориентироваться, найти своих и ощутить принадлежность.',
+    about_text2:'С 2022 года проводим встречи, мероприятия и программы поддержки для украинских беженцев и иммигрантов — взрослых и детей. За это время наши мероприятия посетили по меньшей мере от 3 до 6 тысяч участников.',
+    about_btn:'Подробнее о команде',
+    about_link1:'Поддержать деятельность', about_link2:'Партнёрская деятельность',
+    about_link3:'Наши отчёты', about_link4:'Новости',
+    journey_eyebrow:'Как мы помогаем', journey_title:'Путь человека',
+    journey_sub:'Мы помогаем пройти путь от растерянности к ощущению дома — как маяк ведёт корабль к берегу.',
+    step1_name:'Приехал', step1_sub:'Один. Всё чужое.',
+    step2_name:'Ищет своих', step2_sub:'Первые знакомства',
+    step3_name:'Осваивается', step3_sub:'Язык и быт',
+    step4_name:'Находит своих', step4_sub:'Место и принадлежность',
+    step5_name:'Помогает другим', step5_sub:'Ощущение дома',
+    projects_eyebrow:'Наши проекты',
+    projects_title:'Каждый проект — опора на своём этапе пути',
+    card_more:'Подробнее →',
+    parasol_desc:'Программы для детей от 3 лет, мастер-классы и сопровождение. Первый шаг к новым знакомствам и интеграции в немецкой среде.',
+    awana_desc:'Активная среда для детей от 7 до 12 лет',
+    revers_desc:'Встречи для подростков',
+    alpha_desc:'Бесплатный курс',
+    proj_lit:'Рассылка литературы', lit_desc:'Книги и материалы',
+    story_eyebrow:'Истории',
+    story_quote:'Я приехала, не зная никого. Здесь меня «отпустило» — и впервые за долгое время я почувствовала себя как дома.',
+    story_author:'Оксана, участница проекта Parasolka',
+    story_city:'Гуммерсбах, 2024',
+    don_eyebrow:'Пожертвования',
+    don_title:'Ваша поддержка меняет жизни в Европе',
+    don_badge:'Официально зарегистрированный Verein',
+    don_sub:'Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми. Spendenbescheinigung по запросу.',
+    don_btn1:'Поддержать проект', don_btn2:'Связаться с нами',
+    pay1_name:'Банковский перевод', pay2_detail:'Быстрый перевод',
+    footer_about_title:'О нас', footer_team:'Команда', footer_about:'История',
+    footer_reports:'Отчётность', footer_projects_title:'Проекты',
+    footer_alpha:'Альфа-Курс', footer_participate_title:'Участие',
+    footer_donate:'Пожертвовать', footer_volunteer:'Волонтёрство', footer_business:'Для бизнеса',
+  },
+  de: {
+    nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
+    nav_reports:'Berichte', nav_contact:'Kontakt', nav_support:'Unterstützen',
+    hero_tag:'Gemeinnützige Organisation · Gummersbach',
+    hero_badge:'Wir helfen, den «Weg nach Hause» zu finden',
+    hero_desc:'Soziale und Integrationsprogramme zur Unterstützung von Geflüchteten, Einwanderern und deren Kindern in Deutschland.',
+    hero_btn1:'Projekt unterstützen', hero_btn2:'Über Projekte',
+    strip_label1:'Gemeinschaft', strip_label2:'Eigene finden',
+    strip_label3:'Für', strip_label4:'Ihre Migranten',
+    stat0:'Jahre aktiver Hilfe', stat2:'vielfältige Projekte',
+    stat1:'Veranstaltungen', stat4:'Teilnehmer',
+    about_eyebrow:'Über uns',
+    about_title:'Wer wir sind und warum wir existieren',
+    about_badge:'Gemeinnützige Organisation (offizieller Status)',
+    about_text1:'Wir sind Mission Europa Resource, eine eingetragene gemeinnützige Organisation (e.V.) in Gummersbach.',
+    about_text2:'Seit 2022 organisieren wir Treffen und Unterstützungsprogramme für ukrainische Geflüchtete.',
+    about_btn:'Mehr über das Team',
+    about_link1:'Tätigkeit unterstützen', about_link2:'Partnerschaft',
+    about_link3:'Unsere Berichte', about_link4:'Neuigkeiten',
+    journey_eyebrow:'Wie wir helfen', journey_title:'Der Weg des Menschen',
+    journey_sub:'Wir helfen, den Weg von der Verwirrung zum Heimatgefühl zu gehen.',
+    step1_name:'Angekommen', step1_sub:'Allein. Alles fremd.',
+    step2_name:'Sucht Gleichgesinnte', step2_sub:'Erste Bekanntschaften',
+    step3_name:'Findet sich zurecht', step3_sub:'Sprache und Alltag',
+    step4_name:'Findet Gemeinschaft', step4_sub:'Zugehörigkeit',
+    step5_name:'Hilft anderen', step5_sub:'Heimatgefühl',
+    projects_eyebrow:'Unsere Projekte',
+    projects_title:'Jedes Projekt — eine Stütze auf dem eigenen Weg',
+    card_more:'Mehr →',
+    parasol_desc:'Programme für Kinder ab 3 Jahren, Workshops und Begleitung.',
+    awana_desc:'Aktives Umfeld für Kinder von 7 bis 12 Jahren',
+    revers_desc:'Treffen für Jugendliche',
+    alpha_desc:'Kostenloser Kurs',
+    proj_lit:'Literaturversand', lit_desc:'Bücher und Materialien',
+    story_eyebrow:'Geschichten',
+    story_quote:'Ich kam, ohne jemanden zu kennen. Hier liess es mich los — und zum ersten Mal fühlte ich mich wie zu Hause.',
+    story_author:'Oksana, Teilnehmerin des Projekts Parasolka',
+    story_city:'Gummersbach, 2024',
+    don_eyebrow:'Spenden',
+    don_title:'Ihre Unterstützung verändert Leben in Europa',
+    don_badge:'Offiziell eingetragener Verein',
+    don_sub:'Eingetragener gemeinnütziger Verein — Spenden sind steuerlich absetzbar. Spendenbescheinigung auf Anfrage.',
+    don_btn1:'Projekt unterstützen', don_btn2:'Kontakt aufnehmen',
+    pay1_name:'Banküberweisung', pay2_detail:'Schnelle Überweisung',
+    footer_about_title:'Über uns', footer_team:'Team', footer_about:'Geschichte',
+    footer_reports:'Berichte', footer_projects_title:'Projekte',
+    footer_alpha:'Alpha-Kurs', footer_participate_title:'Mitmachen',
+    footer_donate:'Spenden', footer_volunteer:'Ehrenamt', footer_business:'Für Unternehmen',
+  },
+  en: {
+    nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
+    nav_reports:'Reports', nav_contact:'Contact', nav_support:'Support Us',
+    hero_tag:'Non-profit organisation · Gummersbach',
+    hero_badge:'We help find the «way home»',
+    hero_desc:'Social and integration programmes supporting refugees, immigrants and their children in Germany.',
+    hero_btn1:'Support a project', hero_btn2:'Our projects',
+    strip_label1:'Community', strip_label2:'Find your people',
+    strip_label3:'For', strip_label4:'Your immigrants',
+    stat0:'years of active support', stat2:'diverse projects',
+    stat1:'events', stat4:'participants',
+    about_eyebrow:'About us',
+    about_title:'Who we are and why we exist',
+    about_badge:'Gemeinnützige Organisation (official status)',
+    about_text1:'We are Mission Europa Resource, a registered non-profit organisation (e.V.) in Gummersbach. We help Ukrainian-speaking families find their place and feel at home in a new country.',
+    about_text2:'Since 2022 we have organised meetings and support programmes for Ukrainian refugees and immigrants.',
+    about_btn:'More about the team',
+    about_link1:'Support our work', about_link2:'Partnership',
+    about_link3:'Our reports', about_link4:'News',
+    journey_eyebrow:'How we help', journey_title:'A person\'s journey',
+    journey_sub:'We help navigate the path from confusion to a sense of home.',
+    step1_name:'Arrived', step1_sub:'Alone. Everything is foreign.',
+    step2_name:'Seeks community', step2_sub:'First connections',
+    step3_name:'Settles in', step3_sub:'Language and daily life',
+    step4_name:'Finds belonging', step4_sub:'Place and identity',
+    step5_name:'Helps others', step5_sub:'Feels at home',
+    projects_eyebrow:'Our projects',
+    projects_title:'Every project — support at every stage of the journey',
+    card_more:'Learn more →',
+    parasol_desc:'Programmes for children from age 3, workshops and guidance.',
+    awana_desc:'Active environment for children aged 7–12',
+    revers_desc:'Meetings for teenagers',
+    alpha_desc:'Free course',
+    proj_lit:'Literature Distribution', lit_desc:'Books and materials',
+    story_eyebrow:'Stories',
+    story_quote:'I arrived knowing no one. Here I finally relaxed — and for the first time I felt at home.',
+    story_author:'Oksana, Parasolka project participant',
+    story_city:'Gummersbach, 2024',
+    don_eyebrow:'Donations',
+    don_title:'Your support changes lives in Europe',
+    don_badge:'Officially registered Verein',
+    don_sub:'Registered gemeinnützig Verein — donations are officially tax-deductible. Spendenbescheinigung on request.',
+    don_btn1:'Support a project', don_btn2:'Contact us',
+    pay1_name:'Bank transfer', pay2_detail:'Quick transfer',
+    footer_about_title:'About us', footer_team:'Team', footer_about:'History',
+    footer_reports:'Reports', footer_projects_title:'Projects',
+    footer_alpha:'Alpha Course', footer_participate_title:'Get involved',
+    footer_donate:'Donate', footer_volunteer:'Volunteer', footer_business:'For Business',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'ru';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key].replace(/\n/g,'<br>');
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(btn => {
+    btn.classList.toggle('on', btn.getAttribute('data-lang') === lang);
+  });
+  localStorage.setItem('mer_lang', lang);
+  currentLang = lang;
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+applyLang(currentLang);
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+// Инициализация слайдера в модале (когда откроется)
+let modalSlider = null;
+
+// Слайд-шоу модальное окно
+const videoBtn = document.getElementById('videoBtn');
+const slideshowModal = document.getElementById('slideshowModal');
+const closeBtn = document.getElementById('closeModal');
+const overlay = document.getElementById('modalOverlay');
+
+videoBtn?.addEventListener('click', () => {
+  slideshowModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  
+  // Инициализируем слайдер в модале при открытии
+  setTimeout(() => {
+    if (!modalSlider) {
+      modalSlider = new Swiper('.slideshow-modal__slider', {
+        slidesPerView: 1,
+        loop: true,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
+        }
+      });
+    }
+  }, 100);
+});
+
+const closeModal = () => {
+  slideshowModal.classList.remove('active');
+  document.body.style.overflow = '';
+  if (modalSlider) {
+    modalSlider.autoplay.stop();
+  }
+};
+
+closeBtn?.addEventListener('click', closeModal);
+overlay?.addEventListener('click', closeModal);
+
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && slideshowModal.classList.contains('active')) {
+    closeModal();
+  }
+});
+</script>
+</body>
+</html>
