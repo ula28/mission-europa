@@ -29,12 +29,12 @@
     <div class="nav__right">
       <div class="nav__lang" id="langSwitcher">
         <span data-lang="ru" class="on">RU</span>
-        <span style="color:var(--gray-300)">·</span>
-        <span data-lang="de">DE</span>
-        <span style="color:var(--gray-300)">·</span>
-        <span data-lang="en">EN</span>
-        <span style="color:var(--gray-300)">·</span>
+        <span class="nav__lang-sep">|</span>
         <span data-lang="uk">UK</span>
+        <span class="nav__lang-sep">|</span>
+        <span data-lang="de">DE</span>
+        <span class="nav__lang-sep">|</span>
+        <span data-lang="en">EN</span>
       </div>
       <a href="contact.html" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать проект</a>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
@@ -224,63 +224,82 @@
   <div class="wrap">
     <div class="proj__eyebrow" data-i18n="projects_eyebrow">Наши проекты</div>
     <h2 class="proj__headline" data-i18n="projects_title">Каждый проект — опора на своём этапе пути</h2>
-  </div>
+
   <div class="proj__layout">
-    <a class="pcard pcard--parasol" href="project-parasol.html" style="min-height:520px;">
-      <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+    <!-- Parasolka — большая карточка слева -->
+    <a class="pcard pcard--parasol pcard--has-logo" href="project-parasolka.html">
+      <div class="pcard__photo">
+        <img src="image/наши проекты/parasolka.webp" alt="Parasolka">
+      </div>
       <div class="pcard__body">
+        <img class="pcard__logo" src="image/logo/paras.svg" alt="">
         <div class="pcard__name">Parasolka</div>
-        <div class="pcard__desc" data-i18n="parasol_desc">Программы для детей от 3 лет, мастер-классы и сопровождение. Первый шаг к новым знакомствам и интеграции в немецкой среде.</div>
-        <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        <div class="pcard__desc" data-i18n="parasol_desc">Пространство для встреч, мастер-классов и совместного творчества. Первый шаг к новым знакомствам в незнакомой стране.</div>
+        <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
       </div>
     </a>
+
+    <!-- 2×2 справа -->
     <div class="proj__right-grid">
-      <a class="pcard pcard--avana" href="project-avana.html">
-        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+      <a class="pcard pcard--avana pcard--has-logo" href="project-avana.html">
+        <div class="pcard__photo">
+          <img src="image/наши проекты/awana.webp" alt="Awana">
+        </div>
         <div class="pcard__body">
+          <img class="pcard__logo" src="image/logo/awana.png" alt="">
           <div class="pcard__name">Awana</div>
-          <div class="pcard__desc" data-i18n="awana_desc">Активная среда для детей от 7 до 12 лет</div>
-          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+          <div class="pcard__desc" data-i18n="awana_desc">Активное время для детей от 7 до 12 лет</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
       <a class="pcard pcard--revers" href="project-revers.html">
-        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__photo">
+          <img src="image/наши проекты/revers.webp" alt="Reverse">
+        </div>
         <div class="pcard__body">
-          <div class="pcard__name">Revers</div>
+          <div class="pcard__name">Reverse</div>
           <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков</div>
-          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
-      <a class="pcard pcard--alpha" href="project-alpha.html">
-        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+      <a class="pcard pcard--alpha pcard--has-logo" href="project-alpha.html">
+        <div class="pcard__photo">
+          <img src="image/наши проекты/alfa.webp" alt="Альфа-Курс">
+        </div>
         <div class="pcard__body">
+          <img class="pcard__logo" src="image/logo/alfa.webp" alt="">
           <div class="pcard__name">Альфа-Курс</div>
-          <div class="pcard__desc" data-i18n="alpha_desc">Бесплатный курс</div>
-          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+          <div class="pcard__desc">Дискуссионный клуб</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
       <a id="proj-lit" class="pcard pcard--lit" href="project-literature.html">
-        <div class="pcard__bg"></div><div class="pcard__overlay"></div>
+        <div class="pcard__photo pcard__photo--empty"></div>
         <div class="pcard__body">
           <div class="pcard__name" data-i18n="proj_lit">Рассылка литературы</div>
-          <div class="pcard__desc" data-i18n="lit_desc">Книги и материалы</div>
-          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+          <div class="pcard__desc">Описание</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
     </div>
+  </div>
   </div>
 </section>
 
 <!-- ИСТОРИЯ -->
 <section class="story">
-  <div class="story__photo"></div>
-  <div class="story__content">
-    <div class="story__eyebrow" data-i18n="story_eyebrow">Истории</div>
-    <div class="story__quote-mark">"</div>
-    <p class="story__quote" data-i18n="story_quote">Я приехала, не зная никого. Здесь меня <em>«отпустило»</em> — и впервые за долгое время я почувствовала себя как дома.</p>
-    <div class="story__author">
-      <strong data-i18n="story_author">Оксана, участница проекта Parasolka</strong>
-      <span data-i18n="story_city">Гуммерсбах, 2024</span>
+  <div class="wrap story__wrap">
+    <div class="story__photo">
+      <img src="image/photo_2026-01-31 10.24.32.webp" alt="Участница проекта Parasolka">
+    </div>
+    <div class="story__content">
+      <div class="story__eyebrow" data-i18n="story_eyebrow">Истории</div>
+      <div class="story__quote-mark">"</div>
+      <p class="story__quote" data-i18n="story_quote">Я приехала, не зная никого. Здесь меня <em>встретили</em> — и впервые за долгое время я почувствовала себя как дома.</p>
+      <div class="story__author">
+        <strong data-i18n="story_author">Оксана, участница проекта Parasolka</strong>
+        <span data-i18n="story_city">Гуммерсбах, 2024</span>
+      </div>
     </div>
   </div>
 </section>
@@ -395,7 +414,7 @@ const i18n = {
     alpha_desc:'Бесплатный курс',
     proj_lit:'Рассылка литературы', lit_desc:'Книги и материалы',
     story_eyebrow:'Истории',
-    story_quote:'Я приехала, не зная никого. Здесь меня «отпустило» — и впервые за долгое время я почувствовала себя как дома.',
+    story_quote:'Я приехала, не зная никого. Здесь меня <em>встретили</em> — и впервые за долгое время я почувствовала себя как дома.',
     story_author:'Оксана, участница проекта Parasolka',
     story_city:'Гуммерсбах, 2024',
     don_eyebrow:'Пожертвования',
@@ -444,7 +463,7 @@ const i18n = {
     alpha_desc:'Kostenloser Kurs',
     proj_lit:'Literaturversand', lit_desc:'Bücher und Materialien',
     story_eyebrow:'Geschichten',
-    story_quote:'Ich kam, ohne jemanden zu kennen. Hier liess es mich los — und zum ersten Mal fühlte ich mich wie zu Hause.',
+    story_quote:'Ich kam, ohne jemanden zu kennen. Hier wurde ich <em>willkommen geheißen</em> — und zum ersten Mal fühlte ich mich wie zu Hause.',
     story_author:'Oksana, Teilnehmerin des Projekts Parasolka',
     story_city:'Gummersbach, 2024',
     don_eyebrow:'Spenden',
@@ -493,7 +512,7 @@ const i18n = {
     alpha_desc:'Free course',
     proj_lit:'Literature Distribution', lit_desc:'Books and materials',
     story_eyebrow:'Stories',
-    story_quote:'I arrived knowing no one. Here I finally relaxed — and for the first time I felt at home.',
+    story_quote:'I arrived knowing no one. Here I was <em>welcomed</em> — and for the first time I felt at home.',
     story_author:'Oksana, Parasolka project participant',
     story_city:'Gummersbach, 2024',
     don_eyebrow:'Donations',
