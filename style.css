@@ -813,8 +813,8 @@ p  { font-size: 0.9375rem; line-height: 1.7; color: var(--gray-700); }
 ═══════════════════════════════════════ */
 
 :root {
-  --parasol-dark:   #2D1B69;
-  --parasol-mid:    #5B21B6;
+  --parasol-dark:   #6B21A8;
+  --parasol-mid:    #4C1D95;
   --parasol-light:  #EDE9FE;
   --parasol-accent: #7C3AED;
 }
@@ -859,68 +859,116 @@ p  { font-size: 0.9375rem; line-height: 1.7; color: var(--gray-700); }
 /* ── Hero ── */
 .pp-hero {
   background: var(--parasol-dark);
-  padding: 100px 0 80px;
+  padding: 80px 0 72px;
   overflow: hidden;
+  position: relative;
 }
+/* watermark */
+.pp-hero::before {
+  content: 'Parasolka';
+  position: absolute;
+  font-size: 18vw;
+  font-weight: 900;
+  font-family: var(--font-ui);
+  color: rgba(255,255,255,0.06);
+  white-space: nowrap;
+  top: 50%;
+  right: -4%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  letter-spacing: -0.02em;
+  z-index: 0;
+}
+.pp-hero .wrap { position: relative; z-index: 1; }
 .pp-hero__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 56px;
   align-items: center;
 }
 .pp-hero__left { color: var(--white); }
-.pp-hero__eyebrow { color: rgba(255,255,255,0.7); }
-.pp-hero__eyebrow::before { background: rgba(255,255,255,0.5); }
+.pp-hero__eyebrow { color: rgba(255,255,255,0.7); margin-bottom: 20px; }
+.pp-hero__eyebrow::before { background: var(--accent); }
 
+/* GUMMERSBACH + paras.svg + title wordmark */
+.pp-hero__wordmark { margin-bottom: 28px; }
+.pp-hero__location {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+}
+.pp-hero__logo-icon {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+  margin-bottom: 8px;
+}
 .pp-hero__title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  font-weight: 400;
+  font-family: var(--font-ui);
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 700;
   color: var(--white);
   line-height: 1.0;
-  margin: 0 0 24px;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 .pp-hero__lead {
-  font-family: var(--font-ui);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.9);
-  margin: 0 0 12px;
-  line-height: 1.5;
+  color: rgba(255,255,255,0.92);
+  margin: 0 0 10px;
+  line-height: 1.55;
 }
 .pp-hero__sub {
-  font-family: var(--font-ui);
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.65);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
   margin: 0 0 32px;
   line-height: 1.6;
 }
-.pp-hero__badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.85);
-  font-family: var(--font-ui);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  padding: 6px 16px;
-  border-radius: 100px;
-  margin-bottom: 28px;
+.pp-hero__btns { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.btn-outline-white {
+  display: inline-flex; align-items: center;
+  padding: 12px 24px; border-radius: 24px;
+  border: 1.5px solid rgba(255,255,255,0.75);
+  color: var(--white); font-size: 0.82rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s; white-space: nowrap;
 }
-.pp-hero__right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+.pp-hero__link {
+  font-size: 0.82rem; color: rgba(255,255,255,0.75);
+  text-decoration: none; font-weight: 500; transition: color 0.2s;
+}
+.pp-hero__link:hover { color: #fff; }
+
+/* Right photo + yellow badge */
+.pp-hero__photo-wrap {
+  position: relative;
 }
 .pp-hero__photo {
   width: 100%;
-  max-width: 520px;
   aspect-ratio: 4/3;
   object-fit: cover;
-  border-radius: 12px;
+  display: block;
+  border-radius: 16px;
   box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+}
+.pp-hero__badge-pill {
+  position: absolute;
+  bottom: -16px;
+  left: 24px;
+  background: #F59E0B;
+  color: #1a2332;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 12px;
+  max-width: 160px;
+  line-height: 1.3;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
 
 /* ── Problem ── */

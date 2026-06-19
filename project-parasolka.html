@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parasolka — Mission Europa Resource e. V.</title>
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Parasolka page — override nav button to purple */
+  .nav__right .btn-dark { background: var(--parasol-dark); }
+  .nav__right .btn-dark:hover { background: var(--parasol-mid); }
+</style>
 </head>
 <body>
 
@@ -46,19 +51,21 @@
     <div class="pp-hero__inner">
       <div class="pp-hero__left">
         <div class="pp-eyebrow pp-hero__eyebrow">Этап пути · находит сообщество</div>
-        <h1 class="pp-hero__title">Parasolka</h1>
+        <div class="pp-hero__wordmark">
+          <span class="pp-hero__location">Gummersbach</span>
+          <img class="pp-hero__logo-icon" src="image/logo/paras.svg" alt="">
+          <h1 class="pp-hero__title">Parasolka</h1>
+        </div>
         <p class="pp-hero__lead">Первая точка входа для украинских и других русскоязычных семей в Гуммерсбахе.</p>
         <p class="pp-hero__sub">Встречи, знакомства и практическая информация — всё, что нужно в первые месяцы после переезда.</p>
-        <div class="pp-hero__badge">Тёплое место среди своих</div>
-        <br>
-        <a href="contact.html" class="btn">Поддержать проект</a>
+        <div class="pp-hero__btns">
+          <a href="contact.html" class="btn-outline-white">Поддержать проект</a>
+          <a href="#what-we-do" class="pp-hero__link">Что мы делаем</a>
+        </div>
       </div>
-      <div class="pp-hero__right">
-        <img
-          class="pp-hero__photo"
-          src="image/наши проекты/parasolka.webp"
-          alt="Встреча Parasolka"
-        >
+      <div class="pp-hero__photo-wrap">
+        <img class="pp-hero__photo" src="image/photo_2026-01-31 10.24.32.webp" alt="Встреча Parasolka">
+        <div class="pp-hero__badge-pill">Тёплое место среди своих</div>
       </div>
     </div>
   </div>
