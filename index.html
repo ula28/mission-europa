@@ -13,14 +13,14 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__wrap">
-    <div class="nav__logo">
+    <a class="nav__logo" href="index.html">
       <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
       <div class="nav__logo-text">
         <div class="nav__logo-main">MER e.V.</div>
         <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
         <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
       </div>
-    </div>
+    </a>
     <div class="nav__menu" id="menu">
       <a href="#about" data-i18n="nav_about">О нас</a>
       <a href="#projects" data-i18n="nav_projects">Проекты</a>
@@ -386,8 +386,8 @@ const i18n = {
     hero_badge:'Помогаем найти «дорогу домой»',
     hero_desc:'Социальные и интеграционные программы, направленные на поддержку беженцев, эмигрантов и их детей в Германии.',
     hero_btn1:'Поддержать проект', hero_btn2:'О проектах',
-    strip_label1:'Сказистство', strip_label2:'Найти своих',
-    strip_label3:'Для', strip_label4:'Твоих иммигрантов',
+    strip_label1:'Сообщество', strip_label2:'Найти своих',
+    strip_label3:'Дом', strip_label4:'Тёплая атмосфера',
     stat0:'года активной помощи', stat2:'разнообразных проектов',
     stat1:'мероприятий', stat4:'участников',
     about_eyebrow:'О нас',
@@ -436,7 +436,7 @@ const i18n = {
     hero_desc:'Soziale und Integrationsprogramme zur Unterstützung von Geflüchteten, Einwanderern und deren Kindern in Deutschland.',
     hero_btn1:'Projekt unterstützen', hero_btn2:'Über Projekte',
     strip_label1:'Gemeinschaft', strip_label2:'Eigene finden',
-    strip_label3:'Für', strip_label4:'Ihre Migranten',
+    strip_label3:'Zuhause', strip_label4:'Warme Atmosphäre',
     stat0:'Jahre aktiver Hilfe', stat2:'vielfältige Projekte',
     stat1:'Veranstaltungen', stat4:'Teilnehmer',
     about_eyebrow:'Über uns',
@@ -485,7 +485,7 @@ const i18n = {
     hero_desc:'Social and integration programmes supporting refugees, immigrants and their children in Germany.',
     hero_btn1:'Support a project', hero_btn2:'Our projects',
     strip_label1:'Community', strip_label2:'Find your people',
-    strip_label3:'For', strip_label4:'Your immigrants',
+    strip_label3:'Home', strip_label4:'Warm atmosphere',
     stat0:'years of active support', stat2:'diverse projects',
     stat1:'events', stat4:'participants',
     about_eyebrow:'About us',
@@ -605,6 +605,15 @@ document.addEventListener('keydown', (e) => {
     closeModal();
   }
 });
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
 </body>
 </html>

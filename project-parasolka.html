@@ -6,9 +6,14 @@
 <title>Parasolka — Mission Europa Resource e. V.</title>
 <link rel="stylesheet" href="style.css">
 <style>
-  /* Parasolka page — override nav button to purple */
-  .nav__right .btn-dark { background: var(--parasol-dark); }
-  .nav__right .btn-dark:hover { background: var(--parasol-mid); }
+  /* Nav outer — purple to match hero; card itself stays white */
+  .nav { background: var(--parasol-dark); }
+  /* Nav button — slightly lighter purple */
+  .nav__right .btn-dark { background: #7538EB; }
+  .nav__right .btn-dark:hover { background: #6B21A8; }
+  /* Scroll-to-top — brand purple */
+  .scroll-top { background: var(--parasol-accent); }
+  .scroll-top:hover { background: var(--parasol-dark); }
 </style>
 </head>
 <body>
@@ -16,14 +21,14 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__wrap">
-    <div class="nav__logo">
+    <a class="nav__logo" href="index.html">
       <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
       <div class="nav__logo-text">
         <div class="nav__logo-main">MER e.V.</div>
         <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
         <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
       </div>
-    </div>
+    </a>
     <div class="nav__menu" id="menu">
       <a href="index.html">О нас</a>
       <a href="index.html#projects">Проекты</a>
@@ -72,16 +77,17 @@
 </section>
 
 <!-- PROBLEM -->
-<section class="pp-problem">
+<section class="pp-problem" id="what-we-do">
   <div class="wrap">
     <div class="pp-problem__grid">
       <div class="pp-problem__col">
         <div class="pp-problem__tag">Проблема</div>
-        <h2 class="pp-problem__title">Первые месяцы —&nbsp;<em class="pp-problem__highlight">самые одинокие</em></h2>
+        <h2 class="pp-problem__title">Первые месяцы — <em>самые одинокие</em></h2>
         <p class="pp-problem__text">Язык незнаком, система непонятна, знакомых нет. Самые простые вещи отнимают силы, а спросить совета не у кого.</p>
+        <p class="pp-problem__solution">Parasolka — первое место в регионе, где можно выдохнуть, задать вопрос на родном языке и найти своих.</p>
       </div>
-      <div class="pp-problem__col">
-        <p class="pp-problem__text" style="padding-top: 56px; font-size: 1.05rem; line-height: 1.75; color: var(--black);">Parasolka — первое место в регионе, где можно выдохнуть, задать вопрос на родном языке и найти своих.</p>
+      <div class="pp-problem__photo-col">
+        <img class="pp-problem__photo" src="image/наши проекты/parasolka.webp" alt="Встреча Parasolka">
       </div>
     </div>
   </div>
@@ -91,21 +97,30 @@
 <section class="pp-features">
   <div class="wrap">
     <div class="pp-features__head">
-      <div class="pp-eyebrow pp-eyebrow--light">Что мы делаем</div>
-      <h2 class="pp-section-title pp-section-title--white pp-section-title--light">Встречи, где можно <em>стать своим</em></h2>
+      <div class="pp-eyebrow">Что мы делаем</div>
+      <h2 class="pp-features__title">Встречи, где можно <em>стать своим</em></h2>
       <p class="pp-features__subtitle">Регулярные встречи для семей: знакомства, обмен опытом и практические советы о жизни в регионе.</p>
     </div>
     <div class="pp-features__grid">
       <div class="pp-feature">
-        <div class="pp-feature__pill">Регулярные встречи</div>
+        <div class="pp-feature__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <div class="pp-feature__name">Регулярные встречи</div>
         <p class="pp-feature__text">Каждый месяц — встречи для семей: знакомства, обмен опытом и совместное время.</p>
       </div>
       <div class="pp-feature">
-        <div class="pp-feature__pill">Два языка</div>
+        <div class="pp-feature__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8l4 4-4 4M12 16h7"/><path d="M12 8h7"/></svg>
+        </div>
+        <div class="pp-feature__name">Два языка</div>
         <p class="pp-feature__text">Все встречи проходят на украинском и русском — чтобы чувствовать себя как дома.</p>
       </div>
       <div class="pp-feature">
-        <div class="pp-feature__pill">Для всей семьи</div>
+        <div class="pp-feature__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="pp-feature__name">Для всей семьи</div>
         <p class="pp-feature__text">Взрослые, дети, молодёжь — в Parasolka место найдётся для каждого.</p>
       </div>
     </div>
@@ -115,13 +130,33 @@
 <!-- AUDIENCE -->
 <section class="pp-audience">
   <div class="wrap">
-    <div class="pp-eyebrow">Кому помогаем</div>
-    <h2 class="pp-section-title">Для всех, кто <em>ищет своих</em></h2>
+    <div class="pp-eyebrow pp-eyebrow--light">Кому помогаем</div>
+    <h2 class="pp-section-title pp-section-title--white pp-section-title--light">Для всех, кто <em>ищет своих</em></h2>
     <div class="pp-audience__tags">
-      <div class="pp-audience__tag">Вся семья</div>
-      <div class="pp-audience__tag">Дети и подростки</div>
-      <div class="pp-audience__tag">Приехавшие одни</div>
-      <div class="pp-audience__tag">Молодёжь</div>
+      <div class="pp-audience__tag">
+        <div class="pp-audience__tag-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        Вся семья
+      </div>
+      <div class="pp-audience__tag">
+        <div class="pp-audience__tag-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        Дети и подростки
+      </div>
+      <div class="pp-audience__tag">
+        <div class="pp-audience__tag-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="4"/><path d="M5.5 21v-2A4.5 4.5 0 0 1 10 14.5h4A4.5 4.5 0 0 1 18.5 19v2"/></svg>
+        </div>
+        Приехавшие одни
+      </div>
+      <div class="pp-audience__tag">
+        <div class="pp-audience__tag-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        Молодёжь
+      </div>
     </div>
   </div>
 </section>
@@ -129,16 +164,21 @@
 <!-- STATS -->
 <section class="pp-stats">
   <div class="wrap">
+    <div class="pp-eyebrow">Результаты</div>
+    <h2 class="pp-stats__title"><strong>Parasolka</strong> <em>в цифрах</em></h2>
     <div class="pp-stats__grid">
       <div class="pp-stat-item">
+        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
         <div class="pp-stat-item__n">≈ 300</div>
         <div class="pp-stat-item__l">участников на встречу</div>
       </div>
       <div class="pp-stat-item">
+        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
         <div class="pp-stat-item__n">до 5</div>
         <div class="pp-stat-item__l">локаций на одно мероприятие</div>
       </div>
       <div class="pp-stat-item">
+        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
         <div class="pp-stat-item__n">2</div>
         <div class="pp-stat-item__l">языка — украинский и русский</div>
       </div>
@@ -151,21 +191,30 @@
   <div class="wrap">
     <div class="pp-donate__head">
       <div class="pp-eyebrow">Как помогают пожертвования</div>
-      <h2 class="pp-section-title">Каждый вклад — <em>реальная встреча</em></h2>
+      <h2 class="pp-donate__title"><strong>Каждый вклад —</strong> <em>реальная встреча</em></h2>
     </div>
     <div class="pp-donate__grid">
       <div class="pp-donate__tier">
-        <div class="pp-donate__amount">50€</div>
+        <div class="pp-donate__tier-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="pp-donate__amount">50 €</div>
         <p class="pp-donate__desc">Покрывает материалы и угощение для одной встречи.</p>
         <div class="pp-donate__label">Одна встреча</div>
       </div>
       <div class="pp-donate__tier">
-        <div class="pp-donate__amount">100€</div>
+        <div class="pp-donate__tier-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <div class="pp-donate__amount">100 €</div>
         <p class="pp-donate__desc">Поддерживает одно полноценное мероприятие для участников.</p>
         <div class="pp-donate__label">Мероприятие</div>
       </div>
-      <div class="pp-donate__tier">
-        <div class="pp-donate__amount">300€</div>
+      <div class="pp-donate__tier pp-donate__tier--featured">
+        <div class="pp-donate__tier-icon pp-donate__tier-icon--featured">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="pp-donate__amount">300 €</div>
         <p class="pp-donate__desc">Финансирует программу встреч на целый месяц.</p>
         <div class="pp-donate__label">Месяц программы</div>
       </div>
@@ -181,22 +230,19 @@
   <div class="wrap">
     <div class="pp-gallery__head">
       <div class="pp-eyebrow">Галерея</div>
-      <h2 class="pp-section-title">Как это <em>выглядит</em></h2>
+      <h2 class="pp-gallery__title"><strong>Как это</strong> <em>выглядит</em></h2>
     </div>
     <div class="pp-gallery__grid">
       <div class="pp-gallery__item">
-        <img src="image/наши проекты/parasolka.webp" alt="Parasolka — основная фотография">
-      </div>
-      <div class="pp-gallery__item">
-        <img src="image/DSC_0379.webp" alt="Встреча Parasolka">
-      </div>
-      <div class="pp-gallery__item">
         <img src="image/DSC_0359.webp" alt="Встреча Parasolka">
       </div>
-      <div class="pp-gallery__item">
-        <img src="image/photo_2026-01-31 10.24.32.webp" alt="Встреча Parasolka">
+      <div class="pp-gallery__item pp-gallery__item--circle">
+        <img src="image/DSC_0317.webp" alt="Встреча Parasolka">
       </div>
       <div class="pp-gallery__item">
+        <img src="image/наши проекты/parasolka.webp" alt="Parasolka — основная фотография">
+      </div>
+      <div class="pp-gallery__item pp-gallery__item--circle">
         <img src="image/DSC_0251.webp" alt="Встреча Parasolka">
       </div>
     </div>
@@ -208,23 +254,39 @@
   <div class="wrap">
     <div class="pp-quotes__head">
       <div class="pp-eyebrow">Истории</div>
-      <h2 class="pp-section-title">Что говорят <em>участники</em></h2>
+      <h2 class="pp-quotes__title"><strong>Что говорят</strong> <em>участники</em></h2>
     </div>
     <div class="pp-quotes__grid">
       <div class="pp-quote">
         <div class="pp-quote__mark">&ldquo;</div>
-        <p class="pp-quote__text">Я пришла на первую встречу, не зная никого. Через месяц у меня появились подруги, с которыми мы созваниваемся каждый день. Parasolka вернула мне ощущение своих.</p>
+        <p class="pp-quote__text">Я пришла на первую встречу, не зная никого. Через месяц у меня появились подруги, с которыми мы созваниваемся каждый день. Parasolka <em>вернула</em> мне ощущение своих.</p>
         <div class="pp-quote__author">
-          Имя участницы
-          <span>приехала одна · 2024</span>
+          <div class="pp-quote__avatar">
+            <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.5703 32C25.9974 32 25.5045 31.9415 25.0916 31.8245C24.6786 31.7075 24.3323 31.519 24.0525 31.259C23.7861 30.9859 23.5863 30.6349 23.453 30.2059C23.3332 29.7639 23.3558 29.1727 23.3558 28.5487V21.3806H25.6424V28.7459C25.6424 29.3829 25.658 29.6152 25.8711 29.8623C26.0843 30.0963 26.3971 30.1279 26.9699 30.1279C27.1164 30.1279 27.243 30.1279 27.3496 30.1279C27.5061 30.1279 27.5627 30.1263 27.6693 30.1133V31.9415C27.5627 31.9675 27.3895 31.9805 27.1497 31.9805C26.91 31.9935 26.7168 32 26.5703 32Z" fill="#7C3AED"/>
+              <path d="M24.4984 12C28.0962 12 31.4061 12.8965 33.8518 14.4034C36.284 15.9021 37.9969 18.1064 37.9969 20.7133V20.7805C38.0039 20.8518 37.9969 20.8572 37.9969 20.9311H35.7471C35.7471 20.9242 35.7464 20.9051 35.7278 20.8667C35.7075 20.8249 35.6647 20.758 35.5782 20.6716C35.399 20.4926 35.0851 20.2818 34.6099 20.0811C33.663 19.681 32.2763 19.4063 30.6852 19.4063C29.0941 19.4063 27.7074 19.681 26.7605 20.0811C26.2853 20.2818 25.9714 20.4926 25.7922 20.6716C25.7057 20.758 25.6629 20.8249 25.6426 20.8667C25.624 20.9051 25.6233 20.9242 25.6233 20.9311H23.3736C23.3736 20.9242 23.3728 20.9051 23.3542 20.8667C23.334 20.8249 23.2911 20.758 23.2046 20.6716C23.0254 20.4926 22.7115 20.2818 22.2364 20.0811C21.2895 19.681 19.9028 19.4063 18.3116 19.4063C16.7205 19.4063 15.3338 19.681 14.3869 20.0811C13.9118 20.2818 13.5978 20.4926 13.4187 20.6716C13.3322 20.758 13.2893 20.8249 13.2691 20.8667C13.2505 20.9051 13.2497 20.9242 13.2497 20.9311H11C11 20.8572 11 20.7805 11 20.7805L11 20.7133C11 18.1064 12.7128 15.9021 15.1451 14.4034C17.5907 12.8965 20.9007 12 24.4984 12ZM24.4984 14.1783C21.2625 14.1783 18.3857 14.9887 16.353 16.2411C15.6177 16.6942 15.0104 17.1925 14.5337 17.719C15.6435 17.4021 16.9442 17.228 18.3116 17.228C20.1374 17.228 21.844 17.5384 23.1363 18.0844C23.6363 18.2957 24.1047 18.5555 24.4984 18.8698C24.8922 18.5555 25.3605 18.2957 25.8606 18.0844C27.1528 17.5384 28.8595 17.228 30.6852 17.228C32.0526 17.228 33.3532 17.4021 34.463 17.719C33.9863 17.1925 33.3791 16.6942 32.6438 16.2411C30.6111 14.9887 27.7344 14.1783 24.4984 14.1783Z" fill="#7C3AED"/>
+            </svg>
+          </div>
+          <div class="pp-quote__author-info">
+            <div class="pp-quote__author-name">Имя участницы</div>
+            <span>приехала одна · 2024</span>
+          </div>
         </div>
       </div>
       <div class="pp-quote">
         <div class="pp-quote__mark">&ldquo;</div>
-        <p class="pp-quote__text">Дети наконец-то заговорили, нашли друзей и перестали бояться школы. А я впервые с переезда почувствовала, что мы не одни.</p>
+        <p class="pp-quote__text">Дети наконец-то заговорили, нашли друзей и перестали бояться школы. А я впервые с переезда почувствовала, что мы <em>не одни</em>.</p>
         <div class="pp-quote__author">
-          Имя участницы
-          <span>мама троих детей · 2023</span>
+          <div class="pp-quote__avatar">
+            <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26.5703 32C25.9974 32 25.5045 31.9415 25.0916 31.8245C24.6786 31.7075 24.3323 31.519 24.0525 31.259C23.7861 30.9859 23.5863 30.6349 23.453 30.2059C23.3332 29.7639 23.3558 29.1727 23.3558 28.5487V21.3806H25.6424V28.7459C25.6424 29.3829 25.658 29.6152 25.8711 29.8623C26.0843 30.0963 26.3971 30.1279 26.9699 30.1279C27.1164 30.1279 27.243 30.1279 27.3496 30.1279C27.5061 30.1279 27.5627 30.1263 27.6693 30.1133V31.9415C27.5627 31.9675 27.3895 31.9805 27.1497 31.9805C26.91 31.9935 26.7168 32 26.5703 32Z" fill="#7C3AED"/>
+              <path d="M24.4984 12C28.0962 12 31.4061 12.8965 33.8518 14.4034C36.284 15.9021 37.9969 18.1064 37.9969 20.7133V20.7805C38.0039 20.8518 37.9969 20.8572 37.9969 20.9311H35.7471C35.7471 20.9242 35.7464 20.9051 35.7278 20.8667C35.7075 20.8249 35.6647 20.758 35.5782 20.6716C35.399 20.4926 35.0851 20.2818 34.6099 20.0811C33.663 19.681 32.2763 19.4063 30.6852 19.4063C29.0941 19.4063 27.7074 19.681 26.7605 20.0811C26.2853 20.2818 25.9714 20.4926 25.7922 20.6716C25.7057 20.758 25.6629 20.8249 25.6426 20.8667C25.624 20.9051 25.6233 20.9242 25.6233 20.9311H23.3736C23.3736 20.9242 23.3728 20.9051 23.3542 20.8667C23.334 20.8249 23.2911 20.758 23.2046 20.6716C23.0254 20.4926 22.7115 20.2818 22.2364 20.0811C21.2895 19.681 19.9028 19.4063 18.3116 19.4063C16.7205 19.4063 15.3338 19.681 14.3869 20.0811C13.9118 20.2818 13.5978 20.4926 13.4187 20.6716C13.3322 20.758 13.2893 20.8249 13.2691 20.8667C13.2505 20.9051 13.2497 20.9242 13.2497 20.9311H11C11 20.8572 11 20.7805 11 20.7805L11 20.7133C11 18.1064 12.7128 15.9021 15.1451 14.4034C17.5907 12.8965 20.9007 12 24.4984 12ZM24.4984 14.1783C21.2625 14.1783 18.3857 14.9887 16.353 16.2411C15.6177 16.6942 15.0104 17.1925 14.5337 17.719C15.6435 17.4021 16.9442 17.228 18.3116 17.228C20.1374 17.228 21.844 17.5384 23.1363 18.0844C23.6363 18.2957 24.1047 18.5555 24.4984 18.8698C24.8922 18.5555 25.3605 18.2957 25.8606 18.0844C27.1528 17.5384 28.8595 17.228 30.6852 17.228C32.0526 17.228 33.3532 17.4021 34.463 17.719C33.9863 17.1925 33.3791 16.6942 32.6438 16.2411C30.6111 14.9887 27.7344 14.1783 24.4984 14.1783Z" fill="#7C3AED"/>
+            </svg>
+          </div>
+          <div class="pp-quote__author-info">
+            <div class="pp-quote__author-name">Имя участницы</div>
+            <span>мама троих детей · 2023</span>
+          </div>
         </div>
       </div>
     </div>
@@ -234,11 +296,13 @@
 <!-- CTA -->
 <section class="pp-cta">
   <div class="wrap">
+    <div class="pp-cta__icon">
+      <img src="image/logo/paras1.svg" alt="" width="56" height="56">
+    </div>
     <h2 class="pp-cta__title">Поддержите этот проект</h2>
     <p class="pp-cta__sub">Ваш вклад — это реальные встречи, где люди находят своих и перестают быть одни.</p>
     <div class="pp-cta__btns">
-      <a href="contact.html" class="btn">Поддержать</a>
-      <a href="#community" class="btn btn-ghost">Присоединиться к сообществу</a>
+      <a href="contact.html" class="pp-cta__btn">Поддержать</a>
     </div>
   </div>
 </section>
@@ -298,5 +362,13 @@ document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
 </script>
 
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 </body>
 </html>
