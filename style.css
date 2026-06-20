@@ -352,36 +352,62 @@ p  { font-size: 0.9375rem; line-height: 1.7; color: var(--gray-700); }
 /* Кнопка «Наши истории» — поверх левой карточки, внизу */
 .hero__video-btn {
   position: absolute;
-  bottom: 60px;
+  bottom: 16px;
   left: 16px;
+  right: 16px;
+  width: auto;
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.93);
+  justify-content: space-between;
+  gap: 14px;
+  background: rgba(255,255,255,0.95);
   backdrop-filter: blur(8px);
   color: var(--black);
   border: none;
-  padding: 8px 18px 8px 8px;
-  border-radius: 32px;
+  padding: 8px 8px 8px 22px;
+  border-radius: 100px;
   cursor: pointer;
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
   transition: background 0.2s;
   z-index: 10;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.14);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
 }
 .hero__video-btn:hover { background: #fff; }
 .hero__play-icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   background: var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   color: #fff;
   flex-shrink: 0;
+}
+/* Кнопка-плеер поверх правой карточки */
+.hero__play-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(4px);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.hero__play-overlay:hover { background: #fff; transform: translate(-50%, -50%) scale(1.06); }
+.hero__play-icon--lg {
+  width: 40px; height: 40px;
+  font-size: 0.85rem;
 }
 
 /* Slideshow modal */

@@ -58,14 +58,17 @@
   <div class="hero__right">
     <div class="hero__slide hero__slide-1">
       <img src="image/DSC_0188.webp" alt="Фото 1">
+      <button class="hero__video-btn" id="videoBtn">
+        <span class="hero__video-label" data-i18n="hero_stories">Наши истории</span>
+        <span class="hero__play-icon">▶</span>
+      </button>
     </div>
     <div class="hero__slide hero__slide-2">
       <img src="image/DSC_0192.webp" alt="Фото 2">
+      <button class="hero__play-overlay" id="videoBtn2" aria-label="Смотреть истории">
+        <span class="hero__play-icon hero__play-icon--lg">▶</span>
+      </button>
     </div>
-    <button class="hero__video-btn" id="videoBtn">
-      <span class="hero__play-icon">▶</span>
-      <span class="hero__video-label" data-i18n="hero_stories">Наши истории</span>
-    </button>
   </div>
   </div><!-- /hero__wrap -->
 </section>
@@ -566,14 +569,15 @@ let modalSlider = null;
 
 // Слайд-шоу модальное окно
 const videoBtn = document.getElementById('videoBtn');
+const videoBtn2 = document.getElementById('videoBtn2');
 const slideshowModal = document.getElementById('slideshowModal');
 const closeBtn = document.getElementById('closeModal');
 const overlay = document.getElementById('modalOverlay');
 
-videoBtn?.addEventListener('click', () => {
+const openSlideshow = () => {
   slideshowModal.classList.add('active');
   document.body.style.overflow = 'hidden';
-  
+
   // Инициализируем слайдер в модале при открытии
   setTimeout(() => {
     if (!modalSlider) {
@@ -589,7 +593,10 @@ videoBtn?.addEventListener('click', () => {
       });
     }
   }, 100);
-});
+};
+
+videoBtn?.addEventListener('click', openSlideshow);
+videoBtn2?.addEventListener('click', openSlideshow);
 
 const closeModal = () => {
   slideshowModal.classList.remove('active');
