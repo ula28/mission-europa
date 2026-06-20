@@ -582,29 +582,34 @@
 
   <!-- ══════════════════ NAV ══════════════════ -->
   <nav class="nav">
-    <a class="nav__logo" href="index.html">
-      <!-- SVG logo — вставь свой, либо используй текст -->
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="18" cy="18" r="18" fill="#E8672A"/>
-        <text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="14" font-weight="700" fill="white">MER</text>
-      </svg>
-      <span class="nav__logo-text">MER e.V.</span>
-    </a>
-    <ul class="nav__links">
-      <li><a href="about.html" class="nav__link nav__link--active" data-i18n="nav.about">О нас</a></li>
-      <li><a href="index.html#projects" class="nav__link" data-i18n="nav.projects">Проекты</a></li>
-      <li><a href="contact.html" class="nav__link" data-i18n="nav.contact">Контакты</a></li>
-    </ul>
-    <div class="nav__lang">
-      <button class="lang-btn" onclick="setLang('ru')">RU</button>
-      <span>|</span>
-      <button class="lang-btn" onclick="setLang('uk')">UA</button>
-      <span>|</span>
-      <button class="lang-btn" onclick="setLang('de')">DE</button>
-      <span>|</span>
-      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <div class="nav__wrap">
+      <a class="nav__logo" href="index.html">
+        <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+        <div class="nav__logo-text">
+          <div class="nav__logo-main">MER e.V.</div>
+          <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+          <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+        </div>
+      </a>
+      <div class="nav__menu" id="menu">
+        <a href="about.html" data-i18n="nav.about">О нас</a>
+        <a href="index.html#projects" data-i18n="nav.projects">Проекты</a>
+        <a href="contact.html" data-i18n="nav.contact">Контакты</a>
+      </div>
+      <div class="nav__right">
+        <div class="nav__lang" id="langSwitcher">
+          <span data-lang="ru" class="on">RU</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="uk">UK</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="de">DE</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="en">EN</span>
+        </div>
+        <a href="donate.html" class="btn btn-dark btn-sm" data-i18n="nav.donate">Поддержать проект</a>
+        <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+      </div>
     </div>
-    <a href="donate.html" class="btn btn-accent" data-i18n="nav.donate">Поддержать проект</a>
   </nav>
 
   <!-- ══════════════════ HERO ══════════════════ -->
@@ -1119,8 +1124,8 @@
         const key = el.getAttribute('data-i18n-html');
         if (dict[key] !== undefined) el.innerHTML = dict[key];
       });
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('lang-btn--active', btn.textContent === lang.toUpperCase());
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.classList.toggle('on', btn.getAttribute('data-lang') === lang);
       });
       // Refresh active team member in current language
       if (document.getElementById('teamActiveName')) {
@@ -1173,6 +1178,12 @@
       const lang = localStorage.getItem('lang') || 'ru';
       applyLang(lang);
 
+      document.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.getAttribute('data-lang')));
+      });
+      document.getElementById('burger').addEventListener('click', () =>
+        document.getElementById('menu').classList.toggle('open'));
+
       // Attach thumb click handlers
       document.querySelectorAll('.team-thumb').forEach((el, i) => {
         el.addEventListener('click', () => activateMember(i));
@@ -1182,6 +1193,15 @@
       const imgEl = document.getElementById('teamActiveImg');
       if (imgEl) imgEl.style.transition = 'opacity .3s ease';
     });
+  </script>
+
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  <script>
+  const _st = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+  _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
 </html>

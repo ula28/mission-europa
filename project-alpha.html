@@ -231,27 +231,31 @@
 <body>
 
 <!-------------- NAV -------------->
-<nav class="nav" style="background:var(--black); border-bottom-color:#333;">
+<nav class="nav">
   <div class="nav__wrap">
-    <div class="nav__logo" style="color:#fff;">Mission Europa<br>Resource e. V.</div>
-    <div class="nav__menu" id="menu" style="--link-color:#aaa;">
-      <a href="#" style="color:rgba(255,255,255,0.5);">About</a>
-      <a href="#" style="color:rgba(255,255,255,0.5);">Projects</a>
-      <a href="#" style="color:rgba(255,255,255,0.5);">For Business</a>
-      <a href="#" style="color:rgba(255,255,255,0.5);">Reports</a>
-      <a href="contact.html" style="color:rgba(255,255,255,0.5);">Contact</a>
+    <a class="nav__logo" href="index.html">
+      <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </a>
+    <div class="nav__menu" id="menu">
+      <a href="index.html">О нас</a>
+      <a href="index.html">Проекты</a>
+      <a href="index.html">Для бизнеса</a>
+      <a href="index.html">Отчётность</a>
+      <a href="contact.html">Контакты</a>
     </div>
     <div class="nav__right">
-      <div class="nav__lang" style="color:rgba(255,255,255,0.3);">
-        <span>RU</span><span style="color:#444">|</span>
-        <span>DE</span><span style="color:#444">|</span><span class="on" style="color:#fff;">EN</span>
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="ru" class="on">RU</span><span style="color:var(--gray-200)">|</span>
+        <span data-lang="de">DE</span><span style="color:var(--gray-200)">|</span>
+        <span data-lang="en">EN</span>
       </div>
-      <a href="donate.html" class="btn btn-red btn-sm">Support Us</a>
-      <button class="nav__burger" id="burger" style="--bar-color:#fff;">
-        <span style="background:#fff;"></span>
-        <span style="background:#fff;"></span>
-        <span style="background:#fff;"></span>
-      </button>
+      <a href="donate.html" class="btn btn-dark btn-sm">Поддержать</a>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
@@ -389,6 +393,15 @@
   const burger = document.getElementById('burger');
   const menu   = document.getElementById('menu');
   burger.addEventListener('click', () => menu.classList.toggle('open'));
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
 </body>
 </html>

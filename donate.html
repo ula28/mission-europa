@@ -140,7 +140,14 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__wrap">
-    <div class="nav__logo">Mission Europa<br>Resource e. V.</div>
+    <a class="nav__logo" href="index.html">
+      <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </a>
     <div class="nav__menu" id="menu">
       <a href="index.html" data-i18n="nav_about">Über uns</a>
       <a href="index.html" data-i18n="nav_projects">Projekte</a>
@@ -566,6 +573,15 @@ document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
 
 applyLang(currentLang);
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 </script>
 </body>
 </html>
