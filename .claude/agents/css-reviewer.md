@@ -1,6 +1,6 @@
 ---
 name: css-reviewer
-description: Проверяет CSS на соответствие правилам токенов (primitives/semantic/component) и cascade layers проекта. Использовать после любых изменений в style.css или добавления новых стилей.
+description: Проверяет CSS на соответствие правилам токенов (primitives/semantic/component) и cascade layers проекта. Использовать после любых изменений в style.css или добавления новых стилей. Используй проактивно, без напоминания.
 tools: Read, Grep, Glob
 model: haiku
 permissionMode: plan
