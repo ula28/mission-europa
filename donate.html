@@ -156,13 +156,18 @@
       <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
     </div>
     <div class="nav__right">
-      <div class="nav__lang" id="langSwitcher">
-        <span data-lang="de" class="on">DE</span>
-        <span style="color:var(--gray-200)">|</span>
-        <span data-lang="en">EN</span>
-        <span style="color:var(--gray-200)">|</span>
-        <span data-lang="ru">RU</span>
-      </div>
+      <details class="nav__lang" id="langSwitcher" open>
+        <summary class="nav__lang-toggle" aria-label="Sprachauswahl">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.3 2.5 3.6 5.5 3.6 9s-1.3 6.5-3.6 9c-2.3-2.5-3.6-5.5-3.6-9s1.3-6.5 3.6-9z" stroke="currentColor" stroke-width="1.6"/></svg>
+        </summary>
+        <div class="nav__lang-menu">
+          <span data-lang="de" class="on">DE</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="en">EN</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="ru">RU</span>
+        </div>
+      </details>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -582,6 +587,13 @@ applyLang(currentLang);
 const _st = document.getElementById('scrollTop');
 window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
 _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+<script>
+const _langDetails = document.getElementById('langSwitcher');
+if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
+_langDetails?.addEventListener('click', e => {
+  if (e.target.closest('[data-lang]')) _langDetails.removeAttribute('open');
+});
 </script>
 </body>
 </html>

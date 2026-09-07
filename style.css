@@ -215,13 +215,16 @@
   .nav__menu a:hover { color: var(--black); }
   .nav__menu a:hover::after { transform: scaleX(1); }
   .nav__right { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
-  .nav__lang {
+  .nav__lang { position: relative; }
+  .nav__lang summary { display: none; cursor: pointer; list-style: none; }
+  .nav__lang summary::-webkit-details-marker { display: none; }
+  .nav__lang-menu {
     display: flex; gap: 2px; align-items: center;
     font-size: 0.75rem; letter-spacing: 0.06em;
   }
-  .nav__lang span { cursor: pointer; padding: 2px 5px; transition: color 0.15s; color: var(--gray-400); }
-  .nav__lang span:hover,
-  .nav__lang span.on { color: var(--black); font-weight: 700; }
+  .nav__lang-menu span { cursor: pointer; padding: 2px 5px; transition: color 0.15s; color: var(--gray-400); }
+  .nav__lang-menu span:hover,
+  .nav__lang-menu span.on { color: var(--black); font-weight: 700; }
   .nav__lang-sep { cursor: default; padding: 0 1px; }
   .nav__svg {
     width: 48px; height: 48px; flex-shrink: 0;
@@ -340,7 +343,26 @@
     .nav__right .btn { display: none; }
   }
   @media (max-width: 480px) {
-    .nav__lang { display: none; }
+    .nav { padding: 8px 12px; }
+    .nav__wrap { padding: 0 14px; gap: 10px; }
+    .nav__right { gap: 10px; }
+    .nav__logo-sub, .nav__logo-mini { display: none; }
+    .nav__lang summary {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; border-radius: 50%;
+      color: var(--gray-500); transition: color 0.15s, background-color 0.15s;
+    }
+    .nav__lang summary:hover { color: var(--black); background: var(--gray-100); }
+    .nav__lang-menu {
+      flex-direction: column; align-items: stretch; gap: 2px;
+      position: absolute; top: calc(100% + 10px); right: 0;
+      background: var(--white); border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+      padding: 8px; z-index: 250; font-size: 0.9rem; min-width: 96px;
+    }
+    .nav__lang-menu span { padding: 8px 12px; border-radius: 8px; text-align: left; }
+    .nav__lang-menu span:hover { background: var(--gray-100); }
+    .nav__lang-sep { display: none; }
   }
 }
 
@@ -350,7 +372,7 @@
 @layer pages {
   /* ══ HERO ══ */
   .hero {
-    min-height: calc(100vh - var(--nav-h));
+    min-height: min(calc(100vh - var(--nav-h)), 760px);
     display: flex;
     align-items: stretch;
     overflow: hidden;
