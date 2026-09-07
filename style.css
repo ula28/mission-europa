@@ -32,6 +32,7 @@
     --navy-800:   #1a2332;
     --orange-500: #E8672A;
     --orange-600: #C9521A;
+    --sky-100:    #E9F0F1;
     --sky-600:    #2B6CB0;
     --sky-700:    #1E508A;
     --violet-700: #6B21A8;
@@ -50,6 +51,7 @@
     --color-brand-accent-dk: var(--accent-dk);
     --color-surface-dark:    var(--navy-800);
     --color-surface-darkest: var(--navy-900);
+    --color-surface-light:   var(--sky-100);
     --color-text-muted:      var(--gray-500);
 
     /* Parasolka page palette */
@@ -110,6 +112,10 @@
   .section { padding: 96px 0; }
   .section--sm { padding: 64px 0; }
   .divider { border: none; border-top: 1px solid var(--gray-200); }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
 
   @media (max-width: 900px) {
     .section { padding: 64px 0; }
@@ -281,6 +287,8 @@
   }
   .footer__nav a:hover { color: var(--white); }
   .footer__copy { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+  .footer__copy a, .footer__bottom a { color: rgba(255,255,255,0.45); text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
+  .footer__copy a:hover, .footer__bottom a:hover { color: var(--white); }
 
   .email-link { color: rgba(255,255,255,0.9); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
   .email-link:hover { color: #fff; }
@@ -647,7 +655,8 @@
 
   /* ══ ПУТЬ ЧЕЛОВЕКА ══ */
   .journey {
-    background: var(--color-surface-dark); color: #fff;
+    background: var(--color-surface-light);
+    color: var(--black);
     padding: 64px 0 72px;
     position: relative; overflow: hidden;
   }
@@ -660,47 +669,40 @@
   }
   .journey__eyebrow {
     font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
+    color: var(--blue); margin-bottom: 16px;
     display: flex; align-items: center; gap: 12px;
   }
-  .journey__eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--accent); }
+  .journey__eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--blue); }
   .journey__title {
-    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; color: #fff; margin-bottom: 16px;
+    font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 700; color: var(--black); margin-bottom: 16px;
   }
   .journey__sub {
-    font-size: 0.88rem; color: rgba(255,255,255,0.4);
+    font-size: 0.88rem; color: var(--color-text-muted);
     max-width: 340px; line-height: 1.7;
   }
   /* Маяк — силуэт без волн */
   .journey__lighthouse {
     width: 200px; height: 200px;
-    opacity: 0.25;
-    filter: grayscale(1) brightness(2);
+    opacity: 0.12;
+    filter: grayscale(1);
     margin-top: -10px;
     flex-shrink: 0;
   }
   /* Шаги */
   .journey__steps {
     display: grid; grid-template-columns: repeat(5,1fr);
+    gap: 20px;
     position: relative;
   }
-  /* Волнистая пунктирная линия — SVG поверх шагов */
-  .journey__steps::before { display: none; }
-  .journey__wave-line {
-    position: absolute;
-    top: 48px;
-    left: 26px;
-    right: 26px;
-    height: 20px;
-    z-index: 0;
-    pointer-events: none;
-    overflow: visible;
-  }
-  .journey__step { padding: 0 20px 0 0; }
+  /* Зигзаг — чётные шаги смещены вниз, "от кружка к кружку" на любой сетке
+     (5/3/2 колонки); в один столбец (≤480px) смещение снимается. */
+  .journey__step { padding: 0; }
+  .journey__step:nth-child(2n) { margin-top: 40px; }
   .journey__step-num {
     font-size: 0.99rem; letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.28);
+    color: var(--gray-400);
     margin-bottom: 14px; display: block;
+    width: 52px; text-align: center;
     font-weight: 500;
   }
   .journey__step--active .journey__step-num {
@@ -708,8 +710,8 @@
   }
   .journey__step-icon {
     width: 52px; height: 52px; border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    border: 1.5px solid rgba(255,255,255,0.14);
+    background: var(--blue);
+    border: 1.5px solid var(--blue);
     display: flex; align-items: center; justify-content: center;
     margin: 0 0 18px;
     position: relative; z-index: 1;
@@ -720,11 +722,34 @@
     border-color: var(--accent);
   }
   .journey__step-name {
-    font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 5px;
+    font-size: 0.88rem; font-weight: 700; color: var(--black); margin-bottom: 5px;
   }
   .journey__step-sub {
-    font-size: 0.73rem; color: rgba(255,255,255,0.32); line-height: 1.45;
+    font-size: 0.73rem; color: var(--color-text-muted); line-height: 1.45;
   }
+
+  /* ══ КОМАНДА ══ */
+  .team-people { padding: 64px 0 48px; }
+  .team-people__eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .team-people__eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--accent); }
+  .team-people__title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; margin-bottom: 32px; }
+  .team-people__title em { font-style: italic; font-weight: 400; color: var(--accent); }
+  .team-people__photo { border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
+  .team-people__photo img { width: 100%; height: 280px; object-fit: cover; display: block; }
+  .team-people__grid {
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+    margin-bottom: 40px; text-align: center;
+  }
+  .team-people__avatar {
+    width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
+    margin: 0 auto 16px; display: block;
+  }
+  .team-people__name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
+  .team-people__role { font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.4; }
 
   /* ══ ПРОЕКТЫ ══ */
   .projects-section { padding:80px 0 48px; }
@@ -738,6 +763,7 @@
   .pcard {
     background: var(--white);
     border-radius: 8px;
+    border: 1.5px solid transparent;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -745,6 +771,13 @@
     box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
     transition: box-shadow 0.25s, transform 0.25s;
   }
+  /* Акцентная рамка и цвет названия — по бренд-цвету проекта (только у карточек с логотипом) */
+  .pcard--parasol { border-color: var(--parasol-dark); }
+  .pcard--parasol .pcard__name { color: var(--parasol-dark); }
+  .pcard--avana { border-color: var(--blue); }
+  .pcard--avana .pcard__name { color: var(--blue); }
+  .pcard--alpha { border-color: var(--accent); }
+  .pcard--alpha .pcard__name { color: var(--accent); }
   .pcard:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.13); transform: translateY(-2px); }
   .pcard__photo {
     height: 180px;
@@ -763,6 +796,10 @@
   .pcard--parasol .pcard__photo { height: auto; flex: 1; min-height: 240px; }
   .pcard__body { padding: 20px; display: flex; flex-direction: column; gap: 8px; position: relative; }
   .pcard--has-logo .pcard__body { padding-top: 36px; }
+  .pcard__tag {
+    font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--color-text-muted); font-weight: 500;
+  }
   .pcard__name { font-size: 1rem; font-weight: 700; color: var(--color-surface-dark); }
   .pcard__desc { font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.5; flex: 1; }
   .pcard__cta { font-size: 0.78rem; color: var(--blue); font-weight: 500; margin-top: 4px; }
@@ -802,20 +839,66 @@
   .donation-dark__eyebrow::before { content:''; width:24px; height:2px; background:var(--accent); }
   .donation-dark__title { font-size:clamp(2rem,4vw,3.2rem); font-weight:700; color:#fff; line-height:1.1; margin-bottom:16px; }
   .donation-dark__title em { font-style:italic; font-weight:400; color:var(--accent); }
-  .donation-dark__badge { display:inline-flex; align-items:center; gap:6px; font-size:0.72rem; background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); border-radius:20px; padding:4px 12px; margin-bottom:24px; font-weight:500; }
-  .donation-dark__badge::before { content:'✓'; }
-  .donation-dark__sub { font-size:0.85rem; color:rgba(255,255,255,0.45); line-height:1.6; margin-bottom:32px; }
-  .donation-dark__btns { display:flex; gap:12px; flex-wrap:wrap; }
-  .btn-white { background:#fff; color:var(--black); }
-  .btn-white:hover { background:var(--gray-100); }
+  .donation-dark__sub { font-size:0.9rem; color:rgba(255,255,255,0.55); line-height:1.65; margin-bottom:24px; max-width:38ch; }
+  .donation-dark__receipt { display:flex; align-items:flex-start; gap:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:14px 16px; font-size:0.8rem; line-height:1.5; color:rgba(255,255,255,0.7); max-width:34ch; }
+  .donation-dark__receipt-icon { flex-shrink:0; margin-top:1px; color:var(--accent); }
   .btn-outline-white { background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.3); padding:10px 20px; border-radius:var(--r); font-size:0.85rem; font-weight:500; cursor:pointer; text-decoration:none; display:inline-block; transition:border-color 0.2s; }
   .btn-outline-white:hover { border-color:rgba(255,255,255,0.6); }
-  .pay-methods { display:flex; flex-direction:column; gap:3px; }
-  .pay-method { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:16px 20px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:background 0.2s; }
-  .pay-method:hover { background:rgba(255,255,255,0.09); }
-  .pay-method__name { font-size:0.9rem; font-weight:500; color:#fff; }
-  .pay-method__detail { font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:2px; }
-  .pay-method__arrow { color:rgba(255,255,255,0.25); font-size:1rem; }
+
+  /* ── Карточка пожертвования (донейшн-виджет) ── */
+  .donate-card { background:var(--white); color:var(--black); border-radius:20px; padding:28px; box-shadow:0 24px 60px rgba(0,0,0,0.35); }
+
+  .donate-card__toggle { display:flex; gap:4px; background:var(--gray-100); border:none; border-radius:12px; padding:4px; margin:0 0 24px; min-width:0; }
+  .donate-card__toggle-opt { flex:1; position:relative; display:flex; align-items:center; }
+  .donate-card__toggle-opt input { position:absolute; inset:0; margin:0; opacity:0; cursor:pointer; }
+  .donate-card__toggle-opt > span { display:flex; align-items:center; justify-content:center; gap:5px; width:100%; padding:10px 12px; border-radius:9px; font-size:0.85rem; font-weight:600; color:var(--gray-500); border:1.5px solid transparent; transition:background 0.18s, color 0.18s, border-color 0.18s; pointer-events:none; }
+  .donate-card__toggle-opt input:checked + span { background:var(--white); color:var(--black); border-color:var(--blue); box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+  .donate-card__toggle-opt input:focus-visible + span { outline:2px solid var(--blue); outline-offset:2px; }
+  .donate-card__heart { color:var(--accent); }
+
+  .donate-card__amount-label { font-size:0.78rem; color:var(--gray-500); font-weight:500; display:block; margin-bottom:10px; }
+
+  .donate-card__amount-value { display:flex; align-items:center; gap:6px; border-bottom:1px solid var(--gray-200); padding-bottom:14px; margin-bottom:16px; }
+  .donate-card__amount-value input { border:none; background:none; padding:0; margin:0; width:4ch; field-sizing:content; min-inline-size:2ch; max-inline-size:8ch; flex:0 0 auto; font-family:var(--font-display); font-size:2.4rem; line-height:1; font-weight:700; color:var(--black); -moz-appearance:textfield; }
+  .donate-card__amount-value input:focus-visible { outline:2px solid var(--blue); outline-offset:4px; border-radius:4px; }
+  .donate-card__amount-value input::-webkit-outer-spin-button,
+  .donate-card__amount-value input::-webkit-inner-spin-button { -webkit-appearance:none; margin:0; }
+  .donate-card__amount-value span { display:inline-block; font-family:var(--font-display); font-size:2.4rem; line-height:1; font-weight:700; color:var(--black); transform:translateY(0.13em); }
+
+  .donate-card__presets { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+  .donate-card__preset { border:1px solid var(--gray-200); background:none; border-radius:100px; padding:8px 16px; font-size:0.82rem; font-weight:600; color:var(--gray-700); cursor:pointer; transition:border-color 0.18s; }
+  .donate-card__preset:hover { border-color:var(--black); }
+  .donate-card__preset:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+  .donate-card__checkline { display:flex; align-items:flex-start; gap:10px; }
+  .donate-card__checkline input { width:16px; height:16px; margin-top:2px; accent-color:var(--blue); flex-shrink:0; }
+  .donate-card__checkline label { font-size:0.82rem; color:var(--gray-700); line-height:1.5; cursor:pointer; }
+  .donate-card__checkline a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
+
+  .donate-card__receipt { margin-bottom:20px; }
+  .donate-card__receipt-fields { display:none; flex-direction:column; gap:12px; margin:14px 0 0; padding:0 0 0 26px; border:none; min-width:0; }
+  .donate-card__receipt:has(.donate-card__receipt-check:checked) .donate-card__receipt-fields { display:flex; }
+  .donate-card__field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .donate-card__field-row:has(.donate-card__field--sm) { grid-template-columns:110px 1fr; }
+  .donate-card__field { display:flex; flex-direction:column; gap:6px; }
+  .donate-card__field label { font-size:0.68rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray-500); }
+  .donate-card__field input { border:1px solid var(--gray-200); border-radius:8px; padding:10px 12px; font-family:var(--font-ui); font-size:0.85rem; color:var(--black); background:var(--off-white); transition:border-color 0.18s, background 0.18s; }
+  .donate-card__field input:focus-visible { outline:2px solid var(--blue); outline-offset:2px; border-color:var(--blue); background:var(--white); }
+
+  .donate-card__consent { margin-bottom:20px; }
+
+  .donate-card__submit { width:100%; padding:16px; border:none; border-radius:12px; background:var(--accent); color:var(--white); font-size:0.95rem; font-weight:700; cursor:pointer; transition:background 0.2s; margin-bottom:20px; }
+  .donate-card__submit:hover { background:var(--accent-dk); }
+  .donate-card__submit:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+
+  .donate-card__methods-label { font-size:0.78rem; color:var(--gray-500); margin-bottom:12px; }
+  .donate-card__methods { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+  .donate-card__methods li { border:1.5px solid var(--gray-200); border-radius:8px; padding:8px 14px; font-size:0.78rem; font-weight:600; color:var(--gray-700); }
+
+  .donate-card__fx-note { font-size:0.72rem; line-height:1.5; color:var(--gray-500); margin-bottom:14px; }
+
+  .donate-card__secure { display:flex; align-items:center; gap:8px; font-size:0.75rem; color:var(--gray-500); }
+  .donate-card__secure svg { flex-shrink:0; color:var(--gray-400); }
 
   /* ══ НОВЫЙ ФУТЕР ══ */
   .footer-new { background:var(--color-surface-darkest); color:rgba(255,255,255,0.5); padding:60px 0 32px; }
@@ -828,6 +911,8 @@
   .footer-new__col a { display:block; font-size:0.82rem; color:rgba(255,255,255,0.55); text-decoration:none; margin-bottom:10px; transition:color 0.2s; }
   .footer-new__col a:hover { color:#fff; }
   .footer-new__copy { border-top:1px solid rgba(255,255,255,0.07); padding-top:24px; font-size:0.75rem; color:rgba(255,255,255,0.2); }
+  .footer-new__copy a { color:rgba(255,255,255,0.4); text-decoration:underline; text-underline-offset:2px; transition:color 0.2s; }
+  .footer-new__copy a:hover { color:#fff; }
 
   /* ── LANG TRANSITION ── */
   [data-i18n] { transition:opacity 0.18s ease; }
@@ -847,17 +932,31 @@
     .donation-dark__grid { grid-template-columns:1fr; gap:48px; }
     .footer-new__grid { grid-template-columns:1fr 1fr; gap:32px; }
     .journey__steps { grid-template-columns:repeat(3,1fr); }
-    .journey__steps::before { display:none; }
     .about__split { grid-template-columns:1fr; gap:0; }
+
+    /* Путь человека ≤1000px — кружки и шрифт плавно уменьшаются через clamp() */
+    .journey__step-icon {
+      width: clamp(40px, 10vw, 52px); height: clamp(40px, 10vw, 52px);
+    }
+    .journey__step-icon svg { width: clamp(15px, 4vw, 20px); height: clamp(15px, 4vw, 20px); }
+    .journey__step-num { font-size: clamp(0.8rem, 3.4vw, 0.99rem); }
+    .journey__step-name { font-size: clamp(0.8rem, 3.2vw, 0.88rem); }
+    .journey__step-sub { font-size: clamp(0.68rem, 2.6vw, 0.73rem); }
+
+    .team-people__grid { grid-template-columns:repeat(3,1fr); row-gap:32px; }
+    .team-people__photo img { height:220px; }
   }
   @media (max-width:768px) {
     .proj__right-grid { grid-template-columns:1fr; }
     .stats__row { grid-template-columns:repeat(2,1fr); gap:16px; }
     .proj__right-grid { grid-template-columns:1fr; }
     .footer-new__grid { grid-template-columns:1fr; }
-    .journey__steps { grid-template-columns:repeat(2,1fr); }
+    .journey__steps { grid-template-columns:repeat(2,1fr); row-gap:40px; }
+    .journey__step:nth-child(2n) { margin-top:72px; }
     .hero__right { height:340px; }
     .story__content { padding:40px 24px; }
+    .team-people__grid { grid-template-columns:repeat(2,1fr); }
+    .team-people__photo img { height:180px; }
   }
 
   @media (max-width:480px) {
@@ -889,13 +988,17 @@
     /* About */
     .about__split { gap:40px; }
 
-    /* Journey */
+    /* Journey — один столбец, зигзаг отключён (шаги идут друг под другом) */
     .journey { padding:48px 0 56px; }
     .journey__top { grid-template-columns:1fr; }
     .journey__lighthouse { display:none; }
     .journey__steps { grid-template-columns:1fr; gap:24px; }
-    .journey__wave-line { display:none; }
-    .journey__step { padding:0; }
+    .journey__step {
+      padding:0;
+      display:flex; flex-direction:column; align-items:center;
+      text-align:center;
+    }
+    .journey__step:nth-child(2n) { margin-top:0; }
 
     /* Projects */
     .pcard__body { padding:20px 16px; }
@@ -906,8 +1009,9 @@
 
     /* Donation */
     .donation-dark { padding:48px 0; }
-    .donation-dark__btns { flex-direction:column; }
-    .donation-dark__btns .btn { width:100%; justify-content:center; }
+    .donate-card { padding:22px; }
+    .donate-card__amount-value input,
+    .donate-card__amount-value span { font-size:1.9rem; }
 
     /* Footer */
     .footer-new { padding:40px 0 24px; }

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impressum — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--gray-200); }
+.page-hero__label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; }
+.page-hero h1 { margin-bottom: 14px; max-width: 640px; }
+.page-hero p  { font-size: 1rem; max-width: 560px; line-height: 1.75; }
+
+/* ── LEGAL CONTENT ── */
+.legal { padding: 64px 0 96px; }
+.legal__wrap { max-width: 760px; }
+.legal-section { margin-bottom: 40px; }
+.legal-section:last-child { margin-bottom: 0; }
+.legal-section h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin-bottom: 14px; }
+.legal-section p { font-size: 0.9rem; line-height: 1.8; color: var(--gray-700); margin-bottom: 10px; }
+.legal-section p:last-child { margin-bottom: 0; }
+.legal-section ul { padding-left: 20px; margin: 10px 0; display: flex; flex-direction: column; gap: 6px; }
+.legal-section li { font-size: 0.9rem; line-height: 1.7; color: var(--gray-700); }
+.legal-section a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+.legal-todo { color: var(--accent-dk); font-weight: 600; background: rgba(232,103,42,0.08); padding: 1px 6px; border-radius: 4px; }
+.legal-note { font-size: 0.8rem; color: var(--gray-500); line-height: 1.7; padding: 16px 18px; background: var(--gray-100); border-radius: var(--r); }
+.legal-updated { font-size: 0.78rem; color: var(--gray-400); margin-top: 48px; }
+
+/* ── i18n ── */
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__wrap">
+    <a class="nav__logo" href="index.html">
+      <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </a>
+    <div class="nav__menu" id="menu">
+      <a href="index.html" data-i18n="nav_about">О нас</a>
+      <a href="index.html" data-i18n="nav_projects">Проекты</a>
+      <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
+      <a href="index.html" data-i18n="nav_reports">Отчётность</a>
+      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="nav__right">
+      <div class="nav__lang" id="langSwitcher">
+        <span data-lang="ru" class="on">RU</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="de">DE</span>
+        <span style="color:var(--gray-200)">|</span>
+        <span data-lang="en">EN</span>
+      </div>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__label" data-i18n="page_label">Юридическая информация</div>
+    <h1 data-i18n="page_title">Импрессум</h1>
+    <p data-i18n="page_sub">Реквизиты объединения согласно § 5 TMG (Закон о телемедиа, Германия).</p>
+  </div>
+</div>
+
+<!-- LEGAL CONTENT -->
+<div class="legal">
+  <div class="wrap">
+    <div class="legal__wrap">
+
+      <div class="legal-section">
+        <h2 data-i18n="s1_h">Объединение</h2>
+        <p>Mission Europa Resource e. V.</p>
+        <p><span class="legal-todo" data-i18n="addr_todo">[ПОЛНЫЙ АДРЕС: улица, дом, индекс, Gummersbach]</span></p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s2_h">Представитель (правление)</h2>
+        <p><span data-i18n="s2_p1">Председатель правления:</span> <span class="legal-todo" data-i18n="chair_todo">[ИМЯ ПРЕДСЕДАТЕЛЯ]</span></p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s3_h">Регистрация</h2>
+        <p data-i18n="s3_p1">Реестр объединений (Vereinsregister)</p>
+        <p><span data-i18n="s3_p2">Регистрационный суд:</span> Amtsgericht Köln</p>
+        <p><span data-i18n="s3_p3">Регистрационный номер:</span> VR 22497</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s4_h">Контакты</h2>
+        <p><span data-i18n="s4_p1">Email:</span> <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a></p>
+        <p><span data-i18n="s4_p2">Телефон:</span> <span class="legal-todo" data-i18n="phone_todo">[ТЕЛЕФОН, если применимо]</span></p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s5_h">Ответственный за содержание (§ 18 Abs. 2 MStV)</h2>
+        <p><span class="legal-todo" data-i18n="chair_todo2">[ИМЯ ПРЕДСЕДАТЕЛЯ]</span> <span data-i18n="s5_p1">(адрес — см. раздел «Объединение» выше)</span></p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s6_h">Статус некоммерческой организации <span style="font-weight:400;color:var(--gray-500);font-size:0.75em;" data-i18n="optional_tag">(опционально)</span></h2>
+        <p data-i18n="s6_p1">Объединение признано некоммерческим (gemeinnützig).</p>
+        <p><span class="legal-todo" data-i18n="tax_todo">[Freistellungsbescheid: финансовое ведомство, дата, налоговый номер — заполнить при наличии]</span></p>
+      </div>
+
+      <div class="legal-note" data-i18n="disclaimer">Настоящая страница переведена для удобства пользователей. Юридически действительной является немецкая версия документа.</div>
+
+      <p class="legal-updated" data-i18n="updated">Обновлено: сентябрь 2026</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__logo">Mission Europa Resource e. V.<br>
+        <a href="mailto:mer@mer-verein.de" class="email-link" style="font-weight:400;">mer@mer-verein.de</a>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html" data-i18n="nav_about">О нас</a>
+        <a href="index.html" data-i18n="nav_projects">Проекты</a>
+        <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
+        <a href="index.html" data-i18n="nav_reports">Отчётность</a>
+        <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+      </nav>
+    </div>
+    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  ru: {
+    nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
+    nav_reports:'Отчётность', nav_contact:'Контакты',
+    page_label:'Юридическая информация',
+    page_title:'Импрессум',
+    page_sub:'Реквизиты объединения согласно § 5 TMG (Закон о телемедиа, Германия).',
+    s1_h:'Объединение',
+    addr_todo:'[ПОЛНЫЙ АДРЕС: улица, дом, индекс, Gummersbach]',
+    s2_h:'Представитель (правление)', s2_p1:'Председатель правления:',
+    chair_todo:'[ИМЯ ПРЕДСЕДАТЕЛЯ]', chair_todo2:'[ИМЯ ПРЕДСЕДАТЕЛЯ]',
+    s3_h:'Регистрация', s3_p1:'Реестр объединений (Vereinsregister)',
+    s3_p2:'Регистрационный суд:', s3_p3:'Регистрационный номер:',
+    s4_h:'Контакты', s4_p1:'Email:', s4_p2:'Телефон:',
+    phone_todo:'[ТЕЛЕФОН, если применимо]',
+    s5_h:'Ответственный за содержание (§ 18 Abs. 2 MStV)',
+    s5_p1:'(адрес — см. раздел «Объединение» выше)',
+    s6_h:'Статус некоммерческой организации', optional_tag:'(опционально)',
+    s6_p1:'Объединение признано некоммерческим (gemeinnützig).',
+    tax_todo:'[Freistellungsbescheid: финансовое ведомство, дата, налоговый номер — заполнить при наличии]',
+    disclaimer:'Настоящая страница переведена для удобства пользователей. Юридически действительной является немецкая версия документа.',
+    updated:'Обновлено: сентябрь 2026',
+  },
+  de: {
+    nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
+    nav_reports:'Berichte', nav_contact:'Kontakt',
+    page_label:'Rechtliches',
+    page_title:'Impressum',
+    page_sub:'Angaben gemäß § 5 TMG.',
+    s1_h:'Anbieter',
+    addr_todo:'[VOLLSTÄNDIGE ANSCHRIFT: Straße, Hausnummer, PLZ, Gummersbach]',
+    s2_h:'Vertreten durch', s2_p1:'Vorsitzender des Vorstands:',
+    chair_todo:'[NAME DES VORSTANDSVORSITZENDEN]', chair_todo2:'[NAME DES VORSTANDSVORSITZENDEN]',
+    s3_h:'Registereintrag', s3_p1:'Eingetragen im Vereinsregister',
+    s3_p2:'Registergericht:', s3_p3:'Registernummer:',
+    s4_h:'Kontakt', s4_p1:'E-Mail:', s4_p2:'Telefon:',
+    phone_todo:'[TELEFONNUMMER, falls vorhanden]',
+    s5_h:'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV',
+    s5_p1:'(Anschrift siehe Abschnitt „Anbieter" oben)',
+    s6_h:'Gemeinnützigkeit', optional_tag:'(optional)',
+    s6_p1:'Der Verein ist als gemeinnützig anerkannt.',
+    tax_todo:'[Freistellungsbescheid: Finanzamt, Datum, Steuernummer — bei Bedarf ergänzen]',
+    disclaimer:'Diese Seite liegt zur besseren Verständlichkeit auch in Übersetzung vor. Rechtlich verbindlich ist die deutsche Fassung.',
+    updated:'Stand: September 2026',
+  },
+  en: {
+    nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
+    nav_reports:'Reports', nav_contact:'Contact',
+    page_label:'Legal',
+    page_title:'Legal Notice',
+    page_sub:'Information pursuant to § 5 TMG (German Telemedia Act).',
+    s1_h:'Provider',
+    addr_todo:'[FULL ADDRESS: street, number, postal code, Gummersbach]',
+    s2_h:'Represented by', s2_p1:'Chairman of the Board:',
+    chair_todo:'[CHAIRPERSON NAME]', chair_todo2:'[CHAIRPERSON NAME]',
+    s3_h:'Register entry', s3_p1:'Registered in the German Register of Associations (Vereinsregister)',
+    s3_p2:'Register court:', s3_p3:'Register number:',
+    s4_h:'Contact', s4_p1:'Email:', s4_p2:'Phone:',
+    phone_todo:'[PHONE NUMBER, if applicable]',
+    s5_h:'Responsible for content pursuant to § 18(2) MStV',
+    s5_p1:'(address — see "Provider" section above)',
+    s6_h:'Non-profit status', optional_tag:'(optional)',
+    s6_p1:'The association is recognised as tax-exempt / non-profit (gemeinnützig).',
+    tax_todo:'[Tax exemption notice: tax office, date, tax number — add if applicable]',
+    disclaimer:'This page is provided as a courtesy translation. The German version is legally binding.',
+    updated:'Last updated: September 2026',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'ru';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b =>
+    b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+  currentLang = lang;
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+
+applyLang(currentLang);
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+</body>
+</html>

@@ -172,12 +172,6 @@
       <img src="mer-mark 1.svg" class="journey__lighthouse" alt="">
     </div>
     <div class="journey__steps">
-      <!-- Волнистая пунктирная линия -->
-      <svg class="journey__wave-line" viewBox="0 0 1000 20" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 10 Q50 2 100 10 Q150 18 200 10 Q250 2 300 10 Q350 18 400 10 Q450 2 500 10 Q550 18 600 10 Q650 2 700 10 Q750 18 800 10 Q850 2 900 10 Q950 18 1000 10" 
-          stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"
-          stroke-dasharray="6 8" stroke-linecap="round"/>
-      </svg>
       <div class="journey__step">
         <span class="journey__step-num">01</span>
         <div class="journey__step-icon">
@@ -222,6 +216,55 @@
   </div>
 </section>
 
+<!-- КОМАНДА -->
+<section class="team-people">
+  <div class="wrap">
+    <div class="team-people__eyebrow" data-i18n="team_eyebrow">Команда</div>
+    <h2 class="team-people__title" data-i18n="team_title"><em>Люди,</em> которые ведут проекты</h2>
+
+    <div class="team-people__photo">
+      <img src="image/photo_2026-01-31%2010.24.32.webp" alt="">
+    </div>
+
+    <div class="team-people__grid">
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/and.webp" alt="Андрей Малютин">
+        <div class="team-people__name" data-i18n="team_m1_name">Андрей Малютин</div>
+        <div class="team-people__role" data-i18n="team_m1_role">Председатель, руководитель проектов</div>
+      </div>
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/margo.webp" alt="Маргарита Балабух">
+        <div class="team-people__name" data-i18n="team_m2_name">Маргарита Балабух</div>
+        <div class="team-people__role" data-i18n="team_m2_role">Администратор, руководитель Parasolka</div>
+      </div>
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/egor.webp" alt="Егор Бабко">
+        <div class="team-people__name" data-i18n="team_m3_name">Егор Бабко</div>
+        <div class="team-people__role" data-i18n="team_m3_role">Административный директор организации</div>
+      </div>
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/illya.webp" alt="Анатолий Тищенко">
+        <div class="team-people__name" data-i18n="team_m4_name">Анатолий Тищенко</div>
+        <div class="team-people__role" data-i18n="team_m4_role">Администратор клуба Reverse</div>
+      </div>
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/alina.webp" alt="Алина Бочарова">
+        <div class="team-people__name" data-i18n="team_m5_name">Алина Бочарова</div>
+        <div class="team-people__role" data-i18n="team_m5_role">Администратор детского клуба Joyfulkids</div>
+      </div>
+      <div class="team-people__member">
+        <img class="team-people__avatar" src="image/team/oleg.webp" alt="Александр Бочаров">
+        <div class="team-people__name" data-i18n="team_m6_name">Александр Бочаров</div>
+        <div class="team-people__role" data-i18n="team_m6_role">Администратор сайта, дизайнер</div>
+      </div>
+    </div>
+
+    <div class="team-people__photo">
+      <img src="image/DSC_0188.webp" alt="">
+    </div>
+  </div>
+</section>
+
 <!-- ПРОЕКТЫ -->
 <section class="projects-section" id="projects">
   <div class="wrap">
@@ -236,8 +279,9 @@
       </div>
       <div class="pcard__body">
         <img class="pcard__logo" src="image/logo/paras.svg" alt="">
+        <div class="pcard__tag" data-i18n="parasol_tag">Сообщество · интеграция</div>
         <div class="pcard__name">Parasolka</div>
-        <div class="pcard__desc" data-i18n="parasol_desc">Семинары и уютные встречи для взрослых, где можно заново найти себя и легче пройти интеграцию. А также программы и мастер-классы для детей от 3 лет.</div>
+        <div class="pcard__desc" data-i18n="parasol_desc">Пространство для встреч, семинаров, мастер-классов и обмена опытом. Первый шаг к новым знакомствам в незнакомой стране.</div>
         <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
       </div>
     </a>
@@ -250,8 +294,9 @@
         </div>
         <div class="pcard__body">
           <img class="pcard__logo" src="image/logo/awana.png" alt="">
+          <div class="pcard__tag" data-i18n="awana_tag">Дети · творчество · активное время</div>
           <div class="pcard__name">Awana</div>
-          <div class="pcard__desc" data-i18n="awana_desc">Активное время для детей от 7 до 12 лет</div>
+          <div class="pcard__desc" data-i18n="awana_desc">Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
@@ -260,8 +305,9 @@
           <img src="image/our%20projects/revers.webp" alt="Reverse">
         </div>
         <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="revers_tag">Подростки</div>
           <div class="pcard__name">Reverse</div>
-          <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков</div>
+          <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
@@ -271,16 +317,20 @@
         </div>
         <div class="pcard__body">
           <img class="pcard__logo" src="image/logo/alfa.webp" alt="">
+          <div class="pcard__tag" data-i18n="alpha_tag">Дискуссионный клуб</div>
           <div class="pcard__name">Альфа-Курс</div>
-          <div class="pcard__desc">Дискуссионный клуб</div>
+          <div class="pcard__desc" data-i18n="alpha_desc">Беседы о вере и смысле жизни — без давления, с открытыми вопросами.</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
       <a id="proj-lit" class="pcard pcard--lit" href="project-literature.html">
-        <div class="pcard__photo pcard__photo--empty"></div>
+        <div class="pcard__photo">
+          <img src="image/our%20projects/boooks.webp" alt="">
+        </div>
         <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="lit_tag">Литература · материалы для благовестия</div>
           <div class="pcard__name" data-i18n="proj_lit">Рассылка литературы</div>
-          <div class="pcard__desc">Описание</div>
+          <div class="pcard__desc" data-i18n="lit_desc">Библии и христианская литература для церквей и миссий.</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
@@ -314,36 +364,105 @@
       <div>
         <div class="donation-dark__eyebrow" data-i18n="don_eyebrow">Пожертвования</div>
         <h2 class="donation-dark__title" data-i18n="don_title">Ваша поддержка <em>меняет</em> жизни в Европе</h2>
-        <div class="donation-dark__badge" data-i18n="don_badge">Официально зарегистрированный Verein</div>
-        <p class="donation-dark__sub" data-i18n="don_sub">Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми. Spendenbescheinigung по запросу.</p>
-        <div class="donation-dark__btns">
-          <a href="contact.html" class="btn btn-white btn-arrow" data-i18n="don_btn1">Поддержать проект</a>
-          <a href="contact.html" class="btn-outline-white" data-i18n="don_btn2">Связаться с нами</a>
+        <p class="donation-dark__sub" data-i18n="don_sub">Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми.</p>
+        <div class="donation-dark__receipt">
+          <svg class="donation-dark__receipt-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7 3h10a1 1 0 0 1 1 1v16l-2.5-1.5L13 20l-1.5-1.5L10 20l-2.5-1.5L5 20V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M8.5 8h7M8.5 11.5h7M8.5 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n="don_receipt">По запросу предоставляем Spendenbescheinigung — справку о пожертвовании.</span>
         </div>
       </div>
-      <div class="pay-methods">
-        <div class="pay-method">
-          <div>
-            <div class="pay-method__name" data-i18n="pay1_name">Банковский перевод</div>
-            <div class="pay-method__detail">IBAN DE · BIC · · ·</div>
-          </div>
-          <span class="pay-method__arrow">›</span>
+
+      <form class="donate-card" action="donate.html" method="get">
+        <fieldset class="donate-card__toggle">
+          <legend class="visually-hidden" data-i18n="don_freq_legend">Периодичность пожертвования</legend>
+          <label class="donate-card__toggle-opt">
+            <input type="radio" name="frequency" value="once" checked>
+            <span data-i18n="don_freq_once">Разово</span>
+          </label>
+          <label class="donate-card__toggle-opt">
+            <input type="radio" name="frequency" value="monthly">
+            <span class="donate-card__toggle-label">
+              <span data-i18n="don_freq_monthly">Ежемесячно</span>
+              <span class="donate-card__heart" aria-hidden="true">♥</span>
+            </span>
+          </label>
+        </fieldset>
+
+        <label for="don-amount" class="donate-card__amount-label" data-i18n="don_amount_label">Сумма пожертвования</label>
+        <div class="donate-card__amount-value">
+          <input type="number" id="don-amount" name="amount" min="1" step="1" value="50" inputmode="numeric" autocomplete="off">
+          <span>€</span>
         </div>
-        <div class="pay-method">
-          <div>
-            <div class="pay-method__name">PayPal</div>
-            <div class="pay-method__detail" data-i18n="pay2_detail">Быстрый перевод</div>
-          </div>
-          <span class="pay-method__arrow">›</span>
+        <span id="don-amount-announce" class="visually-hidden" aria-live="polite"></span>
+
+        <div class="donate-card__presets">
+          <button type="button" class="donate-card__preset" data-add="10">+10 €</button>
+          <button type="button" class="donate-card__preset" data-add="25">+25 €</button>
+          <button type="button" class="donate-card__preset" data-add="50">+50 €</button>
+          <button type="button" class="donate-card__preset" data-add="100">+100 €</button>
         </div>
-        <div class="pay-method">
-          <div>
-            <div class="pay-method__name">Wise</div>
-            <div class="pay-method__detail">mission-europa.de</div>
+
+        <div class="donate-card__receipt">
+          <div class="donate-card__checkline">
+            <input type="checkbox" id="don-receipt-cb" class="donate-card__receipt-check" name="want_receipt" aria-controls="don-receipt-fields" aria-describedby="don-receipt-hint">
+            <label for="don-receipt-cb" data-i18n="don_receipt_cb">Хочу получить Spendenbescheinigung (справку о пожертвовании)</label>
           </div>
-          <span class="pay-method__arrow">›</span>
+          <span id="don-receipt-hint" class="visually-hidden" data-i18n="don_receipt_hint">При выборе появятся обязательные поля адреса — они нужны для оформления справки.</span>
+          <fieldset class="donate-card__receipt-fields" id="don-receipt-fields">
+            <legend class="visually-hidden" data-i18n="don_receipt_fields_legend">Адрес для налоговой справки</legend>
+            <div class="donate-card__field-row">
+              <div class="donate-card__field">
+                <label for="don-first-name" data-i18n="don_first_name">Имя</label>
+                <input type="text" id="don-first-name" name="first_name" autocomplete="given-name" required>
+              </div>
+              <div class="donate-card__field">
+                <label for="don-last-name" data-i18n="don_last_name">Фамилия</label>
+                <input type="text" id="don-last-name" name="last_name" autocomplete="family-name" required>
+              </div>
+            </div>
+            <div class="donate-card__field">
+              <label for="don-street" data-i18n="don_street">Улица и номер дома</label>
+              <input type="text" id="don-street" name="street" autocomplete="street-address" required>
+            </div>
+            <div class="donate-card__field-row">
+              <div class="donate-card__field donate-card__field--sm">
+                <label for="don-zip" data-i18n="don_zip">Индекс (PLZ)</label>
+                <input type="text" id="don-zip" name="zip" autocomplete="postal-code" inputmode="numeric" required>
+              </div>
+              <div class="donate-card__field">
+                <label for="don-city" data-i18n="don_city">Город</label>
+                <input type="text" id="don-city" name="city" autocomplete="address-level2" required>
+              </div>
+            </div>
+          </fieldset>
         </div>
-      </div>
+
+        <div class="donate-card__checkline donate-card__consent">
+          <input type="checkbox" id="don-gdpr" name="gdpr" required>
+          <label for="don-gdpr" data-i18n="don_gdpr">Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html">политикой конфиденциальности</a>.</label>
+        </div>
+
+        <button type="submit" class="donate-card__submit" data-i18n="don_submit">Пожертвовать</button>
+
+        <p class="donate-card__methods-label" id="don-methods-label" data-i18n="don_methods_label">Доступные способы оплаты</p>
+        <ul class="donate-card__methods" aria-labelledby="don-methods-label">
+          <li data-i18n="pay0_name">Карта</li>
+          <li data-i18n="pay_wallet">Apple Pay / Google Pay</li>
+          <li>PayPal</li>
+          <li data-i18n="pay3_name">SEPA-дебет</li>
+          <li data-i18n="pay1_name">Банковский перевод</li>
+          <li>Wise</li>
+        </ul>
+
+        <p class="donate-card__fx-note" data-i18n="don_fx_note">Расчёты производятся в EUR. При оплате картой в другой валюте конвертация происходит автоматически банком-эмитентом.</p>
+
+        <p class="donate-card__secure">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span data-i18n="don_secure">Безопасный платёж через защищённое соединение</span>
+        </p>
+      </form>
     </div>
   </div>
 </section>
@@ -379,7 +498,7 @@
         <a href="contact.html" data-i18n="footer_business">Для бизнеса</a>
       </div>
     </div>
-    <div class="footer-new__copy">© 2025 Mission Europa Resource e. V. · gemeinnützig</div>
+    <div class="footer-new__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
   </div>
 </footer>
 
@@ -411,24 +530,48 @@ const i18n = {
     step3_name:'Осваивается', step3_sub:'Язык и быт',
     step4_name:'Находит своих', step4_sub:'Место и принадлежность',
     step5_name:'Помогает другим', step5_sub:'Ощущение дома',
+    team_eyebrow:'Команда',
+    team_title:'<em>Люди,</em> которые ведут проекты',
+    team_m1_name:'Андрей Малютин', team_m1_role:'Председатель, руководитель проектов',
+    team_m2_name:'Маргарита Балабух', team_m2_role:'Администратор, руководитель Parasolka',
+    team_m3_name:'Егор Бабко', team_m3_role:'Административный директор организации',
+    team_m4_name:'Анатолий Тищенко', team_m4_role:'Администратор клуба Reverse',
+    team_m5_name:'Алина Бочарова', team_m5_role:'Администратор детского клуба Joyfulkids',
+    team_m6_name:'Александр Бочаров', team_m6_role:'Администратор сайта, дизайнер',
     projects_eyebrow:'Наши проекты',
     projects_title:'Каждый проект — опора на своём этапе пути',
     card_more:'Подробнее →',
-    parasol_desc:'Семинары и уютные встречи для взрослых, где можно заново найти себя и легче пройти интеграцию. А также программы и мастер-классы для детей от 3 лет.',
-    awana_desc:'Активная среда для детей от 7 до 12 лет',
-    revers_desc:'Встречи для подростков',
-    alpha_desc:'Бесплатный курс',
-    proj_lit:'Рассылка литературы', lit_desc:'Книги и материалы',
+    parasol_tag:'Сообщество · интеграция',
+    parasol_desc:'Пространство для встреч, семинаров, мастер-классов и обмена опытом. Первый шаг к новым знакомствам в незнакомой стране.',
+    awana_tag:'Дети · творчество · активное время',
+    awana_desc:'Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья',
+    revers_tag:'Подростки',
+    revers_desc:'Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».',
+    alpha_tag:'Дискуссионный клуб',
+    alpha_desc:'Беседы о вере и смысле жизни — без давления, с открытыми вопросами.',
+    proj_lit:'Рассылка литературы',
+    lit_tag:'Литература · материалы для благовестия',
+    lit_desc:'Библии и христианская литература для церквей и миссий.',
     story_eyebrow:'Истории',
     story_quote:'Я приехала, не зная никого. Здесь меня <em>встретили</em> — и впервые за долгое время я почувствовала себя как дома.',
     story_author:'Оксана, участница проекта Parasolka',
     story_city:'Гуммерсбах, 2024',
     don_eyebrow:'Пожертвования',
     don_title:'Ваша поддержка меняет жизни в Европе',
-    don_badge:'Официально зарегистрированный Verein',
-    don_sub:'Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми. Spendenbescheinigung по запросу.',
-    don_btn1:'Поддержать проект', don_btn2:'Связаться с нами',
-    pay1_name:'Банковский перевод', pay2_detail:'Быстрый перевод',
+    don_sub:'Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми.',
+    don_receipt:'По запросу предоставляем Spendenbescheinigung — справку о пожертвовании.',
+    don_freq_legend:'Периодичность пожертвования', don_freq_once:'Разово', don_freq_monthly:'Ежемесячно',
+    don_amount_label:'Сумма пожертвования', don_submit:'Пожертвовать',
+    don_receipt_cb:'Хочу получить Spendenbescheinigung (справку о пожертвовании)',
+    don_receipt_hint:'При выборе появятся обязательные поля адреса — они нужны для оформления справки.',
+    don_receipt_fields_legend:'Адрес для налоговой справки',
+    don_first_name:'Имя', don_last_name:'Фамилия', don_street:'Улица и номер дома',
+    don_zip:'Индекс (PLZ)', don_city:'Город',
+    don_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html">политикой конфиденциальности</a>.',
+    don_methods_label:'Доступные способы оплаты',
+    don_fx_note:'Расчёты производятся в EUR. При оплате картой в другой валюте конвертация происходит автоматически банком-эмитентом.',
+    don_secure:'Безопасный платёж через защищённое соединение',
+    pay0_name:'Карта', pay1_name:'Банковский перевод', pay3_name:'SEPA-дебет', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'О нас', footer_team:'Команда', footer_about:'История',
     footer_reports:'Отчётность', footer_projects_title:'Проекты',
     footer_alpha:'Альфа-Курс', footer_participate_title:'Участие',
@@ -460,24 +603,48 @@ const i18n = {
     step3_name:'Findet sich zurecht', step3_sub:'Sprache und Alltag',
     step4_name:'Findet Gemeinschaft', step4_sub:'Zugehörigkeit',
     step5_name:'Hilft anderen', step5_sub:'Heimatgefühl',
+    team_eyebrow:'Team',
+    team_title:'<em>Menschen,</em> die die Projekte leiten',
+    team_m1_name:'Andrey Malyutin', team_m1_role:'Vorsitzender, Projektleiter',
+    team_m2_name:'Margarita Balabukh', team_m2_role:'Administratorin, Leiterin von Parasolka',
+    team_m3_name:'Egor Babko', team_m3_role:'Verwaltungsdirektor der Organisation',
+    team_m4_name:'Anatoliy Tishchenko', team_m4_role:'Administrator des Reverse-Klubs',
+    team_m5_name:'Alina Bocharova', team_m5_role:'Administratorin des Kinderklubs Joyfulkids',
+    team_m6_name:'Aleksandr Bocharov', team_m6_role:'Website-Administrator, Designer',
     projects_eyebrow:'Unsere Projekte',
     projects_title:'Jedes Projekt — eine Stütze auf dem eigenen Weg',
     card_more:'Mehr →',
-    parasol_desc:'Programme für Kinder ab 3 Jahren, Workshops und Begleitung.',
-    awana_desc:'Aktives Umfeld für Kinder von 7 bis 12 Jahren',
-    revers_desc:'Treffen für Jugendliche',
-    alpha_desc:'Kostenloser Kurs',
-    proj_lit:'Literaturversand', lit_desc:'Bücher und Materialien',
+    parasol_tag:'Gemeinschaft · Integration',
+    parasol_desc:'Raum für Treffen, Seminare, Workshops und Erfahrungsaustausch. Der erste Schritt zu neuen Bekanntschaften in einem fremden Land.',
+    awana_tag:'Kinder · Kreativität · Aktive Zeit',
+    awana_desc:'Klub für Kinder von 7–12 Jahren: Spiele, Kreativität, biblische Lektionen und neue Freunde',
+    revers_tag:'Jugendliche',
+    revers_desc:'Treffen für Jugendliche — Spiele, offene Gespräche, Mentoren und das Gefühl, dazuzugehören.',
+    alpha_tag:'Diskussionsklub',
+    alpha_desc:'Gespräche über Glauben und den Sinn des Lebens — ohne Druck, mit offenen Fragen.',
+    proj_lit:'Literaturversand',
+    lit_tag:'Literatur · Materialien für die Verkündigung',
+    lit_desc:'Bibeln und christliche Literatur für Gemeinden und Missionen.',
     story_eyebrow:'Geschichten',
     story_quote:'Ich kam, ohne jemanden zu kennen. Hier wurde ich <em>willkommen geheißen</em> — und zum ersten Mal fühlte ich mich wie zu Hause.',
     story_author:'Oksana, Teilnehmerin des Projekts Parasolka',
     story_city:'Gummersbach, 2024',
     don_eyebrow:'Spenden',
     don_title:'Ihre Unterstützung verändert Leben in Europa',
-    don_badge:'Offiziell eingetragener Verein',
-    don_sub:'Eingetragener gemeinnütziger Verein — Spenden sind steuerlich absetzbar. Spendenbescheinigung auf Anfrage.',
-    don_btn1:'Projekt unterstützen', don_btn2:'Kontakt aufnehmen',
-    pay1_name:'Banküberweisung', pay2_detail:'Schnelle Überweisung',
+    don_sub:'Eingetragener gemeinnütziger Verein — Spenden sind steuerlich absetzbar.',
+    don_receipt:'Auf Anfrage stellen wir eine Spendenbescheinigung aus.',
+    don_freq_legend:'Häufigkeit der Spende', don_freq_once:'Einmalig', don_freq_monthly:'Monatlich',
+    don_amount_label:'Spendenbetrag', don_submit:'Jetzt spenden',
+    don_receipt_cb:'Ich möchte eine Spendenbescheinigung erhalten',
+    don_receipt_hint:'Beim Auswählen erscheinen Pflichtfelder für Ihre Adresse — sie werden für die Spendenbescheinigung benötigt.',
+    don_receipt_fields_legend:'Adresse für die Spendenbescheinigung',
+    don_first_name:'Vorname', don_last_name:'Nachname', don_street:'Straße und Hausnummer',
+    don_zip:'PLZ', don_city:'Stadt',
+    don_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> zu.',
+    don_methods_label:'Verfügbare Zahlungsarten',
+    don_fx_note:'Die Abrechnung erfolgt in EUR. Bei Zahlung per Karte in einer anderen Währung erfolgt die Umrechnung automatisch durch die kartenausgebende Bank.',
+    don_secure:'Sichere Zahlung über eine verschlüsselte Verbindung',
+    pay0_name:'Karte', pay1_name:'Banküberweisung', pay3_name:'SEPA-Lastschrift', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'Über uns', footer_team:'Team', footer_about:'Geschichte',
     footer_reports:'Berichte', footer_projects_title:'Projekte',
     footer_alpha:'Alpha-Kurs', footer_participate_title:'Mitmachen',
@@ -509,24 +676,48 @@ const i18n = {
     step3_name:'Settles in', step3_sub:'Language and daily life',
     step4_name:'Finds belonging', step4_sub:'Place and identity',
     step5_name:'Helps others', step5_sub:'Feels at home',
+    team_eyebrow:'Team',
+    team_title:'<em>People</em> who lead the projects',
+    team_m1_name:'Andrey Malyutin', team_m1_role:'Chairman, project lead',
+    team_m2_name:'Margarita Balabukh', team_m2_role:'Administrator, Parasolka lead',
+    team_m3_name:'Egor Babko', team_m3_role:'Administrative director of the organisation',
+    team_m4_name:'Anatoliy Tishchenko', team_m4_role:'Reverse club administrator',
+    team_m5_name:'Alina Bocharova', team_m5_role:'Joyfulkids children\'s club administrator',
+    team_m6_name:'Aleksandr Bocharov', team_m6_role:'Website administrator, designer',
     projects_eyebrow:'Our projects',
     projects_title:'Every project — support at every stage of the journey',
     card_more:'Learn more →',
-    parasol_desc:'Programmes for children from age 3, workshops and guidance.',
-    awana_desc:'Active environment for children aged 7–12',
-    revers_desc:'Meetings for teenagers',
-    alpha_desc:'Free course',
-    proj_lit:'Literature Distribution', lit_desc:'Books and materials',
+    parasol_tag:'Community · Integration',
+    parasol_desc:'A space for meetings, seminars, workshops and shared experience. A first step toward new connections in an unfamiliar country.',
+    awana_tag:'Kids · Creativity · Active time',
+    awana_desc:'A club for kids aged 7–12: games, creativity, Bible lessons and new friends',
+    revers_tag:'Teens',
+    revers_desc:'Meetings for teenagers — games, heart-to-heart talks, mentors, and a sense of belonging.',
+    alpha_tag:'Discussion club',
+    alpha_desc:'Conversations about faith and the meaning of life — no pressure, open questions welcome.',
+    proj_lit:'Literature Distribution',
+    lit_tag:'Literature · Outreach materials',
+    lit_desc:'Bibles and Christian literature for churches and missions.',
     story_eyebrow:'Stories',
     story_quote:'I arrived knowing no one. Here I was <em>welcomed</em> — and for the first time I felt at home.',
     story_author:'Oksana, Parasolka project participant',
     story_city:'Gummersbach, 2024',
     don_eyebrow:'Donations',
     don_title:'Your support changes lives in Europe',
-    don_badge:'Officially registered Verein',
-    don_sub:'Registered gemeinnützig Verein — donations are officially tax-deductible. Spendenbescheinigung on request.',
-    don_btn1:'Support a project', don_btn2:'Contact us',
-    pay1_name:'Bank transfer', pay2_detail:'Quick transfer',
+    don_sub:'Registered gemeinnützig Verein — donations are officially tax-deductible.',
+    don_receipt:'A Spendenbescheinigung (donation receipt) is available on request.',
+    don_freq_legend:'Donation frequency', don_freq_once:'One-time', don_freq_monthly:'Monthly',
+    don_amount_label:'Donation amount', don_submit:'Donate now',
+    don_receipt_cb:'I would like to receive a Spendenbescheinigung (donation receipt)',
+    don_receipt_hint:'Checking this will reveal required address fields — needed to issue the receipt.',
+    don_receipt_fields_legend:'Address for the tax receipt',
+    don_first_name:'First name', don_last_name:'Last name', don_street:'Street and house number',
+    don_zip:'Postal code', don_city:'City',
+    don_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html">Privacy Policy</a>.',
+    don_methods_label:'Available payment methods',
+    don_fx_note:'All amounts are charged in EUR. If paying by card in another currency, conversion is handled automatically by your card-issuing bank.',
+    don_secure:'Secure payment over an encrypted connection',
+    pay0_name:'Card', pay1_name:'Bank transfer', pay3_name:'SEPA Direct Debit', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'About us', footer_team:'Team', footer_about:'History',
     footer_reports:'Reports', footer_projects_title:'Projects',
     footer_alpha:'Alpha Course', footer_participate_title:'Get involved',
@@ -561,6 +752,13 @@ document.querySelectorAll('[data-lang]').forEach(btn => {
 applyLang(currentLang);
 document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
+document.querySelectorAll('.donate-card__preset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const input = document.getElementById('don-amount');
+    input.value = (parseInt(input.value, 10) || 0) + parseInt(btn.dataset.add, 10);
+    document.getElementById('don-amount-announce').textContent = input.value + ' €';
+  });
+});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
