@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mission Europa Resource e. V.</title>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 </head>
 <body>
@@ -14,7 +13,7 @@
 <nav class="nav">
   <div class="nav__wrap">
     <a class="nav__logo" href="index.html">
-      <div class="nav__svg"><img src="mer-mark 1.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__svg"><img src="image/logo/mer-mark.svg" alt="Mission Europa Logo"></div>
       <div class="nav__logo-text">
         <div class="nav__logo-main">MER e.V.</div>
         <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
@@ -61,45 +60,45 @@
     </div>
   </div>
   <div class="hero__right">
-    <div class="hero__slide hero__slide-1">
-      <img src="image/DSC_0188.webp" alt="Фото 1">
-      <button class="hero__video-btn" id="videoBtn">
-        <span class="hero__video-label" data-i18n="hero_stories">Наши истории</span>
-        <span class="hero__play-icon">▶</span>
-      </button>
-    </div>
-    <div class="hero__slide hero__slide-2">
-      <img src="image/DSC_0192.webp" alt="Фото 2">
-      <button class="hero__play-overlay" id="videoBtn2" aria-label="Смотреть истории">
-        <span class="hero__play-icon hero__play-icon--lg">▶</span>
-      </button>
+    <div class="story-stack">
+      <div class="story-card story-card--back" id="storyBack" aria-hidden="true">
+        <img src="image/home/story-parasolka1.jpg" alt="" loading="lazy">
+      </div>
+      <div class="story-card story-card--front" id="storyTrigger" role="button" tabindex="0"
+           data-i18n-aria="story_trigger_aria" aria-label="Смотреть наши истории — 4 видео">
+        <img src="image/home/story-alpha.jpg" alt="">
+        <div class="story-label">
+          <span data-i18n="hero_stories">Наши истории</span>
+          <span class="story-play-dot" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8V4z"/></svg>
+          </span>
+        </div>
+      </div>
     </div>
   </div>
   </div><!-- /hero__wrap -->
 </section>
 
-<!-- Photo Slideshow Modal -->
-<div class="slideshow-modal" id="slideshowModal">
-  <div class="slideshow-modal__overlay" id="modalOverlay"></div>
-  <div class="slideshow-modal__content">
-    <button class="slideshow-modal__close" id="closeModal">&times;</button>
-    <div class="slideshow-modal__slider swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="image/DSC_0188.webp" alt="Фото 1">
-        </div>
-        <div class="swiper-slide">
-          <img src="image/DSC_0192.webp" alt="Фото 2">
-        </div>
-        <div class="swiper-slide">
-          <img src="image/DSC_0199.webp" alt="Фото 3">
-        </div>
+<!-- Story viewer: 4 video stories, opened from the .story-stack trigger above -->
+<div class="story-viewer" id="storyViewer" aria-hidden="true" role="dialog" aria-modal="true"
+     data-i18n-aria="hero_stories" aria-label="Наши истории">
+  <div class="story-progress" id="storyProgress"></div>
+  <button class="story-close" id="storyClose" data-i18n-aria="story_close" aria-label="Закрыть">&times;</button>
+  <div class="story-stage" id="storyStage">
+    <button class="story-nav story-nav--prev" id="storyNavPrev" data-i18n-aria="story_prev" aria-label="Предыдущая история">‹</button>
+    <button class="story-nav story-nav--next" id="storyNavNext" data-i18n-aria="story_next" aria-label="Следующая история">›</button>
+    <div class="story-stage__inner">
+      <div class="story-tap story-tap--prev" id="storyTapPrev" aria-hidden="true"></div>
+      <div class="story-tap story-tap--next" id="storyTapNext" aria-hidden="true"></div>
+      <video class="story-video" id="storyVideo" playsinline preload="none"></video>
+      <div class="story-panel">
+        <p class="story-panel__title" id="storyPanelTitle"></p>
+        <p class="story-panel__desc" id="storyPanelDesc"></p>
+        <p class="story-panel__meta" id="storyPanelMeta"></p>
       </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
   </div>
+  <p class="visually-hidden" id="storyLiveRegion" aria-live="polite"></p>
 </div>
 <div class="photostrip">
   <div class="photostrip__cell photostrip__cell--label">
@@ -107,22 +106,22 @@
     <span data-i18n="strip_label2">Найти своих</span>
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0359.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0359.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0317.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0317.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0379.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0379.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0396.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0396.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0192.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0192.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell">
-    <img src="image/DSC_0251.webp" alt="" loading="lazy">
+    <img src="image/home/DSC_0251.webp" alt="" loading="lazy">
   </div>
   <div class="photostrip__cell photostrip__cell--label">
     <span data-i18n="strip_label3">Дом</span>
@@ -174,7 +173,7 @@
         <p class="journey__sub" data-i18n="journey_sub">Мы помогаем пройти путь от растерянности к ощущению дома — как маяк ведёт корабль к берегу.</p>
       </div>
       <!-- Маяк — логотип проекта -->
-      <img src="mer-mark 1.svg" class="journey__lighthouse" alt="">
+      <img src="image/logo/mer-mark.svg" class="journey__lighthouse" alt="">
     </div>
     <div class="journey__steps">
       <div class="journey__step">
@@ -228,7 +227,7 @@
     <h2 class="team-people__title" data-i18n="team_title"><em>Люди,</em> которые ведут проекты</h2>
 
     <div class="team-people__photo">
-      <img src="image/photo_2026-01-31%2010.24.32.webp" alt="">
+      <img src="image/home/photo-2026-01-31.webp" alt="">
     </div>
 
     <div class="team-people__grid">
@@ -265,7 +264,7 @@
     </div>
 
     <div class="team-people__photo">
-      <img src="image/DSC_0188.webp" alt="">
+      <img src="image/home/DSC_0188.webp" alt="">
     </div>
   </div>
 </section>
@@ -299,8 +298,8 @@
         </div>
         <div class="pcard__body">
           <img class="pcard__logo" src="image/logo/awana.png" alt="">
-          <div class="pcard__tag" data-i18n="awana_tag">Дети · творчество · активное время</div>
-          <div class="pcard__name">Awana</div>
+          <div class="pcard__tag" data-i18n="awana_tag">Детская и подростковая программа</div>
+          <div class="pcard__name" translate="no">Awana</div>
           <div class="pcard__desc" data-i18n="awana_desc">Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
@@ -318,12 +317,12 @@
       </a>
       <a class="pcard pcard--alpha pcard--has-logo" href="project-alpha.html">
         <div class="pcard__photo">
-          <img src="image/our%20projects/alfa.webp" alt="Альфа-Курс">
+          <img src="image/our%20projects/alfa.webp" alt="Alpha">
         </div>
         <div class="pcard__body">
           <img class="pcard__logo" src="image/logo/alfa.webp" alt="">
-          <div class="pcard__tag" data-i18n="alpha_tag">Дискуссионный клуб</div>
-          <div class="pcard__name">Альфа-Курс</div>
+          <div class="pcard__tag" data-i18n="alpha_tag">Христианский курс</div>
+          <div class="pcard__name" translate="no">Alpha</div>
           <div class="pcard__desc" data-i18n="alpha_desc">Беседы о вере и смысле жизни — без давления, с открытыми вопросами.</div>
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
@@ -348,7 +347,7 @@
 <section class="story">
   <div class="wrap story__wrap">
     <div class="story__photo">
-      <img src="image/photo_2026-01-31 10.24.32.webp" alt="Участница проекта Parasolka">
+      <img src="image/home/photo-2026-01-31.webp" alt="Участница проекта Parasolka">
     </div>
     <div class="story__content">
       <div class="story__eyebrow" data-i18n="story_eyebrow">Истории</div>
@@ -473,7 +472,7 @@
     <div class="footer-new__grid">
       <div>
         <div class="footer-new__brand">
-          <img src="mer-mark 1.svg" class="footer-new__icon" alt="">
+          <img src="image/logo/mer-mark.svg" class="footer-new__icon" alt="">
           <div class="footer-new__logo">Mission Europa<br>Resource e. V.</div>
         </div>
         <div class="footer-new__addr">Гуммерсбах, Германия · <a href="mailto:mer@mer-verein.de" class="email-link">mer@mer-verein.de</a></div>
@@ -487,9 +486,9 @@
       <div class="footer-new__col">
         <div class="footer-new__col-title" data-i18n="footer_projects_title">Проекты</div>
         <a href="project-parasol.html">Parasolka</a>
-        <a href="project-avana.html">Awana</a>
+        <a href="project-avana.html" translate="no">Awana</a>
         <a href="project-revers.html">Revers</a>
-        <a href="project-alpha.html" data-i18n="footer_alpha">Альфа-Курс</a>
+        <a href="project-alpha.html" translate="no">Alpha</a>
       </div>
       <div class="footer-new__col">
         <div class="footer-new__col-title" data-i18n="footer_participate_title">Участие</div>
@@ -511,6 +510,9 @@ const i18n = {
     hero_badge:'Помогаем найти «дорогу домой»',
     hero_desc:'Социальные и интеграционные программы, направленные на поддержку беженцев, эмигрантов и их детей в Германии.',
     hero_btn1:'Поддержать проект', hero_btn2:'О проектах', hero_stories:'Наши истории',
+    story_trigger_aria:'Смотреть наши истории — 4 видео',
+    story_close:'Закрыть', story_prev:'Предыдущая история', story_next:'Следующая история',
+    story_live:'История {n} из {total}: {title}',
     strip_label1:'Сообщество', strip_label2:'Найти своих',
     strip_label3:'Дом', strip_label4:'Тёплая атмосфера',
     stat0:'года активной помощи', stat2:'разнообразных проектов',
@@ -543,15 +545,15 @@ const i18n = {
     card_more:'Подробнее →',
     parasol_tag:'Сообщество · интеграция',
     parasol_desc:'Пространство для встреч, семинаров, мастер-классов и обмена опытом. Первый шаг к новым знакомствам в незнакомой стране.',
-    awana_tag:'Дети · творчество · активное время',
+    awana_tag:'Детская и подростковая программа',
     awana_desc:'Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья',
     revers_tag:'Подростки',
     revers_desc:'Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».',
-    alpha_tag:'Дискуссионный клуб',
+    alpha_tag:'Христианский курс',
     alpha_desc:'Беседы о вере и смысле жизни — без давления, с открытыми вопросами.',
-    proj_lit:'Рассылка литературы',
+    proj_lit:'Рассылка книг',
     lit_tag:'Литература · материалы для благовестия',
-    lit_desc:'Библии и христианская литература для церквей и миссий.',
+    lit_desc:'Бесплатная христианская литература (оплата только за доставку).',
     story_eyebrow:'Истории',
     story_quote:'Я приехала, не зная никого. Здесь меня <em>встретили</em> — и впервые за долгое время я почувствовала себя как дома.',
     story_author:'Оксана, участница проекта Parasolka',
@@ -573,7 +575,7 @@ const i18n = {
     pay0_name:'Карта', pay1_name:'Банковский перевод', pay3_name:'SEPA-дебет', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'О нас', footer_team:'Команда', footer_about:'История',
     footer_reports:'Отчётность', footer_projects_title:'Проекты',
-    footer_alpha:'Альфа-Курс', footer_participate_title:'Участие',
+    footer_participate_title:'Участие',
     footer_donate:'Пожертвовать', footer_volunteer:'Волонтёрство', footer_business:'Для бизнеса',
   },
   de: {
@@ -583,6 +585,9 @@ const i18n = {
     hero_badge:'Wir helfen, den «Weg nach Hause» zu finden',
     hero_desc:'Soziale und Integrationsprogramme zur Unterstützung von Geflüchteten, Einwanderern und deren Kindern in Deutschland.',
     hero_btn1:'Projekt unterstützen', hero_btn2:'Über Projekte', hero_stories:'Unsere Geschichten',
+    story_trigger_aria:'Unsere Geschichten ansehen – 4 Videos',
+    story_close:'Schließen', story_prev:'Vorherige Geschichte', story_next:'Nächste Geschichte',
+    story_live:'Geschichte {n} von {total}: {title}',
     strip_label1:'Gemeinschaft', strip_label2:'Eigene finden',
     strip_label3:'Zuhause', strip_label4:'Warme Atmosphäre',
     stat0:'Jahre aktiver Hilfe', stat2:'vielfältige Projekte',
@@ -615,15 +620,15 @@ const i18n = {
     card_more:'Mehr →',
     parasol_tag:'Gemeinschaft · Integration',
     parasol_desc:'Raum für Treffen, Seminare, Workshops und Erfahrungsaustausch. Der erste Schritt zu neuen Bekanntschaften in einem fremden Land.',
-    awana_tag:'Kinder · Kreativität · Aktive Zeit',
+    awana_tag:'Kinder- und Jugendprogramm',
     awana_desc:'Klub für Kinder von 7–12 Jahren: Spiele, Kreativität, biblische Lektionen und neue Freunde',
     revers_tag:'Jugendliche',
     revers_desc:'Treffen für Jugendliche — Spiele, offene Gespräche, Mentoren und das Gefühl, dazuzugehören.',
-    alpha_tag:'Diskussionsklub',
+    alpha_tag:'Alphakurs / Glaubenskurs',
     alpha_desc:'Gespräche über Glauben und den Sinn des Lebens — ohne Druck, mit offenen Fragen.',
-    proj_lit:'Literaturversand',
+    proj_lit:'Bücherpost',
     lit_tag:'Literatur · Materialien für die Verkündigung',
-    lit_desc:'Bibeln und christliche Literatur für Gemeinden und Missionen.',
+    lit_desc:'Kostenlose christliche Literatur (nur Versandkostenpauschale).',
     story_eyebrow:'Geschichten',
     story_quote:'Ich kam, ohne jemanden zu kennen. Hier wurde ich <em>willkommen geheißen</em> — und zum ersten Mal fühlte ich mich wie zu Hause.',
     story_author:'Oksana, Teilnehmerin des Projekts Parasolka',
@@ -645,7 +650,7 @@ const i18n = {
     pay0_name:'Karte', pay1_name:'Banküberweisung', pay3_name:'SEPA-Lastschrift', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'Über uns', footer_team:'Team', footer_about:'Geschichte',
     footer_reports:'Berichte', footer_projects_title:'Projekte',
-    footer_alpha:'Alpha-Kurs', footer_participate_title:'Mitmachen',
+    footer_participate_title:'Mitmachen',
     footer_donate:'Spenden', footer_volunteer:'Ehrenamt', footer_business:'Für Unternehmen',
   },
   en: {
@@ -655,6 +660,9 @@ const i18n = {
     hero_badge:'We help find the «way home»',
     hero_desc:'Social and integration programmes supporting refugees, immigrants and their children in Germany.',
     hero_btn1:'Support a project', hero_btn2:'Our projects', hero_stories:'Our stories',
+    story_trigger_aria:'Watch our stories — 4 videos',
+    story_close:'Close', story_prev:'Previous story', story_next:'Next story',
+    story_live:'Story {n} of {total}: {title}',
     strip_label1:'Community', strip_label2:'Find your people',
     strip_label3:'Home', strip_label4:'Warm atmosphere',
     stat0:'years of active support', stat2:'diverse projects',
@@ -687,15 +695,15 @@ const i18n = {
     card_more:'Learn more →',
     parasol_tag:'Community · Integration',
     parasol_desc:'A space for meetings, seminars, workshops and shared experience. A first step toward new connections in an unfamiliar country.',
-    awana_tag:'Kids · Creativity · Active time',
+    awana_tag:'Youth & Kids Program',
     awana_desc:'A club for kids aged 7–12: games, creativity, Bible lessons and new friends',
     revers_tag:'Teens',
     revers_desc:'Meetings for teenagers — games, heart-to-heart talks, mentors, and a sense of belonging.',
-    alpha_tag:'Discussion club',
+    alpha_tag:'Alpha Course',
     alpha_desc:'Conversations about faith and the meaning of life — no pressure, open questions welcome.',
-    proj_lit:'Literature Distribution',
+    proj_lit:'Book Delivery',
     lit_tag:'Literature · Outreach materials',
-    lit_desc:'Bibles and Christian literature for churches and missions.',
+    lit_desc:'Free Christian literature (shipping fee only).',
     story_eyebrow:'Stories',
     story_quote:'I arrived knowing no one. Here I was <em>welcomed</em> — and for the first time I felt at home.',
     story_author:'Oksana, Parasolka project participant',
@@ -717,7 +725,7 @@ const i18n = {
     pay0_name:'Card', pay1_name:'Bank transfer', pay3_name:'SEPA Direct Debit', pay_wallet:'Apple Pay / Google Pay',
     footer_about_title:'About us', footer_team:'Team', footer_about:'History',
     footer_reports:'Reports', footer_projects_title:'Projects',
-    footer_alpha:'Alpha Course', footer_participate_title:'Get involved',
+    footer_participate_title:'Get involved',
     footer_donate:'Donate', footer_volunteer:'Volunteer', footer_business:'For Business',
   }
 };
@@ -732,6 +740,10 @@ function applyLang(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key] !== undefined) el.innerHTML = dict[key].replace(/\n/g,'<br>');
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
     });
     document.documentElement.lang = lang;
     document.body.classList.remove('lang-switching');
@@ -774,59 +786,159 @@ document.querySelectorAll('.donate-card__preset').forEach(btn => {
   syncReceiptRequired();
 })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-// Инициализация слайдера в модале (когда откроется)
-let modalSlider = null;
+(function(){
+  // TODO: заполнить реальными названиями и описаниями историй —
+  // сейчас это только плейсхолдеры. Не публиковать вымышленный текст
+  // вместо настоящих историй.
+  var stories = [
+    { title: 'TODO', desc: 'TODO', src: 'video/alpha.mp4', poster: 'image/home/story-alpha.jpg' },
+    { title: 'TODO', desc: 'TODO', src: 'video/parasolka.mp4', poster: 'image/home/story-parasolka.jpg' },
+    { title: 'TODO', desc: 'TODO', src: 'video/parasolka1.mp4', poster: 'image/home/story-parasolka1.jpg' },
+    { title: 'TODO', desc: 'TODO', src: 'video/parasolka3.mp4', poster: 'image/home/story-parasolka3.jpg' }
+  ];
 
-// Слайд-шоу модальное окно
-const videoBtn = document.getElementById('videoBtn');
-const videoBtn2 = document.getElementById('videoBtn2');
-const slideshowModal = document.getElementById('slideshowModal');
-const closeBtn = document.getElementById('closeModal');
-const overlay = document.getElementById('modalOverlay');
+  var stack = document.getElementById('storyTrigger');
+  var backCard = document.getElementById('storyBack');
+  var viewer = document.getElementById('storyViewer');
+  var progressRow = document.getElementById('storyProgress');
+  var videoEl = document.getElementById('storyVideo');
+  var panelTitle = document.getElementById('storyPanelTitle');
+  var panelDesc = document.getElementById('storyPanelDesc');
+  var panelMeta = document.getElementById('storyPanelMeta');
+  var closeBtn = document.getElementById('storyClose');
+  var tapPrev = document.getElementById('storyTapPrev');
+  var tapNext = document.getElementById('storyTapNext');
+  var navPrev = document.getElementById('storyNavPrev');
+  var navNext = document.getElementById('storyNavNext');
+  var liveRegion = document.getElementById('storyLiveRegion');
+  var stage = document.getElementById('storyStage');
 
-const openSlideshow = () => {
-  slideshowModal.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  var current = 0;
+  var isOpen = false;
 
-  // Инициализируем слайдер в модале при открытии
-  setTimeout(() => {
-    if (!modalSlider) {
-      modalSlider = new Swiper('.slideshow-modal__slider', {
-        slidesPerView: 1,
-        loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false },
-        pagination: { el: '.swiper-pagination', clickable: true },
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
-        }
+  var segments = stories.map(function(){
+    var seg = document.createElement('div');
+    seg.className = 'story-segment';
+    var fill = document.createElement('div');
+    fill.className = 'story-segment__fill';
+    seg.appendChild(fill);
+    progressRow.appendChild(seg);
+    return fill;
+  });
+
+  // Reads from this page's existing i18n/currentLang (declared above).
+  function t(key) {
+    var dict = (typeof i18n !== 'undefined' && i18n[currentLang]) ? i18n[currentLang] : {};
+    return dict[key] !== undefined ? dict[key] : key;
+  }
+
+  function render(i) {
+    var s = stories[i];
+    videoEl.pause();
+    videoEl.src = s.src;
+    videoEl.poster = s.poster;
+    videoEl.currentTime = 0;
+    videoEl.muted = false;
+    var playPromise = videoEl.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function(err){
+        // AbortError just means a newer render() call already superseded
+        // this one (rapid prev/next) — nothing to recover from, ignore it.
+        if (err && err.name === 'AbortError') return;
+        videoEl.muted = true; // browser blocked audio autoplay — retry muted
+        videoEl.play().catch(function(){});
       });
     }
-  }, 100);
-};
-
-videoBtn?.addEventListener('click', openSlideshow);
-videoBtn2?.addEventListener('click', openSlideshow);
-
-const closeModal = () => {
-  slideshowModal.classList.remove('active');
-  document.body.style.overflow = '';
-  if (modalSlider) {
-    modalSlider.autoplay.stop();
+    panelTitle.textContent = s.title;
+    panelDesc.textContent = s.desc;
+    panelMeta.textContent = (i + 1) + ' / ' + stories.length;
+    liveRegion.textContent = t('story_live')
+      .replace('{n}', i + 1)
+      .replace('{total}', stories.length)
+      .replace('{title}', s.title);
+    segments.forEach(function(fill, idx){ fill.style.width = idx < i ? '100%' : '0%'; });
   }
-};
 
-closeBtn?.addEventListener('click', closeModal);
-overlay?.addEventListener('click', closeModal);
+  videoEl.addEventListener('timeupdate', function(){
+    if (!videoEl.duration || !isOpen) return;
+    segments[current].style.width = (videoEl.currentTime / videoEl.duration * 100) + '%';
+  });
+  videoEl.addEventListener('ended', next);
 
-// Закрытие по Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && slideshowModal.classList.contains('active')) {
-    closeModal();
+  function next(){
+    if (current < stories.length - 1) { current += 1; render(current); }
+    else { close(); }
   }
-});
+  function prev(){ current = Math.max(0, current - 1); render(current); }
+
+  function open(){
+    isOpen = true; current = 0;
+    viewer.classList.add('is-open');
+    viewer.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    render(current);
+    closeBtn.focus();
+  }
+  function close(){
+    isOpen = false;
+    videoEl.pause();
+    videoEl.removeAttribute('src');
+    videoEl.load();
+    viewer.classList.remove('is-open');
+    viewer.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    stack.focus();
+  }
+  function setPaused(paused){
+    if (!isOpen) return;
+    if (paused) { videoEl.pause(); return; }
+    var playPromise = videoEl.play();
+    if (playPromise && playPromise.catch) {
+      playPromise.catch(function(err){
+        if (err && err.name === 'AbortError') return;
+        videoEl.muted = true;
+        videoEl.play().catch(function(){});
+      });
+    }
+  }
+
+  stack.addEventListener('click', open);
+  backCard.addEventListener('click', open);
+  stack.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+  });
+  closeBtn.addEventListener('click', close);
+  tapPrev.addEventListener('click', prev);
+  tapNext.addEventListener('click', next);
+  navPrev.addEventListener('click', prev);
+  navNext.addEventListener('click', next);
+  ['mousedown', 'touchstart'].forEach(function(evt){
+    stage.addEventListener(evt, function(){ setPaused(true); });
+  });
+  ['mouseup', 'touchend', 'mouseleave'].forEach(function(evt){
+    stage.addEventListener(evt, function(){ setPaused(false); });
+  });
+  function focusableInViewer(){
+    return Array.prototype.filter.call(
+      viewer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'),
+      function(el){ return el.offsetParent !== null; }
+    );
+  }
+  document.addEventListener('keydown', function(e){
+    if (!isOpen) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'Tab') {
+      var focusable = focusableInViewer();
+      if (!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
 </script>
 
 <button class="scroll-top" id="scrollTop" aria-label="Наверх">
