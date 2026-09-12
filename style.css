@@ -39,6 +39,7 @@
     --violet-800: #4C1D95;
     --violet-100: #EDE9FE;
     --violet-500: #7C3AED;
+    --red-600:    #B3261E;
 
     /* ── Semantic: named by purpose ── */
     --black:      var(--ink-950);
@@ -53,6 +54,7 @@
     --color-surface-darkest: var(--navy-900);
     --color-surface-light:   var(--sky-100);
     --color-text-muted:      var(--gray-500);
+    --color-danger:          var(--red-600);
 
     /* Parasolka page palette */
     --parasol-dark:   var(--violet-700);
@@ -869,14 +871,6 @@
 
   /* ── Карточка пожертвования (донейшн-виджет) ── */
   .donate-card { background:var(--white); color:var(--black); border-radius:20px; padding:28px; box-shadow:0 24px 60px rgba(0,0,0,0.35); }
-
-  .donate-card__toggle { display:flex; gap:4px; background:var(--gray-100); border:none; border-radius:12px; padding:4px; margin:0 0 24px; min-width:0; }
-  .donate-card__toggle-opt { flex:1; position:relative; display:flex; align-items:center; }
-  .donate-card__toggle-opt input { position:absolute; inset:0; margin:0; opacity:0; cursor:pointer; }
-  .donate-card__toggle-opt > span { display:flex; align-items:center; justify-content:center; gap:5px; width:100%; padding:10px 12px; border-radius:9px; font-size:0.85rem; font-weight:600; color:var(--gray-500); border:1.5px solid transparent; transition:background 0.18s, color 0.18s, border-color 0.18s; pointer-events:none; }
-  .donate-card__toggle-opt input:checked + span { background:var(--white); color:var(--black); border-color:var(--blue); box-shadow:0 1px 3px rgba(0,0,0,0.08); }
-  .donate-card__toggle-opt input:focus-visible + span { outline:2px solid var(--blue); outline-offset:2px; }
-  .donate-card__heart { color:var(--accent); }
 
   .donate-card__amount-label { font-size:0.78rem; color:var(--gray-500); font-weight:500; display:block; margin-bottom:10px; }
 

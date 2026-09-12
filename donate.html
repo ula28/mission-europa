@@ -78,6 +78,14 @@
 .amount-pill:hover, .amount-pill.active { background: var(--black); color: var(--white); border-color: var(--black); }
 .submit-btn { width: 100%; padding: 16px; background: var(--black); color: var(--white); border: none; border-radius: var(--r); font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; }
 .submit-btn:hover { background: var(--gray-700); }
+.submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.donate-status { margin-top: 12px; font-size: 0.82rem; line-height: 1.5; color: var(--gray-700); min-height: 1.2em; }
+.donate-status:empty { display: none; }
+.donate-status[data-kind="error"] { color: var(--color-danger); }
+#paypalMount { margin-bottom: 20px; }
+#paypal-button-container { min-height: 48px; }
+.f-fieldset { border: none; margin: 0 0 20px; padding: 0; }
+.f-fieldset legend { padding: 0; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
 
 /* ── RIGHT: REQUISITES ── */
 .info-section-title { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-200); }
@@ -222,38 +230,60 @@
     <div>
       <div class="block-title" data-i18n="form_title">Spendenformular</div>
 
-      <form action="thank-you.html">
+      <form action="thank-you.html" id="donateForm">
         <div class="f-row">
           <div class="f-group">
-            <label data-i18n="f_name">Name</label>
-            <input type="text" data-i18n-placeholder="f_name_ph">
+            <label for="f-vorname" data-i18n="f_vorname">Vorname</label>
+            <input type="text" id="f-vorname" name="vorname" autocomplete="given-name" required>
           </div>
           <div class="f-group">
-            <label>Email</label>
-            <input type="email" placeholder="email@example.com">
+            <label for="f-nachname" data-i18n="f_nachname">Nachname</label>
+            <input type="text" id="f-nachname" name="nachname" autocomplete="family-name" required>
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label for="f-email" data-i18n="f_email">E-Mail</label>
+            <input type="email" id="f-email" name="email" autocomplete="email" placeholder="email@example.com" required>
+          </div>
+          <div class="f-group">
+            <label for="f-phone" data-i18n="f_phone">Telefon</label>
+            <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="+49 000 000 0000">
           </div>
         </div>
 
         <div class="f-group">
-          <label data-i18n="f_phone">Telefon</label>
-          <input type="tel" placeholder="+49 000 000 0000">
+          <label for="f-strasse" data-i18n="f_strasse">Straße, Hausnummer</label>
+          <input type="text" id="f-strasse" name="strasse" autocomplete="street-address" required>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label for="f-plz" data-i18n="f_plz">PLZ</label>
+            <input type="text" id="f-plz" name="plz" autocomplete="postal-code" inputmode="numeric" required>
+          </div>
+          <div class="f-group">
+            <label for="f-ort" data-i18n="f_ort">Ort</label>
+            <input type="text" id="f-ort" name="ort" autocomplete="address-level2" required>
+          </div>
         </div>
 
         <div class="f-group">
-          <label data-i18n="f_amount">Spendenbetrag (€)</label>
+          <label for="amountInput" data-i18n="f_amount">Spendenbetrag (€)</label>
           <div class="amount-pills" id="amountPills">
-            <button type="button" class="amount-pill" data-val="20">20 €</button>
-            <button type="button" class="amount-pill active" data-val="50">50 €</button>
-            <button type="button" class="amount-pill" data-val="100">100 €</button>
-            <button type="button" class="amount-pill" data-val="250">250 €</button>
-            <button type="button" class="amount-pill" data-val="other" data-i18n="f_other">Andere</button>
+            <button type="button" class="amount-pill" data-val="20" aria-pressed="false">20 €</button>
+            <button type="button" class="amount-pill active" data-val="50" aria-pressed="true">50 €</button>
+            <button type="button" class="amount-pill" data-val="100" aria-pressed="false">100 €</button>
+            <button type="button" class="amount-pill" data-val="250" aria-pressed="false">250 €</button>
+            <button type="button" class="amount-pill" data-val="other" data-i18n="f_other" aria-pressed="false">Andere</button>
           </div>
-          <input type="number" id="amountInput" placeholder="100" min="1">
+          <input type="number" id="amountInput" name="betrag" placeholder="100" min="1" value="50" required>
         </div>
 
         <div class="f-group">
-          <label data-i18n="f_project">Projekt auswählen</label>
-          <select>
+          <label for="f-projekt" data-i18n="f_project">Projekt auswählen</label>
+          <select id="f-projekt" name="projekt">
             <option data-i18n="f_proj_all">Alle Projekte</option>
             <option>Parasol</option>
             <option>Awana</option>
@@ -264,41 +294,48 @@
         </div>
 
         <div class="f-group">
-          <label data-i18n="f_method">Zahlungsart</label>
-          <select>
-            <option data-i18n="f_bank">Banküberweisung</option>
-            <option>PayPal Giving Fund</option>
-            <option>Betterplace</option>
-            <option>Cash / Giro</option>
+          <label for="paymentMethod" data-i18n="f_method">Zahlungsart</label>
+          <select id="paymentMethod" name="zahlungsart">
+            <option value="stripe_card" data-i18n="f_card">Kreditkarte (Stripe, Testmodus)</option>
+            <option value="stripe_sepa" data-i18n="f_sepa">SEPA-Lastschrift (Stripe, Testmodus)</option>
+            <option value="paypal" data-i18n="f_paypal_opt">PayPal (Sandbox)</option>
+            <option value="bank" data-i18n="f_bank">Banküberweisung</option>
+            <option value="betterplace">Betterplace</option>
+            <option value="cash" data-i18n="f_cash">Cash / Giro</option>
           </select>
         </div>
 
-        <div class="f-check">
-          <input type="checkbox" id="neu">
-          <label for="neu" data-i18n="f_new_order">Neue Spendenbeauftragung einrichten</label>
+        <div id="paypalMount" hidden>
+          <div id="paypal-button-container"></div>
         </div>
 
-        <div class="f-group">
-          <label data-i18n="f_lang">Korrespondenzsprache</label>
+        <fieldset class="f-group f-fieldset">
+          <legend data-i18n="f_lang">Korrespondenzsprache</legend>
           <div class="lang-row">
-            <button type="button" class="lang-pill on">DE</button>
-            <button type="button" class="lang-pill">EN</button>
-            <button type="button" class="lang-pill">RU</button>
-            <button type="button" class="lang-pill">UK</button>
+            <button type="button" class="lang-pill on" data-corr-lang="de" aria-pressed="true">DE</button>
+            <button type="button" class="lang-pill" data-corr-lang="en" aria-pressed="false">EN</button>
+            <button type="button" class="lang-pill" data-corr-lang="ru" aria-pressed="false">RU</button>
+            <button type="button" class="lang-pill" data-corr-lang="uk" aria-pressed="false">UK</button>
           </div>
-        </div>
+        </fieldset>
 
         <div class="f-group">
-          <label data-i18n="f_msg">Nachricht</label>
-          <textarea data-i18n-placeholder="f_msg_ph"></textarea>
+          <label for="f-nachricht" data-i18n="f_msg">Nachricht</label>
+          <textarea id="f-nachricht" name="nachricht" data-i18n-placeholder="f_msg_ph"></textarea>
         </div>
 
         <div class="f-check">
-          <input type="checkbox" id="gdpr" required>
+          <input type="checkbox" id="bescheinigung" name="bescheinigung">
+          <label for="bescheinigung" data-i18n="f_receipt">Ich möchte eine Spendenbescheinigung erhalten.</label>
+        </div>
+
+        <div class="f-check">
+          <input type="checkbox" id="gdpr" name="gdpr" required>
           <label for="gdpr" data-i18n="f_gdpr">Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html" style="text-decoration:underline">Datenschutzerklärung</a> zu.</label>
         </div>
 
-        <button type="submit" class="submit-btn" data-i18n="f_submit">Absenden →</button>
+        <button type="submit" class="submit-btn" id="submitBtn">Jetzt 50 € spenden →</button>
+        <p class="donate-status" id="donateStatus" role="status" aria-live="polite" tabindex="-1"></p>
       </form>
     </div>
 
@@ -332,7 +369,7 @@
         <div class="bank-field">
           <div>
             <div class="bank-field__key" data-i18n="b_bank">Bank</div>
-            <div class="bank-field__val">Commerzbank AG</div>
+            <div class="bank-field__val">Volksbank Oberberg eG</div>
           </div>
           <button class="copy-btn" data-copy="Commerzbank AG">Kopieren</button>
         </div>
@@ -423,15 +460,23 @@ const i18n = {
     stat1:'Veranstaltungen', stat2:'aktive Projekte', stat3:'Bildungsprogramme', stat4:'In ganz Europa',
     btn_betterplace:'Jetzt spenden via Betterplace', btn_paypal:'Giving Fund',
     form_title:'Spendenformular',
-    f_name:'Name', f_name_ph:'Ihr Name', f_phone:'Telefon',
+    f_vorname:'Vorname', f_nachname:'Nachname', f_email:'E-Mail', f_phone:'Telefon',
+    f_strasse:'Straße, Hausnummer', f_plz:'PLZ', f_ort:'Ort',
     f_amount:'Spendenbetrag (€)', f_other:'Andere',
     f_project:'Projekt auswählen', f_proj_all:'Alle Projekte', f_proj_lit:'Literaturversand',
     f_method:'Zahlungsart', f_bank:'Banküberweisung',
-    f_new_order:'Neue Spendenbeauftragung einrichten',
+    f_card:'Kreditkarte (Stripe, Testmodus)', f_sepa:'SEPA-Lastschrift (Stripe, Testmodus)',
+    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Cash / Giro',
     f_lang:'Korrespondenzsprache',
     f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
+    f_receipt:'Ich möchte eine Spendenbescheinigung erhalten.',
     f_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html" style="text-decoration:underline">Datenschutzerklärung</a> zu.',
-    f_submit:'Absenden →',
+    f_submit:'Jetzt {amount} € spenden →',
+    status_redirecting:'Weiterleitung zur sicheren Zahlung…',
+    status_loading:'Zahlungsoptionen werden geladen…',
+    status_confirming:'Zahlung wird bestätigt…',
+    err_amount:'Bitte einen gültigen Betrag angeben.',
+    err_generic:'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder nutzen Sie die Bankdaten rechts.',
     info_title:'Bankdaten<br><em>&amp; Kontakt</em>',
     bank_title:'Banküberweisung',
     b_owner:'Kontoinhaber', b_bank:'Bank', b_ref:'Verwendungszweck', b_ref_val:'Spende + Ihr Name',
@@ -459,15 +504,23 @@ const i18n = {
     stat1:'events', stat2:'active projects', stat3:'Educational programmes', stat4:'Across Europe',
     btn_betterplace:'Donate via Betterplace', btn_paypal:'Giving Fund',
     form_title:'Donation Form',
-    f_name:'Name', f_name_ph:'Your name', f_phone:'Phone',
+    f_vorname:'First name', f_nachname:'Last name', f_email:'Email', f_phone:'Phone',
+    f_strasse:'Street, house number', f_plz:'Postal code', f_ort:'City',
     f_amount:'Donation amount (€)', f_other:'Other',
     f_project:'Choose project', f_proj_all:'All projects', f_proj_lit:'Literature Distribution',
     f_method:'Payment method', f_bank:'Bank transfer',
-    f_new_order:'Set up a new standing donation order',
+    f_card:'Card (Stripe, test mode)', f_sepa:'SEPA Direct Debit (Stripe, test mode)',
+    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Cash / Giro',
     f_lang:'Correspondence language',
     f_msg:'Message', f_msg_ph:'Your message...',
+    f_receipt:'I would like to receive a donation receipt (Spendenbescheinigung).',
     f_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html" style="text-decoration:underline">Privacy Policy</a>.',
-    f_submit:'Send →',
+    f_submit:'Donate {amount} € now →',
+    status_redirecting:'Redirecting to secure payment…',
+    status_loading:'Loading payment options…',
+    status_confirming:'Confirming payment…',
+    err_amount:'Please enter a valid amount.',
+    err_generic:'Something went wrong. Please try again or use the bank details on the right.',
     info_title:'Bank details<br><em>&amp; Contact</em>',
     bank_title:'Bank transfer',
     b_owner:'Account holder', b_bank:'Bank', b_ref:'Reference', b_ref_val:'Donation + Your name',
@@ -495,15 +548,23 @@ const i18n = {
     stat1:'мероприятий', stat2:'активных проектов', stat3:'Социальные программы', stat4:'По всей Европе',
     btn_betterplace:'Пожертвовать через Betterplace', btn_paypal:'Giving Fund',
     form_title:'Форма пожертвования',
-    f_name:'Имя', f_name_ph:'Ваше имя', f_phone:'Телефон',
+    f_vorname:'Имя', f_nachname:'Фамилия', f_email:'E-Mail', f_phone:'Телефон',
+    f_strasse:'Улица, дом', f_plz:'Индекс', f_ort:'Город',
     f_amount:'Сумма пожертвования (€)', f_other:'Другая',
     f_project:'Выбор проекта', f_proj_all:'Все проекты', f_proj_lit:'Распространение литературы',
     f_method:'Способ оплаты', f_bank:'Банковский перевод',
-    f_new_order:'Оформить новое регулярное пожертвование',
+    f_card:'Карта (Stripe, тестовый режим)', f_sepa:'SEPA-дебет (Stripe, тестовый режим)',
+    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Наличные / Giro',
     f_lang:'Язык переписки',
     f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
+    f_receipt:'Хочу получить справку о пожертвовании (Spendenbescheinigung).',
     f_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html" style="text-decoration:underline">политикой конфиденциальности</a>.',
-    f_submit:'Отправить →',
+    f_submit:'Пожертвовать {amount} € →',
+    status_redirecting:'Перенаправление на защищённую оплату…',
+    status_loading:'Загрузка способов оплаты…',
+    status_confirming:'Подтверждение платежа…',
+    err_amount:'Пожалуйста, укажите корректную сумму.',
+    err_generic:'Что-то пошло не так. Попробуйте ещё раз или используйте банковские реквизиты справа.',
     info_title:'Реквизиты<br><em>и контакты</em>',
     bank_title:'Банковский перевод',
     b_owner:'Получатель', b_bank:'Банк', b_ref:'Назначение платежа', b_ref_val:'Пожертвование + Ваше имя',
@@ -546,20 +607,25 @@ function applyLang(lang) {
     b.classList.toggle('on', b.getAttribute('data-lang') === lang));
   localStorage.setItem('mer_lang', lang);
   currentLang = lang;
+  if (typeof updateSubmitLabel === 'function') updateSubmitLabel();
 }
 
 document.querySelectorAll('[data-lang]').forEach(btn =>
   btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
 document.querySelectorAll('.lang-pill').forEach(p =>
   p.addEventListener('click', () => {
-    document.querySelectorAll('.lang-pill').forEach(x => x.classList.remove('on'));
+    document.querySelectorAll('.lang-pill').forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
     p.classList.add('on');
+    p.setAttribute('aria-pressed', 'true');
   }));
+function setActivePill(pill) {
+  document.querySelectorAll('.amount-pill').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+  if (pill) { pill.classList.add('active'); pill.setAttribute('aria-pressed', 'true'); }
+}
 document.getElementById('amountPills').addEventListener('click', e => {
   const btn = e.target.closest('.amount-pill');
   if (!btn) return;
-  document.querySelectorAll('.amount-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  setActivePill(btn);
   const input = document.getElementById('amountInput');
   if (btn.dataset.val === 'other') { input.value = ''; input.focus(); }
   else { input.value = btn.dataset.val; }
@@ -578,6 +644,208 @@ document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
 
 applyLang(currentLang);
+</script>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   DONATION PAYMENTS — Stripe (test mode) + PayPal (sandbox)
+   Backend: Google Apps Script Web App, see /google-apps-script/.
+
+   PAYMENT_CONFIG is safe to expose client-side (no secrets here).
+   Swap these two values when going live:
+   - BACKEND_URL     → your deployed Apps Script /exec URL
+   - PAYPAL_CLIENT_ID → PayPal LIVE client id (this one is Sandbox)
+   Stripe's secret key never appears in frontend code — it lives only
+   in the Apps Script project's Script Properties.
+   ════════════════════════════════════════════════════════════════ */
+const PAYMENT_CONFIG = {
+  BACKEND_URL: 'https://script.google.com/macros/s/AKfycbyWVvK1sok2Oe3TRyTqQX_GPHnz4GjEtuhg34o-51FOJ2bwn98jUuLjU9Uf4CSS7tUPWw/exec',
+  PAYPAL_CLIENT_ID: 'REPLACE_WITH_PAYPAL_SANDBOX_CLIENT_ID',
+  CURRENCY: 'EUR',
+};
+
+const donateForm = document.getElementById('donateForm');
+const paymentSelect = document.getElementById('paymentMethod');
+const submitBtn = document.getElementById('submitBtn');
+const paypalMount = document.getElementById('paypalMount');
+const statusEl = document.getElementById('donateStatus');
+const amountInput = document.getElementById('amountInput');
+
+function currentDict() { return i18n[currentLang] || i18n.de; }
+function t(key) { return currentDict()[key] ?? i18n.de[key] ?? ''; }
+
+function setStatus(kind, text) {
+  statusEl.textContent = text;
+  if (kind) statusEl.dataset.kind = kind; else delete statusEl.dataset.kind;
+}
+
+function updateSubmitLabel() {
+  const amt = parseFloat(amountInput.value) || 0;
+  submitBtn.textContent = t('f_submit').replace('{amount}', amt.toFixed(0));
+}
+
+function collectDonor() {
+  const corrLangBtn = document.querySelector('.lang-pill.on');
+  return {
+    firstName: donateForm.vorname.value.trim(),
+    lastName: donateForm.nachname.value.trim(),
+    email: donateForm.email.value.trim(),
+    street: donateForm.strasse.value.trim(),
+    zip: donateForm.plz.value.trim(),
+    city: donateForm.ort.value.trim(),
+    amount: parseFloat(amountInput.value) || 0,
+    project: donateForm.projekt.value,
+    receipt: donateForm.bescheinigung.checked ? 'Ja' : 'Nein',
+    language: corrLangBtn ? corrLangBtn.getAttribute('data-corr-lang') : 'de',
+  };
+}
+
+function loadPaypalSdk() {
+  return new Promise((resolve, reject) => {
+    if (window.paypal) return resolve();
+    const s = document.createElement('script');
+    s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYMENT_CONFIG.PAYPAL_CLIENT_ID) +
+      '&currency=' + encodeURIComponent(PAYMENT_CONFIG.CURRENCY) + '&intent=capture';
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error('paypal-sdk-failed'));
+    document.head.appendChild(s);
+  });
+}
+
+let paypalRendered = false;
+let pendingDonor = null;
+
+function renderPaypalButtons() {
+  paypalRendered = true;
+  setStatus(null, '');
+  paypal.Buttons({
+    style: { color: 'black', shape: 'rect', label: 'donate', height: 48 },
+    createOrder(data, actions) {
+      if (!donateForm.reportValidity()) return Promise.reject(new Error('invalid-form'));
+      const donor = collectDonor();
+      if (!donor.amount || donor.amount < 1) {
+        setStatus('error', t('err_amount'));
+        return Promise.reject(new Error('invalid-amount'));
+      }
+      pendingDonor = donor;
+      setStatus(null, '');
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: donor.amount.toFixed(2), currency_code: PAYMENT_CONFIG.CURRENCY },
+          description: 'Spende – Mission Europa Resource e. V.',
+        }],
+      });
+    },
+    async onApprove(data) {
+      setStatus('pending', t('status_confirming'));
+      try {
+        const res = await fetch(PAYMENT_CONFIG.BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'logPayPalDonation', orderId: data.orderID, donor: pendingDonor }),
+        });
+        const result = await res.json();
+        if (!result.ok) throw new Error(result.error || 'unknown');
+        window.location.href = 'thank-you.html?provider=paypal';
+      } catch (err) {
+        setStatus('error', t('err_generic'));
+      }
+    },
+    onError() { setStatus('error', t('err_generic')); },
+  }).render('#paypal-button-container');
+}
+
+function togglePaymentUI() {
+  const isPaypal = paymentSelect.value === 'paypal';
+  paypalMount.hidden = !isPaypal;
+  submitBtn.hidden = isPaypal;
+  if (isPaypal && !paypalRendered) {
+    setStatus('pending', t('status_loading'));
+    loadPaypalSdk().then(renderPaypalButtons).catch(() => setStatus('error', t('err_generic')));
+  } else {
+    setStatus(null, '');
+  }
+}
+
+paymentSelect.addEventListener('change', togglePaymentUI);
+amountInput.addEventListener('input', () => {
+  // Typing a custom amount always means "Andere" — even if it happens to
+  // match a preset value — since the donor is actively editing the field,
+  // not clicking a pill.
+  setActivePill(document.querySelector('.amount-pill[data-val="other"]'));
+  updateSubmitLabel();
+});
+document.getElementById('amountPills').addEventListener('click', updateSubmitLabel);
+
+donateForm.addEventListener('submit', async (e) => {
+  const method = paymentSelect.value;
+  if (method !== 'stripe_card' && method !== 'stripe_sepa') return; // bank/betterplace/cash: native submit to thank-you.html
+  e.preventDefault();
+  if (!donateForm.reportValidity()) return;
+  const donor = collectDonor();
+  if (!donor.amount || donor.amount < 1) {
+    setStatus('error', t('err_amount'));
+    return;
+  }
+  submitBtn.disabled = true;
+  setStatus('pending', t('status_redirecting'));
+  statusEl.focus(); // submitBtn is about to be disabled and loses focus — hand it to the live status text instead
+  try {
+    const res = await fetch(PAYMENT_CONFIG.BACKEND_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        action: 'createStripeSession',
+        method: method === 'stripe_sepa' ? 'sepa_debit' : 'card',
+        amount: donor.amount,
+        currency: PAYMENT_CONFIG.CURRENCY,
+        successUrl: new URL('thank-you.html', location.href).href,
+        cancelUrl: new URL('donate.html', location.href).href,
+        donor,
+      }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'unknown');
+    window.location.href = data.url;
+  } catch (err) {
+    submitBtn.disabled = false;
+    setStatus('error', t('err_generic'));
+  }
+});
+
+/* Picks up ?amount=&first_name=&last_name=&street=&zip=&city=
+   &want_receipt= from the homepage donate-card widget (a plain GET
+   form → no JS needed on that side) and prefills this form so the
+   donor doesn't have to retype anything. GDPR consent is deliberately
+   NOT carried over/auto-checked — that's a fresh affirmative action
+   required on the page that actually submits the donation. */
+function prefillFromQuery() {
+  const params = new URLSearchParams(location.search);
+
+  const amountParam = parseFloat(params.get('amount'));
+  if (amountParam > 0) {
+    amountInput.value = amountParam;
+    const matchingPill = Array.from(document.querySelectorAll('.amount-pill'))
+      .find(b => b.dataset.val === String(amountParam));
+    setActivePill(matchingPill || document.querySelector('.amount-pill[data-val="other"]'));
+  }
+
+  const fieldMap = { first_name: 'vorname', last_name: 'nachname', street: 'strasse', zip: 'plz', city: 'ort' };
+  Object.keys(fieldMap).forEach(qp => {
+    const val = params.get(qp);
+    const field = donateForm[fieldMap[qp]];
+    if (val && field) field.value = val;
+  });
+
+  if (params.get('want_receipt') === 'on') {
+    const receipt = document.getElementById('bescheinigung');
+    if (receipt) receipt.checked = true;
+  }
+}
+
+prefillFromQuery();
+updateSubmitLabel();
+togglePaymentUI();
 </script>
 
 <button class="scroll-top" id="scrollTop" aria-label="Наверх">

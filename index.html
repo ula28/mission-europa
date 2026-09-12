@@ -380,21 +380,6 @@
       </div>
 
       <form class="donate-card" action="donate.html" method="get">
-        <fieldset class="donate-card__toggle">
-          <legend class="visually-hidden" data-i18n="don_freq_legend">Периодичность пожертвования</legend>
-          <label class="donate-card__toggle-opt">
-            <input type="radio" name="frequency" value="once" checked>
-            <span data-i18n="don_freq_once">Разово</span>
-          </label>
-          <label class="donate-card__toggle-opt">
-            <input type="radio" name="frequency" value="monthly">
-            <span class="donate-card__toggle-label">
-              <span data-i18n="don_freq_monthly">Ежемесячно</span>
-              <span class="donate-card__heart" aria-hidden="true">♥</span>
-            </span>
-          </label>
-        </fieldset>
-
         <label for="don-amount" class="donate-card__amount-label" data-i18n="don_amount_label">Сумма пожертвования</label>
         <div class="donate-card__amount-value">
           <input type="number" id="don-amount" name="amount" min="1" step="1" value="50" inputmode="numeric" autocomplete="off">
@@ -565,7 +550,6 @@ const i18n = {
     don_title:'Ваша поддержка меняет жизни в Европе',
     don_sub:'Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми.',
     don_receipt:'По запросу предоставляем Spendenbescheinigung — справку о пожертвовании.',
-    don_freq_legend:'Периодичность пожертвования', don_freq_once:'Разово', don_freq_monthly:'Ежемесячно',
     don_amount_label:'Сумма пожертвования', don_submit:'Пожертвовать',
     don_receipt_cb:'Хочу получить Spendenbescheinigung (справку о пожертвовании)',
     don_receipt_hint:'При выборе появятся обязательные поля адреса — они нужны для оформления справки.',
@@ -638,7 +622,6 @@ const i18n = {
     don_title:'Ihre Unterstützung verändert Leben in Europa',
     don_sub:'Eingetragener gemeinnütziger Verein — Spenden sind steuerlich absetzbar.',
     don_receipt:'Auf Anfrage stellen wir eine Spendenbescheinigung aus.',
-    don_freq_legend:'Häufigkeit der Spende', don_freq_once:'Einmalig', don_freq_monthly:'Monatlich',
     don_amount_label:'Spendenbetrag', don_submit:'Jetzt spenden',
     don_receipt_cb:'Ich möchte eine Spendenbescheinigung erhalten',
     don_receipt_hint:'Beim Auswählen erscheinen Pflichtfelder für Ihre Adresse — sie werden für die Spendenbescheinigung benötigt.',
@@ -711,7 +694,6 @@ const i18n = {
     don_title:'Your support changes lives in Europe',
     don_sub:'Registered gemeinnützig Verein — donations are officially tax-deductible.',
     don_receipt:'A Spendenbescheinigung (donation receipt) is available on request.',
-    don_freq_legend:'Donation frequency', don_freq_once:'One-time', don_freq_monthly:'Monthly',
     don_amount_label:'Donation amount', don_submit:'Donate now',
     don_receipt_cb:'I would like to receive a Spendenbescheinigung (donation receipt)',
     don_receipt_hint:'Checking this will reveal required address fields — needed to issue the receipt.',
@@ -764,6 +746,21 @@ document.querySelectorAll('.donate-card__preset').forEach(btn => {
     document.getElementById('don-amount-announce').textContent = input.value + ' €';
   });
 });
+// The address fields for the Spendenbescheinigung are only shown (via CSS
+// :has()) when "want_receipt" is checked, but they keep `required` in the
+// markup for no-JS/no-:has() fallback. A required field hidden with
+// display:none can't receive focus, so Chrome silently blocks the whole
+// form submit instead of showing an error — toggle `required` in sync with
+// visibility so the button actually submits when receipt fields are hidden.
+(function () {
+  const receiptCb = document.getElementById('don-receipt-cb');
+  const receiptInputs = document.querySelectorAll('#don-receipt-fields input');
+  function syncReceiptRequired() {
+    receiptInputs.forEach(el => { el.required = receiptCb.checked; });
+  }
+  receiptCb.addEventListener('change', syncReceiptRequired);
+  syncReceiptRequired();
+})();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
