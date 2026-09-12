@@ -101,9 +101,30 @@ Testmodus — es fließt kein echtes Geld.
 - In der Google Tabelle sollte ein Tab mit dem aktuellen Jahr (z. B.
   `2026`) automatisch entstanden sein, mit den Spalten `Datum`,
   `Name, Vorname`, `Straße, Nr.`, `PLZ, Ort`, `E-Mail`, `Betrag (€)`,
-  `Zahlungsart`, `Spendenbescheinigung`, `Transaktions-ID` (die letzte
-  Spalte dient nur der internen Zuordnung/Vermeidung doppelter
-  Zeilen bei einem Seiten-Reload und kann ausgeblendet werden).
+  `Zahlungsart`, `Spendenbescheinigung`, `Transaktions-ID`, `Projekt`,
+  `Telefon`, `Nachricht`, `DSGVO-Einwilligung` (die Spalte
+  `Transaktions-ID` dient nur der internen Zuordnung/Vermeidung
+  doppelter Zeilen bei einem Seiten-Reload und kann ausgeblendet
+  werden).
+- Falls ihr einen Jahres-Tab schon manuell angelegt habt (z. B. für
+  Tests), bevor das Script ihn automatisch erstellen konnte: das
+  Script schreibt Kopfzeilen nur beim automatischen Erstellen eines
+  neuen Tabs. In einem bereits vorhandenen Tab bitte die Spalten
+  `Projekt`, `Telefon`, `Nachricht` und `DSGVO-Einwilligung` einmalig
+  selbst als letzte Spaltenüberschriften ergänzen — sonst landen die
+  Werte zwar korrekt in der jeweils letzten Spalte, aber ohne
+  passende Überschrift.
+
+## 6. DSGVO-Einwilligung (Nachweis)
+
+Jede Zeile trägt in der Spalte `DSGVO-Einwilligung` einen Nachweis wie
+`Ja (12.09.2026 17:04 Europe/Berlin)` — Zeitpunkt, zu dem die
+Einwilligungs-Checkbox beim Absenden des Formulars nachweislich
+angehakt war (nicht der spätere Zeitpunkt der Zahlungsbestätigung).
+Da das Formular ohne angehakte Checkbox gar nicht abgeschickt werden
+kann, gibt es hier nie ein "Nein" — jede Zeile in der Tabelle ist
+automatisch ein Beleg für eine erteilte Einwilligung zum
+Zeitpunkt der Spende.
 - Apps Script → **Ausführungen** (linkes Menü) zeigt jeden Aufruf und
   eventuelle Fehler — der erste Blick bei Problemen.
 

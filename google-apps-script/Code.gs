@@ -32,7 +32,8 @@ function getConfig_() {
 
 const SHEET_HEADERS = [
   'Datum', 'Name, Vorname', 'Straße, Nr.', 'PLZ, Ort', 'E-Mail',
-  'Betrag (€)', 'Zahlungsart', 'Spendenbescheinigung', 'Transaktions-ID',
+  'Betrag (€)', 'Zahlungsart', 'Spendenbescheinigung', 'Transaktions-ID', 'Projekt', 'Telefon', 'Nachricht',
+  'DSGVO-Einwilligung',
 ];
 
 // ── HTTP entry points ──────────────────────────────────────────────
@@ -100,6 +101,7 @@ function createStripeSession_(body) {
     'customer_email': donor.email || '',
     'metadata[firstName]': donor.firstName || '',
     'metadata[lastName]': donor.lastName || '',
+    'metadata[phone]': donor.phone || '',
     'metadata[street]': donor.street || '',
     'metadata[zip]': donor.zip || '',
     'metadata[city]': donor.city || '',
@@ -107,6 +109,10 @@ function createStripeSession_(body) {
     'metadata[project]': donor.project || '',
     'metadata[language]': donor.language || 'de',
     'metadata[receipt]': donor.receipt || 'Nein',
+    'metadata[gdprConsentAt]': donor.gdprConsentAt || '',
+    // Stripe metadata values are capped at 500 characters — truncate
+    // rather than let a long message break session creation entirely.
+    'metadata[message]': String(donor.message || '').slice(0, 500),
   };
 
   const resp = UrlFetchApp.fetch('https://api.stripe.com/v1/checkout/sessions', {
@@ -142,6 +148,7 @@ function confirmStripeSession_(body) {
   const donor = {
     firstName: md.firstName || '',
     lastName: md.lastName || '',
+    phone: md.phone || '',
     street: md.street || '',
     zip: md.zip || '',
     city: md.city || '',
@@ -149,6 +156,9 @@ function confirmStripeSession_(body) {
     amount: (session.amount_total || 0) / 100,
     receipt: md.receipt || 'Nein',
     language: md.language || 'de',
+    project: md.project || '',
+    message: md.message || '',
+    gdprConsentAt: md.gdprConsentAt || '',
   };
 
   appendDonationRow_(donor, 'Stripe (' + (session.payment_method_types || ['card']).join('/') + ')', sessionId);
@@ -231,7 +241,7 @@ function isAlreadyProcessed_(txnId) {
   const sheet = getYearSheet_();
   const lastRow = sheet.getLastRow();
   if (lastRow < 2) return false;
-  const txnCol = SHEET_HEADERS.length; // 'Transaktions-ID' is the last column
+  const txnCol = SHEET_HEADERS.indexOf('Transaktions-ID') + 1;
   const ids = sheet.getRange(2, txnCol, lastRow - 1, 1).getValues();
   return ids.some(row => row[0] === txnId);
 }
@@ -243,6 +253,18 @@ function isAlreadyProcessed_(txnId) {
 function sanitizeCell_(value) {
   const str = String(value == null ? '' : value);
   return /^[=+\-@]/.test(str) ? "'" + str : str;
+}
+
+// Renders the GDPR consent audit trail as one text cell, e.g.
+// "Ja (12.09.2026 17:04 Europe/Berlin)". Combining "Ja" with the
+// timestamp (rather than a bare date) also keeps Sheets from trying to
+// auto-parse the cell as a date/number.
+function formatConsent_(isoTimestamp) {
+  if (!isoTimestamp) return '';
+  const date = new Date(isoTimestamp);
+  if (isNaN(date.getTime())) return '';
+  const formatted = Utilities.formatDate(date, 'Europe/Berlin', 'dd.MM.yyyy HH:mm');
+  return 'Ja (' + formatted + ' Europe/Berlin)';
 }
 
 function appendDonationRow_(donor, zahlungsart, txnId) {
@@ -259,6 +281,10 @@ function appendDonationRow_(donor, zahlungsart, txnId) {
     zahlungsart,
     donor.receipt === 'Ja' ? 'Ja' : 'Nein',
     txnId,
+    sanitizeCell_(donor.project || ''),
+    sanitizeCell_(donor.phone || ''),
+    sanitizeCell_(donor.message || ''),
+    formatConsent_(donor.gdprConsentAt),
   ]);
 }
 

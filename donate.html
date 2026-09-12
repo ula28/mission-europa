@@ -690,13 +690,19 @@ function collectDonor() {
     firstName: donateForm.vorname.value.trim(),
     lastName: donateForm.nachname.value.trim(),
     email: donateForm.email.value.trim(),
+    phone: donateForm.phone.value.trim(),
     street: donateForm.strasse.value.trim(),
     zip: donateForm.plz.value.trim(),
     city: donateForm.ort.value.trim(),
     amount: parseFloat(amountInput.value) || 0,
     project: donateForm.projekt.value,
+    message: donateForm.nachricht.value.trim(),
     receipt: donateForm.bescheinigung.checked ? 'Ja' : 'Nein',
     language: corrLangBtn ? corrLangBtn.getAttribute('data-corr-lang') : 'de',
+    // Captured here (not later, at payment confirmation) because this is
+    // the actual moment consent was confirmed present — reportValidity()
+    // just before this call already enforced the required GDPR checkbox.
+    gdprConsentAt: new Date().toISOString(),
   };
 }
 
