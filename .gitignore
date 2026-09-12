@@ -2,3 +2,19 @@
 .vscode/
 .DS_Store
 node_modules/
+
+# Auto-fetched Claude Code skill caches (regenerated from skills-lock.json,
+# not meant to be committed) — NOT the whole .claude/, since .claude/agents/
+# and .claude/skills/design-tokens/ are this project's own checked-in
+# subagents/skill and should stay tracked.
+.agents/
+.claude/skills/modern-web-guidance
+
+# Raw camera originals kept locally for re-transcoding — only the compressed
+# .mp4 derivatives actually ship on the site. Listed explicitly (not by
+# extension) since this filesystem mount is case-insensitive.
+video/parasolka.MOV
+video/parasolka1.MOV
+video/parasolka3.MOV
+video/reverse.MOV
+video/reverse+ awana.MP4
