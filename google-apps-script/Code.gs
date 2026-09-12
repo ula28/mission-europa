@@ -159,6 +159,7 @@ function confirmStripeSession_(body) {
     project: md.project || '',
     message: md.message || '',
     gdprConsentAt: md.gdprConsentAt || '',
+    method: (session.payment_method_types || ['card'])[0],
   };
 
   appendDonationRow_(donor, 'Stripe (' + (session.payment_method_types || ['card']).join('/') + ')', sessionId);
@@ -214,6 +215,7 @@ function logPayPalDonation_(body) {
   donor.firstName = payerName.given_name || donor.firstName || '';
   donor.lastName = payerName.surname || donor.lastName || '';
   donor.amount = amount;
+  donor.method = 'paypal';
 
   appendDonationRow_(donor, 'PayPal', orderId);
   sendThankYouEmail_(donor);
@@ -290,39 +292,50 @@ function appendDonationRow_(donor, zahlungsart, txnId) {
 
 // ── Email ───────────────────────────────────────────────────────────
 
+const METHOD_LABELS = {
+  de: { card: 'Kreditkarte', sepa_debit: 'SEPA-Lastschrift', paypal: 'PayPal' },
+  en: { card: 'card', sepa_debit: 'SEPA Direct Debit', paypal: 'PayPal' },
+  ru: { card: 'карта', sepa_debit: 'SEPA-дебет', paypal: 'PayPal' },
+  uk: { card: 'картка', sepa_debit: 'SEPA-дебет', paypal: 'PayPal' },
+};
+
 const EMAIL_TEXTS = {
   de: {
     subject: 'Vielen Dank für Ihre Spende!',
-    body: (name, amount, org) =>
+    body: (name, amount, org, datetime, method) =>
       'Liebe(r) ' + (name || 'Spender(in)') + ',\n\n' +
-      'vielen herzlichen Dank für Ihre Spende in Höhe von ' + amount + ' an ' + org + '.\n\n' +
+      'vielen herzlichen Dank für Ihre Spende in Höhe von ' + amount + ' am ' + datetime +
+      ' (Zahlungsart: ' + method + ') an ' + org + '\n\n' +
       'Ihre Unterstützung hilft uns, unsere Projekte für Geflüchtete und ihre Kinder in Deutschland fortzuführen.\n\n' +
       'Eine Spendenbescheinigung erhalten Sie bei Bedarf per Post oder E-Mail.\n\n' +
       'Mit herzlichen Grüßen\nIhr Team von ' + org,
   },
   en: {
     subject: 'Thank you for your donation!',
-    body: (name, amount, org) =>
+    body: (name, amount, org, datetime, method) =>
       'Dear ' + (name || 'Supporter') + ',\n\n' +
-      'Thank you very much for your donation of ' + amount + ' to ' + org + '.\n\n' +
+      'Thank you very much for your donation of ' + amount + ' on ' + datetime +
+      ' (payment method: ' + method + ') to ' + org + '\n\n' +
       'Your support helps us continue our projects for refugees and their children in Germany.\n\n' +
       'If requested, you will receive a donation receipt (Spendenbescheinigung) by post or email.\n\n' +
       'Warm regards,\nThe ' + org + ' team',
   },
   ru: {
     subject: 'Спасибо за ваше пожертвование!',
-    body: (name, amount, org) =>
+    body: (name, amount, org, datetime, method) =>
       'Уважаем(ый/ая) ' + (name || 'жертвователь') + ',\n\n' +
-      'Большое спасибо за ваше пожертвование в размере ' + amount + ' в пользу ' + org + '.\n\n' +
+      'Большое спасибо за ваше пожертвование в размере ' + amount + ' от ' + datetime +
+      ' (способ оплаты: ' + method + ') в пользу ' + org + '\n\n' +
       'Ваша поддержка помогает нам продолжать проекты для беженцев и их детей в Германии.\n\n' +
       'При необходимости справка о пожертвовании (Spendenbescheinigung) будет отправлена по почте или email.\n\n' +
       'С уважением,\nКоманда ' + org,
   },
   uk: {
     subject: 'Дякуємо за ваш благодійний внесок!',
-    body: (name, amount, org) =>
+    body: (name, amount, org, datetime, method) =>
       'Шановний(а) ' + (name || 'жертводавцю') + ',\n\n' +
-      'Щиро дякуємо за ваш внесок у розмірі ' + amount + ' на користь ' + org + '.\n\n' +
+      'Щиро дякуємо за ваш внесок у розмірі ' + amount + ' від ' + datetime +
+      ' (спосіб оплати: ' + method + ') на користь ' + org + '\n\n' +
       'Ваша підтримка допомагає нам продовжувати проєкти для біженців та їхніх дітей у Німеччині.\n\n' +
       'За потреби довідку про пожертву (Spendenbescheinigung) буде надіслано поштою або електронною поштою.\n\n' +
       'З повагою,\nКоманда ' + org,
@@ -335,10 +348,12 @@ function sendThankYouEmail_(donor) {
   const lang = EMAIL_TEXTS[donor.language] ? donor.language : 'de';
   const texts = EMAIL_TEXTS[lang];
   const amountStr = (Number(donor.amount) || 0).toFixed(2).replace('.', ',') + ' €';
+  const datetime = Utilities.formatDate(new Date(), 'Europe/Berlin', 'dd.MM.yyyy, HH:mm') + ' Uhr (Europe/Berlin)';
+  const methodLabel = (METHOD_LABELS[lang] && METHOD_LABELS[lang][donor.method]) || donor.method || '–';
   MailApp.sendEmail({
     to: donor.email,
     subject: texts.subject,
-    body: texts.body(donor.firstName, amountStr, cfg.orgName),
+    body: texts.body(donor.firstName, amountStr, cfg.orgName, datetime, methodLabel),
     name: cfg.orgName,
   });
 }
