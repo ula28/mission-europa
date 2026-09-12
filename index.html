@@ -412,6 +412,16 @@
                 <input type="text" id="don-last-name" name="last_name" autocomplete="family-name" required>
               </div>
             </div>
+            <div class="donate-card__field-row">
+              <div class="donate-card__field">
+                <label for="don-email" data-i18n="don_email">E-Mail</label>
+                <input type="email" id="don-email" name="email" autocomplete="email" required>
+              </div>
+              <div class="donate-card__field">
+                <label for="don-phone" data-i18n="don_phone">Телефон (необязательно)</label>
+                <input type="tel" id="don-phone" name="phone" autocomplete="tel">
+              </div>
+            </div>
             <div class="donate-card__field">
               <label for="don-street" data-i18n="don_street">Улица и номер дома</label>
               <input type="text" id="don-street" name="street" autocomplete="street-address" required>
@@ -555,7 +565,7 @@ const i18n = {
     don_receipt_hint:'При выборе появятся обязательные поля адреса — они нужны для оформления справки.',
     don_receipt_fields_legend:'Адрес для налоговой справки',
     don_first_name:'Имя', don_last_name:'Фамилия', don_street:'Улица и номер дома',
-    don_zip:'Индекс (PLZ)', don_city:'Город',
+    don_zip:'Индекс (PLZ)', don_city:'Город', don_phone:'Телефон (необязательно)', don_email:'E-Mail',
     don_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html">политикой конфиденциальности</a>.',
     don_methods_label:'Доступные способы оплаты',
     don_fx_note:'Расчёты производятся в EUR. При оплате картой в другой валюте конвертация происходит автоматически банком-эмитентом.',
@@ -627,7 +637,7 @@ const i18n = {
     don_receipt_hint:'Beim Auswählen erscheinen Pflichtfelder für Ihre Adresse — sie werden für die Spendenbescheinigung benötigt.',
     don_receipt_fields_legend:'Adresse für die Spendenbescheinigung',
     don_first_name:'Vorname', don_last_name:'Nachname', don_street:'Straße und Hausnummer',
-    don_zip:'PLZ', don_city:'Stadt',
+    don_zip:'PLZ', don_city:'Stadt', don_phone:'Telefon (optional)', don_email:'E-Mail',
     don_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> zu.',
     don_methods_label:'Verfügbare Zahlungsarten',
     don_fx_note:'Die Abrechnung erfolgt in EUR. Bei Zahlung per Karte in einer anderen Währung erfolgt die Umrechnung automatisch durch die kartenausgebende Bank.',
@@ -699,7 +709,7 @@ const i18n = {
     don_receipt_hint:'Checking this will reveal required address fields — needed to issue the receipt.',
     don_receipt_fields_legend:'Address for the tax receipt',
     don_first_name:'First name', don_last_name:'Last name', don_street:'Street and house number',
-    don_zip:'Postal code', don_city:'City',
+    don_zip:'Postal code', don_city:'City', don_phone:'Phone (optional)', don_email:'Email',
     don_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html">Privacy Policy</a>.',
     don_methods_label:'Available payment methods',
     don_fx_note:'All amounts are charged in EUR. If paying by card in another currency, conversion is handled automatically by your card-issuing bank.',
@@ -754,7 +764,9 @@ document.querySelectorAll('.donate-card__preset').forEach(btn => {
 // visibility so the button actually submits when receipt fields are hidden.
 (function () {
   const receiptCb = document.getElementById('don-receipt-cb');
-  const receiptInputs = document.querySelectorAll('#don-receipt-fields input');
+  // Phone stays optional even when the receipt fields are shown/required —
+  // it isn't needed for anything in this flow, unlike name/email/address.
+  const receiptInputs = document.querySelectorAll('#don-receipt-fields input:not([type="tel"])');
   function syncReceiptRequired() {
     receiptInputs.forEach(el => { el.required = receiptCb.checked; });
   }

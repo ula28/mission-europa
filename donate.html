@@ -284,12 +284,12 @@
         <div class="f-group">
           <label for="f-projekt" data-i18n="f_project">Projekt auswählen</label>
           <select id="f-projekt" name="projekt">
-            <option data-i18n="f_proj_all">Alle Projekte</option>
+            <option value="Alle Projekte" data-i18n="f_proj_all">Alle Projekte</option>
             <option>Parasol</option>
             <option>Awana</option>
             <option>Revers</option>
             <option>Alpha Course</option>
-            <option data-i18n="f_proj_lit">Literaturversand</option>
+            <option value="Literaturversand" data-i18n="f_proj_lit">Literaturversand</option>
           </select>
         </div>
 
@@ -836,12 +836,18 @@ function prefillFromQuery() {
     setActivePill(matchingPill || document.querySelector('.amount-pill[data-val="other"]'));
   }
 
-  const fieldMap = { first_name: 'vorname', last_name: 'nachname', street: 'strasse', zip: 'plz', city: 'ort' };
+  const fieldMap = { first_name: 'vorname', last_name: 'nachname', email: 'email', phone: 'phone', street: 'strasse', zip: 'plz', city: 'ort' };
   Object.keys(fieldMap).forEach(qp => {
     const val = params.get(qp);
     const field = donateForm[fieldMap[qp]];
     if (val && field) field.value = val;
   });
+
+  const projectParam = params.get('project');
+  if (projectParam) {
+    const hasMatch = Array.from(donateForm.projekt.options).some(o => o.value === projectParam);
+    if (hasMatch) donateForm.projekt.value = projectParam;
+  }
 
   if (params.get('want_receipt') === 'on') {
     const receipt = document.getElementById('bescheinigung');
