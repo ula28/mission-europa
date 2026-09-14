@@ -7,26 +7,14 @@
 <link rel="stylesheet" href="style.css">
 <style>
 
-/* ── PAGE HERO ── */
-.page-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--gray-200); }
-.page-hero__label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; }
-.page-hero h1 { margin-bottom: 14px; max-width: 640px; }
-.page-hero p  { font-size: 1rem; max-width: 520px; line-height: 1.75; }
-
-/* ── STATS (from index.html) ── */
-.stats { border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); background: var(--off-white); }
-.stats__row { display: grid; grid-template-columns: repeat(4,1fr); }
-.stat { padding: 36px 24px; border-right: 1px solid var(--gray-200); text-align: center; }
-.stat:last-child { border-right: none; }
-.stat[onclick]:hover { background: var(--gray-100); transition: background 0.2s; }
-.stat__n { font-family: var(--font-display); font-size: 2.8rem; font-weight: 700; line-height: 1; margin-bottom: 6px; }
-.stat__l { font-size: 0.78rem; color: var(--gray-500); }
+/* Lands the fragment-jump target below the sticky nav instead of under it. */
+#donateForm { scroll-margin-top: var(--nav-h); }
 
 /* ── MAIN GRID ── */
-.donate-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; padding: 72px 0; align-items: start; }
+.donate-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; padding: 56px 0 72px; align-items: start; }
 
 /* ── LEFT: FORM ── */
-.block-title { font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 32px; line-height: 1.15; }
+.block-title { font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 32px; line-height: 1.15; }
 .f-group { margin-bottom: 20px; }
 .f-group label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
 .f-group input, .f-group select, .f-group textarea {
@@ -106,10 +94,6 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .donate-grid { grid-template-columns: 1fr; gap: 48px; padding: 48px 0; }
-  .stats__row { grid-template-columns: repeat(2,1fr); }
-  .stat:nth-child(2) { border-right: none; }
-  .stat:nth-child(3) { border-top: 1px solid var(--gray-200); }
-  .stat:nth-child(4) { border-top: 1px solid var(--gray-200); border-right: none; }
   .faq-grid { grid-template-columns: 1fr; }
   .faq-item { border-right: none !important; }
   .faq-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--gray-200); }
@@ -117,7 +101,6 @@
   .f-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .stats__row { grid-template-columns: repeat(2,1fr); }
   .contact-strip__inner { flex-direction: column; align-items: flex-start; }
 }
 </style>
@@ -160,44 +143,13 @@
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="page-hero">
-  <div class="wrap">
-    <p class="page-hero__label au" data-i18n="page_label">Unterstützen Sie unsere Arbeit</p>
-    <h1 class="au2" data-i18n="page_title">Jede Spende<br><em>bewegt Europa.</em></h1>
-    <p class="au3" data-i18n="hero_desc">Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.</p>
-  </div>
-</div>
-
-<!-- STATS (from index.html) -->
-<div class="stats">
-  <div class="stats__row">
-    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
-      <div class="stat__n">5</div>
-      <div class="stat__l" data-i18n="stat2">aktive Projekte</div>
-    </div>
-    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
-      <div class="stat__n">250+</div>
-      <div class="stat__l" data-i18n="stat1">Veranstaltungen</div>
-    </div>
-    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#projects'">
-      <div class="stat__n">DE</div>
-      <div class="stat__l" data-i18n="stat3">Bildungsprogramme</div>
-    </div>
-    <div class="stat" style="cursor:pointer;" onclick="window.location.href='index.html#proj-lit'">
-      <div class="stat__n">EU</div>
-      <div class="stat__l" data-i18n="stat4">In ganz Europa</div>
-    </div>
-  </div>
-</div>
-
 <!-- MAIN GRID -->
 <div class="wrap">
   <div class="donate-grid">
 
     <!-- LEFT: FORM -->
     <div>
-      <div class="block-title" data-i18n="form_title">Spendenformular</div>
+      <h1 class="block-title" data-i18n="form_title">Spendenformular</h1>
 
       <form action="thank-you.html" id="donateForm">
         <div class="f-row">
@@ -410,10 +362,6 @@ const i18n = {
   de: {
     nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
     nav_reports:'Berichte', nav_contact:'Kontakt', nav_imprint:'Impressum', nav_privacy:'Datenschutz',
-    page_label:'Unterstützen Sie unsere Arbeit',
-    page_title:'Jede Spende<br><em>kann ein Leben verändern.</em>',
-    hero_desc:'Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.',
-    stat1:'Veranstaltungen', stat2:'aktive Projekte', stat3:'Bildungsprogramme', stat4:'In ganz Europa',
     form_title:'Spendenformular',
     f_vorname:'Vorname', f_nachname:'Nachname', f_email:'E-Mail', f_phone:'Telefon',
     f_strasse:'Straße, Hausnummer', f_plz:'PLZ', f_ort:'Ort',
@@ -453,10 +401,6 @@ const i18n = {
   en: {
     nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
     nav_reports:'Reports', nav_contact:'Contact', nav_imprint:'Imprint', nav_privacy:'Privacy',
-    page_label:'Support our work',
-    page_title:'Every donation<br><em>can change a life.</em>',
-    hero_desc:'Education, integration and humanitarian aid for refugees and their children in Germany.',
-    stat1:'events', stat2:'active projects', stat3:'Educational programmes', stat4:'Across Europe',
     form_title:'Donation Form',
     f_vorname:'First name', f_nachname:'Last name', f_email:'Email', f_phone:'Phone',
     f_strasse:'Street, house number', f_plz:'Postal code', f_ort:'City',
@@ -496,10 +440,6 @@ const i18n = {
   ru: {
     nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
     nav_reports:'Отчётность', nav_contact:'Контакты', nav_imprint:'Импрессум', nav_privacy:'Конфиденциальность',
-    page_label:'Поддержите нашу работу',
-    page_title:'Каждое пожертвование<br><em>может изменить жизнь.</em>',
-    hero_desc:'Обучение, интеграция и гуманитарная помощь беженцам и их детям в Германии.',
-    stat1:'мероприятий', stat2:'активных проектов', stat3:'Социальные программы', stat4:'По всей Европе',
     form_title:'Форма пожертвования',
     f_vorname:'Имя', f_nachname:'Фамилия', f_email:'E-Mail', f_phone:'Телефон',
     f_strasse:'Улица, дом', f_plz:'Индекс', f_ort:'Город',
