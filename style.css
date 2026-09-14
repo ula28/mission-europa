@@ -923,13 +923,16 @@
   .team-people__photo { border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
   .team-people__photo img { width: 100%; height: 280px; object-fit: cover; display: block; }
   .team-people__grid {
-    display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px;
+    display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px;
     margin-bottom: 40px; text-align: center;
   }
   .team-people__avatar {
     width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
     margin: 0 auto 16px; display: block;
   }
+  .team-people__member:nth-child(2) .team-people__avatar { object-position: center 0%; }
+  .team-people__member:nth-child(6) .team-people__avatar { object-position: center 5%; }
+  .team-people__member:nth-child(7) .team-people__avatar { object-position: center 0%; }
   .team-people__name { font-size: 0.95rem; font-weight: 700; color: var(--black); margin-bottom: 4px; }
   .team-people__role { font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.4; }
 
