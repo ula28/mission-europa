@@ -13,26 +13,6 @@
 .page-hero h1 { margin-bottom: 14px; max-width: 640px; }
 .page-hero p  { font-size: 1rem; max-width: 520px; line-height: 1.75; }
 
-/* ── DONATE BUTTONS ── */
-.donate-buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-.btn-betterplace {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #00a068; color: #fff;
-  font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600;
-  letter-spacing: 0.04em; padding: 14px 28px; border-radius: var(--r);
-  border: none; cursor: pointer; transition: background 0.2s; text-decoration: none;
-}
-.btn-betterplace:hover { background: #008055; }
-.btn-paypal {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: #003087; color: #fff;
-  font-family: var(--font-ui); font-size: 0.875rem; font-weight: 600;
-  letter-spacing: 0.04em; padding: 14px 28px; border-radius: var(--r);
-  border: none; cursor: pointer; transition: background 0.2s; text-decoration: none;
-}
-.btn-paypal:hover { background: #001f5c; }
-.btn-paypal .pp { color: #009cde; }
-
 /* ── STATS (from index.html) ── */
 .stats { border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); background: var(--off-white); }
 .stats__row { display: grid; grid-template-columns: repeat(4,1fr); }
@@ -135,7 +115,6 @@
   .faq-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--gray-200); }
   .faq-item:last-child { border-bottom: none; }
   .f-row { grid-template-columns: 1fr; }
-  .donate-buttons { flex-direction: column; }
 }
 @media (max-width: 600px) {
   .stats__row { grid-template-columns: repeat(2,1fr); }
@@ -187,16 +166,6 @@
     <p class="page-hero__label au" data-i18n="page_label">Unterstützen Sie unsere Arbeit</p>
     <h1 class="au2" data-i18n="page_title">Jede Spende<br><em>bewegt Europa.</em></h1>
     <p class="au3" data-i18n="hero_desc">Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.</p>
-    <div class="donate-buttons au4">
-      <a href="https://www.betterplace.org/de/organisations/YOUR_ORG_ID" target="_blank" rel="noopener" class="btn-betterplace">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/><path d="M8 12l3 3 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span data-i18n="btn_betterplace">Jetzt spenden via Betterplace</span>
-      </a>
-      <a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener" class="btn-paypal">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M7 11c.5-3 3-4.5 6.5-4.5 3 0 4.5 1.5 4 4-.5 2.5-3 4-6 4H9.5L9 17H6l1-6z" fill="white" opacity="0.9"/><path d="M9.5 14.5c.5-3 3-4.5 6-4.5 2.5 0 4 1 3.5 3.5-.5 2-2.5 3.5-5.5 3.5H11l-.5 3H8l1.5-5.5z" fill="white" opacity="0.5"/></svg>
-        <span>Pay<span class="pp">Pal</span> <span data-i18n="btn_paypal">Giving Fund</span></span>
-      </a>
-    </div>
   </div>
 </div>
 
@@ -297,11 +266,8 @@
           <label for="paymentMethod" data-i18n="f_method">Zahlungsart</label>
           <select id="paymentMethod" name="zahlungsart">
             <option value="stripe_card" data-i18n="f_card">Kreditkarte (Stripe, Testmodus)</option>
-            <option value="stripe_sepa" data-i18n="f_sepa">SEPA-Lastschrift (Stripe, Testmodus)</option>
             <option value="paypal" data-i18n="f_paypal_opt">PayPal (Sandbox)</option>
             <option value="bank" data-i18n="f_bank">Banküberweisung</option>
-            <option value="betterplace">Betterplace</option>
-            <option value="cash" data-i18n="f_cash">Cash / Giro</option>
           </select>
         </div>
 
@@ -397,16 +363,6 @@
       </div>
 
       <div class="info-card">
-        <div class="info-card__head">Betterplace</div>
-        <p><a href="https://www.betterplace.org/de/organisations/YOUR_ORG_ID" target="_blank" rel="noopener">betterplace.org → Mission Europa</a></p>
-      </div>
-
-      <div class="info-card">
-        <div class="info-card__head">PayPal Giving Fund</div>
-        <p><a href="https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID" target="_blank" rel="noopener">PayPal Giving Fund → Mission Europa</a></p>
-      </div>
-
-      <div class="info-card">
         <div class="info-card__head" data-i18n="addr_title">Adresse der Organisation</div>
         <p>Mission Europa Resource e. V.<br>Musterstraße 1, 10115 Berlin<br>Tel: +49 000 000-xxxx<br><a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a></p>
       </div>
@@ -458,15 +414,14 @@ const i18n = {
     page_title:'Jede Spende<br><em>kann ein Leben verändern.</em>',
     hero_desc:'Bildung, Integration und humanitäre Hilfe für Geflüchtete und ihre Kinder in Deutschland.',
     stat1:'Veranstaltungen', stat2:'aktive Projekte', stat3:'Bildungsprogramme', stat4:'In ganz Europa',
-    btn_betterplace:'Jetzt spenden via Betterplace', btn_paypal:'Giving Fund',
     form_title:'Spendenformular',
     f_vorname:'Vorname', f_nachname:'Nachname', f_email:'E-Mail', f_phone:'Telefon',
     f_strasse:'Straße, Hausnummer', f_plz:'PLZ', f_ort:'Ort',
     f_amount:'Spendenbetrag (€)', f_other:'Andere',
     f_project:'Projekt auswählen', f_proj_all:'Alle Projekte', f_proj_books:'Bücherpost',
     f_method:'Zahlungsart', f_bank:'Banküberweisung',
-    f_card:'Kreditkarte (Stripe, Testmodus)', f_sepa:'SEPA-Lastschrift (Stripe, Testmodus)',
-    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Cash / Giro',
+    f_card:'Kreditkarte (Stripe, Testmodus)',
+    f_paypal_opt:'PayPal (Sandbox)',
     f_lang:'Korrespondenzsprache',
     f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
     f_receipt:'Ich möchte eine Spendenbescheinigung erhalten.',
@@ -502,15 +457,14 @@ const i18n = {
     page_title:'Every donation<br><em>can change a life.</em>',
     hero_desc:'Education, integration and humanitarian aid for refugees and their children in Germany.',
     stat1:'events', stat2:'active projects', stat3:'Educational programmes', stat4:'Across Europe',
-    btn_betterplace:'Donate via Betterplace', btn_paypal:'Giving Fund',
     form_title:'Donation Form',
     f_vorname:'First name', f_nachname:'Last name', f_email:'Email', f_phone:'Phone',
     f_strasse:'Street, house number', f_plz:'Postal code', f_ort:'City',
     f_amount:'Donation amount (€)', f_other:'Other',
     f_project:'Choose project', f_proj_all:'All projects', f_proj_books:'Book Delivery',
     f_method:'Payment method', f_bank:'Bank transfer',
-    f_card:'Card (Stripe, test mode)', f_sepa:'SEPA Direct Debit (Stripe, test mode)',
-    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Cash / Giro',
+    f_card:'Card (Stripe, test mode)',
+    f_paypal_opt:'PayPal (Sandbox)',
     f_lang:'Correspondence language',
     f_msg:'Message', f_msg_ph:'Your message...',
     f_receipt:'I would like to receive a donation receipt (Spendenbescheinigung).',
@@ -546,15 +500,14 @@ const i18n = {
     page_title:'Каждое пожертвование<br><em>может изменить жизнь.</em>',
     hero_desc:'Обучение, интеграция и гуманитарная помощь беженцам и их детям в Германии.',
     stat1:'мероприятий', stat2:'активных проектов', stat3:'Социальные программы', stat4:'По всей Европе',
-    btn_betterplace:'Пожертвовать через Betterplace', btn_paypal:'Giving Fund',
     form_title:'Форма пожертвования',
     f_vorname:'Имя', f_nachname:'Фамилия', f_email:'E-Mail', f_phone:'Телефон',
     f_strasse:'Улица, дом', f_plz:'Индекс', f_ort:'Город',
     f_amount:'Сумма пожертвования (€)', f_other:'Другая',
     f_project:'Выбор проекта', f_proj_all:'Все проекты', f_proj_books:'Рассылка книг',
     f_method:'Способ оплаты', f_bank:'Банковский перевод',
-    f_card:'Карта (Stripe, тестовый режим)', f_sepa:'SEPA-дебет (Stripe, тестовый режим)',
-    f_paypal_opt:'PayPal (Sandbox)', f_cash:'Наличные / Giro',
+    f_card:'Карта (Stripe, тестовый режим)',
+    f_paypal_opt:'PayPal (Sandbox)',
     f_lang:'Язык переписки',
     f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
     f_receipt:'Хочу получить справку о пожертвовании (Spendenbescheinigung).',
@@ -786,7 +739,7 @@ document.getElementById('amountPills').addEventListener('click', updateSubmitLab
 
 donateForm.addEventListener('submit', async (e) => {
   const method = paymentSelect.value;
-  if (method !== 'stripe_card' && method !== 'stripe_sepa') return; // bank/betterplace/cash: native submit to thank-you.html
+  if (method !== 'stripe_card') return; // bank: native submit to thank-you.html
   e.preventDefault();
   if (!donateForm.reportValidity()) return;
   const donor = collectDonor();
@@ -803,7 +756,7 @@ donateForm.addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({
         action: 'createStripeSession',
-        method: method === 'stripe_sepa' ? 'sepa_debit' : 'card',
+        method: 'card',
         amount: donor.amount,
         currency: PAYMENT_CONFIG.CURRENCY,
         successUrl: new URL('thank-you.html', location.href).href,
