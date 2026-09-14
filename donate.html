@@ -754,10 +754,11 @@ function renderPaypalButtons() {
         if (!result.ok) throw new Error(result.error || 'unknown');
         window.location.href = 'thank-you.html?provider=paypal';
       } catch (err) {
+        console.error('PayPal onApprove failed:', err);
         setStatus('error', t('err_generic'));
       }
     },
-    onError() { setStatus('error', t('err_generic')); },
+    onError(err) { console.error('PayPal Buttons onError:', err); setStatus('error', t('err_generic')); },
   }).render('#paypal-button-container');
 }
 
@@ -814,6 +815,7 @@ donateForm.addEventListener('submit', async (e) => {
     if (!data.ok) throw new Error(data.error || 'unknown');
     window.location.href = data.url;
   } catch (err) {
+    console.error('createStripeSession failed:', err);
     submitBtn.disabled = false;
     setStatus('error', t('err_generic'));
   }

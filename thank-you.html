@@ -151,7 +151,8 @@ const PAYMENT_CONFIG = {
   })
     .then(res => res.json())
     .then(data => { if (!data.ok) throw new Error(data.error || 'unknown'); })
-    .catch(() => {
+    .catch((err) => {
+      console.error('confirmStripeSession failed:', err);
       const notice = document.getElementById('paymentNotice');
       if (!notice) return;
       const texts = {

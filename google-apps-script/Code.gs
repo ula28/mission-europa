@@ -181,6 +181,35 @@ function getPayPalAccessToken_(cfg) {
   return data.access_token;
 }
 
+// The client only gets the buyer's approval (order status APPROVED) —
+// the charge itself has to be captured server-side to reach COMPLETED.
+// If it was already captured (e.g. a retried/duplicate request), PayPal
+// answers 422 ORDER_ALREADY_CAPTURED; fall back to fetching the order
+// instead of treating that as an error.
+function capturePayPalOrder_(cfg, token, orderId) {
+  const resp = UrlFetchApp.fetch(cfg.paypalApiBase + '/v2/checkout/orders/' + encodeURIComponent(orderId) + '/capture', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { Authorization: 'Bearer ' + token },
+    payload: '{}',
+    muteHttpExceptions: true,
+  });
+  let order = JSON.parse(resp.getContentText());
+  const alreadyCaptured = resp.getResponseCode() === 422 &&
+    ((order.details || [])[0] || {}).issue === 'ORDER_ALREADY_CAPTURED';
+  if (alreadyCaptured) {
+    const getResp = UrlFetchApp.fetch(cfg.paypalApiBase + '/v2/checkout/orders/' + encodeURIComponent(orderId), {
+      headers: { Authorization: 'Bearer ' + token },
+      muteHttpExceptions: true,
+    });
+    order = JSON.parse(getResp.getContentText());
+  }
+  if (order.status !== 'COMPLETED') {
+    return { error: order.message || ('PayPal-Zahlung nicht abgeschlossen (Status: ' + order.status + ').') };
+  }
+  return order;
+}
+
 function logPayPalDonation_(body) {
   const cfg = getConfig_();
   const orderId = body.orderId;
@@ -191,12 +220,8 @@ function logPayPalDonation_(body) {
   if (isAlreadyProcessed_(orderId)) return { ok: true, alreadyProcessed: true };
 
   const token = getPayPalAccessToken_(cfg);
-  const resp = UrlFetchApp.fetch(cfg.paypalApiBase + '/v2/checkout/orders/' + encodeURIComponent(orderId), {
-    headers: { Authorization: 'Bearer ' + token },
-    muteHttpExceptions: true,
-  });
-  const order = JSON.parse(resp.getContentText());
-  if (order.status !== 'COMPLETED') return { ok: false, error: 'PayPal-Zahlung nicht abgeschlossen (Status: ' + order.status + ').' };
+  const order = capturePayPalOrder_(cfg, token, orderId);
+  if (order.error) return { ok: false, error: order.error };
 
   const purchaseUnit = (order.purchase_units || [])[0] || {};
   const capture = ((purchaseUnit.payments || {}).captures || [])[0] || {};
