@@ -112,7 +112,7 @@ Testmodus — es fließt kein echtes Geld.
 - In der Google Tabelle sollte ein Tab mit dem aktuellen Jahr (z. B.
   `2026`) automatisch entstanden sein, mit den Spalten `Datum`,
   `Name, Vorname`, `Straße, Nr.`, `PLZ, Ort`, `E-Mail`, `Betrag (€)`,
-  `Zahlungsart`, `Spendenbescheinigung`, `Transaktions-ID`, `Projekt`,
+  `Zahlungsart`, `Zuwendungsbestätigung`, `Transaktions-ID`, `Projekt`,
   `Telefon`, `Nachricht`, `DSGVO-Einwilligung` (die Spalte
   `Transaktions-ID` dient nur der internen Zuordnung/Vermeidung
   doppelter Zeilen bei einem Seiten-Reload und kann ausgeblendet

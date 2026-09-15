@@ -379,7 +379,7 @@
             <path d="M7 3h10a1 1 0 0 1 1 1v16l-2.5-1.5L13 20l-1.5-1.5L10 20l-2.5-1.5L5 20V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
             <path d="M8.5 8h7M8.5 11.5h7M8.5 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
           </svg>
-          <span data-i18n="don_receipt">По запросу предоставляем Spendenbescheinigung — справку о пожертвовании.</span>
+          <span data-i18n="don_receipt">По запросу предоставляем Zuwendungsbestätigung — справку о пожертвовании.</span>
         </div>
       </div>
 
@@ -401,7 +401,7 @@
         <div class="donate-card__receipt">
           <div class="donate-card__checkline">
             <input type="checkbox" id="don-receipt-cb" class="donate-card__receipt-check" name="want_receipt" aria-controls="don-receipt-fields" aria-describedby="don-receipt-hint">
-            <label for="don-receipt-cb" data-i18n="don_receipt_cb">Хочу получить Spendenbescheinigung (справку о пожертвовании)</label>
+            <label for="don-receipt-cb" data-i18n="don_receipt_cb">Хочу получить Zuwendungsbestätigung (справку о пожертвовании)</label>
           </div>
           <span id="don-receipt-hint" class="visually-hidden" data-i18n="don_receipt_hint">При выборе появятся обязательные поля адреса — они нужны для оформления справки.</span>
           <fieldset class="donate-card__receipt-fields" id="don-receipt-fields">
@@ -565,9 +565,9 @@ const i18n = {
     don_eyebrow:'Пожертвования',
     don_title:'Ваша поддержка меняет жизни в Европе',
     don_sub:'Зарегистрированный gemeinnützig Verein — пожертвования официально признаются налогово вычитаемыми.',
-    don_receipt:'По запросу предоставляем Spendenbescheinigung — справку о пожертвовании.',
+    don_receipt:'По запросу предоставляем Zuwendungsbestätigung — справку о пожертвовании.',
     don_amount_label:'Сумма пожертвования', don_submit:'Пожертвовать',
-    don_receipt_cb:'Хочу получить Spendenbescheinigung (справку о пожертвовании)',
+    don_receipt_cb:'Хочу получить Zuwendungsbestätigung (справку о пожертвовании)',
     don_receipt_hint:'При выборе появятся обязательные поля адреса — они нужны для оформления справки.',
     don_receipt_fields_legend:'Адрес для налоговой справки',
     don_first_name:'Имя', don_last_name:'Фамилия', don_street:'Улица и номер дома',
@@ -641,11 +641,11 @@ const i18n = {
     don_eyebrow:'Spenden',
     don_title:'Ihre Unterstützung verändert Leben in Europa',
     don_sub:'Eingetragener gemeinnütziger Verein — Spenden sind steuerlich absetzbar.',
-    don_receipt:'Auf Anfrage stellen wir eine Spendenbescheinigung aus.',
+    don_receipt:'Auf Anfrage stellen wir eine Zuwendungsbestätigung aus.',
     don_amount_label:'Spendenbetrag', don_submit:'Jetzt spenden',
-    don_receipt_cb:'Ich möchte eine Spendenbescheinigung erhalten',
-    don_receipt_hint:'Beim Auswählen erscheinen Pflichtfelder für Ihre Adresse — sie werden für die Spendenbescheinigung benötigt.',
-    don_receipt_fields_legend:'Adresse für die Spendenbescheinigung',
+    don_receipt_cb:'Ich möchte eine Zuwendungsbestätigung erhalten',
+    don_receipt_hint:'Beim Auswählen erscheinen Pflichtfelder für Ihre Adresse — sie werden für die Zuwendungsbestätigung benötigt.',
+    don_receipt_fields_legend:'Adresse für die Zuwendungsbestätigung',
     don_first_name:'Vorname', don_last_name:'Nachname', don_street:'Straße und Hausnummer',
     don_zip:'PLZ', don_city:'Stadt', don_phone:'Telefon (optional)', don_email:'E-Mail',
     don_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> zu.',
@@ -717,9 +717,9 @@ const i18n = {
     don_eyebrow:'Donations',
     don_title:'Your support changes lives in Europe',
     don_sub:'Registered gemeinnützig Verein — donations are officially tax-deductible.',
-    don_receipt:'A Spendenbescheinigung (donation receipt) is available on request.',
+    don_receipt:'A Zuwendungsbestätigung (donation receipt) is available on request.',
     don_amount_label:'Donation amount', don_submit:'Donate now',
-    don_receipt_cb:'I would like to receive a Spendenbescheinigung (donation receipt)',
+    don_receipt_cb:'I would like to receive a Zuwendungsbestätigung (donation receipt)',
     don_receipt_hint:'Checking this will reveal required address fields — needed to issue the receipt.',
     don_receipt_fields_legend:'Address for the tax receipt',
     don_first_name:'First name', don_last_name:'Last name', don_street:'Street and house number',
@@ -793,9 +793,9 @@ const i18n = {
     don_eyebrow:'Пожертви',
     don_title:'Ваша підтримка змінює життя в Європі',
     don_sub:'Зареєстрований gemeinnützig Verein — пожертви офіційно визнаються податково вирахуваними.',
-    don_receipt:'За запитом надаємо Spendenbescheinigung — довідку про пожертву.',
+    don_receipt:'За запитом надаємо Zuwendungsbestätigung — довідку про пожертву.',
     don_amount_label:'Сума пожертви', don_submit:'Пожертвувати',
-    don_receipt_cb:'Хочу отримати Spendenbescheinigung (довідку про пожертву)',
+    don_receipt_cb:'Хочу отримати Zuwendungsbestätigung (довідку про пожертву)',
     don_receipt_hint:'При виборі з\'являться обов\'язкові поля адреси — вони потрібні для оформлення довідки.',
     don_receipt_fields_legend:'Адреса для податкової довідки',
     don_first_name:'Ім\'я', don_last_name:'Прізвище', don_street:'Вулиця і номер будинку',
@@ -850,7 +850,7 @@ document.querySelectorAll('.donate-card__preset').forEach(btn => {
     document.getElementById('don-amount-announce').textContent = input.value + ' €';
   });
 });
-// The address fields for the Spendenbescheinigung are only shown (via CSS
+// The address fields for the Zuwendungsbestätigung are only shown (via CSS
 // :has()) when "want_receipt" is checked, but they keep `required` in the
 // markup for no-JS/no-:has() fallback. A required field hidden with
 // display:none can't receive focus, so Chrome silently blocks the whole

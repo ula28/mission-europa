@@ -247,7 +247,7 @@
         <div class="f-check">
           <input type="checkbox" id="bescheinigung" name="bescheinigung">
           <div>
-            <label for="bescheinigung" data-i18n="f_receipt">Ich möchte eine Spendenbescheinigung erhalten.</label>
+            <label for="bescheinigung" data-i18n="f_receipt">Ich möchte eine Zuwendungsbestätigung erhalten.</label>
             <p class="f-check__hint" data-i18n="f_receipt_hint">Für Spenden bis 300 € genügt in der Regel diese Bestätigungs-E-Mail zusammen mit Ihrem Zahlungsbeleg für das Finanzamt. Für Spenden ab 300 € stellen wir Ihnen automatisch eine offizielle Zuwendungsbestätigung aus.</p>
           </div>
         </div>
@@ -310,11 +310,11 @@
         <div class="tax-notice__icon">📄</div>
         <div class="tax-notice__text">
           <strong data-i18n="don_title_short">Steuerlich absetzbar.</strong>
-          <span data-i18n="don_text"> Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Spendenbescheinigung verfügbar.</span>
+          <span data-i18n="don_text"> Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Zuwendungsbestätigung verfügbar.</span>
           <div class="donation-chips" style="margin-top:12px;">
             <span class="chip">Zuwendungsbescheinigung</span>
             <span class="chip" data-i18n="don_chip2">Steuerabzug</span>
-            <span class="chip">Spendenbescheinigung</span>
+            <span class="chip">Zuwendungsbestätigung</span>
           </div>
         </div>
       </div>
@@ -376,7 +376,7 @@ const i18n = {
     f_paypal_opt:'PayPal',
     f_lang:'Korrespondenzsprache',
     f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
-    f_receipt:'Ich möchte eine Spendenbescheinigung erhalten.',
+    f_receipt:'Ich möchte eine Zuwendungsbestätigung erhalten.',
     f_receipt_hint:'Für Spenden bis 300 € genügt in der Regel diese Bestätigungs-E-Mail zusammen mit Ihrem Zahlungsbeleg für das Finanzamt. Für Spenden ab 300 € stellen wir Ihnen automatisch eine offizielle Zuwendungsbestätigung aus.',
     f_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html" style="text-decoration:underline">Datenschutzerklärung</a> zu.',
     f_submit:'Jetzt {amount} € spenden →',
@@ -389,7 +389,7 @@ const i18n = {
     bank_title:'Banküberweisung',
     b_owner:'Kontoinhaber', b_bank:'Bank', b_ref:'Verwendungszweck', b_ref_val:'Spende + Ihr Name',
     don_title_short:'Steuerlich absetzbar.',
-    don_text:' Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Spendenbescheinigung verfügbar.',
+    don_text:' Wir sind als gemeinnützig anerkannt. Ihre Spenden können steuerlich abgesetzt werden. Für Unternehmen ist eine Zuwendungsbestätigung verfügbar.',
     don_chip2:'Steuerabzug',
     addr_title:'Adresse der Organisation',
     faq_title:'Häufige Fragen',
@@ -416,7 +416,7 @@ const i18n = {
     f_paypal_opt:'PayPal',
     f_lang:'Correspondence language',
     f_msg:'Message', f_msg_ph:'Your message...',
-    f_receipt:'I would like to receive a donation receipt (Spendenbescheinigung).',
+    f_receipt:'I would like to receive a donation receipt (Zuwendungsbestätigung).',
     f_receipt_hint:'For donations up to €300, the confirmation email together with your payment receipt is usually enough for the tax office. For donations of €300 or more, we will automatically issue an official donation certificate (Zuwendungsbestätigung).',
     f_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html" style="text-decoration:underline">Privacy Policy</a>.',
     f_submit:'Donate {amount} € now →',
@@ -429,7 +429,7 @@ const i18n = {
     bank_title:'Bank transfer',
     b_owner:'Account holder', b_bank:'Bank', b_ref:'Reference', b_ref_val:'Donation + Your name',
     don_title_short:'Tax-deductible.',
-    don_text:' We hold Gemeinnützigkeit status. Your donations may be tax-deductible. A Spendenbescheinigung is available for businesses.',
+    don_text:' We hold Gemeinnützigkeit status. Your donations may be tax-deductible. A Zuwendungsbestätigung is available for businesses.',
     don_chip2:'Tax deduction',
     addr_title:'Organisation address',
     faq_title:'Frequently Asked Questions',
@@ -456,7 +456,7 @@ const i18n = {
     f_paypal_opt:'PayPal',
     f_lang:'Язык переписки',
     f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
-    f_receipt:'Хочу получить справку о пожертвовании (Spendenbescheinigung).',
+    f_receipt:'Хочу получить справку о пожертвовании (Zuwendungsbestätigung).',
     f_receipt_hint:'Для пожертвований до 300 € налоговой обычно достаточно письма-подтверждения вместе с банковской выпиской. Для сумм от 300 € мы автоматически оформим официальную справку (Zuwendungsbestätigung).',
     f_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html" style="text-decoration:underline">политикой конфиденциальности</a>.',
     f_submit:'Пожертвовать {amount} € →',
@@ -469,7 +469,7 @@ const i18n = {
     bank_title:'Банковский перевод',
     b_owner:'Получатель', b_bank:'Банк', b_ref:'Назначение платежа', b_ref_val:'Пожертвование + Ваше имя',
     don_title_short:'Налоговый вычет.',
-    don_text:' Мы имеем статус Gemeinnützigkeit. Ваши пожертвования учитываются в налоговой декларации. Для бизнеса доступен Spendenbescheinigung.',
+    don_text:' Мы имеем статус Gemeinnützigkeit. Ваши пожертвования учитываются в налоговой декларации. Для бизнеса доступен Zuwendungsbestätigung.',
     don_chip2:'Налоговый вычет',
     addr_title:'Адрес организации',
     faq_title:'Частые вопросы',
@@ -496,7 +496,7 @@ const i18n = {
     f_paypal_opt:'PayPal',
     f_lang:'Мова листування',
     f_msg:'Повідомлення', f_msg_ph:'Ваше повідомлення...',
-    f_receipt:'Хочу отримати довідку про пожертву (Spendenbescheinigung).',
+    f_receipt:'Хочу отримати довідку про пожертву (Zuwendungsbestätigung).',
     f_receipt_hint:'Для пожертв до 300 € податковій зазвичай достатньо листа-підтвердження разом із банківською випискою. Для сум від 300 € ми автоматично оформимо офіційну справку (Zuwendungsbestätigung).',
     f_gdpr:'Я погоджуюсь на обробку моїх даних відповідно до <a href="datenschutz.html" style="text-decoration:underline">політики конфіденційності</a>.',
     f_submit:'Пожертвувати {amount} € →',
@@ -509,7 +509,7 @@ const i18n = {
     bank_title:'Банківський переказ',
     b_owner:'Отримувач', b_bank:'Банк', b_ref:'Призначення платежу', b_ref_val:'Пожертва + Ваше ім\'я',
     don_title_short:'Податкове вирахування.',
-    don_text:' Ми маємо статус Gemeinnützigkeit. Ваші пожертви враховуються в податковій декларації. Для бізнесу доступний Spendenbescheinigung.',
+    don_text:' Ми маємо статус Gemeinnützigkeit. Ваші пожертви враховуються в податковій декларації. Для бізнесу доступний Zuwendungsbestätigung.',
     don_chip2:'Податкове вирахування',
     addr_title:'Адреса організації',
     faq_title:'Часті запитання',

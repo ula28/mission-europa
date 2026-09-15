@@ -41,7 +41,7 @@ function getConfig_() {
 
 const SHEET_HEADERS = [
   'Datum', 'Name, Vorname', 'Straße, Nr.', 'PLZ, Ort', 'E-Mail',
-  'Betrag (€)', 'Zahlungsart', 'Spendenbescheinigung', 'Transaktions-ID', 'Projekt', 'Telefon', 'Nachricht',
+  'Betrag (€)', 'Zahlungsart', 'Zuwendungsbestätigung', 'Transaktions-ID', 'Projekt', 'Telefon', 'Nachricht',
   'DSGVO-Einwilligung',
 ];
 
@@ -347,7 +347,7 @@ const CERT_TEXTS = {
       org + ' ist als gemeinnützig anerkannt (Freistellungsbescheid des Finanzamts ' + finanzamt +
       ' vom ' + datum + ', Steuernummer ' + steuernummer + '). Ihre Zuwendung erfolgte freiwillig und ohne ' +
       'Gegenleistung. Für Spenden bis 300 € genügt dem Finanzamt dieser Nachweis zusammen mit Ihrem ' +
-      'Zahlungsbeleg (§ 50 Abs. 4 EStDV) — eine gesonderte Spendenbescheinigung ist in der Regel nicht nötig.',
+      'Zahlungsbeleg (§ 50 Abs. 4 EStDV) — eine gesonderte Zuwendungsbestätigung ist in der Regel nicht nötig.',
     over300: () =>
       'Da Ihre Spende 300 € übersteigt, benötigen Sie für den steuerlichen Abzug eine offizielle ' +
       'Zuwendungsbestätigung. Wir stellen sie Ihnen in den kommenden Tagen kostenlos per E-Mail bzw. Post aus.',
