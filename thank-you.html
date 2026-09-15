@@ -48,6 +48,8 @@
           <span data-lang="de">DE</span>
           <span class="nav__lang-sep">|</span>
           <span data-lang="en">EN</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="uk">UK</span>
         </div>
       </details>
     </div>
@@ -64,7 +66,7 @@
       <ol>
         <li data-i18n="step1">Мы свяжемся с вами в течение 48 часов</li>
         <li data-i18n="step2">Вы получите подтверждение пожертвования</li>
-        <li data-i18n="step3">При необходимости — Spendenbescheinigung будет отправлена по почте</li>
+        <li id="step3" data-i18n="step3_under300">Для пожертвования до 300 € справка обычно не нужна — этого письма и банковской выписки достаточно для налоговой.</li>
       </ol>
     </div>
     <div class="ty-btns">
@@ -85,7 +87,8 @@ const i18n = {
     steps_label:'Что будет дальше',
     step1:'Мы свяжемся с вами в течение 48 часов',
     step2:'Вы получите подтверждение пожертвования',
-    step3:'При необходимости — Spendenbescheinigung будет отправлена по почте',
+    step3_under300:'Для пожертвования до 300 € справка обычно не нужна — этого письма и банковской выписки достаточно для налоговой.',
+    step3_over300:'Поскольку сумма превышает 300 €, мы автоматически подготовим официальную Zuwendungsbestätigung и вышлем её в течение нескольких дней.',
     btn_home:'← Вернуться на главную',
     btn_projects:'Посмотреть проекты',
   },
@@ -94,7 +97,8 @@ const i18n = {
     steps_label:'Was als Nächstes passiert',
     step1:'Wir melden uns innerhalb von 48 Stunden',
     step2:'Sie erhalten eine Bestätigung Ihrer Spende',
-    step3:'Bei Bedarf wird die Spendenbescheinigung per Post zugesandt',
+    step3_under300:'Für Spenden bis 300 € ist in der Regel keine gesonderte Bescheinigung nötig — diese E-Mail und Ihr Zahlungsbeleg genügen dem Finanzamt.',
+    step3_over300:'Da Ihre Spende 300 € übersteigt, bereiten wir automatisch eine offizielle Zuwendungsbestätigung vor und senden sie Ihnen in den nächsten Tagen zu.',
     btn_home:'← Zur Startseite',
     btn_projects:'Projekte ansehen',
   },
@@ -103,9 +107,20 @@ const i18n = {
     steps_label:'What happens next',
     step1:'We will contact you within 48 hours',
     step2:'You will receive a donation confirmation',
-    step3:'If needed, a Spendenbescheinigung will be sent by post',
+    step3_under300:'For donations up to €300, no separate certificate is usually needed — this email together with your payment receipt is sufficient for the tax office.',
+    step3_over300:'As your donation exceeds €300, we will automatically prepare an official donation certificate and send it to you within the next few days.',
     btn_home:'← Back to home',
     btn_projects:'View projects',
+  },
+  uk: {
+    title:'Дякуємо за<br><em>підтримку!</em>',
+    steps_label:'Що буде далі',
+    step1:'Ми зв\'яжемося з вами протягом 48 годин',
+    step2:'Ви отримаєте підтвердження пожертви',
+    step3_under300:'Для пожертв до 300 € окрема довідка зазвичай не потрібна — цього листа й банківської виписки достатньо для податкової.',
+    step3_over300:'Оскільки сума вашого пожертвування перевищує 300 €, ми автоматично підготуємо офіційну довідку та надішлемо її вам протягом кількох днів.',
+    btn_home:'← На головну',
+    btn_projects:'Переглянути проекти',
   }
 };
 
@@ -129,6 +144,19 @@ function applyLang(lang) {
 
 document.querySelectorAll('[data-lang]').forEach(btn =>
   btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+
+// Amount reaches this page as ?amount=... (Stripe/PayPal redirects, appended
+// in donate.html) or ?betrag=... (bank transfer: the form's plain GET submit
+// carries its "betrag" field name as-is). Below 300 € no Zuwendungsbestätigung
+// is required (§ 50 Abs. 4 EStDV — this email + payment receipt is enough);
+// at/above 300 € one is mandatory, hence the two different step3 texts.
+(function setStep3ByAmount() {
+  const params = new URLSearchParams(location.search);
+  const amount = parseFloat(params.get('amount') || params.get('betrag'));
+  const step3 = document.getElementById('step3');
+  if (!step3) return;
+  step3.setAttribute('data-i18n', amount >= 300 ? 'step3_over300' : 'step3_under300');
+})();
 
 applyLang(currentLang);
 </script>
@@ -159,6 +187,7 @@ const PAYMENT_CONFIG = {
         de: 'Ihre Zahlung wurde empfangen. Falls Sie in Kürze keine Bestätigungs-E-Mail erhalten, kontaktieren Sie uns bitte unter mer@mer-verein.de.',
         en: 'Your payment was received. If you do not get a confirmation email shortly, please contact us at mer@mer-verein.de.',
         ru: 'Ваш платёж получен. Если вы не получите письмо-подтверждение в ближайшее время, свяжитесь с нами: mer@mer-verein.de.',
+        uk: 'Ваш платіж отримано. Якщо найближчим часом ви не отримаєте лист-підтвердження, зв\'яжіться з нами: mer@mer-verein.de.',
       };
       notice.textContent = texts[localStorage.getItem('mer_lang')] || texts.ru;
       notice.hidden = false;
@@ -177,9 +206,6 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 <script>
 const _langDetails = document.getElementById('langSwitcher');
 if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
-_langDetails?.addEventListener('click', e => {
-  if (e.target.closest('[data-lang]')) _langDetails.removeAttribute('open');
-});
 </script>
 </body>
 </html>

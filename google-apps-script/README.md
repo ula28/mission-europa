@@ -26,6 +26,17 @@ Google Tabelle: https://docs.google.com/spreadsheets/d/15LR78T3u6JWAaTSDWi5c1D4U
    | `PAYPAL_CLIENT_ID_TEST` | dein PayPal **Sandbox**-Client-ID |
    | `PAYPAL_SECRET_TEST` | dein PayPal **Sandbox**-Secret |
    | `ORG_EMAIL` | `mer@mer-verein.de` (Absender-Referenz, optional) |
+   | `FINANZAMT` | zuständiges Finanzamt aus dem Freistellungsbescheid, z. B. `Gummersbach` (optional — ohne diese Property zeigt die Dankes-E-Mail für Spenden unter 300 € `[FINANZAMT]` als sichtbaren Platzhalter) |
+   | `FREISTELLUNG_DATUM` | Datum des Freistellungsbescheids, z. B. `12.03.2024` (optional, gleicher Platzhalter-Effekt wie oben) |
+   | `STEUERNUMMER` | Steuernummer aus dem Freistellungsbescheid (optional, gleicher Platzhalter-Effekt wie oben) |
+
+   Die letzten drei Properties werden nur im "unter 300 €"-Absatz der
+   Dankes-E-Mail verwendet — das ist der vereinfachte Zuwendungsnachweis
+   nach § 50 Abs. 4 EStDV, für den das Finanzamt neben dieser E-Mail nur
+   noch den Zahlungsbeleg des Spenders verlangt. Ab 300 € ist ohnehin
+   eine gesonderte, offizielle Zuwendungsbestätigung nötig (siehe
+   `sendThankYouEmail_` / `CERT_TEXTS` in `Code.gs`), daher spielen diese
+   drei Properties dort keine Rolle.
 
    Stripe-Test-Keys: https://dashboard.stripe.com/test/apikeys
    PayPal-Sandbox-Apps: https://developer.paypal.com/dashboard/applications/sandbox

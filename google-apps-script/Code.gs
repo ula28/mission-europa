@@ -27,6 +27,15 @@ function getConfig_() {
     paypalApiBase: live ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com',
     orgEmail: p.getProperty('ORG_EMAIL') || 'mer@mer-verein.de',
     orgName: 'Mission Europa Resource e. V.',
+    // Used only in the "donation under 300 €" thank-you email paragraph,
+    // which doubles as the simplified proof of donation (§ 50 Abs. 4
+    // EStDV) donors can hand to their Finanzamt together with their
+    // payment receipt. Fill these in via Script Properties once the
+    // Freistellungsbescheid is on hand — until then the email still
+    // sends, just with visible [BRACKET] placeholders.
+    finanzamt: p.getProperty('FINANZAMT') || '[FINANZAMT]',
+    freistellungDatum: p.getProperty('FREISTELLUNG_DATUM') || '[DATUM]',
+    steuernummer: p.getProperty('STEUERNUMMER') || '[STEUERNUMMER]',
   };
 }
 
@@ -324,45 +333,100 @@ const METHOD_LABELS = {
   uk: { card: 'картка', sepa_debit: 'SEPA-дебет', paypal: 'PayPal' },
 };
 
+// Two donation-certificate paragraphs per language, inserted before the
+// sign-off — which one applies depends on whether the donation reaches
+// the 300 € threshold in § 50 Abs. 4 EStDV:
+//  - under 300 €: no official Zuwendungsbestätigung is required: this
+//    email, naming our Freistellungsbescheid, together with the donor's
+//    own payment receipt is already sufficient simplified proof.
+//  - 300 € or more: a real Zuwendungsbestätigung is legally required for
+//    the tax deduction, so we tell the donor one is coming.
+const CERT_TEXTS = {
+  de: {
+    under300: (org, finanzamt, datum, steuernummer) =>
+      org + ' ist als gemeinnützig anerkannt (Freistellungsbescheid des Finanzamts ' + finanzamt +
+      ' vom ' + datum + ', Steuernummer ' + steuernummer + '). Ihre Zuwendung erfolgte freiwillig und ohne ' +
+      'Gegenleistung. Für Spenden bis 300 € genügt dem Finanzamt dieser Nachweis zusammen mit Ihrem ' +
+      'Zahlungsbeleg (§ 50 Abs. 4 EStDV) — eine gesonderte Spendenbescheinigung ist in der Regel nicht nötig.',
+    over300: () =>
+      'Da Ihre Spende 300 € übersteigt, benötigen Sie für den steuerlichen Abzug eine offizielle ' +
+      'Zuwendungsbestätigung. Wir stellen sie Ihnen in den kommenden Tagen kostenlos per E-Mail bzw. Post aus.',
+  },
+  en: {
+    under300: (org, finanzamt, datum, steuernummer) =>
+      org + ' is officially recognised as a charitable organisation (Freistellungsbescheid issued by Finanzamt ' +
+      finanzamt + ' on ' + datum + ', tax number ' + steuernummer + '). Your donation was made voluntarily and ' +
+      'without any consideration in return. For donations up to €300, this letter together with your payment ' +
+      'receipt is sufficient proof for German tax authorities (§ 50 para. 4 EStDV) — a separate certificate is ' +
+      'usually not required.',
+    over300: () =>
+      'As your donation exceeds €300, you will need an official donation certificate (Zuwendungsbestätigung) ' +
+      'for the tax deduction. We will issue and send it to you free of charge within the next few days, by ' +
+      'email or post.',
+  },
+  ru: {
+    under300: (org, finanzamt, datum, steuernummer) =>
+      org + ' официально признана общественно полезной организацией (Freistellungsbescheid, налоговая ' +
+      'инспекция ' + finanzamt + ', от ' + datum + ', Steuernummer ' + steuernummer + '). Ваше пожертвование ' +
+      'было добровольным и без встречного предоставления. Для пожертвований до 300 € налоговой достаточно ' +
+      'этого письма вместе с банковской выпиской (§ 50 Abs. 4 EStDV) — отдельная справка обычно не требуется.',
+    over300: () =>
+      'Поскольку сумма вашего пожертвования превышает 300 €, для налогового вычета вам потребуется ' +
+      'официальная Zuwendungsbestätigung. Мы оформим и вышлем её вам в течение нескольких дней по e-mail ' +
+      'или почте — бесплатно.',
+  },
+  uk: {
+    under300: (org, finanzamt, datum, steuernummer) =>
+      org + ' офіційно визнана суспільно корисною організацією (Freistellungsbescheid, податкова інспекція ' +
+      finanzamt + ', від ' + datum + ', Steuernummer ' + steuernummer + '). Ваше пожертвування було ' +
+      'добровільним і без зустрічного надання. Для пожертв до 300 € податковій достатньо цього листа разом ' +
+      'із банківською випискою (§ 50 Abs. 4 EStDV) — окрема довідка зазвичай не потрібна.',
+    over300: () =>
+      'Оскільки сума вашого пожертвування перевищує 300 €, для податкового вирахування вам знадобиться ' +
+      'офіційна довідка (Zuwendungsbestätigung). Ми оформимо та надішлемо її вам протягом кількох днів ' +
+      'електронною поштою або поштою — безкоштовно.',
+  },
+};
+
 const EMAIL_TEXTS = {
   de: {
     subject: 'Vielen Dank für Ihre Spende!',
-    body: (name, amount, org, datetime, method) =>
+    body: (name, amount, org, datetime, method, certParagraph) =>
       'Liebe(r) ' + (name || 'Spender(in)') + ',\n\n' +
       'vielen herzlichen Dank für Ihre Spende in Höhe von ' + amount + ' am ' + datetime +
       ' (Zahlungsart: ' + method + ') an ' + org + '\n\n' +
       'Ihre Unterstützung hilft uns, unsere Projekte für Geflüchtete und ihre Kinder in Deutschland fortzuführen.\n\n' +
-      'Eine Spendenbescheinigung erhalten Sie bei Bedarf per Post oder E-Mail.\n\n' +
+      certParagraph + '\n\n' +
       'Mit herzlichen Grüßen\nIhr Team von ' + org,
   },
   en: {
     subject: 'Thank you for your donation!',
-    body: (name, amount, org, datetime, method) =>
+    body: (name, amount, org, datetime, method, certParagraph) =>
       'Dear ' + (name || 'Supporter') + ',\n\n' +
       'Thank you very much for your donation of ' + amount + ' on ' + datetime +
       ' (payment method: ' + method + ') to ' + org + '\n\n' +
       'Your support helps us continue our projects for refugees and their children in Germany.\n\n' +
-      'If requested, you will receive a donation receipt (Spendenbescheinigung) by post or email.\n\n' +
+      certParagraph + '\n\n' +
       'Warm regards,\nThe ' + org + ' team',
   },
   ru: {
     subject: 'Спасибо за ваше пожертвование!',
-    body: (name, amount, org, datetime, method) =>
+    body: (name, amount, org, datetime, method, certParagraph) =>
       'Уважаем(ый/ая) ' + (name || 'жертвователь') + ',\n\n' +
       'Большое спасибо за ваше пожертвование в размере ' + amount + ' от ' + datetime +
       ' (способ оплаты: ' + method + ') в пользу ' + org + '\n\n' +
       'Ваша поддержка помогает нам продолжать проекты для беженцев и их детей в Германии.\n\n' +
-      'При необходимости справка о пожертвовании (Spendenbescheinigung) будет отправлена по почте или email.\n\n' +
+      certParagraph + '\n\n' +
       'С уважением,\nКоманда ' + org,
   },
   uk: {
     subject: 'Дякуємо за ваш благодійний внесок!',
-    body: (name, amount, org, datetime, method) =>
+    body: (name, amount, org, datetime, method, certParagraph) =>
       'Шановний(а) ' + (name || 'жертводавцю') + ',\n\n' +
       'Щиро дякуємо за ваш внесок у розмірі ' + amount + ' від ' + datetime +
       ' (спосіб оплати: ' + method + ') на користь ' + org + '\n\n' +
       'Ваша підтримка допомагає нам продовжувати проєкти для біженців та їхніх дітей у Німеччині.\n\n' +
-      'За потреби довідку про пожертву (Spendenbescheinigung) буде надіслано поштою або електронною поштою.\n\n' +
+      certParagraph + '\n\n' +
       'З повагою,\nКоманда ' + org,
   },
 };
@@ -372,13 +436,21 @@ function sendThankYouEmail_(donor) {
   const cfg = getConfig_();
   const lang = EMAIL_TEXTS[donor.language] ? donor.language : 'de';
   const texts = EMAIL_TEXTS[lang];
-  const amountStr = (Number(donor.amount) || 0).toFixed(2).replace('.', ',') + ' €';
+  const certTexts = CERT_TEXTS[lang];
+  const amountValue = Number(donor.amount) || 0;
+  const amountStr = amountValue.toFixed(2).replace('.', ',') + ' €';
   const datetime = Utilities.formatDate(new Date(), 'Europe/Berlin', 'dd.MM.yyyy, HH:mm') + ' Uhr (Europe/Berlin)';
   const methodLabel = (METHOD_LABELS[lang] && METHOD_LABELS[lang][donor.method]) || donor.method || '–';
+  // § 50 Abs. 4 EStDV: below 300 € the simplified proof (this email +
+  // payment receipt) is enough; at/above 300 € an official
+  // Zuwendungsbestätigung is legally required.
+  const certParagraph = amountValue >= 300
+    ? certTexts.over300()
+    : certTexts.under300(cfg.orgName, cfg.finanzamt, cfg.freistellungDatum, cfg.steuernummer);
   MailApp.sendEmail({
     to: donor.email,
     subject: texts.subject,
-    body: texts.body(donor.firstName, amountStr, cfg.orgName, datetime, methodLabel),
+    body: texts.body(donor.firstName, amountStr, cfg.orgName, datetime, methodLabel, certParagraph),
     name: cfg.orgName,
   });
 }

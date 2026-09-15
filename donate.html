@@ -34,6 +34,7 @@
 .f-check { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; }
 .f-check input { width: 16px; height: 16px; accent-color: var(--black); flex-shrink: 0; margin-top: 2px; }
 .f-check label { font-size: 0.85rem; color: var(--gray-700); line-height: 1.5; }
+.f-check__hint { font-size: 0.75rem; color: var(--gray-500); line-height: 1.5; margin: 4px 0 0; }
 .lang-row { display: flex; gap: 6px; margin-bottom: 20px; }
 .lang-pill { padding: 6px 16px; border: 1px solid var(--gray-200); border-radius: 100px; font-size: 0.75rem; cursor: pointer; background: none; font-family: var(--font-ui); transition: 0.2s; color: var(--gray-500); }
 .lang-pill.on { background: var(--black); color: var(--white); border-color: var(--black); }
@@ -135,6 +136,8 @@
           <span data-lang="en">EN</span>
           <span class="nav__lang-sep">|</span>
           <span data-lang="ru">RU</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="uk">UK</span>
         </div>
       </details>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
@@ -243,7 +246,10 @@
 
         <div class="f-check">
           <input type="checkbox" id="bescheinigung" name="bescheinigung">
-          <label for="bescheinigung" data-i18n="f_receipt">Ich möchte eine Spendenbescheinigung erhalten.</label>
+          <div>
+            <label for="bescheinigung" data-i18n="f_receipt">Ich möchte eine Spendenbescheinigung erhalten.</label>
+            <p class="f-check__hint" data-i18n="f_receipt_hint">Für Spenden bis 300 € genügt in der Regel diese Bestätigungs-E-Mail zusammen mit Ihrem Zahlungsbeleg für das Finanzamt. Für Spenden ab 300 € stellen wir Ihnen automatisch eine offizielle Zuwendungsbestätigung aus.</p>
+          </div>
         </div>
 
         <div class="f-check">
@@ -371,6 +377,7 @@ const i18n = {
     f_lang:'Korrespondenzsprache',
     f_msg:'Nachricht', f_msg_ph:'Ihre Nachricht...',
     f_receipt:'Ich möchte eine Spendenbescheinigung erhalten.',
+    f_receipt_hint:'Für Spenden bis 300 € genügt in der Regel diese Bestätigungs-E-Mail zusammen mit Ihrem Zahlungsbeleg für das Finanzamt. Für Spenden ab 300 € stellen wir Ihnen automatisch eine offizielle Zuwendungsbestätigung aus.',
     f_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html" style="text-decoration:underline">Datenschutzerklärung</a> zu.',
     f_submit:'Jetzt {amount} € spenden →',
     status_redirecting:'Weiterleitung zur sicheren Zahlung…',
@@ -410,6 +417,7 @@ const i18n = {
     f_lang:'Correspondence language',
     f_msg:'Message', f_msg_ph:'Your message...',
     f_receipt:'I would like to receive a donation receipt (Spendenbescheinigung).',
+    f_receipt_hint:'For donations up to €300, the confirmation email together with your payment receipt is usually enough for the tax office. For donations of €300 or more, we will automatically issue an official donation certificate (Zuwendungsbestätigung).',
     f_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html" style="text-decoration:underline">Privacy Policy</a>.',
     f_submit:'Donate {amount} € now →',
     status_redirecting:'Redirecting to secure payment…',
@@ -449,6 +457,7 @@ const i18n = {
     f_lang:'Язык переписки',
     f_msg:'Сообщение', f_msg_ph:'Ваше сообщение...',
     f_receipt:'Хочу получить справку о пожертвовании (Spendenbescheinigung).',
+    f_receipt_hint:'Для пожертвований до 300 € налоговой обычно достаточно письма-подтверждения вместе с банковской выпиской. Для сумм от 300 € мы автоматически оформим официальную справку (Zuwendungsbestätigung).',
     f_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html" style="text-decoration:underline">политикой конфиденциальности</a>.',
     f_submit:'Пожертвовать {amount} € →',
     status_redirecting:'Перенаправление на защищённую оплату…',
@@ -473,6 +482,46 @@ const i18n = {
     strip_label:'Вопросы о пожертвовании?',
     strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
     strip_btn:'Написать нам →',
+  },
+  uk: {
+    nav_about:'Про нас', nav_projects:'Проекти',
+    nav_reports:'Звітність', nav_contact:'Контакти', nav_imprint:'Імпресум', nav_privacy:'Конфіденційність',
+    form_title:'Форма пожертвування',
+    f_vorname:'Ім\'я', f_nachname:'Прізвище', f_email:'E-Mail', f_phone:'Телефон',
+    f_strasse:'Вулиця, будинок', f_plz:'Індекс', f_ort:'Місто',
+    f_amount:'Сума пожертви (€)', f_other:'Інша',
+    f_project:'Вибір проекту', f_proj_all:'Усі проекти', f_proj_books:'Розсилка книг',
+    f_method:'Спосіб оплати', f_bank:'Банківський переказ',
+    f_card:'Картка',
+    f_paypal_opt:'PayPal',
+    f_lang:'Мова листування',
+    f_msg:'Повідомлення', f_msg_ph:'Ваше повідомлення...',
+    f_receipt:'Хочу отримати довідку про пожертву (Spendenbescheinigung).',
+    f_receipt_hint:'Для пожертв до 300 € податковій зазвичай достатньо листа-підтвердження разом із банківською випискою. Для сум від 300 € ми автоматично оформимо офіційну справку (Zuwendungsbestätigung).',
+    f_gdpr:'Я погоджуюсь на обробку моїх даних відповідно до <a href="datenschutz.html" style="text-decoration:underline">політики конфіденційності</a>.',
+    f_submit:'Пожертвувати {amount} € →',
+    status_redirecting:'Перенаправлення на захищену оплату…',
+    status_loading:'Завантаження способів оплати…',
+    status_confirming:'Підтвердження платежу…',
+    err_amount:'Будь ласка, вкажіть коректну суму.',
+    err_generic:'Щось пішло не так. Спробуйте ще раз або скористайтеся банківськими реквізитами праворуч.',
+    info_title:'Реквізити<br><em>і контакти</em>',
+    bank_title:'Банківський переказ',
+    b_owner:'Отримувач', b_bank:'Банк', b_ref:'Призначення платежу', b_ref_val:'Пожертва + Ваше ім\'я',
+    don_title_short:'Податкове вирахування.',
+    don_text:' Ми маємо статус Gemeinnützigkeit. Ваші пожертви враховуються в податковій декларації. Для бізнесу доступний Spendenbescheinigung.',
+    don_chip2:'Податкове вирахування',
+    addr_title:'Адреса організації',
+    faq_title:'Часті запитання',
+    faq_1q:'На що йде моя пожертва?',
+    faq_2q:'Як отримати квитанцію про пожертву?',
+    faq_3q:'Чи можна пожертвувати на конкретний проект?',
+    faq_4q:'Чи вираховується пожертва з податків?',
+    faq_5q:'Які способи оплати доступні?',
+    faq_6q:'Як стати членом організації?',
+    strip_label:'Питання про пожертву?',
+    strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
+    strip_btn:'Написати нам →',
   }
 };
 
@@ -643,7 +692,7 @@ function renderPaypalButtons() {
         });
         const result = await res.json();
         if (!result.ok) throw new Error(result.error || 'unknown');
-        window.location.href = 'thank-you.html?provider=paypal';
+        window.location.href = 'thank-you.html?provider=paypal&amount=' + encodeURIComponent(pendingDonor.amount);
       } catch (err) {
         console.error('PayPal onApprove failed:', err);
         setStatus('error', t('err_generic'));
@@ -697,7 +746,7 @@ donateForm.addEventListener('submit', async (e) => {
         method: 'card',
         amount: donor.amount,
         currency: PAYMENT_CONFIG.CURRENCY,
-        successUrl: new URL('thank-you.html', location.href).href,
+        successUrl: new URL('thank-you.html?amount=' + encodeURIComponent(donor.amount), location.href).href,
         cancelUrl: new URL('donate.html', location.href).href,
         donor,
       }),
@@ -764,9 +813,6 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 <script>
 const _langDetails = document.getElementById('langSwitcher');
 if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
-_langDetails?.addEventListener('click', e => {
-  if (e.target.closest('[data-lang]')) _langDetails.removeAttribute('open');
-});
 </script>
 </body>
 </html>
