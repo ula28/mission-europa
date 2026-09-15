@@ -5,20 +5,107 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parasolka — Mission Europa Resource e. V.</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css">
 <style>
-  /* Nav outer — purple to match hero; card itself stays white */
-  .nav { background: var(--parasol-dark); }
-  /* Nav button — slightly lighter purple */
-  .nav__right .btn-dark { background: #7538EB; }
-  .nav__right .btn-dark:hover { background: #6B21A8; }
-  /* Scroll-to-top — brand purple */
-  .scroll-top { background: var(--parasol-accent); }
-  .scroll-top:hover { background: var(--parasol-dark); }
+/* ── BREADCRUMB ── */
+.crumb { padding: 20px 0 0; font-size: 0.78rem; color: var(--gray-500); }
+.crumb a { color: var(--gray-500); text-decoration: none; transition: color 0.15s; }
+.crumb a:hover { color: var(--black); }
+.crumb__sep { margin: 0 6px; color: var(--gray-300); }
+.crumb [aria-current] { color: var(--black); font-weight: 500; }
+
+/* ── HERO ── */
+.p-hero { padding: 24px 0 64px; }
+.p-hero__photo { position: relative; border-radius: 12px; overflow: hidden; height: 420px; margin-bottom: 44px; }
+.p-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; display: block; }
+.p-hero__dots { position: absolute; pointer-events: none; }
+.p-hero__dots--tr { top: -22px; right: 36px; }
+.p-hero__dots--bl { bottom: -22px; left: -10px; }
+.p-hero__intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
+.p-hero__tagrow { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 18px; }
+.p-hero__titlerow { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 18px; }
+.p-hero__title { font-size: clamp(2.2rem, 4.4vw, 3rem); font-weight: 800; line-height: 1; margin: 0; }
+.p-hero__badge-pill { display: inline-flex; align-items: center; font-style: italic; font-size: 0.82rem; font-weight: 500; color: var(--parasol-dark); background: var(--parasol-light); border-radius: 20px; padding: 8px 18px; }
+.p-hero__desc { font-size: 0.95rem; line-height: 1.7; color: var(--gray-700); margin: 0 0 32px; max-width: 58ch; }
+.p-hero__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.p-hero__decor { display: flex; align-items: center; justify-content: center; }
+.p-hero__decor svg { width: 100%; max-width: 220px; height: auto; color: var(--parasol-accent); }
+
+/* ── SECTIONS ── */
+.p-section { padding: 56px 0; border-top: 1px solid var(--gray-200); }
+.p-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.p-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gray-300); }
+.p-section__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 32px; }
+.p-section__title em { font-style: italic; color: var(--parasol-dark); }
+
+/* ── ABOUT CARDS ── */
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.about-card { background: var(--parasol-light); border-radius: 16px; padding: 32px; }
+.about-card__icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; background: var(--parasol-dark); color: var(--white); }
+.about-card__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+.about-card__title em { font-style: italic; color: var(--parasol-dark); font-weight: 700; }
+.about-card__text { font-size: 0.875rem; line-height: 1.7; color: var(--gray-700); }
+
+/* ── GALLERY (mosaic, shared pattern with project-avana.html) ── */
+.gallery-strip { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 130px; grid-auto-flow: dense; gap: 16px; }
+.gallery-strip__item {
+  overflow: hidden; background: var(--gray-100);
+  transform: rotate(var(--tilt, 0deg));
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.gallery-strip__item:hover { transform: rotate(0deg) scale(1.06); box-shadow: 0 14px 30px rgba(0,0,0,0.18); z-index: 2; position: relative; }
+.gallery-strip__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-strip__item.shape-circle { border-radius: 50%; }
+.gallery-strip__item.shape-round  { border-radius: 22px; }
+.gallery-strip__item.shape-blob   { border-radius: 62% 38% 55% 45% / 48% 42% 58% 52%; }
+.gallery-strip__item.tile-lg   { grid-column: span 2; grid-row: span 2; }
+.gallery-strip__item.tile-wide { grid-column: span 2; }
+.gallery-strip__item.tile-tall { grid-row: span 2; }
+.gallery-strip__item a { display: block; width: 100%; height: 100%; }
+.gallery-strip__item a:focus-visible { outline: 3px solid var(--accent-dk); outline-offset: 2px; }
+
+/* ── SOCIAL CARDS ── */
+.social-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.social-card { display: flex; align-items: center; gap: 16px; background: var(--parasol-light); border-radius: 16px; padding: 24px 26px; text-decoration: none; transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+.social-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
+.social-card__icon { width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--parasol-dark); color: var(--white); flex-shrink: 0; }
+.social-card__title { font-size: 0.95rem; font-weight: 700; color: var(--black); }
+.social-card__desc { font-size: 0.8rem; color: var(--gray-500); margin-top: 2px; }
+
+/* ── SUPPORT BANNER (Parasolka palette) ── */
+.p-cta { position: relative; overflow: hidden; background: var(--parasol-dark); color: var(--white); text-align: center; padding: 72px 32px; border-top: none; border-radius: 16px; }
+.p-cta__ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(5rem, 18vw, 13rem); color: rgba(255,255,255,0.06); white-space: nowrap; pointer-events: none; user-select: none; }
+.p-cta__inner { position: relative; }
+.p-cta h2 { font-family: var(--font-ui); font-style: normal; color: var(--white); margin-bottom: 12px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; }
+.p-cta p { color: rgba(255,255,255,0.7); max-width: 46ch; margin: 0 auto 28px; font-size: 0.92rem; line-height: 1.6; }
+
+/* ── OTHER PROJECTS ── */
+.other-projects__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+
+@media (max-width: 900px) {
+  .p-hero__intro { grid-template-columns: 1fr; }
+  .p-hero__decor { order: -1; max-width: 140px; margin: 0 auto; }
+  .about-cards { grid-template-columns: 1fr; }
+  .social-cards { grid-template-columns: 1fr; }
+  .other-projects__grid { grid-template-columns: 1fr 1fr; }
+  .gallery-strip { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 110px; }
+  .gallery-strip__item.tile-lg, .gallery-strip__item.tile-wide, .gallery-strip__item.tile-tall {
+    grid-column: span 1; grid-row: span 1;
+  }
+}
+@media (max-width: 640px) {
+  .p-hero__photo { height: 260px; }
+  .other-projects__grid { grid-template-columns: 1fr; }
+  .gallery-strip { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 96px; gap: 10px; }
+  .p-cta { padding: 56px 22px; }
+}
 </style>
 </head>
 <body>
-
-<!-- NAV -->
 <nav class="nav">
   <div class="nav__wrap">
     <a class="nav__logo" href="index.html">
@@ -30,9 +117,11 @@
       </div>
     </a>
     <div class="nav__menu" id="menu">
-      <a href="index.html">О нас</a>
-      <a href="index.html#projects">Проекты</a>
-      <a href="contact.html">Контакты</a>
+      <a href="index.html" data-i18n="nav_about">О нас</a>
+      <a href="index.html" data-i18n="nav_projects">Проекты</a>
+      <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
+      <a href="index.html" data-i18n="nav_reports">Отчётность</a>
+      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
     </div>
     <div class="nav__right">
       <details class="nav__lang" id="langSwitcher" open>
@@ -42,295 +131,186 @@
         <div class="nav__lang-menu">
           <span data-lang="ru" class="on">RU</span>
           <span class="nav__lang-sep">|</span>
-          <span data-lang="uk">UK</span>
-          <span class="nav__lang-sep">|</span>
           <span data-lang="de">DE</span>
           <span class="nav__lang-sep">|</span>
           <span data-lang="en">EN</span>
         </div>
       </details>
-      <a href="donate.html?project=Parasol" class="btn btn-dark btn-sm">Поддержать проект</a>
+      <a href="donate.html?project=Parasol" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать</a>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="pp-hero">
-  <div class="wrap">
-    <div class="pp-hero__inner">
-      <div class="pp-hero__left">
-        <div class="pp-eyebrow pp-hero__eyebrow">Этап пути · находит сообщество</div>
-        <div class="pp-hero__wordmark">
-          <span class="pp-hero__location">Gummersbach</span>
-          <img class="pp-hero__logo-icon" src="image/logo/paras.svg" alt="">
-          <h1 class="pp-hero__title">Parasolka</h1>
+<div class="wrap">
+  <nav class="crumb" aria-label="Breadcrumb">
+    <a href="index.html" data-i18n="crumb_home">Главная</a>
+    <span class="crumb__sep">/</span>
+    <span aria-current="page" translate="no">Parasolka</span>
+  </nav>
+</div>
+
+<div class="wrap p-hero">
+  <div class="p-hero__photo">
+    <img src="image/our%20projects/parasolka/hero-parasolka.webp" srcset="image/our%20projects/parasolka/hero-parasolka-400w.webp 400w, image/our%20projects/parasolka/hero-parasolka.webp 720w" sizes="(max-width: 900px) 100vw, 1096px" alt="Встреча Parasolka: полный зал участников">
+    <svg class="p-hero__dots p-hero__dots--tr" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="52" cy="10" r="4" fill="var(--parasol-dark)"/><circle cx="34" cy="4" r="2.5" fill="var(--parasol-accent)"/><circle cx="60" cy="26" r="2.5" fill="var(--parasol-accent)"/><circle cx="44" cy="22" r="1.6" fill="var(--parasol-dark)"/></svg>
+    <svg class="p-hero__dots p-hero__dots--bl" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="12" cy="46" r="4" fill="var(--parasol-dark)"/><circle cx="30" cy="54" r="2.5" fill="var(--parasol-accent)"/><circle cx="4" cy="30" r="2.5" fill="var(--parasol-accent)"/><circle cx="20" cy="34" r="1.6" fill="var(--parasol-dark)"/></svg>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="p-hero__intro">
+      <div>
+        <div class="p-hero__tagrow">
+          <div class="p-eyebrow" style="margin:0;" data-i18n="eyebrow_hero">Сообщество · интеграция</div>
         </div>
-        <p class="pp-hero__lead">Первая точка входа для украинских и других русскоязычных семей в Гуммерсбахе.</p>
-        <p class="pp-hero__sub">Встречи, знакомства и практическая информация — всё, что нужно в первые месяцы после переезда.</p>
-        <div class="pp-hero__btns">
-          <a href="donate.html?project=Parasol" class="btn-outline-white">Поддержать проект</a>
-          <a href="#what-we-do" class="pp-hero__link">Что мы делаем</a>
+        <div class="p-hero__titlerow">
+          <h1 class="p-hero__title" translate="no">Parasolka</h1>
+          <span class="p-hero__badge-pill" data-i18n="hero_badge">Тёплое место среди своих</span>
+        </div>
+        <p class="p-hero__desc" data-i18n="hero_desc">Parasolka — это пространство в Гуммерсбахе для встреч, семинаров и мастер-классов на украинском и русском языках, где люди, недавно переехавшие в Германию, делают первый шаг к новым знакомствам и находят своих.</p>
+        <div class="p-hero__btns">
+          <a href="donate.html?project=Parasol" class="btn btn-dark btn-arrow" data-i18n="support_btn">Поддержать</a>
+          <a href="index.html#projects" class="btn btn-ghost" data-i18n="all_projects_btn">Все проекты</a>
         </div>
       </div>
-      <div class="pp-hero__photo-wrap">
-        <img class="pp-hero__photo" src="image/home/photo-2026-01-31.webp" alt="Встреча Parasolka">
-        <div class="pp-hero__badge-pill">Тёплое место среди своих</div>
+      <div class="p-hero__decor" aria-hidden="true">
+        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 12C34 12 12 32 12 58h96C108 32 86 12 60 12z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M60 58v42" stroke="currentColor" stroke-width="3"/>
+          <path d="M60 100c0 4-3 7-7 7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          <path d="M60 12v46" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="p-section">
+  <div class="wrap">
+    <div class="p-eyebrow" data-i18n="about_eyebrow">О проекте</div>
+    <div class="about-cards">
+      <div class="about-card">
+        <div class="about-card__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </div>
+        <div class="about-card__title"><span data-i18n="who_title_1">Для кого этот</span> <em data-i18n="who_title_2">проект</em></div>
+        <p class="about-card__text" data-i18n="who_text">Первые месяцы после переезда — самые одинокие: язык непривычен, система незнакома, а спросить совета часто не у кого. Parasolka создан для тех, кто оказался в новой стране и ищет первые точки опоры — знакомства, поддержку, живое общение на родном языке. Здесь не нужно ничего доказывать и объяснять — достаточно просто прийти.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <div class="about-card__title"><span data-i18n="what_title_1">Что происходит на</span> <em data-i18n="what_title_2">встречах</em></div>
+        <p class="about-card__text" data-i18n="what_text">Формат встреч меняется от раза к разу: иногда это открытые беседы и настольные игры, иногда — мастер-классы и совместная готовка, иногда — тематические семинары. Встречи проходят на украинском и русском языках. Общее у них одно: тёплая атмосфера и внимание к каждому, кто пришёл впервые.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="pp-problem" id="what-we-do">
+<section class="p-section">
   <div class="wrap">
-    <div class="pp-problem__grid">
-      <div class="pp-problem__col">
-        <div class="pp-problem__tag">Проблема</div>
-        <h2 class="pp-problem__title">Первые месяцы — <em>самые одинокие</em></h2>
-        <p class="pp-problem__text">Язык незнаком, система непонятна, знакомых нет. Самые простые вещи отнимают силы, а спросить совета не у кого.</p>
-        <p class="pp-problem__solution">Parasolka — первое место в регионе, где можно выдохнуть, задать вопрос на родном языке и найти своих.</p>
-      </div>
-      <div class="pp-problem__photo-col">
-        <img class="pp-problem__photo" src="image/our%20projects/parasolka.webp" alt="Встреча Parasolka">
-      </div>
+    <div class="p-eyebrow" data-i18n="gallery_eyebrow">Галерея</div>
+    <h2 class="p-section__title"><span data-i18n="gallery_title_1">Как это</span> <em data-i18n="gallery_title_2">выглядит</em></h2>
+    <div class="gallery-strip">
+      <div class="gallery-strip__item shape-circle" style="--tilt:-6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g1.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g1-240w.webp" srcset="image/our%20projects/parasolka/g1-240w.webp 240w, image/our%20projects/parasolka/g1-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 55%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-lg" style="--tilt:0deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g2.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g2-240w.webp" srcset="image/our%20projects/parasolka/g2-240w.webp 240w, image/our%20projects/parasolka/g2-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 55%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g3.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g3-240w.webp" srcset="image/our%20projects/parasolka/g3-240w.webp 240w, image/our%20projects/parasolka/g3-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 35%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-blob tile-tall" style="--tilt:-5deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g4.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g4-240w.webp" srcset="image/our%20projects/parasolka/g4-240w.webp 240w, image/our%20projects/parasolka/g4-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 45%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round" style="--tilt:5deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g5.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g5-240w.webp" srcset="image/our%20projects/parasolka/g5-240w.webp 240w, image/our%20projects/parasolka/g5-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 45%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:-8deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g6.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g6-240w.webp" srcset="image/our%20projects/parasolka/g6-240w.webp 240w, image/our%20projects/parasolka/g6-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:45% 45%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-wide" style="--tilt:3deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g7.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g7-240w.webp" srcset="image/our%20projects/parasolka/g7-240w.webp 240w, image/our%20projects/parasolka/g7-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 35%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-blob" style="--tilt:-6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g8.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g8-240w.webp" srcset="image/our%20projects/parasolka/g8-240w.webp 240w, image/our%20projects/parasolka/g8-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 55%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="image/our%20projects/parasolka/g9.webp" data-gallery="parasolka-gallery"><img src="image/our%20projects/parasolka/g9-240w.webp" srcset="image/our%20projects/parasolka/g9-240w.webp 240w, image/our%20projects/parasolka/g9-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 70%;" alt=""></a></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES -->
-<section class="pp-features">
+<section class="p-section">
   <div class="wrap">
-    <div class="pp-features__head">
-      <div class="pp-eyebrow">Что мы делаем</div>
-      <h2 class="pp-features__title">Встречи, где можно <em>стать своим</em></h2>
-      <p class="pp-features__subtitle">Регулярные встречи для семей: знакомства, обмен опытом и практические советы о жизни в регионе.</p>
-    </div>
-    <div class="pp-features__grid">
-      <div class="pp-feature">
-        <div class="pp-feature__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <div class="p-eyebrow" data-i18n="social_eyebrow">Соцсети</div>
+    <h2 class="p-section__title"><span data-i18n="social_title_1">Следите за</span> <em data-i18n="social_title_2">нами</em></h2>
+    <div class="social-cards">
+      <a class="social-card" href="https://instagram.com" target="_blank" rel="noopener">
+        <div class="social-card__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
         </div>
-        <div class="pp-feature__name">Регулярные встречи</div>
-        <p class="pp-feature__text">Каждый месяц — встречи для семей: знакомства, обмен опытом и совместное время.</p>
-      </div>
-      <div class="pp-feature">
-        <div class="pp-feature__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 8l4 4-4 4M12 16h7"/><path d="M12 8h7"/></svg>
+        <div>
+          <div class="social-card__title" translate="no">Instagram</div>
+          <div class="social-card__desc" data-i18n="ig_desc">Больше фото и видео</div>
         </div>
-        <div class="pp-feature__name">Два языка</div>
-        <p class="pp-feature__text">Все встречи проходят на украинском и русском — чтобы чувствовать себя как дома.</p>
-      </div>
-      <div class="pp-feature">
-        <div class="pp-feature__icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="pp-feature__name">Для всей семьи</div>
-        <p class="pp-feature__text">Взрослые, дети, молодёжь — в Parasolka место найдётся для каждого.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AUDIENCE -->
-<section class="pp-audience">
-  <div class="wrap">
-    <div class="pp-eyebrow pp-eyebrow--light">Кому помогаем</div>
-    <h2 class="pp-section-title pp-section-title--white pp-section-title--light">Для всех, кто <em>ищет своих</em></h2>
-    <div class="pp-audience__tags">
-      <div class="pp-audience__tag">
-        <div class="pp-audience__tag-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        Вся семья
-      </div>
-      <div class="pp-audience__tag">
-        <div class="pp-audience__tag-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-        </div>
-        Дети и подростки
-      </div>
-      <div class="pp-audience__tag">
-        <div class="pp-audience__tag-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="4"/><path d="M5.5 21v-2A4.5 4.5 0 0 1 10 14.5h4A4.5 4.5 0 0 1 18.5 19v2"/></svg>
-        </div>
-        Приехавшие одни
-      </div>
-      <div class="pp-audience__tag">
-        <div class="pp-audience__tag-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        Молодёжь
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="pp-stats">
-  <div class="wrap">
-    <div class="pp-eyebrow">Результаты</div>
-    <h2 class="pp-stats__title"><strong>Parasolka</strong> <em>в цифрах</em></h2>
-    <div class="pp-stats__grid">
-      <div class="pp-stat-item">
-        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
-        <div class="pp-stat-item__n">≈ 300</div>
-        <div class="pp-stat-item__l">участников на встречу</div>
-      </div>
-      <div class="pp-stat-item">
-        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
-        <div class="pp-stat-item__n">до 5</div>
-        <div class="pp-stat-item__l">локаций на одно мероприятие</div>
-      </div>
-      <div class="pp-stat-item">
-        <img src="image/logo/paras.svg" class="pp-stat-item__umbrella" alt="">
-        <div class="pp-stat-item__n">2</div>
-        <div class="pp-stat-item__l">языка — украинский и русский</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DONATE -->
-<section class="pp-donate">
-  <div class="wrap">
-    <div class="pp-donate__head">
-      <div class="pp-eyebrow">Как помогают пожертвования</div>
-      <h2 class="pp-donate__title"><strong>Каждый вклад —</strong> <em>реальная встреча</em></h2>
-    </div>
-    <div class="pp-donate__grid">
-      <div class="pp-donate__tier">
-        <div class="pp-donate__tier-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-        </div>
-        <div class="pp-donate__amount">50 €</div>
-        <p class="pp-donate__desc">Покрывает материалы и угощение для одной встречи.</p>
-        <div class="pp-donate__label">Одна встреча</div>
-      </div>
-      <div class="pp-donate__tier">
-        <div class="pp-donate__tier-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        </div>
-        <div class="pp-donate__amount">100 €</div>
-        <p class="pp-donate__desc">Поддерживает одно полноценное мероприятие для участников.</p>
-        <div class="pp-donate__label">Мероприятие</div>
-      </div>
-      <div class="pp-donate__tier pp-donate__tier--featured">
-        <div class="pp-donate__tier-icon pp-donate__tier-icon--featured">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div class="pp-donate__amount">300 €</div>
-        <p class="pp-donate__desc">Финансирует программу встреч на целый месяц.</p>
-        <div class="pp-donate__label">Месяц программы</div>
-      </div>
-    </div>
-    <div class="pp-donate__cta">
-      <a href="donate.html?project=Parasol" class="btn">Поддержать Parasolka</a>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section class="pp-gallery">
-  <div class="wrap">
-    <div class="pp-gallery__head">
-      <div class="pp-eyebrow">Галерея</div>
-      <h2 class="pp-gallery__title"><strong>Как это</strong> <em>выглядит</em></h2>
-    </div>
-    <div class="pp-gallery__grid">
-      <div class="pp-gallery__item">
-        <img src="image/home/DSC_0359.webp" alt="Встреча Parasolka">
-      </div>
-      <div class="pp-gallery__item pp-gallery__item--circle">
-        <img src="image/home/DSC_0317.webp" alt="Встреча Parasolka">
-      </div>
-      <div class="pp-gallery__item">
-        <img src="image/our%20projects/parasolka.webp" alt="Parasolka — основная фотография">
-      </div>
-      <div class="pp-gallery__item pp-gallery__item--circle">
-        <img src="image/home/DSC_0251.webp" alt="Встреча Parasolka">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="pp-quotes">
-  <div class="wrap">
-    <div class="pp-quotes__head">
-      <div class="pp-eyebrow">Истории</div>
-      <h2 class="pp-quotes__title"><strong>Что говорят</strong> <em>участники</em></h2>
-    </div>
-    <div class="pp-quotes__grid">
-      <div class="pp-quote">
-        <div class="pp-quote__mark">&ldquo;</div>
-        <p class="pp-quote__text">Я пришла на первую встречу, не зная никого. Через месяц у меня появились подруги, с которыми мы созваниваемся каждый день. Parasolka <em>вернула</em> мне ощущение своих.</p>
-        <div class="pp-quote__author">
-          <div class="pp-quote__avatar">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M26.5703 32C25.9974 32 25.5045 31.9415 25.0916 31.8245C24.6786 31.7075 24.3323 31.519 24.0525 31.259C23.7861 30.9859 23.5863 30.6349 23.453 30.2059C23.3332 29.7639 23.3558 29.1727 23.3558 28.5487V21.3806H25.6424V28.7459C25.6424 29.3829 25.658 29.6152 25.8711 29.8623C26.0843 30.0963 26.3971 30.1279 26.9699 30.1279C27.1164 30.1279 27.243 30.1279 27.3496 30.1279C27.5061 30.1279 27.5627 30.1263 27.6693 30.1133V31.9415C27.5627 31.9675 27.3895 31.9805 27.1497 31.9805C26.91 31.9935 26.7168 32 26.5703 32Z" fill="#7C3AED"/>
-              <path d="M24.4984 12C28.0962 12 31.4061 12.8965 33.8518 14.4034C36.284 15.9021 37.9969 18.1064 37.9969 20.7133V20.7805C38.0039 20.8518 37.9969 20.8572 37.9969 20.9311H35.7471C35.7471 20.9242 35.7464 20.9051 35.7278 20.8667C35.7075 20.8249 35.6647 20.758 35.5782 20.6716C35.399 20.4926 35.0851 20.2818 34.6099 20.0811C33.663 19.681 32.2763 19.4063 30.6852 19.4063C29.0941 19.4063 27.7074 19.681 26.7605 20.0811C26.2853 20.2818 25.9714 20.4926 25.7922 20.6716C25.7057 20.758 25.6629 20.8249 25.6426 20.8667C25.624 20.9051 25.6233 20.9242 25.6233 20.9311H23.3736C23.3736 20.9242 23.3728 20.9051 23.3542 20.8667C23.334 20.8249 23.2911 20.758 23.2046 20.6716C23.0254 20.4926 22.7115 20.2818 22.2364 20.0811C21.2895 19.681 19.9028 19.4063 18.3116 19.4063C16.7205 19.4063 15.3338 19.681 14.3869 20.0811C13.9118 20.2818 13.5978 20.4926 13.4187 20.6716C13.3322 20.758 13.2893 20.8249 13.2691 20.8667C13.2505 20.9051 13.2497 20.9242 13.2497 20.9311H11C11 20.8572 11 20.7805 11 20.7805L11 20.7133C11 18.1064 12.7128 15.9021 15.1451 14.4034C17.5907 12.8965 20.9007 12 24.4984 12ZM24.4984 14.1783C21.2625 14.1783 18.3857 14.9887 16.353 16.2411C15.6177 16.6942 15.0104 17.1925 14.5337 17.719C15.6435 17.4021 16.9442 17.228 18.3116 17.228C20.1374 17.228 21.844 17.5384 23.1363 18.0844C23.6363 18.2957 24.1047 18.5555 24.4984 18.8698C24.8922 18.5555 25.3605 18.2957 25.8606 18.0844C27.1528 17.5384 28.8595 17.228 30.6852 17.228C32.0526 17.228 33.3532 17.4021 34.463 17.719C33.9863 17.1925 33.3791 16.6942 32.6438 16.2411C30.6111 14.9887 27.7344 14.1783 24.4984 14.1783Z" fill="#7C3AED"/>
-            </svg>
-          </div>
-          <div class="pp-quote__author-info">
-            <div class="pp-quote__author-name">Имя участницы</div>
-            <span>приехала одна · 2024</span>
-          </div>
-        </div>
-      </div>
-      <div class="pp-quote">
-        <div class="pp-quote__mark">&ldquo;</div>
-        <p class="pp-quote__text">Дети наконец-то заговорили, нашли друзей и перестали бояться школы. А я впервые с переезда почувствовала, что мы <em>не одни</em>.</p>
-        <div class="pp-quote__author">
-          <div class="pp-quote__avatar">
-            <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M26.5703 32C25.9974 32 25.5045 31.9415 25.0916 31.8245C24.6786 31.7075 24.3323 31.519 24.0525 31.259C23.7861 30.9859 23.5863 30.6349 23.453 30.2059C23.3332 29.7639 23.3558 29.1727 23.3558 28.5487V21.3806H25.6424V28.7459C25.6424 29.3829 25.658 29.6152 25.8711 29.8623C26.0843 30.0963 26.3971 30.1279 26.9699 30.1279C27.1164 30.1279 27.243 30.1279 27.3496 30.1279C27.5061 30.1279 27.5627 30.1263 27.6693 30.1133V31.9415C27.5627 31.9675 27.3895 31.9805 27.1497 31.9805C26.91 31.9935 26.7168 32 26.5703 32Z" fill="#7C3AED"/>
-              <path d="M24.4984 12C28.0962 12 31.4061 12.8965 33.8518 14.4034C36.284 15.9021 37.9969 18.1064 37.9969 20.7133V20.7805C38.0039 20.8518 37.9969 20.8572 37.9969 20.9311H35.7471C35.7471 20.9242 35.7464 20.9051 35.7278 20.8667C35.7075 20.8249 35.6647 20.758 35.5782 20.6716C35.399 20.4926 35.0851 20.2818 34.6099 20.0811C33.663 19.681 32.2763 19.4063 30.6852 19.4063C29.0941 19.4063 27.7074 19.681 26.7605 20.0811C26.2853 20.2818 25.9714 20.4926 25.7922 20.6716C25.7057 20.758 25.6629 20.8249 25.6426 20.8667C25.624 20.9051 25.6233 20.9242 25.6233 20.9311H23.3736C23.3736 20.9242 23.3728 20.9051 23.3542 20.8667C23.334 20.8249 23.2911 20.758 23.2046 20.6716C23.0254 20.4926 22.7115 20.2818 22.2364 20.0811C21.2895 19.681 19.9028 19.4063 18.3116 19.4063C16.7205 19.4063 15.3338 19.681 14.3869 20.0811C13.9118 20.2818 13.5978 20.4926 13.4187 20.6716C13.3322 20.758 13.2893 20.8249 13.2691 20.8667C13.2505 20.9051 13.2497 20.9242 13.2497 20.9311H11C11 20.8572 11 20.7805 11 20.7805L11 20.7133C11 18.1064 12.7128 15.9021 15.1451 14.4034C17.5907 12.8965 20.9007 12 24.4984 12ZM24.4984 14.1783C21.2625 14.1783 18.3857 14.9887 16.353 16.2411C15.6177 16.6942 15.0104 17.1925 14.5337 17.719C15.6435 17.4021 16.9442 17.228 18.3116 17.228C20.1374 17.228 21.844 17.5384 23.1363 18.0844C23.6363 18.2957 24.1047 18.5555 24.4984 18.8698C24.8922 18.5555 25.3605 18.2957 25.8606 18.0844C27.1528 17.5384 28.8595 17.228 30.6852 17.228C32.0526 17.228 33.3532 17.4021 34.463 17.719C33.9863 17.1925 33.3791 16.6942 32.6438 16.2411C30.6111 14.9887 27.7344 14.1783 24.4984 14.1783Z" fill="#7C3AED"/>
-            </svg>
-          </div>
-          <div class="pp-quote__author-info">
-            <div class="pp-quote__author-name">Имя участницы</div>
-            <span>мама троих детей · 2023</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="pp-cta">
-  <div class="wrap">
-    <div class="pp-cta__icon">
-      <img src="image/logo/paras1.svg" alt="" width="56" height="56">
-    </div>
-    <h2 class="pp-cta__title">Поддержите этот проект</h2>
-    <p class="pp-cta__sub">Ваш вклад — это реальные встречи, где люди находят своих и перестают быть одни.</p>
-    <div class="pp-cta__btns">
-      <a href="donate.html?project=Parasol" class="pp-cta__btn">Поддержать</a>
-    </div>
-  </div>
-</section>
-
-<!-- COMMUNITY -->
-<section class="pp-community" id="community">
-  <div class="wrap">
-    <h2 class="pp-community__title">Присоединитесь к сообществу</h2>
-    <p class="pp-community__desc">Общайтесь, находите поддержку и делитесь опытом с людьми, которые прошли тот же путь.</p>
-    <div class="pp-community__btns">
-      <a href="https://instagram.com" class="pp-community__btn pp-community__btn--ig" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        Instagram
       </a>
-      <a href="https://t.me" class="pp-community__btn pp-community__btn--tg" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Telegram Community
+      <a class="social-card" href="https://t.me" target="_blank" rel="noopener">
+        <div class="social-card__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </div>
+        <div>
+          <div class="social-card__title" translate="no">Telegram</div>
+          <div class="social-card__desc" data-i18n="tg_desc">Новости, анонсы встреч и обсуждения</div>
+        </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<section class="p-section" style="border-top:none;">
+  <div class="wrap">
+    <div class="p-cta">
+      <div class="p-cta__ghost" aria-hidden="true" translate="no">PARASOLKA</div>
+      <div class="p-cta__inner">
+        <h2><span data-i18n="cta_title_1">Поддержите</span> <span translate="no">Parasolka</span></h2>
+        <p data-i18n="cta_text">Ваш вклад помогает создавать место, полезное для интеграции тех, кто только приехал.</p>
+        <a href="donate.html?project=Parasol" class="btn btn-dark btn-arrow" data-i18n="cta_btn">Поддержать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section" style="border-top:none; padding-top:0;">
+  <div class="wrap">
+    <div class="p-eyebrow" data-i18n="other_eyebrow">Другие проекты MER</div>
+    <div class="other-projects__grid">
+      <a class="pcard pcard--avana pcard--has-logo" href="project-avana.html">
+        <div class="pcard__photo"><img src="image/our%20projects/awana.webp" alt="Awana" translate="no"></div>
+        <div class="pcard__body">
+          <img class="pcard__logo" src="image/logo/awana.webp" alt="">
+          <div class="pcard__tag" data-i18n="awana_tag">Детская и подростковая программа</div>
+          <div class="pcard__name" translate="no">Awana</div>
+          <div class="pcard__desc" data-i18n="awana_desc">Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--revers" href="project-revers.html">
+        <div class="pcard__photo"><img src="image/our%20projects/revers-270w.webp" srcset="image/our%20projects/revers-270w.webp 270w, image/our%20projects/revers-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt="Reverse"></div>
+        <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="revers_tag">Подростки</div>
+          <div class="pcard__name">Reverse</div>
+          <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--alpha pcard--has-logo" href="project-alpha.html">
+        <div class="pcard__photo"><img src="image/our%20projects/alfa-270w.webp" srcset="image/our%20projects/alfa-270w.webp 270w, image/our%20projects/alfa-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt="Alpha"></div>
+        <div class="pcard__body">
+          <img class="pcard__logo" src="image/logo/alfa.webp" alt="">
+          <div class="pcard__tag" data-i18n="alpha_tag">Христианский курс</div>
+          <div class="pcard__name" translate="no">Alpha</div>
+          <div class="pcard__desc" data-i18n="alpha_desc">Беседы о вере и смысле жизни — без давления, с открытыми вопросами.</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--lit" href="project-literature.html">
+        <div class="pcard__photo"><img src="image/our%20projects/boooks-270w.webp" srcset="image/our%20projects/boooks-270w.webp 270w, image/our%20projects/boooks-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt=""></div>
+        <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="lit_tag">Литература · материалы для благовестия</div>
+          <div class="pcard__name" data-i18n="proj_lit">Рассылка литературы</div>
+          <div class="pcard__desc" data-i18n="lit_desc">Бесплатная христианская литература (оплата только за доставку).</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — identical to other project pages -->
 <footer class="footer-new" id="business">
   <div class="wrap">
     <div class="footer-new__grid">
@@ -342,23 +322,23 @@
         <div class="footer-new__addr">Гуммерсбах, Германия · <a href="mailto:mer@mer-verein.de" class="email-link">mer@mer-verein.de</a></div>
       </div>
       <div class="footer-new__col">
-        <div class="footer-new__col-title">О нас</div>
-        <a href="index.html#about">Команда</a>
-        <a href="index.html#about">История</a>
-        <a href="#">Отчётность</a>
+        <div class="footer-new__col-title" data-i18n="footer_about_title">О нас</div>
+        <a href="index.html#about" data-i18n="footer_team">Команда</a>
+        <a href="index.html#about" data-i18n="footer_about">История</a>
+        <a href="#" data-i18n="footer_reports">Отчётность</a>
       </div>
       <div class="footer-new__col">
-        <div class="footer-new__col-title">Проекты</div>
+        <div class="footer-new__col-title" data-i18n="footer_projects_title">Проекты</div>
         <a href="project-parasolka.html">Parasolka</a>
         <a href="project-avana.html" translate="no">Awana</a>
         <a href="project-revers.html">Revers</a>
         <a href="project-alpha.html" translate="no">Alpha</a>
       </div>
       <div class="footer-new__col">
-        <div class="footer-new__col-title">Участие</div>
-        <a href="donate.html?project=Parasol">Пожертвовать</a>
-        <a href="contact.html">Волонтёрство</a>
-        <a href="contact.html">Для бизнеса</a>
+        <div class="footer-new__col-title" data-i18n="footer_participate_title">Участие</div>
+        <a href="donate.html?project=Parasol" data-i18n="footer_donate">Пожертвовать</a>
+        <a href="contact.html" data-i18n="footer_volunteer">Волонтёрство</a>
+        <a href="contact.html" data-i18n="footer_business">Для бизнеса</a>
       </div>
     </div>
     <div class="footer-new__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
@@ -366,8 +346,138 @@
 </footer>
 
 <script>
+const i18n = {
+  ru: {
+    nav_about:'О нас',nav_projects:'Проекты',nav_business:'Для бизнеса',nav_reports:'Отчётность',nav_contact:'Контакты',nav_support:'Поддержать',
+    crumb_home:'Главная',
+    eyebrow_hero:'Сообщество · интеграция',
+    hero_badge:'Тёплое место среди своих',
+    hero_desc:'Parasolka — это пространство в Гуммерсбахе для встреч, семинаров и мастер-классов на украинском и русском языках, где люди, недавно переехавшие в Германию, делают первый шаг к новым знакомствам и находят своих.',
+    support_btn:'Поддержать', all_projects_btn:'Все проекты',
+    about_eyebrow:'О проекте',
+    who_title_1:'Для кого этот', who_title_2:'проект',
+    who_text:'Первые месяцы после переезда — самые одинокие: язык непривычен, система незнакома, а спросить совета часто не у кого. Parasolka создан для тех, кто оказался в новой стране и ищет первые точки опоры — знакомства, поддержку, живое общение на родном языке. Здесь не нужно ничего доказывать и объяснять — достаточно просто прийти.',
+    what_title_1:'Что происходит на', what_title_2:'встречах',
+    what_text:'Формат встреч меняется от раза к разу: иногда это открытые беседы и настольные игры, иногда — мастер-классы и совместная готовка, иногда — тематические семинары. Встречи проходят на украинском и русском языках. Общее у них одно: тёплая атмосфера и внимание к каждому, кто пришёл впервые.',
+    gallery_eyebrow:'Галерея', gallery_title_1:'Как это', gallery_title_2:'выглядит',
+    gallery_photo_aria:'Открыть фото галереи на весь экран',
+    social_eyebrow:'Соцсети', social_title_1:'Следите за', social_title_2:'нами',
+    ig_desc:'Больше фото и видео',
+    tg_desc:'Новости, анонсы встреч и обсуждения',
+    cta_title_1:'Поддержите',
+    cta_text:'Ваш вклад помогает создавать место, полезное для интеграции тех, кто только приехал.',
+    cta_btn:'Поддержать',
+    other_eyebrow:'Другие проекты MER',
+    card_more:'Подробнее →',
+    awana_tag:'Детская и подростковая программа',
+    awana_desc:'Клуб для детей 7–12 лет: игры, творчество, библейские уроки и новые друзья',
+    revers_tag:'Подростки',
+    revers_desc:'Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».',
+    alpha_tag:'Христианский курс',
+    alpha_desc:'Беседы о вере и смысле жизни — без давления, с открытыми вопросами.',
+    proj_lit:'Рассылка литературы',
+    lit_tag:'Литература · материалы для благовестия',
+    lit_desc:'Бесплатная христианская литература (оплата только за доставку).',
+    footer_about_title:'О нас', footer_team:'Команда', footer_about:'История', footer_reports:'Отчётность',
+    footer_projects_title:'Проекты',
+    footer_participate_title:'Участие', footer_donate:'Пожертвовать', footer_volunteer:'Волонтёрство', footer_business:'Для бизнеса',
+  },
+  de: {
+    nav_about:'Über uns',nav_projects:'Projekte',nav_business:'Für Unternehmen',nav_reports:'Berichte',nav_contact:'Kontakt',nav_support:'Unterstützen',
+    crumb_home:'Startseite',
+    eyebrow_hero:'Gemeinschaft · Integration',
+    hero_badge:'Ein warmer Ort unter Vertrauten',
+    hero_desc:'Parasolka ist ein Ort in Gummersbach für Treffen, Seminare und Workshops auf Ukrainisch und Russisch — für Menschen, die gerade erst nach Deutschland gezogen sind und hier ihren ersten Schritt zu neuen Bekanntschaften machen.',
+    support_btn:'Unterstützen', all_projects_btn:'Alle Projekte',
+    about_eyebrow:'Über das Projekt',
+    who_title_1:'Für wen ist dieses', who_title_2:'Projekt',
+    who_text:'Die ersten Monate nach dem Umzug sind die einsamsten: die Sprache ist fremd, das System unbekannt, und oft gibt es niemanden, den man fragen kann. Parasolka wurde für Menschen geschaffen, die sich in einem neuen Land wiederfinden und erste Anknüpfungspunkte suchen — Bekanntschaften, Unterstützung, ein offenes Gespräch in der Muttersprache. Hier muss man nichts beweisen oder erklären — es reicht, einfach vorbeizukommen.',
+    what_title_1:'Was bei den', what_title_2:'Treffen passiert',
+    what_text:'Das Format der Treffen wechselt von Mal zu Mal: mal offene Gespräche und Gesellschaftsspiele, mal Workshops und gemeinsames Kochen, mal thematische Seminare. Die Treffen finden auf Ukrainisch und Russisch statt. Eines haben sie gemeinsam: eine warme Atmosphäre und Aufmerksamkeit für jeden, der zum ersten Mal kommt.',
+    gallery_eyebrow:'Galerie', gallery_title_1:'So sieht', gallery_title_2:'es aus',
+    gallery_photo_aria:'Galeriefoto im Vollbildmodus öffnen',
+    social_eyebrow:'Soziale Netzwerke', social_title_1:'Folgen Sie', social_title_2:'uns',
+    ig_desc:'Mehr Fotos und Videos',
+    tg_desc:'Neuigkeiten, Ankündigungen und Diskussionen',
+    cta_title_1:'Unterstützen Sie',
+    cta_text:'Ihr Beitrag hilft, einen Ort zu schaffen, der die Integration derer unterstützt, die gerade erst angekommen sind.',
+    cta_btn:'Unterstützen',
+    other_eyebrow:'Weitere Projekte von MER',
+    card_more:'Mehr →',
+    awana_tag:'Kinder- und Jugendprogramm',
+    awana_desc:'Klub für Kinder von 7–12 Jahren: Spiele, Kreativität, biblische Lektionen und neue Freunde',
+    revers_tag:'Jugendliche',
+    revers_desc:'Treffen für Jugendliche — Spiele, offene Gespräche, Mentoren und das Gefühl, dazuzugehören.',
+    alpha_tag:'Alphakurs / Glaubenskurs',
+    alpha_desc:'Gespräche über Glauben und den Sinn des Lebens — ohne Druck, mit offenen Fragen.',
+    proj_lit:'Bücherpost',
+    lit_tag:'Literatur · Materialien für die Verkündigung',
+    lit_desc:'Kostenlose christliche Literatur (nur Versandkostenpauschale).',
+    footer_about_title:'Über uns', footer_team:'Team', footer_about:'Geschichte', footer_reports:'Berichte',
+    footer_projects_title:'Projekte',
+    footer_participate_title:'Mitmachen', footer_donate:'Spenden', footer_volunteer:'Ehrenamt', footer_business:'Für Unternehmen',
+  },
+  en: {
+    nav_about:'About',nav_projects:'Projects',nav_business:'For Business',nav_reports:'Reports',nav_contact:'Contact',nav_support:'Support Us',
+    crumb_home:'Home',
+    eyebrow_hero:'Community · Integration',
+    hero_badge:'A warm place among friends',
+    hero_desc:'Parasolka is a space in Gummersbach for meetings, seminars and workshops in Ukrainian and Russian — for people who have just moved to Germany and are taking their first step toward new connections.',
+    support_btn:'Support', all_projects_btn:'All projects',
+    about_eyebrow:'About the project',
+    who_title_1:'Who this', who_title_2:'project is for',
+    who_text:'The first months after moving are the loneliest: the language is unfamiliar, the system makes no sense, and there is often no one to ask. Parasolka was created for those who find themselves in a new country and are looking for their first points of support — connections, encouragement, an open conversation in their native language. Here there is nothing to prove or explain — it is enough to simply show up.',
+    what_title_1:'What happens at the', what_title_2:'meetings',
+    what_text:'The format changes every time: sometimes it is open conversations and board games, sometimes workshops and cooking together, sometimes themed seminars. Meetings are held in Ukrainian and Russian. What they share is one thing: a warm atmosphere and attention to everyone who comes for the first time.',
+    gallery_eyebrow:'Gallery', gallery_title_1:'What it', gallery_title_2:'looks like',
+    gallery_photo_aria:'Open gallery photo in fullscreen',
+    social_eyebrow:'Social media', social_title_1:'Follow', social_title_2:'us',
+    ig_desc:'More photos and videos',
+    tg_desc:'News, meeting announcements and discussions',
+    cta_title_1:'Support',
+    cta_text:'Your contribution helps create a place that supports the integration of those who have just arrived.',
+    cta_btn:'Support',
+    other_eyebrow:'Other MER projects',
+    card_more:'Learn more →',
+    awana_tag:'Youth & Kids Program',
+    awana_desc:'A club for kids aged 7–12: games, creativity, Bible lessons and new friends',
+    revers_tag:'Teens',
+    revers_desc:'Meetings for teenagers — games, heart-to-heart talks, mentors, and a sense of belonging.',
+    alpha_tag:'Alpha Course',
+    alpha_desc:'Conversations about faith and the meaning of life — no pressure, open questions welcome.',
+    proj_lit:'Book Delivery',
+    lit_tag:'Literature · Outreach materials',
+    lit_desc:'Free Christian literature (shipping fee only).',
+    footer_about_title:'About us', footer_team:'Team', footer_about:'History', footer_reports:'Reports',
+    footer_projects_title:'Projects',
+    footer_participate_title:'Get involved', footer_donate:'Donate', footer_volunteer:'Volunteer', footer_business:'For Business',
+  }
+};
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key].replace(/\n/g,'<br>');
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+}
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
 document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
+applyLang(localStorage.getItem('mer_lang') || 'ru');
 </script>
 
 <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -381,9 +491,10 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 <script>
 const _langDetails = document.getElementById('langSwitcher');
 if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
-_langDetails?.addEventListener('click', e => {
-  if (e.target.closest('[data-lang]')) _langDetails.removeAttribute('open');
-});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
+<script>
+GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
 </script>
 </body>
 </html>
