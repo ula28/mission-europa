@@ -451,9 +451,6 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 <script>
 const _langDetails = document.getElementById('langSwitcher');
 if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
-_langDetails?.addEventListener('click', e => {
-  if (e.target.closest('[data-lang]')) _langDetails.removeAttribute('open');
-});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
 <script>
