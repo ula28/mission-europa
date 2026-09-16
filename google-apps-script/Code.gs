@@ -11,9 +11,9 @@
  * Project Settings (gear icon) → Script Properties → Add property.
  */
 
-// Flip to 'live' once real Stripe/PayPal credentials are in Script
-// Properties (STRIPE_SECRET_KEY_LIVE, PAYPAL_CLIENT_ID_LIVE, PAYPAL_SECRET_LIVE).
-const MODE = 'test';
+// Flip to 'test' for sandbox/test credentials (STRIPE_SECRET_KEY_TEST,
+// PAYPAL_CLIENT_ID_TEST, PAYPAL_SECRET_TEST).
+const MODE = 'live';
 
 function getConfig_() {
   const p = PropertiesService.getScriptProperties();

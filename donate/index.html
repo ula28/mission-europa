@@ -588,19 +588,16 @@ applyLang(currentLang);
 
 <script>
 /* ════════════════════════════════════════════════════════════════
-   DONATION PAYMENTS — Stripe (test mode) + PayPal (sandbox)
+   DONATION PAYMENTS — Stripe + PayPal, both live.
    Backend: Google Apps Script Web App, see /google-apps-script/.
 
    PAYMENT_CONFIG is safe to expose client-side (no secrets here).
-   Swap these two values when going live:
-   - BACKEND_URL     → your deployed Apps Script /exec URL
-   - PAYPAL_CLIENT_ID → PayPal LIVE client id (this one is Sandbox)
    Stripe's secret key never appears in frontend code — it lives only
    in the Apps Script project's Script Properties.
    ════════════════════════════════════════════════════════════════ */
 const PAYMENT_CONFIG = {
   BACKEND_URL: 'https://script.google.com/macros/s/AKfycbyWVvK1sok2Oe3TRyTqQX_GPHnz4GjEtuhg34o-51FOJ2bwn98jUuLjU9Uf4CSS7tUPWw/exec',
-  PAYPAL_CLIENT_ID: 'AU-1KrHiD4h6g0fQV_woN0rN39cbttJCgSaNmfzX-QOi3fW2op4iMp9ksn7-X9s6g78ebLEhfTW34C7z',
+  PAYPAL_CLIENT_ID: 'BAAc6ynCx-shkXnyMXvDBJznbEBbVGnr8rfSow0Wwe69zyzm7GT-_qyCkYc4s6qijcu3VSQjGjIH_m0v28',
   CURRENCY: 'EUR',
 };
 
