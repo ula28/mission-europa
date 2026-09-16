@@ -938,6 +938,7 @@
 
   /* ══ ПРОЕКТЫ ══ */
   .projects-section { padding:80px 0 48px; }
+  #about, #projects { scroll-margin-top: var(--nav-h); }
   .proj__eyebrow { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gray-400); margin-bottom:16px; display:flex; align-items:center; gap:16px; }
   .proj__eyebrow::after { content:''; flex:1; height:1px; background:var(--gray-200); }
   .proj__headline { font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; margin-bottom:32px; }

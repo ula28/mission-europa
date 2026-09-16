@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Awana — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/css/glightbox.min.css">
+<style>
+/* ── BREADCRUMB ── */
+.crumb { padding: 20px 0 0; font-size: 0.78rem; color: var(--gray-500); }
+.crumb a { color: var(--gray-500); text-decoration: none; transition: color 0.15s; }
+.crumb a:hover { color: var(--black); }
+.crumb__sep { margin: 0 6px; color: var(--gray-300); }
+.crumb [aria-current] { color: var(--black); font-weight: 500; }
+
+/* ── HERO ── */
+.p-hero { padding: 24px 0 64px; }
+.p-hero__photo { position: relative; border-radius: 12px; overflow: hidden; height: 420px; margin-bottom: 40px; }
+.p-hero__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+.p-hero__blob { position: absolute; top: -30px; right: 40px; width: 140px; height: 140px; border-radius: 50%; background: var(--blue); opacity: 0.9; }
+.p-hero__intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: start; }
+.p-hero__tagrow { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
+.p-hero__title { font-family: var(--font-display); font-style: italic; font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1; margin: 0; }
+.p-hero__desc { font-size: 0.95rem; line-height: 1.7; color: var(--gray-700); margin: 20px 0 32px; max-width: 60ch; }
+.p-hero__btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* ── SECTIONS ── */
+.p-section { padding: 56px 0; border-top: 1px solid var(--gray-200); }
+.p-eyebrow { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.p-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gray-300); }
+.p-section__title { font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 32px; }
+.p-section__title em { font-style: italic; color: var(--blue); }
+
+/* ── ABOUT CARDS ── */
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.about-card { border: 1px solid var(--gray-200); border-radius: 12px; padding: 28px; }
+.about-card__icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.about-card--who .about-card__icon { background: rgba(232,103,42,0.1); color: var(--accent); }
+.about-card--what .about-card__icon { background: rgba(43,108,176,0.1); color: var(--blue); }
+.about-card__title { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
+.about-card__text { font-size: 0.875rem; line-height: 1.7; color: var(--gray-700); }
+
+/* ── GALLERY ── */
+/* Mosaic gallery — varied shapes, sizes and a slight scattered tilt per
+   tile (curated by hand via --tilt, not literally randomized: real
+   randomness on every page load would look messy, a designer picks
+   values that read as organic but stay consistent). */
+.gallery-strip { display: grid; grid-template-columns: repeat(6, 1fr); grid-auto-rows: 130px; grid-auto-flow: dense; gap: 16px; }
+.gallery-strip__item {
+  overflow: hidden; background: var(--gray-100);
+  transform: rotate(var(--tilt, 0deg));
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.gallery-strip__item:hover { transform: rotate(0deg) scale(1.06); box-shadow: 0 14px 30px rgba(0,0,0,0.18); z-index: 2; position: relative; }
+.gallery-strip__item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* shapes */
+.gallery-strip__item.shape-circle { border-radius: 50%; }
+.gallery-strip__item.shape-round  { border-radius: 22px; }
+.gallery-strip__item.shape-blob   { border-radius: 62% 38% 55% 45% / 48% 42% 58% 52%; }
+
+/* sizes — desktop only, collapsed back to 1×1 on narrower grids below */
+.gallery-strip__item.tile-lg   { grid-column: span 2; grid-row: span 2; }
+.gallery-strip__item.tile-wide { grid-column: span 2; }
+.gallery-strip__item.tile-tall { grid-row: span 2; }
+
+.gallery-strip__item a { display: block; width: 100%; height: 100%; }
+.gallery-strip__item a:focus-visible { outline: 3px solid var(--accent-dk); outline-offset: 2px; }
+.gallery-note { margin-top: 16px; font-size: 0.78rem; color: var(--gray-400); font-style: italic; }
+
+/* ── AWANA BANNER — вынесен из сетки, во всю ширину блока ── */
+.awana-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  background: var(--blue); border-radius: 16px; padding: 36px 48px; margin-top: 20px;
+}
+.awana-banner__logo { width: 96px; height: auto; flex-shrink: 0; }
+.awana-banner__text {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.3; color: #fff;
+  margin: 0; text-align: right; max-width: 56ch;
+}
+@media (max-width: 640px) {
+  .awana-banner { flex-direction: column; text-align: center; padding: 32px 24px; gap: 18px; }
+  .awana-banner__text { text-align: center; }
+}
+
+/* ── CTA BANNER ── */
+.p-cta { position: relative; overflow: hidden; background: var(--color-surface-dark); color: #fff; text-align: center; padding: 96px 32px; border-top: none; }
+.p-cta__ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: clamp(6rem, 22vw, 16rem); color: rgba(255,255,255,0.05); white-space: nowrap; pointer-events: none; user-select: none; }
+.p-cta__inner { position: relative; }
+.p-cta h2 { color: #fff; margin-bottom: 16px; font-size: clamp(2rem, 4vw, 3rem); }
+.p-cta p { color: rgba(255,255,255,0.65); max-width: 46ch; margin: 0 auto 32px; font-size: 0.95rem; line-height: 1.6; }
+.p-cta .btn-dark { background: var(--accent); }
+.p-cta .btn-dark:hover { background: var(--accent-dk); }
+
+/* ── OTHER PROJECTS ── */
+.other-projects__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+
+@media (max-width: 900px) {
+  .p-hero__intro { grid-template-columns: 1fr; }
+  .about-cards { grid-template-columns: 1fr; }
+  .other-projects__grid { grid-template-columns: 1fr 1fr; }
+  .gallery-strip { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 110px; }
+  .gallery-strip__item.tile-lg, .gallery-strip__item.tile-wide, .gallery-strip__item.tile-tall {
+    grid-column: span 1; grid-row: span 1;
+  }
+}
+@media (max-width: 640px) {
+  .p-hero__photo { height: 280px; }
+  .other-projects__grid { grid-template-columns: 1fr; }
+  .gallery-strip { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 96px; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav__wrap">
+    <a class="nav__logo" href="../">
+      <div class="nav__svg"><img src="../image/logo/mer-mark.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </a>
+    <div class="nav__menu" id="menu">
+      <a href="../#about" data-i18n="nav_about">О нас</a>
+      <a href="../#projects" data-i18n="nav_projects">Проекты</a>
+      <a href="../reports/" data-i18n="nav_reports">Отчётность</a>
+      <a href="../contact/" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="nav__right">
+      <details class="nav__lang" id="langSwitcher" open>
+        <summary class="nav__lang-toggle" aria-label="Выбор языка">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.3 2.5 3.6 5.5 3.6 9s-1.3 6.5-3.6 9c-2.3-2.5-3.6-5.5-3.6-9s1.3-6.5 3.6-9z" stroke="currentColor" stroke-width="1.6"/></svg>
+        </summary>
+        <div class="nav__lang-menu">
+          <span data-lang="ru" class="on">RU</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="de">DE</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="en">EN</span>
+        </div>
+      </details>
+      <a href="../donate/?project=Awana" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать</a>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+  <nav class="crumb" aria-label="Breadcrumb">
+    <a href="../" data-i18n="crumb_home">Главная</a>
+    <span class="crumb__sep">/</span>
+    <span aria-current="page" translate="no">Awana</span>
+  </nav>
+</div>
+
+<div class="wrap p-hero">
+  <div class="p-hero__photo au">
+    <img src="../image/our%20projects/awana-1100w.webp" srcset="../image/our%20projects/awana-1100w.webp 1100w, ../image/our%20projects/awana-2200w.webp 2200w" sizes="(max-width: 900px) 100vw, 1096px" alt="Дети клуба Awana на встрече в Mission Europa Resource">
+    <div class="p-hero__blob" aria-hidden="true"></div>
+  </div>
+  <div class="p-hero__intro au2">
+    <div>
+      <div class="p-hero__tagrow">
+        <div class="hero__tag" style="margin:0;" data-i18n="p_tagline">Дети · творчество · каждую неделю</div>
+      </div>
+      <h1 class="p-hero__title" translate="no">Awana</h1>
+      <p class="p-hero__desc" data-i18n="p_desc">Awana — международная программа для детей, которая проходит уже больше 60 лет. В Mission Europa Resource клуб Awana собирает детей 7–12 лет: творческие занятия, библейские истории, настольные игры — и настоящих друзей вокруг всего этого.</p>
+      <div class="p-hero__btns">
+        <a href="../donate/?project=Awana" class="btn btn-dark btn-arrow" data-i18n="support_btn">Поддержать</a>
+        <a href="../#projects" class="btn btn-ghost" data-i18n="all_projects_btn">Все проекты</a>
+      </div>
+    </div>
+    <div class="hero__badge" style="margin-top:6px;" data-i18n="p_badge">Игры, творчество и новые друзья</div>
+  </div>
+</div>
+
+<section class="p-section">
+  <div class="wrap">
+    <div class="p-eyebrow" data-i18n="about_eyebrow">О клубе</div>
+    <div class="about-cards">
+      <div class="about-card about-card--who">
+        <div class="about-card__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.1C.5 8.5 2 5 5.5 5c2 0 3.4 1 4.5 2.5C11.1 6 12.5 5 14.5 5 18 5 19.5 8.5 22 11.9 19.5 16.4 12 21 12 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="about-card__title" data-i18n="who_title">Для кого этот клуб</div>
+        <p class="about-card__text" data-i18n="who_text">Для детей и подростков, которые хотят весело провести время, найти новых друзей, поучаствовать в играх и творческих активностях, а также узнать библейские истории в дружелюбной атмосфере.</p>
+      </div>
+      <div class="about-card about-card--what">
+        <div class="about-card__icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 1-5.5 5 1.5 7-6-3.5L6 22l1.5-7L2 10l7-1z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="about-card__title" data-i18n="what_title">Что происходит на встречах</div>
+        <p class="about-card__text" data-i18n="what_text">Встречи клуба проходят весело и интересно: активные игры, творческие занятия, интересные истории и учебные материалы, разные конкурсы и другие мероприятия для детей и подростков.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-section">
+  <div class="wrap">
+    <div class="p-eyebrow" data-i18n="gallery_eyebrow">Галерея</div>
+    <h2 class="p-section__title"><span data-i18n="gallery_title_1">Как это</span> <em data-i18n="gallery_title_2">выглядит</em></h2>
+    <div class="gallery-strip">
+      <div class="gallery-strip__item shape-circle" style="--tilt:-7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/1.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/1-240w.webp" srcset="../image/our%20projects/awana/1-240w.webp 240w, ../image/our%20projects/awana/1-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-lg" style="--tilt:0deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/2.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/2-240w.webp" srcset="../image/our%20projects/awana/2-240w.webp 240w, ../image/our%20projects/awana/2-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 70%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:8deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/3.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/3-240w.webp" srcset="../image/our%20projects/awana/3-240w.webp 240w, ../image/our%20projects/awana/3-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:30% 35%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-blob tile-tall" style="--tilt:-6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/4.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/4-240w.webp" srcset="../image/our%20projects/awana/4-240w.webp 240w, ../image/our%20projects/awana/4-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 65%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round" style="--tilt:6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/5.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/5-240w.webp" srcset="../image/our%20projects/awana/5-240w.webp 240w, ../image/our%20projects/awana/5-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 55%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:-9deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/6.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/6-240w.webp" srcset="../image/our%20projects/awana/6-240w.webp 240w, ../image/our%20projects/awana/6-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 40%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-wide" style="--tilt:3deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/DSC_0359.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/DSC_0359-240w.webp" srcset="../image/our%20projects/awana/DSC_0359-240w.webp 240w, ../image/our%20projects/awana/DSC_0359-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:35% 55%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-blob" style="--tilt:-7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/photo_2026-01-31%2010.24.32.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/photo_2026-01-31%2010.24.32-240w.webp" srcset="../image/our%20projects/awana/photo_2026-01-31%2010.24.32-240w.webp 240w, ../image/our%20projects/awana/photo_2026-01-31%2010.24.32-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 60%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-wide" style="--tilt:4deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/11.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/11-240w.webp" srcset="../image/our%20projects/awana/11-240w.webp 240w, ../image/our%20projects/awana/11-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 45%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:5deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/7.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/7-240w.webp" srcset="../image/our%20projects/awana/7-240w.webp 240w, ../image/our%20projects/awana/7-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 30%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round" style="--tilt:7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/8.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/8-240w.webp" srcset="../image/our%20projects/awana/8-240w.webp 240w, ../image/our%20projects/awana/8-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 45%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-blob" style="--tilt:-5deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/9.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/9-240w.webp" srcset="../image/our%20projects/awana/9-240w.webp 240w, ../image/our%20projects/awana/9-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:50% 60%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-tall" style="--tilt:-4deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/10.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/10-240w.webp" srcset="../image/our%20projects/awana/10-240w.webp 240w, ../image/our%20projects/awana/10-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:45% 50%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:6deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/awana/12.webp" data-gallery="awana-gallery"><img src="../image/our%20projects/awana/12-240w.webp" srcset="../image/our%20projects/awana/12-240w.webp 240w, ../image/our%20projects/awana/12-480w.webp 480w" sizes="(max-width: 640px) 30vw, (max-width: 900px) 23vw, 170px" style="object-position:60% 40%;" alt=""></a></div>
+    </div>
+    <p class="gallery-note" data-i18n="gallery_note">Фото с настоящих встреч клуба Awana — галерею будем пополнять по мере новых снимков.</p>
+    <div class="awana-banner">
+      <img class="awana-banner__logo" src="../image/logo/awana.webp" alt="Awana" translate="no">
+      <p class="awana-banner__text" data-i18n="p_badge">Игры, творчество и новые друзья</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-cta">
+  <div class="p-cta__ghost" aria-hidden="true">AWANA</div>
+  <div class="p-cta__inner">
+    <h2 data-i18n="cta_title">Поддержите Awana</h2>
+    <p data-i18n="cta_text">Ваша помощь помогает детям учиться, играть и находить новых друзей каждую неделю.</p>
+    <a href="../donate/?project=Awana" class="btn btn-dark btn-arrow" data-i18n="cta_btn">Поддержать</a>
+  </div>
+</section>
+
+<section class="p-section" style="border-top:none;">
+  <div class="wrap">
+    <div class="p-eyebrow" data-i18n="other_eyebrow">Другие проекты MER</div>
+    <div class="other-projects__grid">
+      <a class="pcard pcard--parasol pcard--has-logo" href="../project-parasolka/">
+        <div class="pcard__photo"><img src="../image/our%20projects/parasolka-270w.webp" srcset="../image/our%20projects/parasolka-270w.webp 270w, ../image/our%20projects/parasolka-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt="Parasolka"></div>
+        <div class="pcard__body">
+          <img class="pcard__logo" src="../image/logo/paras.svg" alt="">
+          <div class="pcard__tag" data-i18n="parasol_tag">Сообщество · интеграция</div>
+          <div class="pcard__name">Parasolka</div>
+          <div class="pcard__desc" data-i18n="parasol_desc">Пространство для встреч, семинаров, мастер-классов и обмена опытом. Первый шаг к новым знакомствам в незнакомой стране.</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--revers" href="../project-revers/">
+        <div class="pcard__photo"><img src="../image/our%20projects/revers-270w.webp" srcset="../image/our%20projects/revers-270w.webp 270w, ../image/our%20projects/revers-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt="Reverse"></div>
+        <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="revers_tag">Подростки</div>
+          <div class="pcard__name">Reverse</div>
+          <div class="pcard__desc" data-i18n="revers_desc">Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--alpha pcard--has-logo" href="../project-alpha/">
+        <div class="pcard__photo"><img src="../image/our%20projects/alfa-270w.webp" srcset="../image/our%20projects/alfa-270w.webp 270w, ../image/our%20projects/alfa-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt="Alpha"></div>
+        <div class="pcard__body">
+          <img class="pcard__logo" src="../image/logo/alfa.webp" alt="">
+          <div class="pcard__tag" data-i18n="alpha_tag">Христианский курс</div>
+          <div class="pcard__name" translate="no">Alpha</div>
+          <div class="pcard__desc" data-i18n="alpha_desc">Беседы о вере и смысле жизни — без давления, с открытыми вопросами.</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+      <a class="pcard pcard--lit" href="../project-literature/">
+        <div class="pcard__photo"><img src="../image/our%20projects/boooks-270w.webp" srcset="../image/our%20projects/boooks-270w.webp 270w, ../image/our%20projects/boooks-540w.webp 540w" sizes="(max-width: 640px) 90vw, (max-width: 900px) 46vw, 262px" alt=""></div>
+        <div class="pcard__body">
+          <div class="pcard__tag" data-i18n="lit_tag">Литература · материалы для благовестия</div>
+          <div class="pcard__name" data-i18n="proj_lit">Рассылка книг</div>
+          <div class="pcard__desc" data-i18n="lit_desc">Бесплатная христианская литература (оплата только за доставку).</div>
+          <span class="pcard__cta" data-i18n="card_more">Подробнее →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER — identical to index.html -->
+<footer class="footer-new" id="business">
+  <div class="wrap">
+    <div class="footer-new__grid">
+      <div>
+        <div class="footer-new__brand">
+          <img src="../image/logo/mer-mark.svg" class="footer-new__icon" alt="">
+          <div class="footer-new__logo">Mission Europa<br>Resource e. V.</div>
+        </div>
+        <div class="footer-new__addr">Гуммерсбах, Германия · <a href="mailto:mer@mer-verein.de" class="email-link">mer@mer-verein.de</a></div>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_about_title">О нас</div>
+        <a href="../#about" data-i18n="footer_team">Команда</a>
+        <a href="../#about" data-i18n="footer_about">История</a>
+        <a href="../reports/" data-i18n="footer_reports">Отчётность</a>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_projects_title">Проекты</div>
+        <a href="../project-parasolka/">Parasolka</a>
+        <a href="../project-avana/" translate="no">Awana</a>
+        <a href="../project-revers/">Revers</a>
+        <a href="../project-alpha/" translate="no">Alpha</a>
+      </div>
+      <div class="footer-new__col">
+        <div class="footer-new__col-title" data-i18n="footer_participate_title">Участие</div>
+        <a href="../donate/" data-i18n="footer_donate">Пожертвовать</a>
+        <a href="../contact/" data-i18n="footer_volunteer">Волонтёрство</a>
+        <a href="../contact/" data-i18n="footer_business">Для бизнеса</a>
+      </div>
+    </div>
+    <div class="footer-new__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="../impressum/">Impressum</a> | <a href="../datenschutz/">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  ru: {
+    nav_about:'О нас',nav_projects:'Проекты',nav_reports:'Отчётность',nav_contact:'Контакты',nav_support:'Поддержать',
+    crumb_home:'Главная',
+    p_tagline:'Дети · творчество · каждую неделю',
+    p_badge:'Игры, творчество и новые друзья',
+    p_desc:'Awana — международная программа для детей, которая проходит уже больше 60 лет. В Mission Europa Resource клуб Awana собирает детей 7–12 лет: творческие занятия, библейские истории, настольные игры — и настоящих друзей вокруг всего этого.',
+    support_btn:'Поддержать', all_projects_btn:'Все проекты',
+    about_eyebrow:'О клубе',
+    who_title:'Для кого этот клуб', who_text:'Для детей и подростков, которые хотят весело провести время, найти новых друзей, поучаствовать в играх и творческих активностях, а также узнать библейские истории в дружелюбной атмосфере.',
+    what_title:'Что происходит на встречах', what_text:'Встречи клуба проходят весело и интересно: активные игры, творческие занятия, интересные истории и учебные материалы, разные конкурсы и другие мероприятия для детей и подростков.',
+    gallery_eyebrow:'Галерея', gallery_title_1:'Как это', gallery_title_2:'выглядит',
+    gallery_note:'Фото с настоящих встреч клуба Awana — галерею будем пополнять по мере новых снимков.',
+    gallery_photo_aria:'Открыть фото галереи на весь экран',
+    cta_title:'Поддержите Awana', cta_text:'Ваша помощь помогает детям учиться, играть и находить новых друзей каждую неделю.', cta_btn:'Поддержать',
+    other_eyebrow:'Другие проекты MER',
+    card_more:'Подробнее →',
+    parasol_tag:'Сообщество · интеграция',
+    parasol_desc:'Пространство для встреч, семинаров, мастер-классов и обмена опытом. Первый шаг к новым знакомствам в незнакомой стране.',
+    revers_tag:'Подростки',
+    revers_desc:'Встречи для подростков — игры, разговоры по душам, наставники и чувство «я здесь свой».',
+    alpha_tag:'Христианский курс',
+    alpha_desc:'Беседы о вере и смысле жизни — без давления, с открытыми вопросами.',
+    proj_lit:'Рассылка книг',
+    lit_tag:'Литература · материалы для благовестия',
+    lit_desc:'Бесплатная христианская литература (оплата только за доставку).',
+    footer_about_title:'О нас', footer_team:'Команда', footer_about:'История', footer_reports:'Отчётность',
+    footer_projects_title:'Проекты',
+    footer_participate_title:'Участие', footer_donate:'Пожертвовать', footer_volunteer:'Волонтёрство', footer_business:'Для бизнеса',
+  },
+  de: {
+    nav_about:'Über uns',nav_projects:'Projekte',nav_reports:'Berichte',nav_contact:'Kontakt',nav_support:'Unterstützen',
+    crumb_home:'Startseite',
+    p_tagline:'Kinder · Kreativität · jede Woche',
+    p_badge:'Spiele, Kreativität und neue Freunde',
+    p_desc:'Awana ist ein internationales Programm für Kinder mit einer über 60-jährigen Geschichte. Im Awana-Klub von Mission Europa Resource treffen sich Kinder im Alter von 7–12 Jahren: kreative Aktivitäten, biblische Geschichten, Gesellschaftsspiele — und echte Freundschaften rund um all das.',
+    support_btn:'Unterstützen', all_projects_btn:'Alle Projekte',
+    about_eyebrow:'Über den Klub',
+    who_title:'Für wen ist dieser Klub', who_text:'Für Kinder und Jugendliche, die gemeinsam Spaß haben, neue Freunde finden, an Spielen und kreativen Aktivitäten teilnehmen und in freundlicher Atmosphäre biblische Geschichten kennenlernen möchten.',
+    what_title:'Was bei den Treffen passiert', what_text:'Die Treffen sind fröhlich und abwechslungsreich: aktive Spiele, kreative Aktivitäten, spannende Geschichten und Lernmaterialien, verschiedene Wettbewerbe und weitere Aktionen für Kinder und Jugendliche.',
+    gallery_eyebrow:'Galerie', gallery_title_1:'So sieht', gallery_title_2:'es aus',
+    gallery_note:'Fotos von echten Awana-Treffen — die Galerie erweitern wir mit weiteren Aufnahmen.',
+    gallery_photo_aria:'Galeriefoto im Vollbildmodus öffnen',
+    cta_title:'Unterstützen Sie Awana', cta_text:'Ihre Hilfe unterstützt Kinder dabei, jede Woche zu lernen, zu spielen und neue Freunde zu finden.', cta_btn:'Unterstützen',
+    other_eyebrow:'Weitere Projekte von MER',
+    card_more:'Mehr →',
+    parasol_tag:'Gemeinschaft · Integration',
+    parasol_desc:'Raum für Treffen, Seminare, Workshops und Erfahrungsaustausch. Der erste Schritt zu neuen Bekanntschaften in einem fremden Land.',
+    revers_tag:'Jugendliche',
+    revers_desc:'Treffen für Jugendliche — Spiele, offene Gespräche, Mentoren und das Gefühl, dazuzugehören.',
+    alpha_tag:'Alphakurs / Glaubenskurs',
+    alpha_desc:'Gespräche über Glauben und den Sinn des Lebens — ohne Druck, mit offenen Fragen.',
+    proj_lit:'Bücherpost',
+    lit_tag:'Literatur · Materialien für die Verkündigung',
+    lit_desc:'Kostenlose christliche Literatur (nur Versandkostenpauschale).',
+    footer_about_title:'Über uns', footer_team:'Team', footer_about:'Geschichte', footer_reports:'Berichte',
+    footer_projects_title:'Projekte',
+    footer_participate_title:'Mitmachen', footer_donate:'Spenden', footer_volunteer:'Ehrenamt', footer_business:'Für Unternehmen',
+  },
+  en: {
+    nav_about:'About',nav_projects:'Projects',nav_reports:'Reports',nav_contact:'Contact',nav_support:'Support Us',
+    crumb_home:'Home',
+    p_tagline:'Children · creativity · every week',
+    p_badge:'Games, creativity and new friends',
+    p_desc:'Awana is an international program for children with more than 60 years of history. At Mission Europa Resource, the Awana club brings together children aged 7–12 for creative activities, Bible stories, board games — and real friendships around all of it.',
+    support_btn:'Support', all_projects_btn:'All projects',
+    about_eyebrow:'About the club',
+    who_title:'Who this club is for', who_text:'For children and teenagers who want to have fun together, make new friends, take part in games and creative activities, and learn Bible stories in a friendly atmosphere.',
+    what_title:'What happens at meetings', what_text:'Club meetings are fun and engaging: active games, creative activities, interesting stories and learning materials, various competitions and other activities for children and teenagers.',
+    gallery_eyebrow:'Gallery', gallery_title_1:'What it', gallery_title_2:'looks like',
+    gallery_note:'Photos from real Awana meetings — we’ll keep adding more as new photos come in.',
+    gallery_photo_aria:'Open gallery photo in fullscreen',
+    cta_title:'Support Awana', cta_text:'Your help supports children in learning, playing, and making new friends every week.', cta_btn:'Support',
+    other_eyebrow:'Other MER projects',
+    card_more:'Learn more →',
+    parasol_tag:'Community · Integration',
+    parasol_desc:'A space for meetings, seminars, workshops and shared experience. A first step toward new connections in an unfamiliar country.',
+    revers_tag:'Teens',
+    revers_desc:'Meetings for teenagers — games, heart-to-heart talks, mentors, and a sense of belonging.',
+    alpha_tag:'Alpha Course',
+    alpha_desc:'Conversations about faith and the meaning of life — no pressure, open questions welcome.',
+    proj_lit:'Book Delivery',
+    lit_tag:'Literature · Outreach materials',
+    lit_desc:'Free Christian literature (shipping fee only).',
+    footer_about_title:'About us', footer_team:'Team', footer_about:'History', footer_reports:'Reports',
+    footer_projects_title:'Projects',
+    footer_participate_title:'Get involved', footer_donate:'Donate', footer_volunteer:'Volunteer', footer_business:'For Business',
+  }
+};
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key].replace(/\n/g,'<br>');
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+}
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+applyLang(localStorage.getItem('mer_lang') || 'ru');
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+<script>
+const _langDetails = document.getElementById('langSwitcher');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
+<script>
+GLightbox({ selector: '.glightbox', touchNavigation: true, loop: true });
+</script>
+</body>
+</html>

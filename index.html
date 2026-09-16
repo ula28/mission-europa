@@ -4,6 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mission Europa Resource e. V.</title>
+<script>
+/* Landing here from another page with a #hash in the URL (e.g. the "О нас"
+   or "Проекты" nav link on donate.html) makes the browser jump to the
+   anchor instantly, before layout has settled — it looks like the page
+   flashes at the top, then snaps down. Strip the hash before the browser
+   acts on it, then scroll to it ourselves with a smooth animation once
+   the page has actually loaded. */
+(function () {
+  var hash = location.hash;
+  if (hash.length < 2) return;
+  history.replaceState(null, '', location.pathname + location.search);
+  window.addEventListener('load', function () {
+    var target = document.querySelector(hash);
+    if (!target) return;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    history.replaceState(null, '', location.pathname + location.search + hash);
+  });
+})();
+</script>
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -12,7 +32,7 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="nav__wrap">
-    <a class="nav__logo" href="index.html">
+    <a class="nav__logo" href="./">
       <div class="nav__svg"><img src="image/logo/mer-mark.svg" alt="Mission Europa Logo"></div>
       <div class="nav__logo-text">
         <div class="nav__logo-main">MER e.V.</div>
@@ -23,8 +43,8 @@
     <div class="nav__menu" id="menu">
       <a href="#about" data-i18n="nav_about">О нас</a>
       <a href="#projects" data-i18n="nav_projects">Проекты</a>
-      <a href="reports.html" data-i18n="nav_reports">Отчётность</a>
-      <a href="contact.html" data-i18n="nav_contact">Контакты</a>
+      <a href="reports/" data-i18n="nav_reports">Отчётность</a>
+      <a href="contact/" data-i18n="nav_contact">Контакты</a>
     </div>
     <div class="nav__right">
       <details class="nav__lang" id="langSwitcher" open>
@@ -41,7 +61,7 @@
           <span data-lang="en">EN</span>
         </div>
       </details>
-      <a href="donate.html#donateForm" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать проект</a>
+      <a href="donate/#donateForm" class="btn btn-dark btn-sm" data-i18n="nav_support">Поддержать проект</a>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -56,7 +76,7 @@
     <div class="hero__badge au3" data-i18n="hero_badge">Помогаем найти «дорогу домой»</div>
     <p class="hero__desc au3" data-i18n="hero_desc">Социальные и интеграционные программы, направленные на поддержку беженцев, эмигрантов и их детей в Германии.</p>
     <div class="hero__btns au4">
-      <a href="donate.html#donateForm" class="btn btn-dark btn-arrow" data-i18n="hero_btn1">Поддержать проект</a>
+      <a href="donate/#donateForm" class="btn btn-dark btn-arrow" data-i18n="hero_btn1">Поддержать проект</a>
       <a href="#projects" class="btn btn-ghost" data-i18n="hero_btn2">О проектах</a>
     </div>
   </div>
@@ -283,7 +303,7 @@
 
   <div class="proj__layout">
     <!-- Parasolka — большая карточка слева -->
-    <a class="pcard pcard--parasol pcard--has-logo" href="project-parasolka.html">
+    <a class="pcard pcard--parasol pcard--has-logo" href="project-parasolka/">
       <div class="pcard__photo">
         <img src="image/our%20projects/parasolka.webp" alt="Parasolka">
       </div>
@@ -298,7 +318,7 @@
 
     <!-- 2×2 справа -->
     <div class="proj__right-grid">
-      <a class="pcard pcard--avana pcard--has-logo" href="project-avana.html">
+      <a class="pcard pcard--avana pcard--has-logo" href="project-avana/">
         <div class="pcard__photo">
           <img src="image/our%20projects/awana.webp" alt="Awana">
         </div>
@@ -310,7 +330,7 @@
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
-      <a class="pcard pcard--revers" href="project-revers.html">
+      <a class="pcard pcard--revers" href="project-revers/">
         <div class="pcard__photo">
           <img src="image/our%20projects/revers.webp" alt="Reverse">
         </div>
@@ -321,7 +341,7 @@
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
-      <a class="pcard pcard--alpha pcard--has-logo" href="project-alpha.html">
+      <a class="pcard pcard--alpha pcard--has-logo" href="project-alpha/">
         <div class="pcard__photo">
           <img src="image/our%20projects/alfa.webp" alt="Alpha">
         </div>
@@ -333,7 +353,7 @@
           <span class="pcard__cta" data-i18n="card_more">Подробнее</span>
         </div>
       </a>
-      <a id="proj-lit" class="pcard pcard--lit" href="project-literature.html">
+      <a id="proj-lit" class="pcard pcard--lit" href="project-literature/">
         <div class="pcard__photo">
           <img src="image/our%20projects/boooks.webp" alt="">
         </div>
@@ -384,7 +404,7 @@
         </div>
       </div>
 
-      <form class="donate-card" action="donate.html#donateForm" method="get">
+      <form class="donate-card" action="donate/#donateForm" method="get">
         <label for="don-amount" class="donate-card__amount-label" data-i18n="don_amount_label">Сумма пожертвования</label>
         <div class="donate-card__amount-value">
           <input type="number" id="don-amount" name="amount" min="1" step="1" value="50" inputmode="numeric" autocomplete="off">
@@ -446,7 +466,7 @@
 
         <div class="donate-card__checkline donate-card__consent">
           <input type="checkbox" id="don-gdpr" name="gdpr" required>
-          <label for="don-gdpr" data-i18n="don_gdpr">Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html">политикой конфиденциальности</a>.</label>
+          <label for="don-gdpr" data-i18n="don_gdpr">Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz/">политикой конфиденциальности</a>.</label>
         </div>
 
         <button type="submit" class="donate-card__submit" data-i18n="don_submit">Пожертвовать</button>
@@ -485,23 +505,23 @@
         <div class="footer-new__col-title" data-i18n="footer_about_title">О нас</div>
         <a href="#about" data-i18n="footer_team">Команда</a>
         <a href="#about" data-i18n="footer_about">История</a>
-        <a href="reports.html" data-i18n="footer_reports">Отчётность</a>
+        <a href="reports/" data-i18n="footer_reports">Отчётность</a>
       </div>
       <div class="footer-new__col">
         <div class="footer-new__col-title" data-i18n="footer_projects_title">Проекты</div>
-        <a href="project-parasolka.html">Parasolka</a>
-        <a href="project-avana.html" translate="no">Awana</a>
-        <a href="project-revers.html">Revers</a>
-        <a href="project-alpha.html" translate="no">Alpha</a>
+        <a href="project-parasolka/">Parasolka</a>
+        <a href="project-avana/" translate="no">Awana</a>
+        <a href="project-revers/">Revers</a>
+        <a href="project-alpha/" translate="no">Alpha</a>
       </div>
       <div class="footer-new__col">
         <div class="footer-new__col-title" data-i18n="footer_participate_title">Участие</div>
-        <a href="donate.html#donateForm" data-i18n="footer_donate">Пожертвовать</a>
-        <a href="contact.html" data-i18n="footer_volunteer">Волонтёрство</a>
-        <a href="contact.html" data-i18n="footer_business">Для бизнеса</a>
+        <a href="donate/#donateForm" data-i18n="footer_donate">Пожертвовать</a>
+        <a href="contact/" data-i18n="footer_volunteer">Волонтёрство</a>
+        <a href="contact/" data-i18n="footer_business">Для бизнеса</a>
       </div>
     </div>
-    <div class="footer-new__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></div>
+    <div class="footer-new__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="impressum/">Impressum</a> | <a href="datenschutz/">Datenschutz</a></div>
   </div>
 </footer>
 
@@ -573,7 +593,7 @@ const i18n = {
     don_receipt_fields_legend:'Адрес для налоговой справки',
     don_first_name:'Имя', don_last_name:'Фамилия', don_street:'Улица и номер дома',
     don_zip:'Индекс (PLZ)', don_city:'Город', don_phone:'Телефон (необязательно)', don_email:'E-Mail',
-    don_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz.html">политикой конфиденциальности</a>.',
+    don_gdpr:'Я согласен(а) на обработку моих данных в соответствии с <a href="datenschutz/">политикой конфиденциальности</a>.',
     don_methods_label:'Доступные способы оплаты',
     don_fx_note:'Расчёты производятся в EUR. При оплате картой в другой валюте конвертация происходит автоматически банком-эмитентом.',
     don_secure:'Безопасный платёж через защищённое соединение',
@@ -649,7 +669,7 @@ const i18n = {
     don_receipt_fields_legend:'Adresse für die Zuwendungsbestätigung',
     don_first_name:'Vorname', don_last_name:'Nachname', don_street:'Straße und Hausnummer',
     don_zip:'PLZ', don_city:'Stadt', don_phone:'Telefon (optional)', don_email:'E-Mail',
-    don_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz.html">Datenschutzerklärung</a> zu.',
+    don_gdpr:'Ich stimme der Verarbeitung meiner Daten gemäß der <a href="datenschutz/">Datenschutzerklärung</a> zu.',
     don_methods_label:'Verfügbare Zahlungsarten',
     don_fx_note:'Die Abrechnung erfolgt in EUR. Bei Zahlung per Karte in einer anderen Währung erfolgt die Umrechnung automatisch durch die kartenausgebende Bank.',
     don_secure:'Sichere Zahlung über eine verschlüsselte Verbindung',
@@ -725,7 +745,7 @@ const i18n = {
     don_receipt_fields_legend:'Address for the tax receipt',
     don_first_name:'First name', don_last_name:'Last name', don_street:'Street and house number',
     don_zip:'Postal code', don_city:'City', don_phone:'Phone (optional)', don_email:'Email',
-    don_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz.html">Privacy Policy</a>.',
+    don_gdpr:'I agree to the processing of my data in accordance with the <a href="datenschutz/">Privacy Policy</a>.',
     don_methods_label:'Available payment methods',
     don_fx_note:'All amounts are charged in EUR. If paying by card in another currency, conversion is handled automatically by your card-issuing bank.',
     don_secure:'Secure payment over an encrypted connection',
@@ -801,7 +821,7 @@ const i18n = {
     don_receipt_fields_legend:'Адреса для податкової довідки',
     don_first_name:'Ім\'я', don_last_name:'Прізвище', don_street:'Вулиця і номер будинку',
     don_zip:'Індекс (PLZ)', don_city:'Місто', don_phone:'Телефон (необов\'язково)', don_email:'E-Mail',
-    don_gdpr:'Я погоджуюсь на обробку моїх даних відповідно до <a href="datenschutz.html">політики конфіденційності</a>.',
+    don_gdpr:'Я погоджуюсь на обробку моїх даних відповідно до <a href="datenschutz/">політики конфіденційності</a>.',
     don_methods_label:'Доступні способи оплати',
     don_fx_note:'Розрахунки здійснюються в EUR. При оплаті карткою в іншій валюті конвертація відбувається автоматично банком-емітентом.',
     don_secure:'Безпечний платіж через захищене з\'єднання',

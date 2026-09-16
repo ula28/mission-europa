@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datenschutz — Mission Europa Resource e. V.</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+
+/* ── PAGE HERO ── */
+.page-hero { padding: 80px 0 64px; border-bottom: 1px solid var(--gray-200); }
+.page-hero__label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 20px; }
+.page-hero h1 { margin-bottom: 14px; max-width: 640px; }
+.page-hero p  { font-size: 1rem; max-width: 560px; line-height: 1.75; }
+
+/* ── LEGAL CONTENT ── */
+.legal { padding: 64px 0 96px; }
+.legal__wrap { max-width: 760px; }
+.legal-section { margin-bottom: 40px; }
+.legal-section:last-child { margin-bottom: 0; }
+.legal-section h2 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin-bottom: 14px; }
+.legal-section h3 { font-size: 0.95rem; font-weight: 600; margin: 18px 0 8px; color: var(--black); }
+.legal-section p { font-size: 0.9rem; line-height: 1.8; color: var(--gray-700); margin-bottom: 10px; }
+.legal-section p:last-child { margin-bottom: 0; }
+.legal-section ul { padding-left: 20px; margin: 10px 0; display: flex; flex-direction: column; gap: 6px; }
+.legal-section li { font-size: 0.9rem; line-height: 1.7; color: var(--gray-700); }
+.legal-section a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
+.legal-todo { color: var(--accent-dk); font-weight: 600; background: rgba(232,103,42,0.08); padding: 1px 6px; border-radius: 4px; }
+.legal-note { font-size: 0.8rem; color: var(--gray-500); line-height: 1.7; padding: 16px 18px; background: var(--gray-100); border-radius: var(--r); }
+.legal-updated { font-size: 0.78rem; color: var(--gray-400); margin-top: 48px; }
+
+/* ── i18n ── */
+[data-i18n] { transition: opacity 0.18s ease; }
+.lang-switching [data-i18n] { opacity: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav__wrap">
+    <a class="nav__logo" href="../">
+      <div class="nav__svg"><img src="../image/logo/mer-mark.svg" alt="Mission Europa Logo"></div>
+      <div class="nav__logo-text">
+        <div class="nav__logo-main">MER e.V.</div>
+        <div class="nav__logo-sub">MISSION EUROPA RESOURCE</div>
+        <div class="nav__logo-mini">GEMEINNUTZIGER VEREIN</div>
+      </div>
+    </a>
+    <div class="nav__menu" id="menu">
+      <a href="../#about" data-i18n="nav_about">О нас</a>
+      <a href="../#projects" data-i18n="nav_projects">Проекты</a>
+      <a href="../reports/" data-i18n="nav_reports">Отчётность</a>
+      <a href="../contact/" data-i18n="nav_contact">Контакты</a>
+    </div>
+    <div class="nav__right">
+      <details class="nav__lang" id="langSwitcher" open>
+        <summary class="nav__lang-toggle" aria-label="Выбор языка">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.3 2.5 3.6 5.5 3.6 9s-1.3 6.5-3.6 9c-2.3-2.5-3.6-5.5-3.6-9s1.3-6.5 3.6-9z" stroke="currentColor" stroke-width="1.6"/></svg>
+        </summary>
+        <div class="nav__lang-menu">
+          <span data-lang="ru" class="on">RU</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="de">DE</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="en">EN</span>
+        </div>
+      </details>
+      <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__label" data-i18n="page_label">Юридическая информация</div>
+    <h1 data-i18n="page_title">Политика конфиденциальности</h1>
+    <p data-i18n="page_sub">Как мы обрабатываем персональные данные в соответствии с DSGVO (GDPR).</p>
+  </div>
+</div>
+
+<!-- LEGAL CONTENT -->
+<div class="legal">
+  <div class="wrap">
+    <div class="legal__wrap">
+
+      <div class="legal-section">
+        <h2 data-i18n="s1_h">1. Ответственный за обработку данных</h2>
+        <p data-i18n="s1_p1">Ответственным в значении Общего регламента по защите данных (DSGVO / GDPR) является:</p>
+        <p>Mission Europa Resource e. V.<br>
+          <span class="legal-todo" data-i18n="addr_todo">[ПОЛНЫЙ АДРЕС]</span><br>
+          <span data-i18n="s1_p2">представитель:</span> <span class="legal-todo" data-i18n="chair_todo">[ИМЯ ПРЕДСЕДАТЕЛЯ]</span></p>
+        <p><span data-i18n="s1_p3">Email:</span> <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a> — <span data-i18n="s1_p4">полные реквизиты см. на странице</span> <a href="../impressum/" data-i18n="s1_p5">«Импрессум»</a>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s2_h">2. Какие данные мы собираем и как</h2>
+
+        <h3 data-i18n="s2_h1">Контактная форма</h3>
+        <p data-i18n="s2_p1">Если вы пользуетесь формой обратной связи, мы обрабатываем добровольно указанные вами данные (имя, телефон, email, тема обращения, сообщение, язык переписки) для обработки вашего запроса.</p>
+
+        <h3 data-i18n="s2_h2">Форма пожертвования</h3>
+        <p data-i18n="s2_p2">При оформлении пожертвования мы обрабатываем выбранную сумму и периодичность. Если вы запрашиваете Zuwendungsbestätigung (справку о пожертвовании), мы дополнительно обрабатываем ваши имя, фамилию и почтовый адрес (улица, индекс, город) — эти данные обязательны по закону для действительной налоговой справки в Германии.</p>
+
+        <h3 data-i18n="s2_h3">Обработка платежей</h3>
+        <p data-i18n="s2_p3">Для технической обработки онлайн-платежей мы планируем использовать стороннего платёжного провайдера. Как только конкретный провайдер будет подключён, он будет указан здесь поимённо вместе с условиями обработки данных.</p>
+
+        <h3 data-i18n="s2_h4">Серверные журналы / хостинг</h3>
+        <p data-i18n="s2_p4">Сайт размещён на инфраструктуре Netlify, Inc. При каждом обращении к сайту Netlify автоматически обрабатывает технические данные доступа (IP-адрес, дата и время обращения, запрошенная страница, тип браузера) в серверных журналах.</p>
+
+        <h3 data-i18n="s2_h5">Google Fonts</h3>
+        <p data-i18n="s2_p5">Сайт подключает шрифты Google Fonts, загружаемые с серверов Google. При этом ваш IP-адрес может передаваться Google.</p>
+
+        <h3 data-i18n="s2_h6">Аналитика и куки</h3>
+        <p data-i18n="s2_p6">Мы не используем инструменты веб-аналитики, трекинговые или рекламные куки на данном сайте.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s3_h">3. Правовые основания обработки (ст. 6 DSGVO)</h2>
+        <ul>
+          <li data-i18n="s3_li1">Ст. 6 (1)(a) DSGVO — согласие (например, чекбокс согласия в форме пожертвования)</li>
+          <li data-i18n="s3_li2">Ст. 6 (1)(b) DSGVO — исполнение договора / преддоговорные меры (обработка пожертвования или запроса)</li>
+          <li data-i18n="s3_li3">Ст. 6 (1)(c) DSGVO — исполнение правового обязательства (налоговые сроки хранения справок о пожертвовании)</li>
+          <li data-i18n="s3_li4">Ст. 6 (1)(f) DSGVO — законный интерес (технически исправная и безопасная работа сайта, серверные журналы)</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s4_h">4. Срок хранения данных</h2>
+        <p data-i18n="s4_p1">Мы храним персональные данные только столько, сколько это необходимо для соответствующей цели, либо в течение сроков, предусмотренных законом (например, налоговых сроков хранения справок о пожертвовании).</p>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s5_h">5. Ваши права как субъекта данных</h2>
+        <p data-i18n="s5_p1">Вы имеете право на:</p>
+        <ul>
+          <li data-i18n="s5_li1">доступ к данным, хранящимся о вас (ст. 15 DSGVO)</li>
+          <li data-i18n="s5_li2">исправление неверных данных (ст. 16 DSGVO)</li>
+          <li data-i18n="s5_li3">удаление ваших данных (ст. 17 DSGVO)</li>
+          <li data-i18n="s5_li4">ограничение обработки (ст. 18 DSGVO)</li>
+          <li data-i18n="s5_li5">переносимость данных (ст. 20 DSGVO)</li>
+          <li data-i18n="s5_li6">возражение против обработки (ст. 21 DSGVO)</li>
+          <li data-i18n="s5_li7">отзыв данного согласия с действием на будущее (ст. 7 (3) DSGVO)</li>
+          <li data-i18n="s5_li8">подачу жалобы в надзорный орган по защите данных (ст. 77 DSGVO) — например, в Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), так как объединение зарегистрировано в Гуммерсбахе (земля Северный Рейн-Вестфалия)</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2 data-i18n="s6_h">6. Контакт по вопросам защиты данных</h2>
+        <p data-i18n="s6_p1">По вопросам защиты данных или для реализации указанных выше прав пишите нам на <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a>.</p>
+      </div>
+
+      <div class="legal-note" data-i18n="disclaimer">Настоящая страница переведена для удобства пользователей. Юридически действительной является немецкая версия документа.</div>
+
+      <p class="legal-updated" data-i18n="updated">Обновлено: сентябрь 2026</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__logo">Mission Europa Resource e. V.<br>
+        <a href="mailto:mer@mer-verein.de" class="email-link" style="font-weight:400;">mer@mer-verein.de</a>
+      </div>
+      <nav class="footer__nav">
+        <a href="../#about" data-i18n="nav_about">О нас</a>
+        <a href="../#projects" data-i18n="nav_projects">Проекты</a>
+        <a href="../" data-i18n="nav_business">Для бизнеса</a>
+        <a href="../reports/" data-i18n="nav_reports">Отчётность</a>
+        <a href="../contact/" data-i18n="nav_contact">Контакты</a>
+      </nav>
+    </div>
+    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="../impressum/">Impressum</a> | <a href="../datenschutz/">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  ru: {
+    nav_about:'О нас', nav_projects:'Проекты', nav_business:'Для бизнеса',
+    nav_reports:'Отчётность', nav_contact:'Контакты',
+    page_label:'Юридическая информация',
+    page_title:'Политика конфиденциальности',
+    page_sub:'Как мы обрабатываем персональные данные в соответствии с DSGVO (GDPR).',
+    s1_h:'1. Ответственный за обработку данных',
+    s1_p1:'Ответственным в значении Общего регламента по защите данных (DSGVO / GDPR) является:',
+    addr_todo:'[ПОЛНЫЙ АДРЕС]', chair_todo:'[ИМЯ ПРЕДСЕДАТЕЛЯ]',
+    s1_p2:'представитель:', s1_p3:'Email:', s1_p4:'полные реквизиты см. на странице', s1_p5:'«Импрессум»',
+    s2_h:'2. Какие данные мы собираем и как',
+    s2_h1:'Контактная форма',
+    s2_p1:'Если вы пользуетесь формой обратной связи, мы обрабатываем добровольно указанные вами данные (имя, телефон, email, тема обращения, сообщение, язык переписки) для обработки вашего запроса.',
+    s2_h2:'Форма пожертвования',
+    s2_p2:'При оформлении пожертвования мы обрабатываем выбранную сумму и периодичность. Если вы запрашиваете Zuwendungsbestätigung (справку о пожертвовании), мы дополнительно обрабатываем ваши имя, фамилию и почтовый адрес (улица, индекс, город) — эти данные обязательны по закону для действительной налоговой справки в Германии.',
+    s2_h3:'Обработка платежей',
+    s2_p3:'Для технической обработки онлайн-платежей мы планируем использовать стороннего платёжного провайдера. Как только конкретный провайдер будет подключён, он будет указан здесь поимённо вместе с условиями обработки данных.',
+    s2_h4:'Серверные журналы / хостинг',
+    s2_p4:'Сайт размещён на инфраструктуре Netlify, Inc. При каждом обращении к сайту Netlify автоматически обрабатывает технические данные доступа (IP-адрес, дата и время обращения, запрошенная страница, тип браузера) в серверных журналах.',
+    s2_h5:'Google Fonts',
+    s2_p5:'Сайт подключает шрифты Google Fonts, загружаемые с серверов Google. При этом ваш IP-адрес может передаваться Google.',
+    s2_h6:'Аналитика и куки',
+    s2_p6:'Мы не используем инструменты веб-аналитики, трекинговые или рекламные куки на данном сайте.',
+    s3_h:'3. Правовые основания обработки (ст. 6 DSGVO)',
+    s3_li1:'Ст. 6 (1)(a) DSGVO — согласие (например, чекбокс согласия в форме пожертвования)',
+    s3_li2:'Ст. 6 (1)(b) DSGVO — исполнение договора / преддоговорные меры (обработка пожертвования или запроса)',
+    s3_li3:'Ст. 6 (1)(c) DSGVO — исполнение правового обязательства (налоговые сроки хранения справок о пожертвовании)',
+    s3_li4:'Ст. 6 (1)(f) DSGVO — законный интерес (технически исправная и безопасная работа сайта, серверные журналы)',
+    s4_h:'4. Срок хранения данных',
+    s4_p1:'Мы храним персональные данные только столько, сколько это необходимо для соответствующей цели, либо в течение сроков, предусмотренных законом (например, налоговых сроков хранения справок о пожертвовании).',
+    s5_h:'5. Ваши права как субъекта данных', s5_p1:'Вы имеете право на:',
+    s5_li1:'доступ к данным, хранящимся о вас (ст. 15 DSGVO)',
+    s5_li2:'исправление неверных данных (ст. 16 DSGVO)',
+    s5_li3:'удаление ваших данных (ст. 17 DSGVO)',
+    s5_li4:'ограничение обработки (ст. 18 DSGVO)',
+    s5_li5:'переносимость данных (ст. 20 DSGVO)',
+    s5_li6:'возражение против обработки (ст. 21 DSGVO)',
+    s5_li7:'отзыв данного согласия с действием на будущее (ст. 7 (3) DSGVO)',
+    s5_li8:'подачу жалобы в надзорный орган по защите данных (ст. 77 DSGVO) — например, в Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), так как объединение зарегистрировано в Гуммерсбахе (земля Северный Рейн-Вестфалия)',
+    s6_h:'6. Контакт по вопросам защиты данных',
+    s6_p1:'По вопросам защиты данных или для реализации указанных выше прав пишите нам на <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a>.',
+    disclaimer:'Настоящая страница переведена для удобства пользователей. Юридически действительной является немецкая версия документа.',
+    updated:'Обновлено: сентябрь 2026',
+  },
+  de: {
+    nav_about:'Über uns', nav_projects:'Projekte', nav_business:'Für Unternehmen',
+    nav_reports:'Berichte', nav_contact:'Kontakt',
+    page_label:'Rechtliches',
+    page_title:'Datenschutzerklärung',
+    page_sub:'Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
+    s1_h:'1. Verantwortlicher',
+    s1_p1:'Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:',
+    addr_todo:'[VOLLSTÄNDIGE ANSCHRIFT]', chair_todo:'[NAME DES VORSTANDSVORSITZENDEN]',
+    s1_p2:'vertreten durch:', s1_p3:'E-Mail:', s1_p4:'vollständige Angaben siehe', s1_p5:'„Impressum"',
+    s2_h:'2. Welche Daten wir erheben und wie',
+    s2_h1:'Kontaktformular',
+    s2_p1:'Wenn Sie unser Kontaktformular nutzen, verarbeiten wir die von Ihnen freiwillig angegebenen Daten (Name, Telefonnummer, E-Mail-Adresse, Betreff, Nachricht, Korrespondenzsprache), um Ihre Anfrage zu bearbeiten.',
+    s2_h2:'Spendenformular',
+    s2_p2:'Bei einer Spende verarbeiten wir den gewählten Betrag und die Häufigkeit. Wenn Sie eine Zuwendungsbestätigung wünschen, verarbeiten wir zusätzlich Vorname, Nachname und Ihre Postanschrift (Straße, PLZ, Ort) — diese Angaben sind für eine steuerlich gültige Zuwendungsbestätigung gesetzlich erforderlich.',
+    s2_h3:'Zahlungsabwicklung',
+    s2_p3:'Für die technische Abwicklung von Online-Zahlungen planen wir den Einsatz eines externen Zahlungsdienstleisters. Sobald ein konkreter Anbieter angebunden ist, wird er hier namentlich benannt, gemeinsam mit den Bedingungen der Datenverarbeitung.',
+    s2_h4:'Server-Logfiles / Hosting',
+    s2_p4:'Diese Website wird bei Netlify, Inc. gehostet. Beim Aufruf der Website verarbeitet Netlify automatisch technische Zugriffsdaten (u. a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, Browsertyp) in Server-Logfiles.',
+    s2_h5:'Google Fonts',
+    s2_p5:'Diese Website bindet Schriftarten von Google Fonts ein, die von Servern von Google geladen werden. Dabei kann Ihre IP-Adresse an Google übertragen werden.',
+    s2_h6:'Analyse-Tools und Cookies',
+    s2_p6:'Wir setzen derzeit keine Web-Analyse-Tools, Tracking-Cookies oder Werbe-Cookies auf dieser Website ein.',
+    s3_h:'3. Rechtsgrundlagen der Verarbeitung (Art. 6 DSGVO)',
+    s3_li1:'Art. 6 Abs. 1 lit. a DSGVO — Einwilligung (z. B. Zustimmungs-Checkbox im Spendenformular)',
+    s3_li2:'Art. 6 Abs. 1 lit. b DSGVO — Vertragserfüllung bzw. vorvertragliche Maßnahmen (Bearbeitung einer Spende oder Anfrage)',
+    s3_li3:'Art. 6 Abs. 1 lit. c DSGVO — Erfüllung einer rechtlichen Verpflichtung (steuerliche Aufbewahrungsfristen für Zuwendungsbestätigungen)',
+    s3_li4:'Art. 6 Abs. 1 lit. f DSGVO — berechtigtes Interesse (technisch fehlerfreier und sicherer Betrieb der Website, Server-Logfiles)',
+    s4_h:'4. Speicherdauer',
+    s4_p1:'Wir speichern personenbezogene Daten nur so lange, wie es für den jeweiligen Zweck erforderlich ist, oder so lange, wie gesetzliche Aufbewahrungsfristen (z. B. steuerrechtliche Fristen für Zuwendungsbestätigungen) dies vorschreiben.',
+    s5_h:'5. Ihre Rechte als betroffene Person', s5_p1:'Sie haben das Recht auf:',
+    s5_li1:'Auskunft über die zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)',
+    s5_li2:'Berichtigung unrichtiger Daten (Art. 16 DSGVO)',
+    s5_li3:'Löschung Ihrer Daten (Art. 17 DSGVO)',
+    s5_li4:'Einschränkung der Verarbeitung (Art. 18 DSGVO)',
+    s5_li5:'Datenübertragbarkeit (Art. 20 DSGVO)',
+    s5_li6:'Widerspruch gegen die Verarbeitung (Art. 21 DSGVO)',
+    s5_li7:'Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)',
+    s5_li8:'Beschwerde bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO) — z. B. bei der Landesbeauftragten für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), da der Verein seinen Sitz in Gummersbach (Nordrhein-Westfalen) hat',
+    s6_h:'6. Kontakt in Datenschutzfragen',
+    s6_p1:'Für Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte wenden Sie sich bitte an <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a>.',
+    disclaimer:'Diese Seite liegt zur besseren Verständlichkeit auch in Übersetzung vor. Rechtlich verbindlich ist die deutsche Fassung.',
+    updated:'Stand: September 2026',
+  },
+  en: {
+    nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
+    nav_reports:'Reports', nav_contact:'Contact',
+    page_label:'Legal',
+    page_title:'Privacy Policy',
+    page_sub:'How we process personal data in accordance with the GDPR.',
+    s1_h:'1. Controller',
+    s1_p1:'The controller within the meaning of the General Data Protection Regulation (GDPR) is:',
+    addr_todo:'[FULL ADDRESS]', chair_todo:'[CHAIRPERSON NAME]',
+    s1_p2:'represented by:', s1_p3:'Email:', s1_p4:'full details see', s1_p5:'"Legal Notice"',
+    s2_h:'2. What data we collect and how',
+    s2_h1:'Contact form',
+    s2_p1:'If you use our contact form, we process the data you voluntarily provide (name, phone number, email address, subject, message, correspondence language) to handle your enquiry.',
+    s2_h2:'Donation form',
+    s2_p2:'When you make a donation, we process the chosen amount and frequency. If you request a Zuwendungsbestätigung (donation receipt), we additionally process your first name, last name, and postal address (street, postal code, city) — this information is legally required for a valid tax receipt in Germany.',
+    s2_h3:'Payment processing',
+    s2_p3:'For the technical processing of online payments we plan to use an external payment service provider. Once a specific provider is integrated, it will be named here along with the terms of data processing.',
+    s2_h4:'Server logs / hosting',
+    s2_p4:'This website is hosted with Netlify, Inc. When you access the website, Netlify automatically processes technical access data (including IP address, date and time of access, page requested, browser type) in server log files.',
+    s2_h5:'Google Fonts',
+    s2_p5:'This website loads fonts from Google Fonts, served from Google\'s servers. In doing so, your IP address may be transmitted to Google.',
+    s2_h6:'Analytics and cookies',
+    s2_p6:'We do not currently use any web analytics tools, tracking cookies, or advertising cookies on this website.',
+    s3_h:'3. Legal basis for processing (Art. 6 GDPR)',
+    s3_li1:'Art. 6(1)(a) GDPR — consent (e.g. the consent checkbox in the donation form)',
+    s3_li2:'Art. 6(1)(b) GDPR — performance of a contract / pre-contractual measures (processing a donation or enquiry)',
+    s3_li3:'Art. 6(1)(c) GDPR — compliance with a legal obligation (statutory retention periods for donation receipts)',
+    s3_li4:'Art. 6(1)(f) GDPR — legitimate interest (technically sound and secure operation of the website, server logs)',
+    s4_h:'4. Storage period',
+    s4_p1:'We store personal data only for as long as necessary for the respective purpose, or for as long as required by statutory retention periods (e.g. tax-related retention periods for donation receipts).',
+    s5_h:'5. Your rights as a data subject', s5_p1:'You have the right to:',
+    s5_li1:'access to the data stored about you (Art. 15 GDPR)',
+    s5_li2:'rectification of inaccurate data (Art. 16 GDPR)',
+    s5_li3:'erasure of your data (Art. 17 GDPR)',
+    s5_li4:'restriction of processing (Art. 18 GDPR)',
+    s5_li5:'data portability (Art. 20 GDPR)',
+    s5_li6:'object to processing (Art. 21 GDPR)',
+    s5_li7:'withdraw any consent given, with future effect (Art. 7(3) GDPR)',
+    s5_li8:'lodge a complaint with a data protection supervisory authority (Art. 77 GDPR) — e.g. the Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), as the association is based in Gummersbach (North Rhine-Westphalia)',
+    s6_h:'6. Contact for data protection matters',
+    s6_p1:'For questions about data protection or to exercise the rights listed above, please contact us at <a href="mailto:mer@mer-verein.de">mer@mer-verein.de</a>.',
+    disclaimer:'This page is provided as a courtesy translation. The German version is legally binding.',
+    updated:'Last updated: September 2026',
+  }
+};
+
+let currentLang = localStorage.getItem('mer_lang') || 'ru';
+
+function applyLang(lang) {
+  const dict = i18n[lang];
+  if (!dict) return;
+  document.body.classList.add('lang-switching');
+  setTimeout(() => {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.lang = lang;
+    document.body.classList.remove('lang-switching');
+  }, 180);
+  document.querySelectorAll('[data-lang]').forEach(b =>
+    b.classList.toggle('on', b.getAttribute('data-lang') === lang));
+  localStorage.setItem('mer_lang', lang);
+  currentLang = lang;
+}
+
+document.querySelectorAll('[data-lang]').forEach(btn =>
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang'))));
+document.getElementById('burger').addEventListener('click', () =>
+  document.getElementById('menu').classList.toggle('open'));
+
+applyLang(currentLang);
+</script>
+
+<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<script>
+const _st = document.getElementById('scrollTop');
+window.addEventListener('scroll', () => _st.classList.toggle('visible', window.scrollY > 300), { passive: true });
+_st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
+<script>
+const _langDetails = document.getElementById('langSwitcher');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
+</script>
+</body>
+</html>
