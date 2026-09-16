@@ -49,7 +49,7 @@
     </a>
     <div class="nav__menu" id="menu">
       <a href="index.html#about" data-i18n="nav_about">Über uns</a>
-      <a href="index.html" data-i18n="nav_projects">Projekte</a>
+      <a href="index.html#projects" data-i18n="nav_projects">Projekte</a>
       <a href="donate.html" data-i18n="nav_support">Unterstützen</a>
       <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
     </div>
@@ -128,7 +128,7 @@
       </div>
       <nav class="footer__nav">
         <a href="index.html#about" data-i18n="nav_about">Über uns</a>
-        <a href="index.html" data-i18n="nav_projects">Projekte</a>
+        <a href="index.html#projects" data-i18n="nav_projects">Projekte</a>
         <a href="reports.html" data-i18n="nav_reports">Berichte</a>
         <a href="contact.html" data-i18n="nav_contact">Kontakt</a>
         <a href="impressum.html" data-i18n="nav_imprint">Impressum</a>
@@ -221,7 +221,12 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 </script>
 <script>
 const _langDetails = document.getElementById('langSwitcher');
-if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
 </script>
 </body>
 </html>

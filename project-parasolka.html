@@ -118,7 +118,7 @@
     </a>
     <div class="nav__menu" id="menu">
       <a href="index.html#about" data-i18n="nav_about">О нас</a>
-      <a href="index.html" data-i18n="nav_projects">Проекты</a>
+      <a href="index.html#projects" data-i18n="nav_projects">Проекты</a>
       <a href="reports.html" data-i18n="nav_reports">Отчётность</a>
       <a href="contact.html" data-i18n="nav_contact">Контакты</a>
     </div>
@@ -489,7 +489,12 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 </script>
 <script>
 const _langDetails = document.getElementById('langSwitcher');
-if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox@3.3.1/dist/js/glightbox.min.js"></script>
 <script>

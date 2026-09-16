@@ -96,7 +96,7 @@
     </a>
     <div class="nav__menu" id="menu">
       <a href="index.html#about" data-i18n="nav_about">О нас</a>
-      <a href="index.html" data-i18n="nav_projects">Проекты</a>
+      <a href="index.html#projects" data-i18n="nav_projects">Проекты</a>
       <a href="reports.html" data-i18n="nav_reports">Отчётность</a>
       <a href="donate.html" data-i18n="nav_support">Поддержать</a>
     </div>
@@ -111,6 +111,8 @@
           <span data-lang="de">DE</span>
           <span class="nav__lang-sep">|</span>
           <span data-lang="en">EN</span>
+          <span class="nav__lang-sep">|</span>
+          <span data-lang="uk">UK</span>
         </div>
       </details>
       <button class="nav__burger" id="burger"><span></span><span></span><span></span></button>
@@ -229,7 +231,7 @@
       </div>
       <nav class="footer__nav">
         <a href="index.html#about" data-i18n="nav_about">О нас</a>
-        <a href="index.html" data-i18n="nav_projects">Проекты</a>
+        <a href="index.html#projects" data-i18n="nav_projects">Проекты</a>
         <a href="index.html" data-i18n="nav_business">Для бизнеса</a>
         <a href="reports.html" data-i18n="nav_reports">Отчётность</a>
         <a href="contact.html" data-i18n="nav_contact">Контакты</a>
@@ -292,6 +294,32 @@ const i18n = {
     callout_label:'Möchten Sie spenden?',
     callout_text:'Bankverbindung, PayPal, Wise und das Spendenformular finden Sie auf der Spendenseite.',
     callout_btn:'Zur Spendenseite',
+  },
+  uk: {
+    nav_about:'Про нас', nav_projects:'Проєкти', nav_business:'Для бізнесу',
+    nav_reports:'Звітність', nav_contact:'Контакти', nav_support:'Підтримати',
+    page_label:'Зв\'язатися з нами',
+    page_title:'Напишіть нам —<br><em>ми відповімо.</em>',
+    page_sub:'Питання про проєкти, партнерство чи членство в організації — заповніть форму, і ми зв\'яжемося з вами протягом 48 годин.',
+    form_title:'Форма<br><em>зворотного зв\'язку</em>',
+    f_name:'Ім\'я', f_name_ph:'Ваше ім\'я',
+    f_phone:'Телефон',
+    f_topic:'Тема', f_topic_general:'Загальне питання', f_topic_projects:'Питання про проєкти',
+    f_topic_partner:'Партнерство / Бізнес', f_topic_member:'Членство в організації',
+    f_topic_media:'ЗМІ / Преса', f_topic_other:'Інше',
+    f_lang:'Мова листування',
+    f_msg:'Повідомлення', f_msg_ph:'Ваше повідомлення...',
+    f_gdpr:'Я погоджуюсь на обробку моїх даних відповідно до <a href="datenschutz.html" style="text-decoration:underline">політики конфіденційності</a>.',
+    f_submit:'Надіслати →',
+    info_label:'Контактна інформація',
+    addr_title:'Адреса організації',
+    card_phone:'Телефон',
+    card_email:'Email',
+    card_hours:'Години роботи',
+    hours_text:'Пн–Пт: 10:00 – 18:00<br>Сб–Нд: за домовленістю',
+    callout_label:'Хочете підтримати нас?',
+    callout_text:'Реквізити для переказу, PayPal, Wise та форма пожертви — на окремій сторінці.',
+    callout_btn:'Перейти до пожертви',
   },
   en: {
     nav_about:'About', nav_projects:'Projects', nav_business:'For Business',
@@ -368,7 +396,12 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 </script>
 <script>
 const _langDetails = document.getElementById('langSwitcher');
-if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
 </script>
 </body>
 </html>

@@ -205,7 +205,12 @@ _st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth'
 </script>
 <script>
 const _langDetails = document.getElementById('langSwitcher');
-if (_langDetails && window.matchMedia('(max-width: 480px)').matches) _langDetails.removeAttribute('open');
+if (_langDetails) {
+  const _langMq = window.matchMedia('(max-width: 480px)');
+  const _syncLangDetails = e => { if (e.matches) _langDetails.removeAttribute('open'); else _langDetails.setAttribute('open', ''); };
+  _syncLangDetails(_langMq);
+  _langMq.addEventListener('change', _syncLangDetails);
+}
 </script>
 </body>
 </html>
