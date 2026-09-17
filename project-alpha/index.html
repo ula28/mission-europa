@@ -214,8 +214,8 @@
     <div class="p-eyebrow" data-i18n="gallery_eyebrow">Галерея</div>
     <h2 class="p-section__title"><span data-i18n="gallery_title_1">Как это</span> <em data-i18n="gallery_title_2">выглядит</em></h2>
     <div class="gallery-strip">
-      <div class="gallery-strip__item shape-round tile-lg" style="--tilt:0deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/2.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/2.jpg" style="object-position:50% 40%;" alt=""></a></div>
-      <div class="gallery-strip__item shape-circle" style="--tilt:-7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/3.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/3.jpg" style="object-position:50% 35%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-round tile-lg" style="--tilt:0deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/3.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/3.jpg" style="object-position:50% 50%;" alt=""></a></div>
+      <div class="gallery-strip__item shape-circle" style="--tilt:-7deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/2.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/2.jpg" style="object-position:35% 45%;" alt=""></a></div>
       <div class="gallery-strip__item shape-blob tile-tall" style="--tilt:5deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/4.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/4.jpg" style="object-position:50% 45%;" alt=""></a></div>
       <div class="gallery-strip__item shape-round" style="--tilt:-4deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/5.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/5.jpg" style="object-position:50% 40%;" alt=""></a></div>
       <div class="gallery-strip__item shape-circle" style="--tilt:8deg;"><a class="glightbox" data-i18n-aria="gallery_photo_aria" aria-label="Открыть фото галереи на весь экран" href="../image/our%20projects/alfa/6.jpg" data-gallery="alpha-gallery"><img src="../image/our%20projects/alfa/6.jpg" style="object-position:50% 40%;" alt=""></a></div>
@@ -497,7 +497,15 @@ applyLang(localStorage.getItem('mer_lang') || 'ru');
 // video1's own first frame works fine as a thumbnail; video2's first frame is
 // a dark/blank moment, so nudge it a few frames in once metadata loads.
 const _v2Thumb = document.getElementById('alphaVideo2Thumb');
-if (_v2Thumb) _v2Thumb.addEventListener('loadedmetadata', () => { _v2Thumb.currentTime = 0.1; }, { once: true });
+if (_v2Thumb) _v2Thumb.addEventListener('loadedmetadata', () => {
+  _v2Thumb.currentTime = 50;
+  // Some browsers never paint a seeked frame on a video that hasn't
+  // actually played (especially while off-screen) — briefly play it
+  // (muted, so autoplay is allowed) to force a real frame to render,
+  // then immediately pause.
+  const playPromise = _v2Thumb.play();
+  if (playPromise) playPromise.then(() => setTimeout(() => _v2Thumb.pause(), 80)).catch(() => {});
+}, { once: true });
 </script>
 
 <button class="scroll-top" id="scrollTop" aria-label="Наверх">
