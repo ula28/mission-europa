@@ -253,6 +253,7 @@
     --violet-100: #EDE9FE;
     --violet-500: #7C3AED;
     --red-600:    #B3261E;
+    --teal-700:   #09847E;
 
     /* ── Semantic: named by purpose ── */
     --black:      var(--ink-950);
@@ -274,6 +275,9 @@
     --parasol-mid:    var(--violet-800);
     --parasol-light:  var(--violet-100);
     --parasol-accent: var(--violet-500);
+
+    /* Literature card accent */
+    --lit-dark: var(--teal-700);
 
     --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-ui: 'Instrument Sans', sans-serif;
@@ -964,6 +968,8 @@
   .pcard--avana .pcard__name { color: var(--blue); }
   .pcard--alpha { border-color: var(--accent); }
   .pcard--alpha .pcard__name { color: var(--accent); }
+  .pcard--lit .pcard__name { color: var(--lit-dark); }
+  .pcard--lit .pcard__cta { color: var(--lit-dark); }
   .pcard:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.13); transform: translateY(-2px); }
   .pcard__photo {
     height: 180px;
