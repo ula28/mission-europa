@@ -254,6 +254,10 @@
     --violet-500: #7C3AED;
     --red-600:    #B3261E;
     --teal-700:   #09847E;
+    --crimson-100: #fff0ef;
+    --crimson-200: #fdd8d6;
+    --crimson-500: #E8251A;
+    --crimson-700: #C01F15;
 
     /* ── Semantic: named by purpose ── */
     --black:      var(--ink-950);
@@ -278,6 +282,12 @@
 
     /* Literature card accent */
     --lit-dark: var(--teal-700);
+
+    /* Alpha Course page palette */
+    --alpha-accent:    var(--crimson-500);
+    --alpha-accent-dk: var(--crimson-700);
+    --alpha-pale:      var(--crimson-100);
+    --alpha-soft:      var(--crimson-200);
 
     --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-ui: 'Instrument Sans', sans-serif;
