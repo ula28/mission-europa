@@ -333,9 +333,9 @@
     <div class="contact-strip__inner">
       <div>
         <p class="contact-strip__label" data-i18n="strip_label">Fragen zur Spende?</p>
-        <p data-i18n="strip_text">Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a></p>
+        <p data-i18n="strip_text">Можете написать нам напрямую: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a></p>
       </div>
-      <a href="mailto:mer@mer-verein.de" class="btn btn-ghost" data-i18n="strip_btn">Schreiben Sie uns →</a>
+      <a href="mailto:mer@mer-verein.de" id="stripEmailBtn" data-copy="mer@mer-verein.de" class="btn btn-ghost" data-i18n="strip_btn">Schreiben Sie uns →</a>
     </div>
   </div>
 </div>
@@ -399,7 +399,7 @@ const i18n = {
     faq_5q:'Welche Zahlungswege gibt es?',
     faq_6q:'Wie kann ich Mitglied werden?',
     strip_label:'Fragen zur Spende?',
-    strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
+    strip_text:'Sie können uns auch direkt schreiben: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
     strip_btn:'Schreiben Sie uns →',
   },
   en: {
@@ -439,7 +439,7 @@ const i18n = {
     faq_5q:'What payment methods are available?',
     faq_6q:'How can I become a member?',
     strip_label:'Questions about donating?',
-    strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
+    strip_text:'You can also reach us directly: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
     strip_btn:'Write to us →',
   },
   ru: {
@@ -479,7 +479,7 @@ const i18n = {
     faq_5q:'Какие способы оплаты доступны?',
     faq_6q:'Как стать членом организации?',
     strip_label:'Вопросы о пожертвовании?',
-    strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
+    strip_text:'Можете написать нам напрямую: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
     strip_btn:'Написать нам →',
   },
   uk: {
@@ -519,7 +519,7 @@ const i18n = {
     faq_5q:'Які способи оплати доступні?',
     faq_6q:'Як стати членом організації?',
     strip_label:'Питання про пожертву?',
-    strip_text:'Lorem ipsum: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
+    strip_text:'Можете написати нам напряму: <a href="mailto:mer@mer-verein.de" style="text-decoration:underline">mer@mer-verein.de</a>',
     strip_btn:'Написати нам →',
   }
 };
@@ -579,6 +579,19 @@ document.querySelectorAll('.copy-btn').forEach(btn => {
     });
   });
 });
+// Also copy the address to the clipboard, in case the visitor has no mail
+// client set up to handle the mailto: link — the link itself still fires
+// as normal for everyone else.
+const _stripEmailBtn = document.getElementById('stripEmailBtn');
+if (_stripEmailBtn) {
+  _stripEmailBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(_stripEmailBtn.dataset.copy).then(() => {
+      const orig = _stripEmailBtn.textContent;
+      _stripEmailBtn.textContent = '✓';
+      setTimeout(() => { _stripEmailBtn.textContent = orig; }, 2000);
+    });
+  });
+}
 document.getElementById('burger').addEventListener('click', () =>
   document.getElementById('menu').classList.toggle('open'));
 
