@@ -253,7 +253,10 @@
     --violet-100: #EDE9FE;
     --violet-500: #7C3AED;
     --red-600:    #B3261E;
+    --teal-100:   #E6F5F4;
+    --teal-200:   #BFE5E2;
     --teal-700:   #09847E;
+    --teal-800:   #076B66;
     --crimson-100: #fff0ef;
     --crimson-200: #fdd8d6;
     --crimson-500: #E8251A;
@@ -281,7 +284,10 @@
     --parasol-accent: var(--violet-500);
 
     /* Literature card accent */
-    --lit-dark: var(--teal-700);
+    --lit-dark:     var(--teal-700);
+    --lit-dark-dk:  var(--teal-800);
+    --lit-pale:     var(--teal-100);
+    --lit-soft:     var(--teal-200);
 
     /* Alpha Course page palette */
     --alpha-accent:    var(--crimson-500);
