@@ -2,6 +2,7 @@
 .vscode/
 .DS_Store
 node_modules/
+_screenshots/
 
 # Auto-fetched Claude Code skill caches (regenerated from skills-lock.json,
 # not meant to be committed) — NOT the whole .claude/, since .claude/agents/
