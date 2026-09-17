@@ -719,6 +719,10 @@ function togglePaymentUI() {
   const isPaypal = paymentSelect.value === 'paypal';
   paypalMount.hidden = !isPaypal;
   submitBtn.hidden = isPaypal;
+  // Hidden alone still leaves it eligible as the form's "default button"
+  // for implicit submission (e.g. pressing Enter in a field) — disable it
+  // too so PayPal mode can't accidentally trigger a native form submit.
+  submitBtn.disabled = isPaypal;
   if (isPaypal && !paypalRendered) {
     setStatus('pending', t('status_loading'));
     loadPaypalSdk().then(renderPaypalButtons).catch(() => setStatus('error', t('err_generic')));
@@ -739,8 +743,15 @@ document.getElementById('amountPills').addEventListener('click', updateSubmitLab
 
 donateForm.addEventListener('submit', async (e) => {
   const method = paymentSelect.value;
-  if (method !== 'stripe_card') return; // bank: native submit to thank-you.html
+  if (method === 'bank') return; // bank: native submit to thank-you.html
   e.preventDefault();
+  // Allowlist, not denylist: only stripe_card actually runs the code below.
+  // PayPal pays via the SDK button rendered into #paypal-button-container,
+  // not this submit handler (disabled+hidden, but still swallow any stray
+  // implicit submission just in case) — and any future payment method
+  // added to the <select> without updating this handler fails safe (no-op)
+  // instead of silently falling through to a Stripe card charge.
+  if (method !== 'stripe_card') return;
   if (!donateForm.reportValidity()) return;
   const donor = collectDonor();
   if (!donor.amount || donor.amount < 1) {

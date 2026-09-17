@@ -171,9 +171,9 @@ function confirmStripeSession_(body) {
     method: (session.payment_method_types || ['card'])[0],
   };
 
-  appendDonationRow_(donor, 'Stripe (' + (session.payment_method_types || ['card']).join('/') + ')', sessionId);
-  sendThankYouEmail_(donor);
-  return { ok: true, donor };
+  const isNew = recordDonationOnce_(sessionId, donor, 'Stripe (' + (session.payment_method_types || ['card']).join('/') + ')');
+  if (isNew) sendThankYouEmail_(donor);
+  return { ok: true, donor, alreadyProcessed: !isNew };
 }
 
 // ── PayPal (sandbox/live via MODE) ─────────────────────────────────
@@ -234,7 +234,11 @@ function logPayPalDonation_(body) {
 
   const purchaseUnit = (order.purchase_units || [])[0] || {};
   const capture = ((purchaseUnit.payments || {}).captures || [])[0] || {};
-  const amount = parseFloat((capture.amount || {}).value || donor.amount || 0);
+  // Must come from PayPal's own capture, never from the client-submitted
+  // donor.amount — that field is attacker-controlled and falling back to
+  // it would let a forged request record any amount it likes.
+  const amount = parseFloat((capture.amount || {}).value);
+  if (!amount) return { ok: false, error: 'PayPal-Betrag konnte nicht ermittelt werden.' };
 
   // Identity fields must come from PayPal's own verified order, not from
   // the client-submitted donor object — otherwise a tampered request could
@@ -251,9 +255,9 @@ function logPayPalDonation_(body) {
   donor.amount = amount;
   donor.method = 'paypal';
 
-  appendDonationRow_(donor, 'PayPal', orderId);
-  sendThankYouEmail_(donor);
-  return { ok: true, donor };
+  const isNew = recordDonationOnce_(orderId, donor, 'PayPal');
+  if (isNew) sendThankYouEmail_(donor);
+  return { ok: true, donor, alreadyProcessed: !isNew };
 }
 
 // ── Sheet ───────────────────────────────────────────────────────────
@@ -280,6 +284,67 @@ function isAlreadyProcessed_(txnId) {
   const txnCol = SHEET_HEADERS.indexOf('Transaktions-ID') + 1;
   const ids = sheet.getRange(2, txnCol, lastRow - 1, 1).getValues();
   return ids.some(row => row[0] === txnId);
+}
+
+// Wraps the duplicate check + sheet append in a script-wide lock so two
+// concurrent requests for the same transaction (double-clicked PayPal
+// button, a retried/timed-out confirmStripeSession_ fetch) can't both
+// pass isAlreadyProcessed_ before either has appended its row — without
+// this, both would append a row and both would trigger a receipt email
+// for a single donation. The lock is only held for this check-and-append,
+// not for the earlier network calls to Stripe/PayPal, which stay outside
+// it so slow API calls don't serialize unrelated donations.
+//
+// By the time this runs, the money has already moved (Stripe/PayPal already
+// confirmed the charge) — so a lock timeout or a Sheets error here must
+// never bubble up as a payment failure, or the donor may pay again for a
+// real second charge. Every failure path below is caught, alerts the org
+// by email instead, and returns false so the caller still reports success.
+function recordDonationOnce_(txnId, donor, zahlungsart) {
+  const lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(30000);
+  } catch (err) {
+    notifyRecordingIssue_(txnId, donor, zahlungsart, err);
+    return false;
+  }
+  try {
+    if (isAlreadyProcessed_(txnId)) return false;
+    appendDonationRow_(donor, zahlungsart, txnId);
+    return true;
+  } catch (err) {
+    notifyRecordingIssue_(txnId, donor, zahlungsart, err);
+    return false;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// Best-effort alert so a payment that succeeded but couldn't be recorded
+// doesn't just vanish — the org gets told to add the row/receipt by hand.
+function notifyRecordingIssue_(txnId, donor, zahlungsart, err) {
+  try {
+    const cfg = getConfig_();
+    MailApp.sendEmail({
+      to: cfg.orgEmail,
+      subject: 'ACHTUNG: Spende bezahlt, aber nicht ins Sheet eingetragen — ' + txnId,
+      body: [
+        'Eine Zahlung wurde erfolgreich abgeschlossen, konnte aber nicht',
+        'automatisch in die Tabelle eingetragen werden. Bitte manuell nachtragen:',
+        '',
+        'Transaktions-ID: ' + txnId,
+        'Zahlungsart: ' + zahlungsart,
+        'Betrag: ' + (donor.amount || '?') + ' €',
+        'Name: ' + [donor.lastName, donor.firstName].filter(Boolean).join(', '),
+        'E-Mail: ' + (donor.email || ''),
+        '',
+        'Fehler: ' + String(err),
+      ].join('\n'),
+    });
+  } catch (mailErr) {
+    // Last resort — at least leave a trace in the execution log.
+    console.error('notifyRecordingIssue_ failed to send alert email:', mailErr, 'original error:', err);
+  }
 }
 
 // Google Sheets treats a cell as a formula whenever its text starts with
