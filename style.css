@@ -943,9 +943,10 @@
   .team-people__photo { border-radius: 12px; overflow: hidden; margin-bottom: 40px; }
   .team-people__photo img { width: 100%; height: 280px; object-fit: cover; display: block; }
   .team-people__grid {
-    display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
     margin-bottom: 40px; text-align: center;
   }
+  .team-people__member { flex: 0 1 190px; }
   .team-people__avatar {
     width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
     margin: 0 auto 16px; display: block;
@@ -1143,7 +1144,7 @@
     .journey__step-name { font-size: clamp(0.8rem, 3.2vw, 0.88rem); }
     .journey__step-sub { font-size: clamp(0.68rem, 2.6vw, 0.73rem); }
 
-    .team-people__grid { grid-template-columns:repeat(3,1fr); row-gap:32px; }
+    .team-people__grid { display:grid; grid-template-columns:repeat(3,1fr); row-gap:32px; }
     .team-people__photo img { height:220px; }
   }
   @media (max-width:768px) {
@@ -1155,7 +1156,7 @@
     .journey__step:nth-child(2n) { margin-top:72px; }
     .hero__right { height:340px; }
     .story__content { padding:40px 24px; }
-    .team-people__grid { grid-template-columns:repeat(2,1fr); }
+    .team-people__grid { display:grid; grid-template-columns:repeat(2,1fr); }
     .team-people__photo img { height:180px; }
   }
 
