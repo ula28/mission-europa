@@ -75,10 +75,10 @@
 
 /* ── SUPPORT BANNER (Parasolka palette) ── */
 .p-cta { position: relative; overflow: hidden; background: var(--parasol-dark); color: var(--white); text-align: center; padding: 72px 32px; border-top: none; border-radius: 16px; }
-.p-cta__ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(5rem, 18vw, 13rem); color: rgba(255,255,255,0.06); white-space: nowrap; pointer-events: none; user-select: none; }
+.p-cta__ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: clamp(5rem, 18vw, 13rem); color: color-mix(in srgb, var(--white) 6%, transparent); white-space: nowrap; pointer-events: none; user-select: none; }
 .p-cta__inner { position: relative; }
 .p-cta h2 { font-family: var(--font-ui); font-style: normal; color: var(--white); margin-bottom: 12px; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; }
-.p-cta p { color: rgba(255,255,255,0.7); max-width: 46ch; margin: 0 auto 28px; font-size: 0.92rem; line-height: 1.6; }
+.p-cta p { color: color-mix(in srgb, var(--white) 70%, transparent); max-width: 46ch; margin: 0 auto 28px; font-size: 0.92rem; line-height: 1.6; }
 
 /* ── OTHER PROJECTS ── */
 .other-projects__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }

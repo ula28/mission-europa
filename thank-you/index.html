@@ -8,10 +8,10 @@
 <style>
 .ty-page { min-height: calc(100vh - var(--nav-h) - 100px); display: flex; align-items: center; justify-content: center; padding: 64px 24px; }
 .ty-card { max-width: 500px; width: 100%; text-align: center; }
-.ty-check { width: 72px; height: 72px; border-radius: 50%; background: #e8f5e9; margin: 0 auto 32px; display: flex; align-items: center; justify-content: center; font-size: 2rem; animation: pop 0.55s cubic-bezier(0.34,1.56,0.64,1) both; }
+.ty-check { width: 72px; height: 72px; border-radius: 50%; background: var(--color-success-bg); margin: 0 auto 32px; display: flex; align-items: center; justify-content: center; font-size: 2rem; animation: pop 0.55s cubic-bezier(0.34,1.56,0.64,1) both; }
 @keyframes pop { from { opacity:0; transform:scale(0.4); } to { opacity:1; transform:scale(1); } }
 .ty-card h1 { font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 36px; }
-.ty-card h1 em { color: #4caf50; }
+.ty-card h1 em { color: var(--color-success-accent); }
 .ty-steps { background: var(--off-white); border-radius: var(--r); padding: 28px 32px; text-align: left; margin-bottom: 36px; }
 .ty-steps__label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 16px; }
 .ty-steps ol { padding-left: 18px; display: flex; flex-direction: column; gap: 10px; }
@@ -19,7 +19,7 @@
 .ty-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 .footer-mini { background: var(--black); color: var(--color-text-on-dark-faint); font-size: 0.72rem; text-align: center; padding: 20px; }
 .footer-mini a { color: var(--color-text-on-dark-muted); text-decoration: underline; text-underline-offset: 2px; transition: color 0.15s; }
-.footer-mini a:hover { color: #fff; }
+.footer-mini a:hover { color: var(--white); }
 .ty-notice { background: var(--off-white); border: 1px solid var(--color-danger); border-radius: var(--r); padding: 16px 20px; font-size: 0.85rem; color: var(--color-danger); line-height: 1.6; margin-bottom: 28px; text-align: left; }
 [data-i18n] { transition: opacity 0.18s ease; }
 .lang-switching [data-i18n] { opacity: 0; }
@@ -76,7 +76,7 @@
 </div>
 
 <div class="footer-mini">
-  <strong style="color:rgba(255,255,255,0.6);">Mission Europa Resource e. V.</strong> · © 2026 – <span data-i18n="footer_org">gemeinnütziger Verein</span> | <a href="../impressum/" data-i18n="nav_imprint">Impressum</a> | <a href="../datenschutz/" data-i18n="nav_privacy">Datenschutz</a>
+  <strong style="color:color-mix(in srgb, var(--white) 60%, transparent);">Mission Europa Resource e. V.</strong> · © 2026 – <span data-i18n="footer_org">gemeinnütziger Verein</span> | <a href="../impressum/" data-i18n="nav_imprint">Impressum</a> | <a href="../datenschutz/" data-i18n="nav_privacy">Datenschutz</a>
 </div>
 
 <script>
