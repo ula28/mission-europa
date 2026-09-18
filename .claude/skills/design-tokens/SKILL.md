@@ -7,13 +7,18 @@ description: Правила дизайн-токенов и каскадных с
 Три уровня, в этом порядке:
 
 1. Primitives — сырая палитра: --white, --off-white, --gray-100…700,
-   --ink-950, --navy-900, --navy-800, --orange-500/600, --sky-600/700,
-   --violet-700/800/100/500. Никогда не использовать напрямую в
-   компонентах.
+   --ink-950, --navy-900, --navy-800, --orange-500/600, --sky-100/300/
+   600/700, --violet-100/500/700, --teal-*, --crimson-*, --red-600,
+   --green-100/500/700. Никогда не использовать напрямую в компонентах.
 2. Semantic — по назначению: --black, --accent, --accent-dk, --blue,
    --blue-dk, --color-brand-accent(-dk), --color-surface-dark,
-   --color-surface-darkest, --color-text-muted, --parasol-*.
-   Ссылаются только на primitives.
+   --color-surface-darkest, --color-text-muted, --color-success(-accent/
+   -bg), --color-text-on-dark(-muted/-faint), --parasol-* (dark/light/
+   accent — используется .pcard--parasol на главной и самой страницей
+   project-parasolka), --lit-*, --alpha-*. Ссылаются только на
+   primitives. Альфа-варианты — через
+   color-mix(in srgb, var(--token) N%, transparent), не через
+   rgba(R,G,B,alpha) с захардкоженными R/G/B.
 3. Component — для одного конкретного компонента: --btn-dark-bg,
    --btn-dark-bg-hover. Ссылаются только на semantic.
 
@@ -39,8 +44,10 @@ description: Правила дизайн-токенов и каскадных с
 
 ## Известный долг
 
-Секция PARASOLKA PROJECT PAGE (pp-* классы) и .scroll-top пока НЕ
-обёрнуты в @layer — это осознанно вне скоупа последнего рефакторинга.
-Часть pp-* стилей всё ещё использует var(--gray-500) напрямую вместо
-var(--color-text-muted). Не трогать это самостоятельно без отдельной
-задачи — не пытаться "исправить заодно".
+`.scroll-top` пока не обёрнут в @layer — вне скоупа последнего
+рефакторинга. Не трогать самостоятельно без отдельной задачи.
+
+(2026-09-18: секция PARASOLKA PROJECT PAGE — pp-* классы — оказалась
+мёртвым кодом, ни одна из 12 страниц её не использовала, и была
+удалена вместе с обслуживавшими её токенами. Если где-то остались
+упоминания pp-* в других заметках/памяти — это устарело.)
