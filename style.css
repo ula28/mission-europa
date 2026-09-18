@@ -463,9 +463,13 @@
     display: flex; gap: 2px; align-items: center;
     font-size: 0.75rem; letter-spacing: 0.06em;
   }
-  .nav__lang-menu span { cursor: pointer; padding: 2px 5px; transition: color 0.15s; color: var(--gray-400); }
-  .nav__lang-menu span:hover,
-  .nav__lang-menu span.on { color: var(--black); font-weight: 700; }
+  .nav__lang-menu button {
+    appearance: none; border: none; background: none; font: inherit; color: var(--gray-400);
+    cursor: pointer; padding: 2px 5px; transition: color 0.15s;
+  }
+  .nav__lang-menu button:hover,
+  .nav__lang-menu button.on { color: var(--black); font-weight: 700; }
+  .nav__lang-menu button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
   .nav__lang-sep { cursor: default; padding: 0 1px; }
   .nav__svg {
     width: 48px; height: 48px; flex-shrink: 0;
@@ -617,8 +621,8 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.16);
       padding: 8px; z-index: 250; font-size: 0.9rem; min-width: 96px;
     }
-    .nav__lang-menu span { padding: 8px 12px; border-radius: 8px; text-align: left; }
-    .nav__lang-menu span:hover { background: var(--gray-100); }
+    .nav__lang-menu button { padding: 8px 12px; border-radius: 8px; text-align: left; width: 100%; }
+    .nav__lang-menu button:hover { background: var(--gray-100); }
     .nav__lang-sep { display: none; }
   }
 }
