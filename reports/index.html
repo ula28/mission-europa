@@ -55,7 +55,7 @@
     </div>
     <div class="nav__right">
       <details class="nav__lang" id="langSwitcher" open>
-        <summary class="nav__lang-toggle" aria-label="Sprachauswahl">
+        <summary class="nav__lang-toggle" data-i18n-aria="nav_lang_aria" aria-label="Sprachauswahl">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.3 2.5 3.6 5.5 3.6 9s-1.3 6.5-3.6 9c-2.3-2.5-3.6-5.5-3.6-9s1.3-6.5 3.6-9z" stroke="currentColor" stroke-width="1.6"/></svg>
         </summary>
         <div class="nav__lang-menu">
@@ -125,7 +125,7 @@
         <a href="../datenschutz/" data-i18n="nav_privacy">Datenschutz</a>
       </nav>
     </div>
-    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="../impressum/">Impressum</a> | <a href="../datenschutz/">Datenschutz</a></div>
+    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – <span data-i18n="footer_org">gemeinnütziger Verein</span> | <a href="../impressum/" data-i18n="nav_imprint">Impressum</a> | <a href="../datenschutz/" data-i18n="nav_privacy">Datenschutz</a></div>
   </div>
 </footer>
 
@@ -139,6 +139,7 @@ const i18n = {
     page_sub:'Wir sind ein eingetragener gemeinnütziger Verein. Alle Finanz- und Tätigkeitsberichte veröffentlichen wir offen.',
     page_cta:'Uns unterstützen',
     rGem:'Bescheinigung Gemeinnützigkeit', rSatzung:'Satzung e.V.',
+    footer_org:'gemeinnütziger Verein', nav_lang_aria:'Sprachauswahl', scroll_top_aria:'Nach oben',
   },
   en: {
     nav_about:'About', nav_projects:'Projects',
@@ -148,6 +149,7 @@ const i18n = {
     page_sub:'We are a registered nonprofit with official gemeinnützig status. All financial and activity reports are published openly.',
     page_cta:'Support us',
     rGem:'Gemeinnützigkeit Certificate', rSatzung:'Articles of Association',
+    footer_org:'gemeinnütziger Verein', nav_lang_aria:'Language selection', scroll_top_aria:'Back to top',
   },
   ru: {
     nav_about:'О нас', nav_projects:'Проекты',
@@ -157,6 +159,7 @@ const i18n = {
     page_sub:'Мы — зарегистрированный gemeinnütziger Verein с официальным статусом. Всю финансовую и деятельностную отчётность публикуем открыто.',
     page_cta:'Поддержать нас',
     rGem:'Свидетельство о Gemeinnützigkeit', rSatzung:'Устав объединения',
+    footer_org:'gemeinnütziger Verein', nav_lang_aria:'Выбор языка', scroll_top_aria:'Наверх',
   },
   uk: {
     nav_about:'Про нас', nav_projects:'Проекти',
@@ -166,6 +169,7 @@ const i18n = {
     page_sub:'Ми — зареєстрований gemeinnütziger Verein з офіційним статусом. Усю фінансову та діяльнісну звітність публікуємо відкрито.',
     page_cta:'Підтримати нас',
     rGem:'Свідоцтво про Gemeinnützigkeit', rSatzung:'Статут об’єднання',
+    footer_org:'gemeinnütziger Verein', nav_lang_aria:'Вибір мови', scroll_top_aria:'Догори',
   }
 };
 
@@ -197,7 +201,7 @@ document.getElementById('burger').addEventListener('click', () =>
 applyLang(currentLang);
 </script>
 
-<button class="scroll-top" id="scrollTop" aria-label="Nach oben">
+<button class="scroll-top" id="scrollTop" data-i18n-aria="scroll_top_aria" aria-label="Nach oben">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 <script>

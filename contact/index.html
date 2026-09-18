@@ -102,7 +102,7 @@
     </div>
     <div class="nav__right">
       <details class="nav__lang" id="langSwitcher" open>
-        <summary class="nav__lang-toggle" aria-label="Выбор языка">
+        <summary class="nav__lang-toggle" data-i18n-aria="nav_lang_aria" aria-label="Выбор языка">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.3 2.5 3.6 5.5 3.6 9s-1.3 6.5-3.6 9c-2.3-2.5-3.6-5.5-3.6-9s1.3-6.5 3.6-9z" stroke="currentColor" stroke-width="1.6"/></svg>
         </summary>
         <div class="nav__lang-menu">
@@ -148,7 +148,7 @@
           </div>
         </div>
         <div class="f-group">
-          <label>Email</label>
+          <label data-i18n="card_email">Email</label>
           <input type="email" placeholder="email@example.com">
         </div>
         <div class="f-group">
@@ -192,7 +192,7 @@
         <p>
           Mission Europa Resource e. V.<br>
           Hömicker Weg, 51643 Gummersbach<br>
-          Deutschland
+          <span data-i18n="addr_country">Deutschland</span>
         </p>
       </div>
 
@@ -235,7 +235,7 @@
         <a href="../contact/" data-i18n="nav_contact">Контакты</a>
       </nav>
     </div>
-    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – gemeinnütziger Verein | <a href="../impressum/">Impressum</a> | <a href="../datenschutz/">Datenschutz</a></div>
+    <div class="footer__copy">© 2026 Mission Europa Resource e.V. – <span data-i18n="footer_org">gemeinnütziger Verein</span> | <a href="../impressum/" data-i18n="nav_imprint">Impressum</a> | <a href="../datenschutz/" data-i18n="nav_privacy">Datenschutz</a></div>
   </div>
 </footer>
 
@@ -265,6 +265,7 @@ const i18n = {
     callout_label:'Хотите поддержать нас?',
     callout_text:'Реквизиты для перевода, PayPal и форма пожертвования — на отдельной странице.',
     callout_btn:'Перейти к пожертвованию',
+    nav_imprint:'Импрессум', nav_privacy:'Конфиденциальность', footer_org:'gemeinnütziger Verein', nav_lang_aria:'Выбор языка', scroll_top_aria:'Наверх', addr_country:'Германия',
   },
   de: {
     nav_about:'Über uns', nav_projects:'Projekte',
@@ -290,6 +291,7 @@ const i18n = {
     callout_label:'Möchten Sie spenden?',
     callout_text:'Bankverbindung, PayPal und das Spendenformular finden Sie auf der Spendenseite.',
     callout_btn:'Zur Spendenseite',
+    nav_imprint:'Impressum', nav_privacy:'Datenschutz', footer_org:'gemeinnütziger Verein', nav_lang_aria:'Sprachauswahl', scroll_top_aria:'Nach oben', addr_country:'Deutschland',
   },
   uk: {
     nav_about:'Про нас', nav_projects:'Проєкти',
@@ -315,6 +317,7 @@ const i18n = {
     callout_label:'Хочете підтримати нас?',
     callout_text:'Реквізити для переказу, PayPal та форма пожертви — на окремій сторінці.',
     callout_btn:'Перейти до пожертви',
+    nav_imprint:'Імпресум', nav_privacy:'Конфіденційність', footer_org:'gemeinnütziger Verein', nav_lang_aria:'Вибір мови', scroll_top_aria:'Догори', addr_country:'Німеччина',
   },
   en: {
     nav_about:'About', nav_projects:'Projects',
@@ -340,6 +343,7 @@ const i18n = {
     callout_label:'Want to support us?',
     callout_text:'Bank details, PayPal and the donation form are on a separate page.',
     callout_btn:'Go to donations',
+    nav_imprint:'Imprint', nav_privacy:'Privacy', footer_org:'gemeinnütziger Verein', nav_lang_aria:'Language selection', scroll_top_aria:'Back to top', addr_country:'Germany',
   }
 };
 
@@ -380,7 +384,7 @@ document.getElementById('burger').addEventListener('click', () =>
 applyLang(currentLang);
 </script>
 
-<button class="scroll-top" id="scrollTop" aria-label="Наверх">
+<button class="scroll-top" id="scrollTop" data-i18n-aria="scroll_top_aria" aria-label="Наверх">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 <script>
