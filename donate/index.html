@@ -35,6 +35,7 @@
 .f-check input { width: 16px; height: 16px; accent-color: var(--black); flex-shrink: 0; margin-top: 2px; }
 .f-check label { font-size: 0.85rem; color: var(--gray-700); line-height: 1.5; }
 .f-check__hint { font-size: 0.75rem; color: var(--gray-500); line-height: 1.5; margin: 4px 0 0; }
+.f-required { color: var(--color-danger); margin-left: 2px; }
 .lang-row { display: flex; gap: 6px; margin-bottom: 20px; }
 .lang-pill { padding: 6px 16px; border: 1px solid var(--gray-200); border-radius: 100px; font-size: 0.75rem; cursor: pointer; background: none; font-family: var(--font-ui); transition: 0.2s; color: var(--gray-500); }
 .lang-pill.on { background: var(--black); color: var(--white); border-color: var(--black); }
@@ -156,18 +157,18 @@
       <form action="../thank-you/" id="donateForm">
         <div class="f-row">
           <div class="f-group">
-            <label for="f-vorname" data-i18n="f_vorname">Vorname</label>
+            <label for="f-vorname"><span data-i18n="f_vorname">Vorname</span><span class="f-required" aria-hidden="true">*</span></label>
             <input type="text" id="f-vorname" name="vorname" autocomplete="given-name" required>
           </div>
           <div class="f-group">
-            <label for="f-nachname" data-i18n="f_nachname">Nachname</label>
+            <label for="f-nachname"><span data-i18n="f_nachname">Nachname</span><span class="f-required" aria-hidden="true">*</span></label>
             <input type="text" id="f-nachname" name="nachname" autocomplete="family-name" required>
           </div>
         </div>
 
         <div class="f-row">
           <div class="f-group">
-            <label for="f-email" data-i18n="f_email">E-Mail</label>
+            <label for="f-email"><span data-i18n="f_email">E-Mail</span><span class="f-required" aria-hidden="true">*</span></label>
             <input type="email" id="f-email" name="email" autocomplete="email" placeholder="email@example.com" required>
           </div>
           <div class="f-group">
@@ -177,23 +178,24 @@
         </div>
 
         <div class="f-group">
-          <label for="f-strasse" data-i18n="f_strasse">Straße, Hausnummer</label>
-          <input type="text" id="f-strasse" name="strasse" autocomplete="street-address" required>
+          <label for="f-strasse"><span data-i18n="f_strasse">Straße, Hausnummer</span><span class="f-required address-required-mark" aria-hidden="true" hidden>*</span></label>
+          <input type="text" id="f-strasse" name="strasse" autocomplete="street-address" aria-describedby="addressHint">
+          <p class="f-check__hint" id="addressHint" data-i18n="f_address_hint">Nur erforderlich bei Wunsch nach Zuwendungsbestätigung oder ab 300 € Spendenbetrag.</p>
         </div>
 
         <div class="f-row">
           <div class="f-group">
-            <label for="f-plz" data-i18n="f_plz">PLZ</label>
-            <input type="text" id="f-plz" name="plz" autocomplete="postal-code" inputmode="numeric" required>
+            <label for="f-plz"><span data-i18n="f_plz">PLZ</span><span class="f-required address-required-mark" aria-hidden="true" hidden>*</span></label>
+            <input type="text" id="f-plz" name="plz" autocomplete="postal-code" inputmode="numeric" aria-describedby="addressHint">
           </div>
           <div class="f-group">
-            <label for="f-ort" data-i18n="f_ort">Ort</label>
-            <input type="text" id="f-ort" name="ort" autocomplete="address-level2" required>
+            <label for="f-ort"><span data-i18n="f_ort">Ort</span><span class="f-required address-required-mark" aria-hidden="true" hidden>*</span></label>
+            <input type="text" id="f-ort" name="ort" autocomplete="address-level2" aria-describedby="addressHint">
           </div>
         </div>
 
         <div class="f-group">
-          <label for="amountInput" data-i18n="f_amount">Spendenbetrag (€)</label>
+          <label for="amountInput"><span data-i18n="f_amount">Spendenbetrag (€)</span><span class="f-required" aria-hidden="true">*</span></label>
           <div class="amount-pills" id="amountPills">
             <button type="button" class="amount-pill" data-val="20" aria-pressed="false">20 €</button>
             <button type="button" class="amount-pill active" data-val="50" aria-pressed="true">50 €</button>
@@ -372,6 +374,7 @@ const i18n = {
     form_title:'Spendenformular',
     f_vorname:'Vorname', f_nachname:'Nachname', f_email:'E-Mail', f_phone:'Telefon',
     f_strasse:'Straße, Hausnummer', f_plz:'PLZ', f_ort:'Ort',
+    f_address_hint:'Nur erforderlich bei Wunsch nach Zuwendungsbestätigung oder ab 300 € Spendenbetrag.',
     f_amount:'Spendenbetrag (€)', f_other:'Andere',
     f_project:'Projekt auswählen', f_proj_all:'Alle Projekte', f_proj_books:'Bücherpost',
     f_method:'Zahlungsart', f_bank:'Banküberweisung',
@@ -413,6 +416,7 @@ const i18n = {
     form_title:'Donation Form',
     f_vorname:'First name', f_nachname:'Last name', f_email:'Email', f_phone:'Phone',
     f_strasse:'Street, house number', f_plz:'Postal code', f_ort:'City',
+    f_address_hint:'Only required if you want a donation receipt (Zuwendungsbestätigung) or donate €300 or more.',
     f_amount:'Donation amount (€)', f_other:'Other',
     f_project:'Choose project', f_proj_all:'All projects', f_proj_books:'Book Delivery',
     f_method:'Payment method', f_bank:'Bank transfer',
@@ -454,6 +458,7 @@ const i18n = {
     form_title:'Форма пожертвования',
     f_vorname:'Имя', f_nachname:'Фамилия', f_email:'E-Mail', f_phone:'Телефон',
     f_strasse:'Улица, дом', f_plz:'Индекс', f_ort:'Город',
+    f_address_hint:'Требуется, только если вы хотите получить справку (Zuwendungsbestätigung) или сумма пожертвования от 300 €.',
     f_amount:'Сумма пожертвования (€)', f_other:'Другая',
     f_project:'Выбор проекта', f_proj_all:'Все проекты', f_proj_books:'Рассылка книг',
     f_method:'Способ оплаты', f_bank:'Банковский перевод',
@@ -495,6 +500,7 @@ const i18n = {
     form_title:'Форма пожертвування',
     f_vorname:'Ім\'я', f_nachname:'Прізвище', f_email:'E-Mail', f_phone:'Телефон',
     f_strasse:'Вулиця, будинок', f_plz:'Індекс', f_ort:'Місто',
+    f_address_hint:'Потрібно, лише якщо ви хочете отримати довідку (Zuwendungsbestätigung) або сума пожертви від 300 €.',
     f_amount:'Сума пожертви (€)', f_other:'Інша',
     f_project:'Вибір проекту', f_proj_all:'Усі проекти', f_proj_books:'Розсилка книг',
     f_method:'Спосіб оплати', f_bank:'Банківський переказ',
@@ -631,6 +637,19 @@ const submitBtn = document.getElementById('submitBtn');
 const paypalMount = document.getElementById('paypalMount');
 const statusEl = document.getElementById('donateStatus');
 const amountInput = document.getElementById('amountInput');
+const bescheinigungCheckbox = document.getElementById('bescheinigung');
+const addressFields = [donateForm.strasse, donateForm.plz, donateForm.ort];
+
+// Postal address is only legally needed to issue a Zuwendungsbestätigung —
+// mandatory above 300€, opt-in below via the receipt checkbox. Everyone
+// else (small card/PayPal donations, no receipt) shouldn't be forced to
+// hand over street/city just to donate.
+const addressRequiredMarks = document.querySelectorAll('.address-required-mark');
+function updateAddressRequired() {
+  const needsAddress = bescheinigungCheckbox.checked || (parseFloat(amountInput.value) || 0) >= 300;
+  addressFields.forEach(f => { f.required = needsAddress; });
+  addressRequiredMarks.forEach(m => { m.hidden = !needsAddress; });
+}
 
 function currentDict() { return i18n[currentLang] || i18n.de; }
 function t(key) { return currentDict()[key] ?? i18n.de[key] ?? ''; }
@@ -746,8 +765,13 @@ amountInput.addEventListener('input', () => {
   // not clicking a pill.
   setActivePill(document.querySelector('.amount-pill[data-val="other"]'));
   updateSubmitLabel();
+  updateAddressRequired();
 });
-document.getElementById('amountPills').addEventListener('click', updateSubmitLabel);
+document.getElementById('amountPills').addEventListener('click', () => {
+  updateSubmitLabel();
+  updateAddressRequired();
+});
+bescheinigungCheckbox.addEventListener('change', updateAddressRequired);
 
 donateForm.addEventListener('submit', async (e) => {
   const method = paymentSelect.value;
@@ -831,6 +855,7 @@ function prefillFromQuery() {
 
 prefillFromQuery();
 updateSubmitLabel();
+updateAddressRequired();
 togglePaymentUI();
 </script>
 
